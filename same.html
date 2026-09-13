@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alignment · RN validation</title>
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<main class="wrap">
+  <h2 class="page">Alignment: positions at which all three engines agree</h2>
+  <p class="lede">Positions at which <b>all three engines emit a label</b> and, once spelling is normalised, write the same one. Selecting a row opens the corresponding bar of the score; closing it returns you to the same place in the list.</p>
+  <p class="lede">Agreement is not treated as proof of correctness. Every cell here carries the same locked textbook grade as on Disagreements, so three engines can agree and still be wrong together. The grading criterion is set out on <a href="scoring.html">Ratings</a>.</p>
+  <div class="prelim"><b>Preliminary results.</b> These are first results. After detailed validation, the final accuracy figures may change by up to <b>&plusmn;5 percentage points</b> for AnalysisGNN and AugmentedNet and by about <b>&plusmn;1 point</b> for musWM. See <a href="scoring.html">Ratings</a> for how the margin was estimated.</div>
+  <div id="host"></div>
+</main>
+
+<script src="data/corpora.js"></script>
+<script src="js/rnv-data.js"></script>
+<script src="js/rnv-core.js"></script>
+<script src="js/rnv-clusters.js"></script>
+<script src="js/rnv-grades.js"></script>
+<script src="js/rnv-notes.js"></script>
+<script src="js/rnv-table.js"></script>
+<script src="vendor/opensheetmusicdisplay.min.js"></script>
+<script src="js/rnv-score.js"></script>
+<script>
+RNVData.boot({
+  page: 'same.html', title: 'Alignment', host: 'host',
+  render: function (corpus) {
+    RNVTable.mount({
+      host: 'host', corpus: corpus, csvName: 'identical', grading: true,
+      match: function (s) { return s === 'same'; }
+    });
+  }
+});
+</script>
+</body>
+</html>

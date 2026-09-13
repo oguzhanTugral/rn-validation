@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Method · RN validation</title>
+<link rel="stylesheet" href="css/site.css">
+<style>
+  table.rtc{margin:12px 0;font-size:13.5px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  table.rtc th{text-align:left;font-size:12.5px;background:var(--clr-lilac-50);padding:9px 12px;border-bottom:1px solid var(--line)}
+  table.rtc th span{font-weight:700}
+  table.rtc td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5}
+  table.rtc td:first-child{font-weight:700;color:var(--deep);white-space:nowrap}
+  table.rtc td:nth-child(2){background:rgba(29,78,216,.04)}
+  .e-muswm{color:var(--muswm)} .e-gnn{color:var(--gnn)} .e-anet{color:var(--anet)}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h2 class="page">Method</h2>
+  <p class="lede">How the comparison is built: how the labels of three engines are brought onto a common
+  grid, which differences count as differences, how each label is graded against the textbook, and what
+  the resulting figures can and cannot support. Two quantities are kept strictly apart throughout.
+  <b>Agreement</b> asks whether the engines write the same Roman numeral at the same position.
+  <b>Accuracy</b> asks whether a label matches the one the textbook derives. Neither is ever read as the
+  other.</p>
+
+  <div class="panel">
+    <h3>Pipeline</h3>
+    <table>
+      <tr><td>Scores</td><td><code>.mxl · .musicxml · .xml · .mid · .midi</code>; MIDI files are engraved
+        with MuseScore before packing.</td></tr>
+      <tr><td>Engines</td><td>Each engine is called through its canonical adapter. No engine logic is re-implemented for this site.</td></tr>
+      <tr><td>Alignment</td><td>The alignment step creates one row per distinct onset across the
+        three engines. A label persists to later rows <i>within its own bar</i> and never crosses a
+        barline. Carried cells are marked <span class="carried">held</span> and excluded from the
+        comparison (see below).</td></tr>
+      <tr><td>Pack</td><td>The data pack stores the labels only;
+        normalisation and classification take place in the browser.</td></tr>
+      <tr><td>Grades</td><td>A separate grading step derives the textbook label at every compared
+        position and writes the locked 1/0 grades.</td></tr>
+    </table>
+  </div>
+
+  <div class="panel">
+    <h3>Three spelling dialects</h3>
+    <table>
+      <thead><tr><th>Engine</th><th>Key prefix</th><th>Examples</th></tr></thead>
+      <tbody>
+        <tr><td><b class="e-muswm">musWM</b></td><td>none</td>
+          <td><span class="rn e-muswm">i · V₇ · ii₄₂ · vii°⁶ · iiø⁶₅ · IMaj₇ · V₇(no5)</span></td></tr>
+        <tr><td><b class="e-gnn">AnalysisGNN</b></td><td>always, followed by a space</td>
+          <td><span class="rn e-gnn">g: i · g: V7 · g: ii%65 · g: vo · Ab: I6</span></td></tr>
+        <tr><td><b class="e-anet">AugmentedNet</b></td><td>occasionally</td>
+          <td><span class="rn e-anet">i · V7 · iiø65 · viio7 · Cad64 · B-:V</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="panel">
+    <h3>Comparison basis: what counts as a claim</h3>
+    <p style="margin:0 0 10px">The engines segment the music independently. musWM often assigns one label
+    to a whole harmonic span, whereas AnalysisGNN tends to label every beat. To place them on a common
+    grid, alignment carries each engine&rsquo;s most recent label forward <i>within its bar</i>, so a cell
+    may hold a label the engine never asserted at that position. Such cells are marked
+    <span class="carried">held</span>.</p>
+    <p style="margin:0 0 10px"><b>Every figure on this site uses the onset basis.</b> A held cell is treated
+    exactly like a missing label: it is displayed struck through and receives no grade. The question is
+    therefore: <i>where an engine actually commits to a label, do the engines agree?</i></p>
+    <table>
+      <thead><tr><th>Basis</th><th>Held cells</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td><b>Onset only</b></td><td>Excluded</td><td>Used throughout</td></tr>
+        <tr><td><b>Sustained</b></td><td>Compared as if re-asserted on every beat</td>
+          <td>Not offered: it counts claims no engine made and <b>inflates disagreement</b> between
+              engines that segment at different rates</td></tr>
+      </tbody>
+    </table>
+    <p style="margin:12px 0 0">In When-in-Rome 335, <b>37.5% of all labelled cells are held</b>
+    (105,584 of 281,690). A choice with that much influence on the result is fixed rather than left to a
+    setting.</p>
+  </div>
+
+  <div class="panel">
+    <h3>Alignment: where a label is placed</h3>
+    <p style="margin:0 0 10px">A corpus is built under one of two alignments, named in the note above every
+    table. This corpus uses <b>window</b>.</p>
+    <table>
+      <thead><tr><th>Alignment</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td><b>window</b></td>
+          <td>Each musWM label is placed at the beat that <b>musWM itself reports</b> as the start of its
+              analysis window. musWM can anchor a label to the start of a beat; window alignment moves it to the
+              start of the window it describes, so the label is compared with the moment it actually describes.</td></tr>
+        <tr><td><b>beat</b></td>
+          <td>Labels stay on the beat each engine anchored them to. This reproduces the RN tab of the main
+              site and the earlier benchmark workbooks exactly.</td></tr>
+      </tbody>
+    </table>
+    <p style="margin:12px 0 0"><b>Only musWM labels are ever moved.</b> AnalysisGNN and AugmentedNet report
+    no analysis window &mdash; they label onsets directly &mdash; and are used exactly as their adapters
+    return them. The builder restricts repositioning to musWM by name, and a before-and-after comparison
+    confirmed that the rows of the other two engines pass through byte-identical.</p>
+    <p class="dim" style="margin:8px 0 0;font-size:13px">Should two
+    musWM labels land on the same position, the build keeps the later one and records a warning; in
+    When-in-Rome 335 this occurred in <b>18 works</b>.</p>
+    <p style="margin:12px 0 0">In When-in-Rome 335, <b>13,325 of 47,996 musWM onsets (27.8%) were
+    repositioned.</b></p>
+    <h4 style="margin:16px 0 8px;font-size:13.5px">What the choice of alignment changes</h4>
+    <p style="margin:0">Repositioning can only move a musWM label away from one position and onto another.
+    Leaving a beat for which it had no evidence removes a disagreement that was never a genuine claim;
+    leaving a beat on which all three engines happened to agree removes an agreement; arriving at a new
+    beat creates a new comparison. No position at which all three engines remain present switches between
+    identical and different. Because the pool of comparable rows changes, an agreement rate is meaningful
+    only together with the alignment under which it was computed.</p>
+  </div>
+
+  <div class="panel">
+    <h3>Where a label sits is not always where its evidence is</h3>
+    <p style="margin:0 0 10px">Two further effects can separate a label from the moment it describes. Both arise in the shared
+    alignment step, so the RN tab of the main site exhibits them as well.</p>
+    <table>
+      <thead><tr><th>Effect</th><th>What happens</th><th>How it is shown</th></tr></thead>
+      <tbody>
+        <tr><td><b>Beat snap</b></td>
+          <td>A label may be anchored at the start of a beat although the chord it names is heard slightly later.
+              Under <b>window</b> alignment this is corrected at build time; under <b>beat</b> alignment it is
+              left in place.</td>
+          <td>Corrected before the figures are computed.</td></tr>
+        <tr><td><b>Dropped repeat</b></td>
+          <td>The alignment step removes a label identical to the engine&rsquo;s
+              previous one, and the bar-local reset then leaves the cell blank. The cell reads &ldquo;no
+              label&rdquo; although the engine did assert something at that position.</td>
+          <td>The cell carries an <span class="carried drop">emitted, dropped</span> badge, and the score
+              window shows what was emitted.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="panel">
+    <h3>Comparison modes</h3>
+    <p class="dim" style="margin:0 0 10px;font-size:13.5px"><b>Only the normalised comparison is used on
+      this site.</b> The strict and degree-only modes are described for completeness; neither is offered in
+      the tables.</p>
+    <table>
+      <thead><tr><th>Mode</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td><b>Strict</b></td><td>Raw strings compared character by character, with only the key prefix
+          (<code>g:</code>) separated &mdash; musWM writes no prefix, so retaining it would make every row
+          differ.</td></tr>
+        <tr><td><b>Normalised</b></td>
+          <td>Strict comparison, plus the following equivalences:
+          <ul style="margin:6px 0 0;padding-left:20px">
+            <li>Sub- and superscript digits become ASCII: <code>V₇ → V7</code>, <code>I⁶₄ → I64</code></li>
+            <li>Diminished: <code>°</code> → <code>o</code> (<code>vii°⁶</code> ≡ <code>viio6</code>)</li>
+            <li>Half-diminished: <code>ø</code> and <code>%</code> → <code>h</code>
+                (<code>iiø⁶₅</code> ≡ <code>ii%65</code>)</li>
+            <li>Figured-bass abbreviations: <code>42</code> ≡ <code>2</code>,
+                <code>63</code> ≡ <code>6</code>, <code>653</code> ≡ <code>65</code>,
+                <code>753</code> ≡ <code>7</code>, <code>53</code> ≡ (none)</li>
+            <li><code>Maj</code> is dropped: <code>IMaj₇</code> ≡ <code>I7</code></li>
+            <li><b>Over the same bass, a triad name and a seventh name are not a difference</b>: root
+                position <code>V</code> ≡ <code>V7</code>; first inversion <code>V6</code> ≡
+                <code>V65</code> (<code>ii6</code> ≡ <code>ii65</code>); second inversion <code>V64</code> ≡
+                <code>V43</code>; likewise <code>I</code> ≡ <code>IM7</code>, <code>vii°</code> ≡
+                <code>vii°7</code> ≡ <code>viiø7</code>, <code>V/V</code> ≡ <code>V7/V</code>. A different
+                bass remains a difference (<code>V</code> ≠ <code>V6</code>, <code>I65</code> ≠
+                <code>I</code>), and the third inversion (<code>2</code>) has no triad counterpart. The same
+                rule governs Alignment, Disagreements and the textbook grades.</li>
+            <li>Voicing remarks are dropped: <code>(no3)</code>, <code>(no5)</code>, <code>(dyad)</code></li>
+          </ul></td></tr>
+        <tr><td><b>Degree only</b></td><td>Normalised, with inversion and seventh then removed; the degree
+          and any applied target remain (<code>V7/vi → V/vi</code>, <code>iiø65 → ii</code>), and
+          <code>Cad64</code> counts as <code>I</code>. This is <b>looser than musical equality</b> and is not
+          suitable for reporting an agreement rate.</td></tr>
+      </tbody>
+    </table>
+    <p class="dim" style="margin:12px 0 0;font-size:13px">
+      Differences that normalisation deliberately preserves: <code>Cad64</code> ↔ <code>I64</code> (a
+      cadential reading of the six-four), different applied targets (<code>/III</code> ↔ <code>/V</code>),
+      and different local-key decisions.
+    </p>
+  </div>
+
+  <div class="panel">
+    <h3>Repeated labels</h3>
+    <p style="margin:0 0 10px">A label is written <b>once, at the row where its run begins</b>; later rows
+    of the same run are left blank for that engine. This is a fixed presentation choice.</p>
+    <table>
+      <tr><td style="width:170px">What is hidden</td>
+        <td>A cell whose label is identical to the same engine&rsquo;s label in the row directly above. A
+            blank cell, or a different label, starts a new run.</td></tr>
+      <tr><td>Classification</td>
+        <td><b>Unaffected.</b> Identical, different and coverage gap are computed from the full values.</td></tr>
+      <tr><td>Grading</td>
+        <td><b>Unaffected.</b> Grades are the locked textbook grades at the positions where an engine emitted
+            a label; a blank repeat cell is not a separate claim.</td></tr>
+    </table>
+    <p class="dim" style="margin:12px 0 0;font-size:13px">In When-in-Rome 335 nearly every repeat is a carried
+    cell rather than a genuine re-assertion: of 106,368 repeated cells, 105,584 are carried, and only
+    <b>784</b> are an engine emitting the same label again at the next onset (760 AnalysisGNN, 24
+    AugmentedNet). On the onset basis, hiding repeats therefore changes what is read, not what is counted.</p>
+  </div>
+
+  <div class="panel">
+    <h3>Row classes</h3>
+    <table>
+      <thead><tr><th>Class</th><th>Condition</th><th>Page</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag same">identical</span></td>
+            <td>All three engines emit a label, and the three normalise to the same string</td>
+            <td><a href="same.html">Alignment</a></td></tr>
+        <tr><td><span class="tag diff">different</span></td>
+            <td>All three engines emit a label, and at least one differs</td>
+            <td><a href="different.html">Disagreements</a></td></tr>
+        <tr><td><span class="tag partial">partial</span></td>
+            <td>One or two engines emit no label</td>
+            <td><a href="coverage.html">Coverage gaps</a></td></tr>
+        <tr><td><span class="tag partial">empty</span></td>
+            <td>No engine emits a label</td>
+            <td><a href="coverage.html">Coverage gaps</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="panel">
+    <h3>Grading and accuracy</h3>
+    <div class="prelim"><b>Preliminary results.</b> These are first results. After detailed validation, the final accuracy figures may change by up to <b>&plusmn;5 percentage points</b> for AnalysisGNN and AugmentedNet and by about <b>&plusmn;1 point</b> for musWM. The margin combines a 95% interval from resampling whole works (about &plusmn;3 points for the two learned engines, &plusmn;0.15 for musWM) with the shift already observed when a single normalisation rule changed (4&ndash;5 points). It applies under the present criterion; expert annotation may move all three engines further.</div>
+    <p style="margin:0">All grades on this site are derived from the textbook and locked. At every row where
+    <b>all three engines emit a label at the same onset</b>, the reference is the Roman numeral that Kostka,
+    Payne &amp; Alm&eacute;n, <i>Tonal Harmony</i> 8e, assign given <b>musWM&rsquo;s local key, mode and chord
+    code</b> at that position.</p>
+    <table style="margin-top:12px">
+      <tr><td><b>1</b></td><td>The engine&rsquo;s normalised label equals the textbook label.</td></tr>
+      <tr><td><b>0</b></td><td>It does not.</td></tr>
+      <tr><td>&mdash;</td><td>The engine emits no label here. Absence is a matter of coverage rather than
+        error, and the row is not compared.</td></tr>
+      <tr><td>at onset</td><td>The cell holds a label carried from an earlier onset. The engine made no claim
+        at this position, so the row is not compared.</td></tr>
+      <tr><td>blank</td><td>The textbook derives no label mechanically (a two-note sonority, dense ornament),
+        so there is nothing to grade against.</td></tr>
+    </table>
+    <p style="margin:12px 0 0">Grades are the same on <a href="same.html">Alignment</a> and
+    <a href="different.html">Disagreements</a>, and none can be changed by hand. Where the textbook accepts two
+    spellings of one chord &mdash; a suspension figure over the same degree (pp. 201&ndash;202), or V/III
+    &equiv; VII in minor (p. 257) &mdash; both count as equal for all three engines.</p>
+    <p style="margin:8px 0 0">An engine&rsquo;s accuracy is <b>correct &divide; graded</b>, reported over all
+    compared rows and separately for Alignment and Disagreements. <a href="scoring.html">Ratings</a> lists every
+    reason a row was not compared, with counts, together with the number of labels each engine emitted, so
+    the share of the corpus behind each figure is always in view.</p>
+    <p class="dim" style="margin:8px 0 0;font-size:13px"><b>What the figure does and does not say.</b> The
+    reference is built from musWM&rsquo;s reading &mdash; its key, notes, bass and root &mdash; but never from
+    its label. Where musWM&rsquo;s label departs from the textbook label, musWM scores 0; the reference stays
+    as the textbook writes it, and AnalysisGNN and AugmentedNet are checked against that same label, so an
+    engine that writes it scores 1 even where musWM scores 0. Because the key is musWM&rsquo;s, a label that
+    would be right in a key another engine read differently scores 0; the share of compared rows on which
+    each engine shares musWM&rsquo;s key is reported beside the result. On Alignment rows the three engines
+    wrote the same label and therefore share a score by definition.</p>
+  </div>
+
+  <div class="panel">
+    <h3>Bar-number mapping</h3>
+    <p style="margin:0 0 10px">The bar number an engine reports is not always the written bar number: in some
+    works musWM follows the repeat-expanded order of performance, while AnalysisGNN and AugmentedNet remain on
+    the written bars. Each work is assigned one of three mappings.</p>
+    <table>
+      <thead><tr><th>Mapping</th><th>Condition</th><th>Transform</th></tr></thead>
+      <tbody>
+        <tr><td><code>direct</code></td><td>The reported range fits within the written range</td>
+            <td>Used as reported</td></tr>
+        <tr><td><code>expanded</code></td><td>The reported range is wider, and music21&rsquo;s repeat
+            expansion is long enough to cover it</td><td>Position in the expansion &rarr; the written bar
+            at that position</td></tr>
+        <tr><td><code>approx</code></td><td>The repeat structure cannot be resolved</td>
+            <td>Written bars mapped cyclically &mdash; <b>the bar shown is approximate</b>, and the score
+            window says so</td></tr>
+      </tbody>
+    </table>
+    <p class="dim" style="margin:10px 0 0;font-size:13px">The mapping used for each work is listed under
+    <a href="works.html">Works</a>. Where there is doubt, switch the score window to <b>Whole work</b> and
+    confirm the bar by eye.</p>
+  </div>
+
+  <div class="panel">
+    <h3>What these figures do not establish</h3>
+    <ul style="margin:0;padding-left:20px" class="dim">
+      <li>They do not show that any engine is correct in an absolute sense. Agreement among three engines may
+        reflect a shared convention as readily as a shared mistake.</li>
+      <li>The textbook grade tests naming, not hearing. The key and notes are musWM&rsquo;s, so the grade asks
+        whether a chord, as musWM read it, is named as the textbook would name it.</li>
+      <li>An agreement rate depends on its denominator. The Summary reports agreement over comparable rows;
+        a rate over all rows would be a different number and cannot stand in for it.</li>
+      <li>A coverage gap is not a disagreement, and the two are never pooled.</li>
+      <li>Labels are never recomputed in the browser. The pack holds what the engines produced on the day it
+        was built.</li>
+      <li>Every figure uses the onset basis. A figure that counted carried labels would answer a different
+        question and cannot be compared with these.</li>
+      <li>A row&rsquo;s bar and beat are where the aligned table places the label, not necessarily where the
+        engine found its evidence. The evidence line in the score window shows the difference.</li>
+    </ul>
+  </div>
+
+  <h3 class="sect">Textbook audit of the rules added to musWM (12&ndash;13 September 2026)</h3>
+  <p class="note" style="margin-top:0">Three rules were added to musWM after the corpus was first graded:
+    <b>P12</b>, which replaces an augmented reading with a non-augmented reading of the same pitch classes;
+    <b>P13</b>, which reads a non-diatonic diminished triad as an incomplete fully diminished seventh with
+    leading-tone function; and the <b>beat extension</b>, which re-reads an augmented triad found on a
+    sub-beat together with the rest of its metrical beat. Every label these rules produce in this corpus was
+    checked against Kostka, Payne &amp; Almén, <i>Tonal Harmony</i> 8e. <b>The findings are reported here and
+    have not been applied to the engine</b>; the labels on this site are the engine&rsquo;s labels as they
+    currently stand.</p>
+  <div id="auditHost"><p class="dim">Loading…</p></div>
+
+  <h3 class="sect">Real time and explainability</h3>
+  <div class="panel">
+    <p style="margin:0 0 10px">The three engines differ in a property that matters as soon as analysis has to keep pace with
+    listening. musWM is <b>rule-based, causal and explainable</b>: a label is formed from the notes held in a
+    capacity-limited window, uses nothing that has not yet sounded, and carries the representations it was derived from.
+    AnalysisGNN and AugmentedNet are learned score-level models; both take a complete score and use bidirectional
+    context, so each label also depends on later music. On this site all three were run on complete scores, so the
+    comparison itself is unaffected; the difference concerns what each engine can do during listening.</p>
+  <div style="overflow-x:auto">
+    <table class="rtc">
+      <thead><tr><th></th><th><span class="e-muswm">musWM</span></th><th><span class="e-gnn">AnalysisGNN</span></th><th><span class="e-anet">AugmentedNet</span></th></tr></thead>
+      <tbody>
+        <tr><td>Input</td><td>Notes as they sound</td><td>A complete score, turned into a graph of all its notes</td><td>A complete score, parsed and encoded frame by frame</td></tr>
+        <tr><td>Context behind a label</td><td><b>Past only.</b> A label uses nothing that has not yet sounded</td><td>Past and future: graph edges to later notes and bidirectional recurrent layers</td><td>Past and future: bidirectional recurrent layers over the whole sequence</td></tr>
+        <tr><td>When a label exists</td><td>During listening, once the chord in the window is stable</td><td>After the whole piece has been processed</td><td>After the whole piece has been processed; chord boundaries are resolved over the full output</td></tr>
+        <tr><td>How it is derived</td><td>Deterministic lookup and textbook-referenced rules</td><td>Weights learned from annotated corpora</td><td>Weights learned from annotated corpora</td></tr>
+        <tr><td>What can be traced</td><td>Pitch-class set, bass, root, chord code and local key are recorded with every label</td><td>The predicted label</td><td>The predicted label</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="dim" style="margin:10px 0 0;font-size:13px">Sources: the pinned implementations used here
+    (AugmentedNet <code>models.py</code> and <code>inference.py</code>; AnalysisGNN <code>models/analysis.py</code>,
+    <code>models/chord.py</code>). This describes design objectives, not analytical quality.</p>
+  </div>
+
+  <h3 class="sect">Where each engine comes from, and how change is tracked</h3>
+
+  <p class="note" style="margin-top:0">
+    <b>musWM</b> runs from this repository. <b>AugmentedNet</b> runs from a local checkout of
+    <a href="https://github.com/napulen/AugmentedNet">napulen/AugmentedNet</a> pinned at tag
+    <code>v1.9.1</code>, with the weights shipped in that tag; nothing is fetched at inference time, so its
+    output changes only when the pin is moved deliberately. <b>AnalysisGNN</b> is treated differently: it is
+    called through the authors&rsquo; live service at
+    <a href="https://analysisgnn.com/analysis">analysisgnn.com</a>, so its output is whatever the authors
+    serve on the day a corpus is built. This is intentional &mdash; the figures follow the engine as its
+    authors publish it. A pinned local copy of
+    <a href="https://github.com/manoskary/analysisgnn">manoskary/analysisgnn</a> is kept alongside, so that a
+    run can still be reproduced if the service changes or disappears.
+  </p>
+
+  <p class="note">
+    Because one engine can change beneath the figures, every corpus build is fingerprinted and compared with
+    the build before it. The table below is that record. It is append-only &mdash; entries are never edited
+    or removed &mdash; so any figure that moves can be traced to the build that moved it. <b>A changed
+    fingerprint without a corresponding change in this repository means that the upstream engine changed,
+    not the method of comparison.</b>
+  </p>
+
+  <div style="overflow-x:auto"><table id="engineLog"></table></div>
+  <p class="dim" id="engineLogNote" style="font-size:13px"></p>
+
+</main>
+
+<script>
+fetch('data/engine_log_public.json').then(function (r) { return r.json(); }).then(function (d) {
+  var rows = (d.entries || []).slice().reverse();
+  var t = ['<thead><tr><th>Observed</th><th>Corpus</th><th>Engine</th><th>Labels</th>' +
+           '<th>Fingerprint</th><th>Change</th><th>Agreement after</th></tr></thead><tbody>'];
+  rows.forEach(function (e) {
+    var ch = e.change === 'baseline'
+      ? '<span class="dim">first recorded</span>'
+      : '<b>' + e.changedCells + ' cells</b> &middot; ' + e.relabelled + ' relabelled, ' +
+        e.added + ' added, ' + e.removed + ' dropped' +
+        (e.examples && e.examples.length
+          ? '<div class="dim" style="font-size:12px;margin-top:3px">e.g. ' +
+            e.examples.slice(0, 3).map(function (x) {
+              return x.at + ': ' + (x.was || '—') + ' &rarr; ' + (x.now || '—');
+            }).join(' · ') + '</div>'
+          : '');
+    var ag = e.agreementAfter && e.agreementAfter.pct !== null
+      ? e.agreementAfter.pct.toFixed(2).replace('.', ',') + '%' +
+        (e.agreementDelta != null
+          ? ' <span class="' + (e.agreementDelta >= 0 ? 'good' : 'bad') + '">(' +
+            (e.agreementDelta >= 0 ? '+' : '') +
+            e.agreementDelta.toFixed(2).replace('.', ',') + ')</span>'
+          : '')
+      : '—';
+    t.push('<tr><td style="white-space:nowrap">' + e.observed.replace('T', ' ') + '</td>' +
+      '<td><code>' + e.corpus + '</code></td><td>' + e.engine + '</td>' +
+      '<td class="num">' + e.labels.toLocaleString('en') + '</td>' +
+      '<td><code style="font-size:11.5px">' + e.fingerprint.slice(0, 12) + '</code></td>' +
+      '<td>' + ch + '</td><td class="num">' + ag + '</td></tr>');
+  });
+  document.getElementById('engineLog').innerHTML = t.join('') + '</tbody>';
+  document.getElementById('engineLogNote').textContent =
+    rows.length + ' entries, regenerated after every corpus build. A build that changes nothing adds no entry.';
+}).catch(function () {
+  document.getElementById('engineLogNote').textContent =
+    'No engine log available.';
+});
+</script>
+
+<script src="data/corpora.js"></script>
+<script src="js/rnv-data.js"></script>
+<script>
+RNVData.boot({ page: 'method.html', title: 'Method', host: 'host',
+               needsCorpus: false, render: function () {} });
+</script>
+
+<script>
+(function () {
+  var esc = function (x) { return String(x == null ? '' : x).replace(/[&<>"]/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  var nf = function (x) { return (x || 0).toLocaleString('en'); };
+  var cid = (window.RNV_CORPORA && window.RNV_CORPORA[0] && window.RNV_CORPORA[0].id) || 'wir335';
+  fetch('data/corpora/' + cid + '/audit_new_rules.json').then(function (r) { return r.json(); }).then(function (A) {
+    var V = A.verdicts || {};
+    var tag = function (v) {
+      var bad = /UYUMSUZ|non-conformant/.test(v), q = /seyrek|questionable/.test(v);
+      return '<span class="tag ' + (bad ? 'diff' : q ? 'partial' : 'same') + '">' +
+             (bad ? 'non-conformant' : q ? 'questionable' : 'conformant') + '</span>';
+    };
+    var TR = {
+      'uyumlu: ikincil dominant (s.272)': 'Secondary dominant of a diatonic triad (p. 272)',
+      'uyumlu: tam/eksik 5\'li akor (p. 222)': 'Incomplete chord (p. 222)',
+      'UYUMSUZ: +6 yapisi -> It+6 (s.382-383)': 'Bass on ♭6̂ with 1̂ and ♯4̂: the textbook label is It⁺⁶ (pp. 382–383)',
+      'UYUMSUZ: +6 yapisi -> It+6/hedef (s.382-383)': 'Same structure on a diatonic target: It⁺⁶/target (pp. 382–383)',
+      'UYUMSUZ: kitapta adi yok (Mm7 kromatik kok, ikincil degil)': 'Mm7 on a chromatic root that is not a secondary dominant: no textbook name'
+    };
+    var p12 = Object.keys(V.P12 || {}).map(function (k) {
+      return '<tr><td>' + tag(k) + '</td><td>' + esc(TR[k] || k) + '</td><td class="num">' + nf(V.P12[k]) + '</td></tr>';
+    }).join('');
+    var fam = (A.p13Families || []).map(function (f) {
+      return '<tr><td>' + tag(f.verdict) + '</td><td>' + esc(f.family) + '</td><td class="num">' + nf(f.events) +
+        '</td><td><code>' + esc(f.example[0]) + '</code> → <code>' + esc(f.example[1]) + '</code><div class="dim" style="font-size:12px">' +
+        esc(f.example[2]) + '</div></td><td class="dim" style="font-size:12.5px">' + esc(f.reason) + '</td></tr>';
+    }).join('');
+    var ext = V.EXT ? Object.keys(V.EXT).reduce(function (a, k) { return a + V.EXT[k]; }, 0) : 0;
+    var p13tot = V.P13 ? Object.keys(V.P13).reduce(function (a, k) { return a + V.P13[k]; }, 0) : 0;
+    var p13third = V.P13 ? Object.keys(V.P13).filter(function (k) { return /3'lu/.test(k); })
+      .reduce(function (a, k) { return a + V.P13[k]; }, 0) : 0;
+    document.getElementById('auditHost').innerHTML =
+      '<div class="panel"><h3>Beat extension — ' + nf(ext) + ' events</h3>' +
+      '<p style="margin:0">Every event yields a non-augmented triad or seventh, and the pitch class left out is treated as a ' +
+      'non-chord tone (pp. 201–202). Example: K.309/1, bar 6: C♯–F–A with D arriving at beat 1.5 becomes <code>ii6</code>. ' +
+      'The omitted pitch class is not stored in the pack, so the type of non-chord tone was not verified event by event.</p></div>' +
+      '<div class="panel"><h3>P12 — augmented readings</h3><div style="overflow-x:auto"><table>' +
+      '<thead><tr><th></th><th>Finding</th><th>Events</th></tr></thead><tbody>' + p12 + '</tbody></table></div>' +
+      '<p class="dim" style="margin:10px 0 0;font-size:13px">Reading chord code 4-10 as a dominant seventh without its fifth ' +
+      'conflicts with the textbook when the bass is ♭6̂: Kostka, Payne &amp; Almén treat that structure as an augmented sixth chord ' +
+      'and note that it can be told apart from a dominant seventh only by its resolution (p. 388).</p></div>' +
+      '<div class="panel"><h3>P13 — incomplete diminished sevenths (' + nf(p13tot) + ' events)</h3>' +
+      '<p style="margin:0 0 10px">The label form <code>vii°7/target</code> follows pp. 273 and 275 in every case. In ' +
+      nf(p13third) + ' events, however, the reading assumes an omitted <b>third</b>, which p. 222 describes as far less common ' +
+      'than an omitted fifth. Grouped by the label the rule replaced:</p>' +
+      '<div style="overflow-x:auto"><table><thead><tr><th></th><th>Replaced label</th><th>Events</th><th>Example</th>' +
+      '<th>Textbook</th></tr></thead><tbody>' + fam + '</tbody></table></div></div>';
+  }).catch(function () {
+    document.getElementById('auditHost').innerHTML = '<p class="dim">No audit data for this corpus.</p>';
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Works · RN validation</title>
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<main class="wrap">
+  <h2 class="page">Works</h2>
+  <p class="lede">Agreement and coverage for each work in the corpus. Selecting a work opens its first bar
+  in the score; selecting a count opens the corresponding list, filtered to that work.</p>
+  <div class="toolbar">
+    <div class="field"><label for="fSearch">Search</label>
+      <input id="fSearch" type="search" placeholder="work name or key"></div>
+    <div class="field"><label for="fSort">Sort by</label><select id="fSort">
+      <option value="no">Corpus order</option>
+      <option value="agree">Agreement (lowest first)</option>
+      <option value="agreeDesc">Agreement (highest first)</option>
+      <option value="rows">Row count</option>
+      <option value="cover">Coverage gap share</option>
+      <option value="graded">Grading progress</option>
+    </select></div>
+    <div class="count" id="fCount"></div>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr>
+      <th>#</th><th>Work</th><th>Key</th><th>Written bars</th><th>Mapping</th>
+      <th>Rows</th><th>Compar.</th><th>Identical</th><th>Different</th><th>Gaps</th>
+      <th>Agreement</th><th>Graded</th>
+    </tr></thead>
+    <tbody id="fBody"></tbody>
+  </table></div>
+</main>
+
+<script src="data/corpora.js"></script>
+<script src="js/rnv-data.js"></script>
+<script src="js/rnv-core.js"></script>
+<script src="js/rnv-clusters.js"></script>
+<script src="js/rnv-grades.js"></script>
+<script src="js/rnv-notes.js"></script>
+<script src="js/rnv-table.js"></script>
+<script src="vendor/opensheetmusicdisplay.min.js"></script>
+<script src="js/rnv-score.js"></script>
+<script>
+RNVData.boot({
+  page: 'works.html', title: 'Works', host: 'fBody',
+  render: function (corpus) {
+    var esc = RNVData.esc;
+    var mode = RNVData.currentMode();
+    var basis = RNV.hasOnsetInfo(corpus) ? RNVData.currentBasis() : 'sustained';
+    var rows = RNV.buildRows(corpus, mode, basis, RNVData.currentRepeats() !== 'show');
+    var id = corpus.id;
+    var pct = function (x) { return x === null ? '—' : (100 * x).toFixed(1) + '%'; };
+
+    var stats = corpus.pieces.map(function (p) {
+      return { p: p, total: 0, same: 0, diff: 0, missing: 0, first: null, subset: [] };
+    });
+    rows.forEach(function (r) {
+      var st = stats[r.piece];
+      st.total++;
+      st.subset.push(r);
+      if (r.status === 'same') st.same++;
+      else if (r.status === 'diff') st.diff++;
+      else st.missing++;
+      if (!st.first) st.first = r;
+    });
+    stats.forEach(function (st) {
+      st.comparable = st.same + st.diff;
+      st.agree = st.comparable ? st.same / st.comparable : null;
+      st.coverGap = st.total ? st.missing / st.total : 0;
+      var g = RNVGrades.stats(id, corpus, st.subset);
+      st.graded = g.reduce(function (a, x) { return a + x.graded; }, 0);
+      st.gradable = g.reduce(function (a, x) { return a + x.labelled; }, 0);
+      st.gradeProgress = st.gradable ? st.graded / st.gradable : 0;
+    });
+
+    var elBody = document.getElementById('fBody');
+    var elCount = document.getElementById('fCount');
+    var elSearch = document.getElementById('fSearch');
+    var elSort = document.getElementById('fSort');
+
+    function paint() {
+      var q = elSearch.value.trim().toLowerCase();
+      var list = stats.filter(function (st) {
+        return !q || (st.p.title + ' ' + st.p.key + ' ' + st.p.no).toLowerCase().indexOf(q) >= 0;
+      });
+      var by = elSort.value;
+      list = list.slice().sort(function (a, b) {
+        if (by === 'agree') return (a.agree === null ? 2 : a.agree) - (b.agree === null ? 2 : b.agree);
+        if (by === 'agreeDesc') return (b.agree === null ? -1 : b.agree) - (a.agree === null ? -1 : a.agree);
+        if (by === 'rows') return b.total - a.total;
+        if (by === 'cover') return b.coverGap - a.coverGap;
+        if (by === 'graded') return b.gradeProgress - a.gradeProgress;
+        return a.p.i - b.p.i;
+      });
+
+      elBody.innerHTML = list.map(function (st) {
+        var p = st.p;
+        var warn = p.mapMode === 'approx'
+          ? ' <span class="tag partial" title="Repeat structure unresolved; bar mapping approximate">approx</span>' : '';
+        return '<tr class="clickable" data-piece="' + p.i + '">' +
+          '<td class="num">' + p.no + '</td>' +
+          '<td class="work"><span class="t">' + esc(RNVData.pretty(p.title)) + '</span>' +
+          '<span class="m">' + esc(p.orig) + '</span></td>' +
+          '<td>' + esc(p.key || '—') + '</td>' +
+          '<td class="num">' + (p.written ? p.written[0] + '–' + p.written[1] : '—') + '</td>' +
+          '<td><code>' + p.mapMode + '</code>' + warn + '</td>' +
+          '<td class="num"><b>' + st.total + '</b></td>' +
+          '<td class="num">' + st.comparable + '</td>' +
+          '<td class="num"><a href="same.html?corpus=' + encodeURIComponent(id) + '&piece=' + p.i + '">' + st.same + '</a></td>' +
+          '<td class="num"><a href="different.html?corpus=' + encodeURIComponent(id) + '&piece=' + p.i + '">' + st.diff + '</a></td>' +
+          '<td class="num"><a href="coverage.html?corpus=' + encodeURIComponent(id) + '&piece=' + p.i + '">' + st.missing + '</a></td>' +
+          '<td class="acc"><b>' + pct(st.agree) + '</b></td>' +
+          '<td class="acc">' + st.graded + ' <span class="dim">/ ' + st.gradable + '</span></td></tr>';
+      }).join('');
+      elCount.innerHTML = '<b>' + list.length + '</b> works · mode: ' + mode;
+    }
+
+    elBody.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return;
+      var tr = e.target.closest('tr[data-piece]');
+      if (!tr) return;
+      var st = stats[Number(tr.dataset.piece)];
+      if (st.first) RNVScore.open(st.first, null, { corpus: corpus, corpusId: id, basis: basis });
+    });
+    elSearch.addEventListener('input', paint);
+    elSort.addEventListener('change', paint);
+    paint();
+  }
+});
+</script>
+</body>
+</html>

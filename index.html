@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Overview · RN validation</title>
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<main class="wrap">
+  <h2 class="page">Summary</h2>
+  <p class="lede">musWM, AnalysisGNN and AugmentedNet are set side by side on one corpus and aligned by bar and
+  beat. Three quantities are reported &mdash; conformance to theory, agreement between engines and accuracy
+  against the textbook &mdash; and they are kept apart, because each answers a different question.</p>
+
+  <div class="cards" style="margin:16px 0 6px">
+    <div class="card"><span class="k">1 &middot; Theory conformance</span>
+      <span class="v" id="kTheory">&mdash;</span>
+      <span class="n" id="kTheoryNote">Does musWM&rsquo;s label follow the textbook? Measured against
+      Kostka, Payne &amp; Alm&eacute;n, <i>Tonal Harmony</i> 8e over the corpus shown. No human annotation
+      involved. &rarr; <a href="theory.html">Theory</a></span></div>
+    <div class="card"><span class="k" id="kRatedHead">2 · Accuracy against the textbook</span>
+      <span class="v" id="kRated">&mdash;</span>
+      <span class="n" id="kRatedNote">One point or none per engine, fixed in advance, against the textbook label. &rarr; <a href="scoring.html">Ratings</a></span></div>
+  </div>
+
+  <div class="prelim"><b>Preliminary results.</b> The figures on this site are first results. After detailed validation, the final accuracy figures may change by up to <b>&plusmn;5 percentage points</b> for AnalysisGNN and AugmentedNet and by about <b>&plusmn;1 point</b> for musWM. See <a href="scoring.html">Ratings</a> for how the margin was estimated.</div>
+
+  <div class="note" style="margin-bottom:20px">
+    <b>What this site does not claim.</b> Roman numeral analysis has no single correct answer that all
+    of these could be scored against. As the <i>When in Rome</i> authors put it, &ldquo;analysis corpora
+    are problematic in several ways that make the term &lsquo;ground truth&rsquo; almost never
+    appropriate&rdquo; (Gotham et al., 2023). Yet while a passage may allow more than one defensible
+    reading, what is untenable is always obvious to a music analyst: a label that contradicts the
+    sounding notes, the bass or the key cannot be right under any reading. Each number above is
+    therefore named for what it actually measures.
+  </div>
+
+
+  <h3 class="sect">Agreement between engines</h3>
+  <div class="cards" id="cards"></div>
+
+  <h3 class="sect" id="accHead">Accuracy against the textbook (locked)</h3>
+  <div id="accWrap"></div>
+
+  <div class="panel">
+    <h3>Pairwise agreement (rows where both engines produced a label)</h3>
+    <div style="overflow-x:auto"><table id="pairTable"></table></div>
+  </div>
+
+  <div class="panel">
+    <h3>Bar-number mapping</h3>
+    <p class="dim" style="margin:0 0 10px;font-size:13.5px">
+      The bar number reported by the engines is not always the written bar number.
+      This mapping is applied when a score is opened.</p>
+    <div style="overflow-x:auto"><table id="mapTable"></table></div>
+  </div>
+
+  <div class="panel">
+    <h3>Most frequent disagreement triples</h3>
+    <div style="overflow-x:auto"><table id="topTable"></table></div>
+  </div>
+</main>
+
+<script>
+/* theory card: iki olcu de data/theory.json'dan gelir */
+fetch('data/theory.json').then(function (r) { return r.json(); }).then(function (d) {
+  var a = d.codeBased;
+  var p = function (x) { return String(x).replace('.', ',') + '%'; };
+  var v = document.getElementById('kTheory');
+  if (v) v.textContent = p(a.conformantPct);
+  var n = document.getElementById('kTheoryNote');
+  if (n) n.innerHTML =
+    'Given musWM&rsquo;s <b>own chord code</b>, does its label follow the textbook? It does at ' +
+    p(a.conformantPct) + ' of ' + a.addresses + ' chord-code addresses. Kostka, Payne &amp; Alm&eacute;n, ' +
+    '<i>Tonal Harmony</i> 8e; ' + d.corpusWorks + ' works; no human annotation. &rarr; <a href="theory.html">Theory</a>';
+}).catch(function () {});
+</script>
+
+<script src="data/corpora.js"></script>
+<script src="js/rnv-data.js"></script>
+<script src="js/rnv-core.js"></script>
+<script src="js/rnv-clusters.js"></script>
+<script src="js/rnv-grades.js"></script>
+<script src="js/rnv-notes.js"></script>
+<script>
+RNVData.boot({
+  page: 'index.html', title: 'Summary', host: 'cards',
+  render: function (corpus) {
+    var esc = RNVData.esc;
+    var mode = RNVData.currentMode();
+    var pct = function (x) { return x === null ? '—' : (100 * x).toFixed(1) + '%'; };
+    var nf = function (x) { return x.toLocaleString('en-US'); };
+
+    Array.prototype.forEach.call(document.querySelectorAll('#mMode button'), function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.mode === mode));
+      b.addEventListener('click', function () { RNVData.setMode(b.dataset.mode); location.reload(); });
+    });
+
+    var basis = RNV.hasOnsetInfo(corpus) ? RNVData.currentBasis() : 'sustained';
+    var rows = RNV.buildRows(corpus, mode, basis, RNVData.currentRepeats() !== 'show');
+    var s = RNV.summarise(rows);
+
+    document.getElementById('cards').innerHTML = [
+      ['', 'Total rows', nf(s.total), corpus.pieces.length + ' works'],
+      ['', 'Comparable', nf(s.comparable), 'all three engines produced a label'],
+      ['same', 'All three identical', nf(s.same), pct(s.agreement) + ' of comparable'],
+      ['diff', 'Different', nf(s.diff), pct(1 - s.agreement) + ' of comparable']
+    ].map(function (c) {
+      return '<div class="card ' + c[0] + '"><span class="k">' + c[1] + '</span>' +
+             '<span class="v">' + c[2] + '</span><span class="n">' + c[3] + '</span></div>';
+    }).join('');
+
+    var kA = document.getElementById('kAgree');
+    if (kA) kA.textContent = pct(s.agreement);
+    var gr = RNVGrades.stats(corpus.id, corpus, rows);
+    var totRated = gr.reduce(function (a, x) { return a + x.graded; }, 0);
+    var kR = document.getElementById('kRated');
+    if (kR) kR.textContent = totRated ? nf(totRated) + ' cells' : 'none yet';
+    if (corpus.book) {
+      document.getElementById('kRatedHead').textContent = '2 · Accuracy against the textbook';
+      kR.textContent = nf(corpus.book.comparable) + ' rows';
+      document.getElementById('kRatedNote').innerHTML =
+        'One point or none per engine, fixed in advance. The reference is the label Kostka, Payne &amp; ' +
+        'Alm&eacute;n derive from musWM&rsquo;s key, mode and chord code; only positions at which all three ' +
+        'engines emit at the same onset are counted. &rarr; <a href="scoring.html">Ratings</a>';
+      document.getElementById('accHead').textContent = 'Accuracy against the textbook (locked)';
+    }
+
+
+    /* ---- accuracy from human grades ---- */
+    var acc = RNVGrades.stats(corpus.id, corpus, rows);
+    var anyGraded = acc.some(function (a) { return a.graded > 0; });
+    document.getElementById('accWrap').innerHTML = anyGraded
+      ? '<div class="cards">' + acc.map(function (a, i) {
+          var cls = ['e-muswm', 'e-gnn', 'e-anet'][i];
+          return '<div class="card"><span class="k ' + cls + '">' + a.engine + '</span>' +
+            '<span class="v">' + pct(a.accuracy) + '</span>' +
+            '<span class="n">' + a.correct + ' correct of ' + a.graded + ' graded · ' +
+            a.labelled + ' labelled</span>' +
+            '<div class="bar"><span class="' + (a.accuracy >= 0.5 ? 'good' : 'bad') +
+            '" style="width:' + (100 * (a.accuracy || 0)).toFixed(1) + '%"></span></div>' +
+            '<span class="n">graded ' + (100 * a.progress).toFixed(1) + '% of its labels</span></div>';
+        }).join('') + '</div>' +
+        (corpus.book
+          ? '<div class="note">Locked textbook grades over the ' + nf(corpus.book.comparable) +
+            ' positions at which all three engines emit a label at the same onset (' +
+            nf(corpus.book.worksWithComparableRows) + ' of ' + nf(corpus.book.worksInPack) + ' works). ' +
+            'The textbook label is derived from musWM&rsquo;s own key and notes. Where musWM&rsquo;s label ' +
+            'does not agree with it, musWM is marked wrong (0); the textbook label stays the reference, and ' +
+            'AnalysisGNN and AugmentedNet are compared with that same label, so an engine that writes it ' +
+            'scores 1 even where musWM scores 0. The other two are judged in musWM&rsquo;s key.</div>'
+          : '<div class="note">This counts only the cells a person has rated, so it is a rating rate, ' +
+            'not an accuracy. It is not comparable across engines until their rated shares are similar — ' +
+            'see <a href="scoring.html">Ratings</a>.</div>')
+      : '<div class="note">No grades yet. Open <a href="same.html">Identical</a> or ' +
+        '<a href="different.html">Disagreements</a>, click a row to see the bar, and press ' +
+        '<b>1</b> (correct) or <b>0</b> (wrong) for each engine.</div>';
+
+    /* ---- pairwise ---- */
+    document.getElementById('pairTable').innerHTML =
+      '<thead><tr><th>Engine pair</th><th>Rows in common</th><th>Identical</th><th>Agreement</th></tr></thead><tbody>' +
+      RNV.pairwise(rows).map(function (p) {
+        return '<tr><td><b>' + p.a + '</b> ↔ <b>' + p.b + '</b></td>' +
+               '<td class="num">' + nf(p.both) + '</td><td class="num">' + nf(p.agree) + '</td>' +
+               '<td class="num"><b>' + pct(p.rate) + '</b></td></tr>';
+      }).join('') + '</tbody>';
+
+    /* ---- mapping ---- */
+    var modes = {};
+    corpus.pieces.forEach(function (p) { modes[p.mapMode] = (modes[p.mapMode] || 0) + 1; });
+    var desc = {
+      direct: 'The reported bar number is the written bar number.',
+      expanded: 'The engines counted the repeat-expanded performance order; music21 repeat expansion maps it back to the written bar.',
+      approx: 'Repeat structure could not be resolved; written bars are mapped cyclically — the bar shown for these works is APPROXIMATE.',
+      unknown: 'Bar numbers could not be read from the score.'
+    };
+    document.getElementById('mapTable').innerHTML =
+      '<thead><tr><th>Mapping</th><th>Works</th><th>Meaning</th></tr></thead><tbody>' +
+      Object.keys(modes).map(function (k) {
+        return '<tr><td><code>' + k + '</code></td><td class="num"><b>' + modes[k] +
+               '</b></td><td>' + esc(desc[k] || '') + '</td></tr>';
+      }).join('') + '</tbody>';
+
+    /* ---- top disagreements ---- */
+    var counter = {};
+    rows.forEach(function (r) {
+      if (r.status !== 'diff') return;
+      var k = r.norm.join(' │ ');
+      counter[k] = (counter[k] || 0) + 1;
+    });
+    var top = Object.keys(counter).map(function (k) { return [k, counter[k]]; })
+      .sort(function (a, b) { return b[1] - a[1]; }).slice(0, 20);
+    document.getElementById('topTable').innerHTML = top.length
+      ? '<thead><tr><th>#</th><th>musWM</th><th>AnalysisGNN</th><th>AugmentedNet</th><th>Rows</th></tr></thead><tbody>' +
+        top.map(function (t, i) {
+          var p = t[0].split(' │ ');
+          return '<tr><td class="num">' + (i + 1) + '</td>' +
+            '<td><span class="rn e-muswm">' + esc(p[0]) + '</span></td>' +
+            '<td><span class="rn e-gnn">' + esc(p[1]) + '</span></td>' +
+            '<td><span class="rn e-anet">' + esc(p[2]) + '</span></td>' +
+            '<td class="num"><b>' + t[1] + '</b></td></tr>';
+        }).join('') + '</tbody>'
+      : '<tbody><tr><td class="dim">No disagreements in this corpus.</td></tr></tbody>';
+  }
+});
+</script>
+</body>
+</html>

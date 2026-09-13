@@ -1,0 +1,340 @@
+{
+ "format": "rnv-book",
+ "version": 1,
+ "corpus": "wir335",
+ "generated": "2026-09-13T00:33:34",
+ "packGenerated": "2026-09-12T22:10:09",
+ "criterion": "musWM's local key and mode; from the chord code at that position (analysis pitch-class set, bass, root) the Roman numeral that Kostka, Payne & Almén, Tonal Harmony 8e derives is taken as correct.",
+ "comparison": "Rows where all three engines emitted a label at the same onset (exact bitmask = 7). Engine label, key prefix removed and normalised, equal to the book label = 1, otherwise 0. With the same bass, a triad or seventh name is not a difference (V = V7, V6 = V65, V64 = V43, vii° = viiø7); a different bass still is. Families the book accepts in two spellings are applied to all three engines alike.",
+ "totalRows": 118929,
+ "comparable": 14683,
+ "worksWithComparableRows": 316,
+ "worksInPack": 335,
+ "producedAtOnset": {
+  "AnalysisGNN": 78117,
+  "AugmentedNet": 51399,
+  "musWM": 46564
+ },
+ "excluded": {
+  "tasinmis etiket (motor bu onset'te uretmedi)": 47273,
+  "en az bir motor etiket uretmedi: musWM+AugmentedNet": 18490,
+  "en az bir motor etiket uretmedi: musWM+AnalysisGNN": 11375,
+  "en az bir motor etiket uretmedi: musWM": 10279,
+  "en az bir motor etiket uretmedi: AnalysisGNN+AugmentedNet": 10197,
+  "en az bir motor etiket uretmedi: AnalysisGNN": 5239,
+  "en az bir motor etiket uretmedi: AugmentedNet": 1032,
+  "kitap mekanik etiket turetmiyor (iki sesli/yogun susleme)": 360,
+  "artmis altili (s.386-387) -- kural setinin disinda": 1
+ },
+ "categories": {
+  "diff": 11691,
+  "same": 2992
+ },
+ "summary": {
+  "all": {
+   "musWM": {
+    "graded": 14683,
+    "correct": 14628,
+    "accuracy": 0.9963
+   },
+   "AnalysisGNN": {
+    "graded": 14683,
+    "correct": 4009,
+    "accuracy": 0.273
+   },
+   "AugmentedNet": {
+    "graded": 14683,
+    "correct": 5155,
+    "accuracy": 0.3511
+   }
+  },
+  "same": {
+   "musWM": {
+    "graded": 2992,
+    "correct": 2989,
+    "accuracy": 0.999
+   },
+   "AnalysisGNN": {
+    "graded": 2992,
+    "correct": 2989,
+    "accuracy": 0.999
+   },
+   "AugmentedNet": {
+    "graded": 2992,
+    "correct": 2989,
+    "accuracy": 0.999
+   }
+  },
+  "diff": {
+   "musWM": {
+    "graded": 11691,
+    "correct": 11639,
+    "accuracy": 0.9956
+   },
+   "AnalysisGNN": {
+    "graded": 11691,
+    "correct": 1020,
+    "accuracy": 0.0872
+   },
+   "AugmentedNet": {
+    "graded": 11691,
+    "correct": 2166,
+    "accuracy": 0.1853
+   }
+  }
+ },
+ "keyAgreementWithMusWM": {
+  "AnalysisGNN": {
+   "rows": 14683,
+   "sameKey": 9876,
+   "pct": 0.6726
+  },
+  "AugmentedNet": {
+   "rows": 14683,
+   "sameKey": 8363,
+   "pct": 0.5696
+  }
+ },
+ "bookRuleUse": {
+  "K3": 2350,
+  "-": 10543,
+  "K2": 709,
+  "K1": 277,
+  "K1+K2": 419,
+  "K3+K2": 378,
+  "K3+K1+K2": 7
+ },
+ "topMismatches": {
+  "musWM": [
+   [
+    "v4",
+    "V",
+    23
+   ],
+   [
+    "viio/vi",
+    "viio2",
+    4
+   ],
+   [
+    "iio/V",
+    "#vio",
+    3
+   ],
+   [
+    "iio6/V",
+    "#vio6",
+    3
+   ],
+   [
+    "#VII4",
+    "vii",
+    2
+   ],
+   [
+    "bII4(9)",
+    "bii",
+    2
+   ],
+   [
+    "#IV64",
+    "IV+64",
+    2
+   ],
+   [
+    "iih2",
+    "ii2",
+    2
+   ],
+   [
+    "viio/ii",
+    "#vio6",
+    1
+   ],
+   [
+    "#iv47",
+    "#IV",
+    1
+   ],
+   [
+    "vi6",
+    "I+",
+    1
+   ],
+   [
+    "V64/V",
+    "II64",
+    1
+   ],
+   [
+    "V/V",
+    "ii",
+    1
+   ],
+   [
+    "vii47",
+    "VII",
+    1
+   ],
+   [
+    "vii4",
+    "VII",
+    1
+   ]
+  ],
+  "AnalysisGNN": [
+   [
+    "I",
+    "V",
+    299
+   ],
+   [
+    "V",
+    "I64",
+    218
+   ],
+   [
+    "V",
+    "V/V",
+    187
+   ],
+   [
+    "V",
+    "I",
+    123
+   ],
+   [
+    "V",
+    "V64",
+    107
+   ],
+   [
+    "V",
+    "ii",
+    84
+   ],
+   [
+    "I",
+    "I64",
+    79
+   ],
+   [
+    "I6",
+    "V6",
+    73
+   ],
+   [
+    "i",
+    "vi",
+    65
+   ],
+   [
+    "V",
+    "i64",
+    64
+   ],
+   [
+    "I",
+    "vi6",
+    59
+   ],
+   [
+    "V",
+    "V6",
+    58
+   ],
+   [
+    "IV",
+    "I",
+    58
+   ],
+   [
+    "V6",
+    "V",
+    57
+   ],
+   [
+    "ii6",
+    "vi6",
+    56
+   ]
+  ],
+  "AugmentedNet": [
+   [
+    "I",
+    "V",
+    293
+   ],
+   [
+    "V",
+    "V/V",
+    219
+   ],
+   [
+    "i",
+    "vi",
+    119
+   ],
+   [
+    "I6",
+    "V6",
+    97
+   ],
+   [
+    "V",
+    "V/vi",
+    92
+   ],
+   [
+    "I64",
+    "V64",
+    70
+   ],
+   [
+    "ii6",
+    "vi6",
+    69
+   ],
+   [
+    "i",
+    "v",
+    67
+   ],
+   [
+    "I",
+    "IV",
+    66
+   ],
+   [
+    "I",
+    "vi6",
+    64
+   ],
+   [
+    "V6",
+    "V6/V",
+    58
+   ],
+   [
+    "V",
+    "I",
+    58
+   ],
+   [
+    "viio/v",
+    "viio/V",
+    57
+   ],
+   [
+    "Cad64",
+    "I64",
+    53
+   ],
+   [
+    "V",
+    "V/IV",
+    53
+   ]
+  ]
+ }
+}

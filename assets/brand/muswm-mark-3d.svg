@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120"
+     role="img" aria-labelledby="t d">
+  <title id="t">musWM</title>
+  <desc id="d">Extruded W and M built from eight folded beams, with "mus" set above the W so the mark reads musWM — musical Working Memory.</desc>
+
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#252c4a"/><stop offset="1" stop-color="#131829"/>
+    </linearGradient>
+    <linearGradient id="lit" x1="0" y1="0" x2=".35" y2="1">
+      <stop offset="0" stop-color="#fbcfe8"/><stop offset="1" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <linearGradient id="shade" x1="0" y1="1" x2=".4" y2="0">
+      <stop offset="0" stop-color="#5b49bd"/><stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".2"/>
+      <stop offset=".55" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="200" height="120" rx="30" fill="url(#tile)"/>
+  <rect width="200" height="120" rx="30" fill="url(#gloss)"/>
+
+  <path transform="translate(5,7)" fill="#080c18" fill-opacity=".9"
+        d="M20 42 L36 42 L51 102 L35 102 Z
+           M35 102 L51 102 L66 60 L50 60 Z
+           M50 60 L66 60 L81 102 L65 102 Z
+           M65 102 L81 102 L96 42 L80 42 Z
+           M104 42 L120 42 L120 102 L104 102 Z
+           M104 42 L120 42 L150 84 L134 84 Z
+           M134 84 L150 84 L180 42 L164 42 Z
+           M164 42 L180 42 L180 102 L164 102 Z"/>
+
+  <path d="M20 42 L36 42 L51 102 L35 102 Z" fill="url(#lit)"/>
+  <path d="M35 102 L51 102 L66 60 L50 60 Z" fill="url(#shade)"/>
+  <path d="M50 60 L66 60 L81 102 L65 102 Z" fill="url(#lit)"/>
+  <path d="M65 102 L81 102 L96 42 L80 42 Z" fill="url(#shade)"/>
+  <path d="M104 42 L120 42 L120 102 L104 102 Z" fill="url(#lit)"/>
+  <path d="M104 42 L120 42 L150 84 L134 84 Z" fill="url(#shade)"/>
+  <path d="M134 84 L150 84 L180 42 L164 42 Z" fill="url(#lit)"/>
+  <path d="M164 42 L180 42 L180 102 L164 102 Z" fill="url(#shade)"/>
+
+  <path d="M20 42 L36 42 L37.6 48.4 L21.6 48.4 Z" fill="#ffffff" fill-opacity=".55"/>
+  <path d="M104 42 L120 42 L120 48.4 L104 48.4 Z" fill="#ffffff" fill-opacity=".5"/>
+  <path d="M164 42 L180 42 L180 48.4 L164 48.4 Z" fill="#ffffff" fill-opacity=".28"/>
+
+  <!-- the palette green is the one hue that is neither pink, sky nor lilac -->
+  <text x="100" y="38" text-anchor="middle"
+        font-family="'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif"
+        font-size="36" font-weight="700" letter-spacing=".5" fill="#22c55e">mus</text>
+</svg>

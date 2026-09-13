@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Disagreements · RN validation</title>
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<main class="wrap">
+  <h2 class="page">Disagreements: positions at which the engines differ</h2>
+  <p class="lede">Positions at which all three engines emit a label and at least one of them, after normalisation, writes something different. These are the rows that tell the engines apart. Selecting a row opens the corresponding bar of the score.</p>
+  <div class="note">Positions at which an engine emits no label are not listed here. A missing label is a gap in coverage, not a disagreement, and counting it as one would distort the agreement rate.</div>
+  <div class="prelim"><b>Preliminary results.</b> These are first results. After detailed validation, the final accuracy figures may change by up to <b>&plusmn;5 percentage points</b> for AnalysisGNN and AugmentedNet and by about <b>&plusmn;1 point</b> for musWM. See <a href="scoring.html">Ratings</a> for how the margin was estimated.</div>
+  <div id="host"></div>
+</main>
+
+<script src="data/corpora.js"></script>
+<script src="js/rnv-data.js"></script>
+<script src="js/rnv-core.js"></script>
+<script src="js/rnv-clusters.js"></script>
+<script src="js/rnv-grades.js"></script>
+<script src="js/rnv-notes.js"></script>
+<script src="js/rnv-table.js"></script>
+<script src="vendor/opensheetmusicdisplay.min.js"></script>
+<script src="js/rnv-score.js"></script>
+<script>
+RNVData.boot({
+  page: 'different.html', title: 'Disagreements', host: 'host',
+  render: function (corpus) {
+    RNVTable.mount({
+      host: 'host', corpus: corpus, csvName: 'different', grading: true,
+      match: function (s) { return s === 'diff'; }
+    });
+  }
+});
+</script>
+</body>
+</html>

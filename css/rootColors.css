@@ -1,0 +1,44 @@
+/* Canonical palette for the whole musWM environment.
+   Copied from the rawEEG project so every page in this environment,
+   and the EEG suite it grew out of, resolve the same tokens. */
+:root {
+  --clr-ink: #111111;
+  --clr-bg: #ffffff;
+  --clr-border: #d1d5db;
+
+  --clr-lilac-50: #f5f3ff;
+  --clr-lilac-100: #ede9fe;
+  --clr-lilac-200: #ddd6fe;
+  --clr-lilac-400: #a78bfa;
+
+  --clr-soft-pink: #fbcfe8;
+  --clr-sky: #bfdbfe;
+
+  --clr-red: #ef4444;
+  --clr-green: #22c55e;
+  --clr-blue: #2563eb;
+
+  --clr-neon-pink: #ff00cc;
+  --clr-neon-green: #39ff14;
+
+  --card-badge-bg: #f9fafb;
+  --card-badge-border: #e5e7eb;
+  --card-info-bg: #ffffff;
+  --card-info-border: #d1d5db;
+
+  --radius-card: .75rem;
+  --shadow-soft: 0 1px 4px rgba(0, 0, 0, .08);
+  --transition-fast: 0.2s ease-in-out;
+
+  /* Derived tokens the environment adds on top of the source palette.
+     Kept here so page stylesheets never re-invent a muted grey or a tint. */
+  --clr-muted: #4b5563;
+  --clr-subtle: #64748b;
+  --clr-deep: #172033;
+  --clr-blue-strong: #1d4ed8;
+  --shadow-panel: 0 16px 50px rgba(17, 24, 39, .10);
+  --page-wash:
+    radial-gradient(circle at 12% 0%, rgba(251, 207, 232, .55), transparent 34%),
+    radial-gradient(circle at 88% 6%, rgba(191, 219, 254, .62), transparent 36%),
+    var(--clr-lilac-50);
+}

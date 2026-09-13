@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Theory · RN validation</title>
+<link rel="stylesheet" href="css/site.css">
+<style>
+  .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:16px;margin:18px 0 6px}
+  .m{border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;background:var(--panel);box-shadow:var(--shadow)}
+  .m .q{font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--muted);text-transform:uppercase}
+  .m .big{font-size:42px;font-weight:700;color:var(--same);line-height:1.05;letter-spacing:-1px;margin:8px 0 2px}
+  .m .sub{font-size:13px;color:var(--muted)}
+  .m p{font-size:13.5px;line-height:1.6;margin:11px 0 0}
+  .m.a{border-left:4px solid var(--same)}
+  .lab{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px}
+  .was{opacity:.6;text-decoration:line-through}
+  .ex{font-size:12.5px;color:var(--muted);margin-top:3px}
+  .pill{display:inline-block;font-size:11.5px;padding:1px 7px;border-radius:9px;background:var(--accent-soft);color:var(--deep);margin-left:6px}
+  details.rules summary{cursor:pointer;font-weight:600;margin-bottom:8px}
+  details.keytab{border:1px solid var(--line);border-radius:var(--radius);margin:10px 0;background:var(--panel);box-shadow:var(--shadow)}
+  details.keytab>summary{cursor:pointer;padding:14px 16px;display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;list-style:none}
+  details.keytab>summary::-webkit-details-marker{display:none}
+  details.keytab>summary::before{content:'\25B8';color:var(--muted);transition:transform .15s}
+  details.keytab[open]>summary::before{transform:rotate(90deg)}
+  details.keytab .kname{font-size:18px;font-weight:600}
+  details.keytab .kpct{font-size:18px;font-weight:700;color:var(--same)}
+  details.keytab .ksub{font-size:13px;color:var(--muted)}
+  details.keytab .kbody{padding:0 16px 14px}
+  .core-group{margin:18px 0 6px;font-size:13px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--muted)}
+  details.core{border:1px solid var(--line);border-radius:8px;margin:6px 0;overflow:hidden;background:var(--panel)}
+  details.core>summary{cursor:pointer;padding:9px 12px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;list-style:none}
+  details.core>summary::-webkit-details-marker{display:none}
+  details.core>summary::before{content:'\25B8';color:var(--muted);transition:transform .15s}
+  details.core[open]>summary::before{transform:rotate(90deg)}
+  details.core .code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:600;min-width:58px}
+  details.core .iv{color:var(--muted);font-size:12.5px;min-width:120px}
+  details.core .cnt{margin-left:auto;font-size:12.5px;display:flex;gap:6px;flex-wrap:wrap}
+  .pillv{padding:1px 7px;border-radius:9px;font-size:11.5px}
+  .v-match{background:var(--same-bg);color:var(--same)} .v-diverge{background:var(--diff-bg);color:var(--diff)}
+  .v-underivable{background:var(--accent-soft);color:var(--warn)} .v-none{background:#f3f4f6;color:var(--muted)}
+  .core-legend{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px;font-size:12.5px}
+  .core-legend span{padding:2px 8px;border-radius:9px}
+  .core-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 8px}
+  details.core table{width:100%;border-collapse:collapse;font-size:13.5px}
+  details.core td,details.core th{padding:5px 12px;text-align:left;border-top:1px solid var(--line)}
+  details.core td.rn{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  /* two top-level accordions: Cognitive sciences, Music theory */
+  details.domain{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0}
+  details.domain>summary{cursor:pointer;list-style:none;padding:16px 20px;display:flex;flex-direction:column;gap:3px;position:relative;padding-left:44px}
+  details.domain>summary::-webkit-details-marker{display:none}
+  details.domain>summary::before{content:'\25B8';position:absolute;left:20px;top:17px;color:var(--accent);font-size:16px;transition:transform .15s}
+  details.domain[open]>summary::before{transform:rotate(90deg)}
+  details.domain>summary:hover .dname{color:var(--accent)}
+  details.domain .dname{font-size:19px;font-weight:700;color:var(--deep);letter-spacing:-.01em}
+  details.domain .dsub{font-size:13.5px;color:var(--muted)}
+  details.domain[open]>summary{border-bottom:1px solid var(--line)}
+  details.domain .dbody{padding:14px 20px 20px}
+  details.domain .dbody>p{font-size:14.5px;line-height:1.65;max-width:95ch}
+  details.domain#cognitive>summary{border-left:4px solid #6d28d9;border-radius:var(--radius) 0 0 var(--radius)}
+  details.domain#music-theory>summary{border-left:4px solid var(--same);border-radius:var(--radius) 0 0 var(--radius)}
+  .cogfig{margin:16px 0;padding:14px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;text-align:center}
+  .cogfig img{max-width:min(760px,100%);height:auto;display:block;margin:0 auto}
+  .cap{font-size:12.5px;color:var(--muted);line-height:1.5;text-align:left;margin:10px 0 0}
+  .cogflow{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,#fff,var(--clr-lilac-50));padding:10px}
+  .cogflow svg{display:block;min-width:760px;width:100%;height:auto;font-family:"Segoe UI",system-ui,sans-serif}
+  table.cogtable{margin:14px 0;font-size:13.5px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  table.cogtable th{text-align:left;font-size:12px;color:var(--muted);background:var(--clr-lilac-50);padding:9px 12px;border-bottom:1px solid var(--line)}
+  table.cogtable td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5}
+  table.cogtable td:first-child{white-space:nowrap}
+  .cogsteps{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;margin:12px 0 0}
+  .cogsteps .step{flex:1 1 130px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 11px;display:flex;flex-direction:column;gap:3px}
+  .cogsteps .step .k{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  .cogsteps .step code{font-size:14px;font-weight:700;background:none;padding:0;color:var(--deep)}
+  .cogsteps .step .n{font-size:12px;color:var(--muted)}
+  .cogsteps .step.accent{border-color:var(--same);background:var(--same-bg)}
+  .cogsteps .step.accent code{color:var(--same)}
+  .cogsteps .arrow{align-self:center;color:var(--accent);font-weight:700}
+  details.refs{margin-top:16px}
+  details.refs summary{cursor:pointer;font-weight:600}
+  details.refs ul{margin:8px 0 0;padding-left:20px;font-size:12.5px;line-height:1.55;color:var(--muted)}
+  details.refs li{margin:0 0 6px}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h2 class="page">Theory</h2>
+  <p class="lede">musWM can be read from two directions. As a model of mind, it is a computational account of
+  musical working memory built on the principles of cognitive psychology. As an analyser, it names harmony, and
+  its names can be checked against music theory. Open either section below.</p>
+
+  <details class="domain" id="cognitive" name="theory-domain">
+    <summary>
+      <span class="dname">Cognitive Sciences</span>
+      <span class="dsub">How the architecture relates to Baddeley&rsquo;s multicomponent model of working memory</span>
+    </summary>
+    <div class="dbody">
+
+      <p class="lede" style="margin-top:4px">musWM is not only a harmonic analyser. It was designed as a computational
+      model of <b>musical working memory</b>: a system that decides which sounding events remain jointly
+      available long enough to be heard as a chord, and when that material has become stable enough to be named.
+      The design takes its functional constraints from the multicomponent model of working memory introduced by
+      Baddeley and Hitch (1974) and extended with the episodic buffer (Baddeley, 2000), and from sensory accounts
+      of rhythm and meter. The argument is developed in full in the author&rsquo;s thesis (Tu&#287;ral, 2026); this
+      section summarises it.</p>
+
+      <h3 class="sect">From a single store to a multicomponent system</h3>
+      <p>The modal model of Atkinson and Shiffrin (1968) treated short-term memory as one capacity-limited store
+      between brief sensory registers and long-term memory: holding information and operating on it drew on the
+      same resource. Baddeley and Hitch (1974) put that assumption to the test with dual-task experiments.
+      Participants could keep a few items in mind while reasoning, with only modest slowing &mdash; retention and
+      higher-order processing were not competing for a single pool. Working memory was therefore recast as an
+      active system of distinct parts: a <b>central executive</b> that controls attention, modality-specific
+      <b>slave systems</b> (the phonological loop and the visuospatial sketchpad) and, from 2000, an
+      <b>episodic buffer</b> that binds information from these systems and from long-term memory into integrated,
+      multidimensional episodes available to awareness (Baddeley, 2000, 2012; Baddeley, Hitch &amp; Allen, 2019).</p>
+
+      <div class="cogfig">
+        <img src="assets/figures/musical-working-memory.png" alt="Diagram: outer-world inputs pass through pre-attentive memory (primary and association cortices) into short-term memory traces, are filtered into modality-specific slave systems, and reach the episodic buffer, which exchanges information with long-term memory under the control of the central executive." loading="lazy">
+        <p class="cap"><b>Figure 1.</b> Musical working memory following Baddeley&rsquo;s core principles. Sensory input
+        from the outer world is registered in pre-attentive memory, held as short-lived modality-specific traces,
+        filtered into slave systems, and bound in the episodic buffer, which exchanges information with long-term
+        memory under the attentional control of the central executive. Reproduced from Tu&#287;ral (2026).</p>
+      </div>
+
+      <h3 class="sect">Why music needs a different balance</h3>
+      <p>Baddeley&rsquo;s model was built around language and visuospatial reasoning, where units are discrete and
+      quickly categorised: a word can be recognised and then rehearsed. Musical events rarely work that way. A
+      single note is not yet a harmony; a chord acquires its function only after several sounds have been
+      integrated over time. Two consequences follow. First, executive control cannot simply choose among
+      ready-made symbols; it must also judge <i>when</i> sensory material has become coherent enough to interpret.
+      Second, pitch material cannot be rehearsed internally without changing the very stream being heard, so
+      rehearsal gives way to controlled decay. Sensory theories of rhythm point the same way: beat and meter
+      arise from low-level temporal regularity and entrainment before conscious access (Fiveash et al., 2021;
+      Emmery et al., 2023), and musical training sharpens these pre-attentive responses themselves
+      (Olszewska et al., 2021).</p>
+
+      <h3 class="sect">The architecture, component by component</h3>
+      <div class="cogflow" role="img" aria-label="Processing flow from sound to Roman numeral through pre-attentive trace, short-term window, episodic-buffer checkpoint and long-term schemas, with the central executive controlling the window and multimodal streams bound at the checkpoint.">
+        <svg viewBox="0 0 980 330" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#172033"/>
+            </marker>
+          </defs>
+          <!-- central executive -->
+          <rect x="250" y="12" width="330" height="56" rx="12" fill="#ffffff" stroke="#6d28d9" stroke-width="1.6"/>
+          <text x="415" y="36" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">Central executive</text>
+          <text x="415" y="56" text-anchor="middle" font-size="12.5" fill="#4b5563">attentional control: tempo, meter, memory span</text>
+          <line x1="330" y1="68" x2="330" y2="128" stroke="#6d28d9" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+          <line x1="520" y1="68" x2="560" y2="128" stroke="#6d28d9" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+          <text x="470" y="104" text-anchor="middle" font-size="11.5" fill="#5b21b6">admits · gates</text>
+
+          <!-- row of stages -->
+          <rect x="10" y="132" width="130" height="92" rx="12" fill="#f5f3ff" stroke="#a78bfa"/>
+          <text x="75" y="160" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">Sound</text>
+          <text x="75" y="180" text-anchor="middle" font-size="12" fill="#4b5563">note events</text>
+          <text x="75" y="197" text-anchor="middle" font-size="12" fill="#4b5563">(MIDI or score)</text>
+
+          <rect x="170" y="132" width="150" height="92" rx="12" fill="#ffffff" stroke="#9ca3af"/>
+          <text x="245" y="156" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">Pre-attentive</text>
+          <text x="245" y="174" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">trace</text>
+          <text x="245" y="194" text-anchor="middle" font-size="12" fill="#4b5563">pitch class (mod 12),</text>
+          <text x="245" y="210" text-anchor="middle" font-size="12" fill="#4b5563">octave kept aside</text>
+
+          <rect x="350" y="132" width="180" height="92" rx="12" fill="#ffffff" stroke="#1d4ed8" stroke-width="1.6"/>
+          <text x="440" y="156" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">Short-term window</text>
+          <text x="440" y="176" text-anchor="middle" font-size="12" fill="#4b5563">slave-system analogue:</text>
+          <text x="440" y="193" text-anchor="middle" font-size="12" fill="#4b5563">set-like, time-limited,</text>
+          <text x="440" y="210" text-anchor="middle" font-size="12" fill="#4b5563">decay instead of rehearsal</text>
+
+          <rect x="560" y="132" width="190" height="92" rx="12" fill="#dcfce7" stroke="#166534" stroke-width="1.6"/>
+          <text x="655" y="156" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">Episodic buffer</text>
+          <text x="655" y="176" text-anchor="middle" font-size="12" fill="#166534">checkpoint: stable yet?</text>
+          <text x="655" y="193" text-anchor="middle" font-size="12" fill="#4b5563">promotes a bound musical</text>
+          <text x="655" y="210" text-anchor="middle" font-size="12" fill="#4b5563">event (chord code)</text>
+
+          <rect x="780" y="132" width="190" height="92" rx="12" fill="#fdf2f8" stroke="#be185d" stroke-width="1.6"/>
+          <text x="875" y="156" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">Long-term schemas</text>
+          <text x="875" y="176" text-anchor="middle" font-size="12" fill="#4b5563">lookup tensor: key, mode,</text>
+          <text x="875" y="193" text-anchor="middle" font-size="12" fill="#4b5563">root, chord code</text>
+          <text x="875" y="210" text-anchor="middle" font-size="12" font-weight="700" fill="#be185d">&#8594; Roman numeral</text>
+
+          <line x1="140" y1="178" x2="166" y2="178" stroke="#172033" stroke-width="1.5" marker-end="url(#ah)"/>
+          <line x1="320" y1="178" x2="346" y2="178" stroke="#172033" stroke-width="1.5" marker-end="url(#ah)"/>
+          <line x1="530" y1="178" x2="556" y2="178" stroke="#172033" stroke-width="1.5" marker-end="url(#ah)"/>
+          <line x1="750" y1="178" x2="776" y2="178" stroke="#172033" stroke-width="1.5" marker-end="url(#ah)"/>
+
+          <!-- multimodal binding -->
+          <rect x="470" y="262" width="370" height="54" rx="12" fill="#ffffff" stroke="#a78bfa" stroke-dasharray="6 4"/>
+          <text x="655" y="285" text-anchor="middle" font-size="13.5" font-weight="700" fill="#172033">Concurrent streams bound to the same event</text>
+          <text x="655" y="304" text-anchor="middle" font-size="12" fill="#4b5563">audio features · behaviour · EEG · cardiovascular indices</text>
+          <line x1="655" y1="262" x2="655" y2="228" stroke="#172033" stroke-width="1.5" marker-end="url(#ah)"/>
+        </svg>
+      </div>
+      <p class="cap" style="margin-top:6px"><b>Figure 2.</b> The processing path of musWM read as a working-memory
+      architecture. Control and storage are separated, as in Baddeley&rsquo;s model: the executive determines what
+      is admitted and when, but stores nothing itself.</p>
+
+      <div style="overflow-x:auto">
+      <table class="cogtable">
+        <thead><tr><th>Component in Baddeley&rsquo;s model</th><th>Function in the theory</th><th>How musWM instantiates it</th></tr></thead>
+        <tbody>
+          <tr><td><b>Sensory (pre-attentive) memory</b></td>
+            <td>Brief, modality-specific traces that preserve perceptual detail without conscious access; peripheral in
+                the canonical model.</td>
+            <td>Treated as a functional stage. Each note is registered as a pitch class, with its octave held in a
+                parallel record; these traces constrain what can enter short-term memory at all.</td></tr>
+          <tr><td><b>Slave systems</b><br><span class="dim">phonological loop, visuospatial sketchpad</span></td>
+            <td>Modality-specific stores maintained by rehearsal.</td>
+            <td>A time-limited accumulation window for pitch material. It behaves as a set &mdash; duplicates collapse,
+                order of arrival is discarded &mdash; and older material decays unless it remains structurally
+                relevant, because music cannot be rehearsed without altering what is heard.</td></tr>
+          <tr><td><b>Central executive</b></td>
+            <td>Attentional control and coordination; a controller, not a store.</td>
+            <td>Distributed control processes that set the window from tempo, meter and memory span and decide when
+                material is admitted. Top-down control appears as task parameters; bottom-up salience as density,
+                novelty and timing.</td></tr>
+          <tr><td><b>Episodic buffer</b></td>
+            <td>Limited-capacity binding of information across subsystems and long-term memory into integrated
+                episodes available to awareness.</td>
+            <td>A checkpoint rather than a default destination: a pitch-class set is promoted to a musical event only
+                when temporal and structural conditions are met. Concurrent audio, behavioural, neurophysiological
+                and cardiovascular data are bound to that event.</td></tr>
+          <tr><td><b>Long-term memory</b></td>
+            <td>Schemas and learned knowledge that bias interpretation.</td>
+            <td>Tonal schemas act only after stabilisation: the Roman numeral is retrieved from a precomputed tensor
+                indexed by key, mode, root and chord code. Symbolic structure is never imposed on raw sensory
+                input.</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sect">A worked example: from arrivals to a label</h3>
+      <div class="cogsteps">
+        <div class="step"><span class="k">Arrivals in the window</span><code>G4 · C4 · C5 · E4 · E5</code><span class="n">performance order, unordered</span></div>
+        <div class="arrow" aria-hidden="true">&#8594;</div>
+        <div class="step"><span class="k">MIDI</span><code>[67, 60, 72, 64, 76]</code><span class="n">octave-sensitive record</span></div>
+        <div class="arrow" aria-hidden="true">&#8594;</div>
+        <div class="step"><span class="k">Pitch classes</span><code>[7, 0, 0, 4, 4]</code><span class="n">MIDI mod 12</span></div>
+        <div class="arrow" aria-hidden="true">&#8594;</div>
+        <div class="step"><span class="k">Short-term set</span><code>{0, 4, 7}</code><span class="n">duplicates collapse</span></div>
+        <div class="arrow" aria-hidden="true">&#8594;</div>
+        <div class="step"><span class="k">Canonical form</span><code>[0, 4, 7]</code><span class="n">stable input for the chord code</span></div>
+        <div class="arrow" aria-hidden="true">&#8594;</div>
+        <div class="step accent"><span class="k">Label in C major</span><code>I</code><span class="n">bass C, root C, major triad</span></div>
+      </div>
+      <p class="cap">After Tu&#287;ral (2026), figures on the set-like short-term buffer and the stabilised
+      pitch-class set.</p>
+
+      <h3 class="sect">What this adds to statistical models of expectation</h3>
+      <p>Statistical-learning models such as IDyOM describe expectation as the interaction of a corpus-trained
+      long-term model and a piece-specific short-term model (Pearce, 2018). They are effective for that purpose, but
+      their &ldquo;short&rdquo; and &ldquo;long&rdquo; components are learning timescales rather than memory systems;
+      Rohrmeier and Koelsch (2012) note that the analogy with short-term memory &ldquo;does not exactly hold&rdquo;.
+      The present architecture answers a complementary question.</p>
+      <div style="overflow-x:auto">
+      <table class="cogtable">
+        <thead><tr><th></th><th>Statistical-learning model (IDyOM)</th><th>musWM as working-memory model</th></tr></thead>
+        <tbody>
+          <tr><td><b>Memory</b></td><td>Short- and long-term components defined by learning timescale</td>
+              <td>Functionally distinct components with capacity limits and control</td></tr>
+          <tr><td><b>Time</b></td><td>Offline, corpus-based; expectancy inferred from symbolic sequences</td>
+              <td>Real time, as the performance unfolds</td></tr>
+          <tr><td><b>Capacity</b></td><td>Implicit, arising from probability estimation</td>
+              <td>Explicit, time-limited windows that can be inspected and parameterised</td></tr>
+          <tr><td><b>Binding</b></td><td>Unimodal symbolic input</td>
+              <td>An episodic-buffer analogue binding harmony to audio, behavioural and physiological data</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sect">How this relates to the figures on this site</h3>
+      <p>The validation reported here tests one stage of the architecture: whether, once the short-term window and
+      the checkpoint have produced a chord code, the long-term step names it as the textbook does (see
+      <i>Music Theory</i> below and <a href="scoring.html">Ratings</a>). It does not test the cognitive claims
+      themselves. Those are framed as hypotheses to be checked against working-memory research, auditory
+      neuroscience and music cognition &mdash; for instance, whether the windows and checkpoints of the model
+      correspond to measurable signatures in the concurrent EEG and cardiovascular record (Tu&#287;ral, 2026).</p>
+
+      <details class="refs">
+        <summary>References</summary>
+        <ul>
+          <li>Atkinson, R. C., &amp; Shiffrin, R. M. (1968). Human memory: A proposed system and its control processes. In K. W. Spence &amp; J. T. Spence (Eds.), <i>The psychology of learning and motivation</i> (Vol. 2, pp. 89&ndash;195). Academic Press. <a href="https://doi.org/10.1016/S0079-7421(08)60422-3" target="_blank" rel="noopener">doi:10.1016/S0079-7421(08)60422-3</a></li>
+          <li>Baddeley, A. D. (2000). The episodic buffer: A new component of working memory? <i>Trends in Cognitive Sciences, 4</i>(11), 417&ndash;423. <a href="https://doi.org/10.1016/S1364-6613(00)01538-2" target="_blank" rel="noopener">doi:10.1016/S1364-6613(00)01538-2</a></li>
+          <li>Baddeley, A. D. (2012). Working memory: Theories, models, and controversies. <i>Annual Review of Psychology, 63</i>, 1&ndash;29. <a href="https://doi.org/10.1146/annurev-psych-120710-100422" target="_blank" rel="noopener">doi:10.1146/annurev-psych-120710-100422</a></li>
+          <li>Baddeley, A. D., &amp; Hitch, G. J. (1974). Working memory. In G. H. Bower (Ed.), <i>Psychology of learning and motivation</i> (Vol. 8, pp. 47&ndash;89). Academic Press.</li>
+          <li>Baddeley, A. D., Hitch, G. J., &amp; Allen, R. J. (2019). From short-term store to multicomponent working memory: The role of the modal model. <i>Memory &amp; Cognition, 47</i>, 575&ndash;588. <a href="https://doi.org/10.3758/s13421-018-0878-5" target="_blank" rel="noopener">doi:10.3758/s13421-018-0878-5</a></li>
+          <li>Emmery, L., Hackney, M. E., Kesar, T., McKay, J. L., &amp; Rosenberg, M. C. (2023). An integrated review of music cognition and rhythmic stimuli in sensorimotor neurocognition and neurorehabilitation. <i>Annals of the New York Academy of Sciences, 1530</i>(1), 74&ndash;86. <a href="https://doi.org/10.1111/nyas.15079" target="_blank" rel="noopener">doi:10.1111/nyas.15079</a></li>
+          <li>Fiveash, A., Bedoin, N., Gordon, R. L., &amp; Tillmann, B. (2021). Processing rhythm in speech and music: Shared mechanisms and implications for developmental speech and language disorders. <i>Neuropsychology, 35</i>(8), 771&ndash;791. <a href="https://doi.org/10.1037/neu0000766" target="_blank" rel="noopener">doi:10.1037/neu0000766</a></li>
+          <li>Olszewska, A. M., Gaca, M., Herman, A. M., Jednoróg, K., &amp; Marchewka, A. (2021). How musical training shapes the adult brain: Predispositions and neuroplasticity. <i>Frontiers in Neuroscience, 15</i>, 630829. <a href="https://doi.org/10.3389/fnins.2021.630829" target="_blank" rel="noopener">doi:10.3389/fnins.2021.630829</a></li>
+          <li>Pearce, M. T. (2018). Statistical learning and probabilistic prediction in music cognition: Mechanisms of stylistic enculturation. <i>Annals of the New York Academy of Sciences, 1423</i>(1), 378&ndash;395. <a href="https://doi.org/10.1111/nyas.13654" target="_blank" rel="noopener">doi:10.1111/nyas.13654</a></li>
+          <li>Rohrmeier, M. A., &amp; Koelsch, S. (2012). Predictive information processing in music cognition: A critical review. <i>International Journal of Psychophysiology, 83</i>(2), 164&ndash;175. <a href="https://doi.org/10.1016/j.ijpsycho.2011.12.010" target="_blank" rel="noopener">doi:10.1016/j.ijpsycho.2011.12.010</a></li>
+          <li>Tu&#287;ral, O. (2026). <i>A computational model of musical working memory: Software for real-time multimodal data integration in music and interdisciplinary research</i> [M.A. thesis]. University of Massachusetts Amherst.</li>
+        </ul>
+      </details>
+    </div>
+  </details>
+
+  <details class="domain" id="music-theory" name="theory-domain">
+    <summary>
+      <span class="dname">Music Theory</span>
+      <span class="dsub">Whether musWM&rsquo;s labels follow Kostka, Payne &amp; Alm&eacute;n, <i>Tonal Harmony</i>, and every core at every chromatic step</span>
+    </summary>
+    <div class="dbody">
+    <h3 class="sect" style="margin-top:4px">Does musWM follow the textbook?</h3>
+
+      <p class="lede">Measured against <span id="std"></span>, over <span id="scope"></span>.
+      The reference is the textbook itself: no human annotation and no other analysis corpus enters the
+      calculation.</p>
+
+      <div class="prelim"><b>Preliminary results.</b> The conformance figures and core tables below are first results and may change after detailed validation, as rules are reviewed against the textbook and against expert annotation.</div>
+      <div class="two">
+        <div class="m a">
+          <div class="q">The lookup tensor</div>
+          <div class="big" id="aBig">—</div>
+          <div class="sub" id="aSub"></div>
+          <p>musWM names a chord by looking it up: its labels are drawn from a tensor indexed by key,
+          mode, root and chord code. The label ought therefore to be a function of the chord code, and that is
+          precisely what can be tested. For every chord code the engine produced, does its label coincide with
+          the one the textbook derives from the same code?</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Why chord-code addresses</h3>
+        <p class="dim" style="margin:0;font-size:13.5px">
+          The figure is counted over <b>addresses</b> rather than individual moments:
+          <span class="lab">mode | code | n = (tonic &minus; bass) | r = (root &minus; bass)</span>.
+          Every term is measured from the bass, so a single address stands for all twelve transpositions of a
+          chord, and a correction made at one address holds in every key in which it occurs. Event-weighted
+          figures appear beneath the headline number.
+        </p>
+      </div>
+
+      <details class="rules panel">
+        <summary>The rules applied, with page references</summary>
+        <div style="overflow-x:auto"><table id="ruleTable"></table></div>
+      </details>
+
+      <h3 class="sect">The 63 cores at every chromatic step</h3>
+      <p class="note" id="coreNote">Loading…</p>
+      <div id="keyTables"></div>
+    </div>
+  </details>
+</main>
+<script src="data/corpora.js"></script>
+<script src="js/rnv-data.js"></script>
+<script>
+RNVData.boot({ page: 'theory.html', title: 'Theory', host: 'keyTables',
+               needsCorpus: false, render: function () {} });
+</script>
+<script>
+(function () {
+  var pct = function (x) { return String(x).replace('.', ',') + '%'; };
+  var nf = function (x) { return x.toLocaleString('en'); };
+  fetch('data/theory.json').then(function (r) { return r.json(); }).then(function (d) {
+    var a = d.codeBased;
+    document.getElementById('std').textContent = d.standard;
+    document.getElementById('scope').textContent =
+      d.corpusWorks + ' works and ' + nf(a.events) + ' labelled moments';
+
+    document.getElementById('aBig').textContent = pct(a.conformantPct);
+    document.getElementById('aSub').innerHTML =
+      a.conformant + ' of ' + a.addresses + ' addresses &middot; ' +
+      pct(a.eventOkPct) + ' of moments' +
+      (a.eventUnderivable ? ' &middot; ' + pct(a.eventUnderivablePct) +
+       ' of moments are two-note sonorities or densely ornamented textures, for which the textbook itself derives no label mechanically' : '');
+
+
+    var rt = ['<tr><th>Rule</th><th>Pages</th></tr>'];
+    d.rules.forEach(function (r) {
+      rt.push('<tr><td>' + r[0] + '</td><td class="dim" style="white-space:nowrap">' + r[1] + '</td></tr>');
+    });
+    document.getElementById('ruleTable').innerHTML = rt.join('');
+
+  }).catch(function (e) {
+    document.getElementById('aSub').textContent = 'theory.json could not be loaded: ' + e;
+  });
+
+  /* ---- 63 cores x 12 chromatic bass steps, C major ---------------------- */
+  var VNAME = { match: 'matches', diverge: 'differs', underivable: 'not derivable', none: 'no label' };
+  /* Display only: the textbook label is stored in the comparison spelling (h, o). */
+  var pretty = function (l) {
+    return String(l || '').replace(/([ivIV])h(?=\d|\/|$)/g, '$1ø').replace(/([ivIV])o(?=\d|\/|$)/g, '$1°');
+  };
+  var esc = function (x) { return String(x == null ? '' : x).replace(/[&<>"]/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  fetch('data/core_table.json').then(function (r) { return r.json(); }).then(function (D) {
+    var groups = { 2: 'Two notes \u2014 one interval', 3: 'Three notes \u2014 two intervals', 4: 'Four notes \u2014 three intervals' };
+    var pc1 = function (x) { return x.toFixed(1).replace('.', ','); };
+
+    document.getElementById('coreNote').innerHTML =
+      'Each of the engine&rsquo;s core matrices, sounded on all twelve chromatic bass notes in <b>C major</b> ' +
+      'and in <b>A minor</b>. Every cell sets the label musWM produces for that chord \u2014 matrix lookup ' +
+      'followed by the textbook rules, the same path the engine takes on a real score \u2014 beside the label ' +
+      esc(D.standard) + ' derives from the same notes and root in that key. Since every address is measured ' +
+      'from the bass, one key per mode covers all transpositions of that mode. On the corpus this path ' +
+      'reproduces the engine\u2019s own labels in 99.6% of 47,996 events; the remainder depend on neighbouring chords. ' +
+      'Open a key to inspect its cores. <b>In corpus</b> counts the musWM events of the ' + (D.corpusWorks || 335) +
+      '-work corpus at the same address \u2014 same mode, chord code and bass degree \u2014 in <i>every</i> key, ' +
+      'carrying that label; events at that address labelled otherwise in context are listed beneath.';
+
+    function coreHtml(c, onlyDiv) {
+      var cnt = ['match', 'diverge', 'underivable', 'none'].filter(function (v) { return c.counts[v]; })
+        .map(function (v) { return '<span class="pillv v-' + v + '">' + c.counts[v] + ' ' + VNAME[v] + '</span>'; }).join('');
+      var rows = c.steps.map(function (st) {
+        var inCorpus = (st.corpus === undefined) ? '\u2014'
+          : '<b>' + nf(st.corpus) + '</b>' + (st.corpusOther
+            ? '<div class="ex" title="Same address in the corpus, labelled differently in context">+' + nf(st.corpusOther) +
+              ' other: ' + (st.corpusOtherLabels || []).map(function (x) { return esc(pretty(x[0])) + ' ' + x[1]; }).join(', ') + '</div>'
+            : '');
+        return '<tr class="v-' + st.verdict + '"><td>' + esc(st.bassName) + '</td><td class="rn">' + esc(st.notes) +
+          '</td><td class="rn"><b>' + esc(st.rn || '\u2014') + '</b></td><td class="rn">' + esc(pretty(st.book) || '\u2014') +
+          '</td><td>' + VNAME[st.verdict] + '</td><td style="text-align:right">' + inCorpus + '</td></tr>';
+      }).join('');
+      return '<details class="core"' + (onlyDiv ? ' open' : '') + '><summary>' +
+        '<span class="code">' + esc(c.code) + '</span>' +
+        '<span class="iv">intervals ' + c.intervals.join(' \u00b7 ') + '</span>' +
+        '<span class="cnt">' + cnt + (c.corpusTotal !== undefined
+          ? '<span class="pillv" style="background:rgba(47,107,255,.18)">' + nf(c.corpusTotal) + ' in corpus</span>' : '') +
+        '</span></summary>' +
+        '<div style="overflow-x:auto"><table><thead><tr><th>Bass</th><th>Notes</th><th>musWM</th>' +
+        '<th>Textbook</th><th></th><th style="text-align:right" title="musWM events in the corpus at this address ' +
+        '(mode, chord code, bass degree), in every key, carrying this label">In corpus</th></tr></thead><tbody>' +
+        rows + '</tbody></table></div></details>';
+    }
+
+    var host = document.getElementById('keyTables');
+    host.innerHTML = D.tables.map(function (T, ti) {
+      var t = T.totals, derived = (t.match || 0) + (t.diverge || 0);
+      return '<details class="keytab" data-t="' + ti + '"><summary>' +
+        '<span class="kname">' + esc(T.key) + '</span>' +
+        '<span class="kpct">' + pc1(100 * (t.match || 0) / derived) + '%</span>' +
+        '<span class="ksub">' + (t.match || 0) + ' of ' + derived + ' derivable cells match the textbook \u00b7 ' +
+        (t.diverge || 0) + ' differ \u00b7 ' + T.cores.length + ' cores \u00d7 12 = ' + T.cells + ' cells' +
+        (T.corpusTotal !== undefined ? ' \u00b7 ' + nf(T.corpusTotal) + ' corpus events' : '') + '</span>' +
+        '</summary><div class="kbody">' +
+        '<p class="dim" style="font-size:13.5px;margin:0 0 8px">Bass notes ascend chromatically from the tonic, ' +
+        esc(T.key.split(' ')[0]) + '. ' + (t.underivable || 0) + ' cells hold a two-note sonority or a shape the ' +
+        'textbook does not name mechanically; in ' + (t.none || 0) + ', musWM withholds a label because the bass does not ' +
+        'support a reading.</p>' +
+        '<div class="core-legend"><span class="v-match">matches the textbook</span>' +
+        '<span class="v-diverge">differs from the textbook</span>' +
+        '<span class="v-underivable">textbook derives no label mechanically</span>' +
+        '<span class="v-none">musWM gives no label</span></div>' +
+        '<div class="core-tools"><button class="btn" data-act="open">Open all</button>' +
+        '<button class="btn" data-act="close">Close all</button>' +
+        '<label class="dim" style="font-size:13px"><input type="checkbox" data-act="div"> only cores with a difference</label></div>' +
+        '<div class="coreAcc"></div></div></details>';
+    }).join('');
+
+    Array.prototype.forEach.call(host.querySelectorAll('details.keytab'), function (box) {
+      var T = D.tables[Number(box.getAttribute('data-t'))];
+      var acc = box.querySelector('.coreAcc');
+      var chk = box.querySelector('input[data-act="div"]');
+      var drawn = false;
+      function render() {
+        var onlyDiv = chk.checked, html = [], last = null;
+        T.cores.slice().sort(function (a, b) {
+          return a.notes - b.notes || a.intervals.join(',').localeCompare(b.intervals.join(','), undefined, { numeric: true });
+        }).forEach(function (c) {
+          if (onlyDiv && !c.counts.diverge) return;
+          if (c.notes !== last) { html.push('<div class="core-group">' + groups[c.notes] + '</div>'); last = c.notes; }
+          html.push(coreHtml(c, onlyDiv));
+        });
+        acc.innerHTML = html.join('');
+        drawn = true;
+      }
+      box.addEventListener('toggle', function () { if (box.open && !drawn) render(); });
+      chk.addEventListener('change', render);
+      box.querySelector('[data-act="open"]').addEventListener('click', function () {
+        acc.querySelectorAll('details.core').forEach(function (x) { x.open = true; }); });
+      box.querySelector('[data-act="close"]').addEventListener('click', function () {
+        acc.querySelectorAll('details.core').forEach(function (x) { x.open = false; }); });
+    });
+  }).catch(function (e) {
+    document.getElementById('coreNote').textContent = 'core_table.json could not be loaded: ' + e;
+  });
+})();
+</script>
+<script>
+/* top-level accordions: opening one closes the other (fallback for browsers without <details name>) */
+(function () {
+  var ds = document.querySelectorAll('details.domain');
+  Array.prototype.forEach.call(ds, function (d) {
+    d.addEventListener('toggle', function () {
+      if (!d.open) return;
+      Array.prototype.forEach.call(ds, function (o) { if (o !== d && o.open) o.open = false; });
+    });
+  });
+})();
+</script>
+</body>
+</html>
