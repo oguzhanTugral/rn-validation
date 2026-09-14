@@ -30,6 +30,41 @@
   }
 
   
+  var ATTR_ORDER = ['footnote', 'level', 'divisions', 'key', 'time', 'staves', 'part-symbol', 'instruments',
+                    'clef', 'staff-details', 'transpose', 'for-part', 'directive', 'measure-style'];
+
+  
+  function carryAttributes(doc, measures, firstIndex, target) {
+    var state = {}, order = [];
+    function absorb(attrs) {
+      Array.prototype.forEach.call(attrs.children, function (c) {
+        var k = c.tagName + '|' + (c.getAttribute('number') || '');
+        if (!(k in state)) order.push(k);
+        state[k] = c.cloneNode(true);
+      });
+    }
+    function leading(m) {                        // <attributes> that precede the first note
+      for (var n = m.firstElementChild; n; n = n.nextElementSibling) {
+        if (n.tagName === 'note' || n.tagName === 'backup' || n.tagName === 'forward') return null;
+        if (n.tagName === 'attributes') return n;
+      }
+      return null;
+    }
+    for (var i = 0; i < firstIndex; i++) {
+      Array.prototype.forEach.call(measures[i].getElementsByTagName('attributes'), absorb);
+    }
+    var own = leading(target);
+    if (own) { absorb(own); target.removeChild(own); }
+    if (!order.length) return;
+    var merged = doc.createElement('attributes');
+    order.sort(function (a, b) {
+      var ia = ATTR_ORDER.indexOf(a.split('|')[0]), ib = ATTR_ORDER.indexOf(b.split('|')[0]);
+      return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || a.localeCompare(b);
+    }).forEach(function (k) { merged.appendChild(state[k]); });
+    target.insertBefore(merged, target.firstChild);
+  }
+
+  
   function sliceMeasures(xmlText, from, to) {
     var doc = new DOMParser().parseFromString(xmlText, 'application/xml');
     if (doc.querySelector('parsererror')) throw new Error('The score is not valid MusicXML.');
@@ -51,12 +86,9 @@
       if (!picked.length) return;
       found = true;
 
-      if (!picked[0].getElementsByTagName('attributes').length) {
-        for (var i = firstIndex - 1; i >= 0; i--) {
-          var attrs = measures[i].getElementsByTagName('attributes')[0];
-          if (attrs) { picked[0].insertBefore(attrs.cloneNode(true), picked[0].firstChild); break; }
-        }
-      }
+
+
+      carryAttributes(doc, measures, firstIndex, picked[0]);
       measures.forEach(function (m) { part.removeChild(m); });
       picked.forEach(function (m) { part.appendChild(m); });
     });
