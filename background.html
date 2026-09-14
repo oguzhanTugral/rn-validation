@@ -8,23 +8,26 @@
 <title>Background · RN validation</title>
 <link rel="stylesheet" href="css/site.css">
 <style>
-  .bg p{font-size:14.5px;line-height:1.7;max-width:96ch}
+  .bg p{font-size:14.5px;line-height:1.7;text-align:justify;hyphens:auto}
   .bg h3.sect{font-size:17px;margin:30px 0 10px;color:var(--deep)}
   .kicker{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 4px}
   .thesis{font-size:clamp(18px,2vw,22px);line-height:1.45;color:var(--deep);font-weight:600;max-width:70ch;margin:6px 0 16px}
   .evid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:12px 0 6px}
   .evid .c{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
   .evid .c .k{font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
-  .evid .c p{font-size:13.5px;line-height:1.55;margin:6px 0 6px}
+  .evid .c p{font-size:13.5px;line-height:1.55;margin:6px 0 6px;text-align:left;hyphens:manual}
   .evid .c .ref{font-size:12px;color:var(--muted)}
   .gapq{margin:18px 0;padding:18px 22px;border-radius:var(--radius);background:linear-gradient(95deg,var(--clr-lilac-100),#fdf2f8);border:1px solid var(--clr-lilac-200)}
   .gapq .k{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--warn)}
   .gapq p{font-size:17px!important;line-height:1.5!important;color:var(--deep);font-weight:600;margin:6px 0 0}
-  blockquote.q{margin:12px 0;padding:10px 16px;border-left:3px solid var(--clr-lilac-400);background:var(--panel);border-radius:0 10px 10px 0;font-size:14px;color:#374151;max-width:92ch}
+  blockquote.q{margin:12px 0;padding:10px 16px;border-left:3px solid var(--clr-lilac-400);background:var(--panel);border-radius:0 10px 10px 0;font-size:14px;color:#374151}
   blockquote.q cite{display:block;font-style:normal;font-size:12px;color:var(--muted);margin-top:4px}
   .svgwrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,#fff,var(--clr-lilac-50));padding:10px;margin:12px 0 4px}
   .svgwrap svg{display:block;min-width:760px;width:100%;height:auto;font-family:"Segoe UI",system-ui,sans-serif}
   .cap{font-size:12.5px;color:var(--muted);line-height:1.5;margin:6px 0 0}
+  figure.fig{margin:12px 0 4px}
+  figure.fig.narrow{display:table;max-width:760px}
+  table.rtc caption{caption-side:bottom;text-align:justify;font-size:12.5px;color:var(--muted);line-height:1.5;padding:6px 0 0}
   .bars{display:grid;gap:10px;margin:12px 0 4px;max-width:760px}
   .bars .row{display:grid;grid-template-columns:230px minmax(0,1fr) 56px;gap:12px;align-items:center;font-size:13.5px}
   .bars .track{height:14px;border-radius:99px;background:var(--clr-lilac-100);overflow:hidden}
@@ -60,15 +63,14 @@
   <p class="thesis">Music psychology can now describe <i>why</i> people listen &mdash; the functions, goals and
   situations that make a listening episode meaningful &mdash; considerably better than it can describe
   <i>what</i> they are listening to.</p>
-  <p>This page sets out that asymmetry, the evidence that it is real, and why it persists. It then shows how the
+  <p>Put plainly: research can say a great deal about the purpose of a listening episode, and much less about the chords, keys and harmonic motion that were sounding during it. This page gives the evidence for that imbalance and explains why it persists. It then shows how the
   work collected on this site &mdash; a real-time harmonic analyser, its audit against music theory, a comparison
   with two independent analysers, and a working-memory account of the architecture &mdash; is designed to supply
   one missing piece: a time-resolved, tonality-sensitive description of musical structure that can be set beside
   what listeners do, feel and seek.</p>
 
   <h3 class="sect">1 &middot; What is already established</h3>
-  <p>The question is not whether musical properties matter. That has been shown repeatedly, and from several
-  directions.</p>
+  <p>Several independent lines of research have already shown that the properties of music affect listeners. What remains open is which properties matter, at what moment, and for whom.</p>
   <div class="evid">
     <div class="c"><span class="k">Musical cues</span>
       <p>Mode, tempo, register, dynamics, articulation and timbre make distinguishable contributions to perceived
@@ -92,17 +94,14 @@
   </div>
 
   <h3 class="sect">2 &middot; The problem: two timescales that have not yet met</h3>
-  <p>The Episode Model deliberately explains experience at the level of the episode. Its authors are explicit about
-  where that level ends:</p>
+  <p>The Episode Model explains experience at the level of the episode. In their section on challenges and limitations, its authors describe the temporal nature of experience as a challenge for any account of emotion, and state the timescale their model addresses:</p>
   <blockquote class="q">&ldquo;The episode model attempts to capture a broad temporal context (spanning minutes) rather
   than explaining the triggering process within much shorter timescales (seconds).&rdquo;
   <cite>Eerola, Kirts &amp; Saarikallio (2025), Challenges and limitations</cite></blockquote>
-  <p>The model also makes a structural prediction that can be tested only if structure can be measured: structural
-  elements of music are likely to be important for Enjoyment&ndash;Distraction&ndash;Relaxation and
-  Focus&ndash;Motivation episodes, and less so for Connection&ndash;Belonging, Personal Emotional Processing and
-  Aesthetic&ndash;Interest&ndash;Awe. Musical events, meanwhile, happen in seconds: a cadence arrives, a chord turns
+  <p>The authors also posit, drawing on a mapping of structural cues to emotions, that structural elements of music are likely to be important for Enjoyment&ndash;Distraction&ndash;Relaxation and Focus&ndash;Motivation episodes, and less important for the more culturally and individually determined Aesthetic&ndash;Interest&ndash;Awe, Connection&ndash;Belonging and Personal Emotional Processing episodes; they add that Aesthetic&ndash;Interest&ndash;Awe has been linked to harmonic, timbral and dynamic changes associated with chills. Testing that expectation requires structure to be measured. Musical events, meanwhile, happen in seconds: a cadence arrives, a chord turns
   minor, a key shifts. Between the two levels lies a question that neither answers on its own.</p>
 
+  <figure class="fig">
   <div class="svgwrap" role="img" aria-label="Timescale diagram: musical events in seconds, phrases and sections in tens of seconds, functional episodes in minutes, everyday listening profiles over days; the unexplored link runs from seconds to minutes.">
     <svg viewBox="0 -34 980 284" xmlns="http://www.w3.org/2000/svg">
       <defs><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5b21b6"/></marker></defs>
@@ -137,6 +136,7 @@
   <p class="cap"><b>Figure 1.</b> Levels of description and their timescales. The dashed link is not a claim that
   events cause episodes: goal-driven and stimulus-driven explanations run in parallel, and the link is an empirical
   question.</p>
+  </figure>
 
   <div class="gapq"><span class="k">The question</span>
     <p>Do time-resolved melodic and harmonic configurations within tonality explain person- and function-specific
@@ -153,13 +153,15 @@
 
   <h3 class="sect">3 &middot; Why the gap persists</h3>
   <p>A coded review of 190 peer-reviewed studies on music and memory published between 2020 and 2025 (PubMed and
-  JSTOR) measured how often research actually describes the musical structure it uses (Tu&#287;ral, 2026).</p>
+  JSTOR) measured how often research actually describes the musical structure it uses (Tu&#287;ral, 2026; coded dataset: <a href="https://doi.org/10.5281/zenodo.22258970" target="_blank" rel="noopener">doi:10.5281/zenodo.22258970</a>).</p>
+  <figure class="fig narrow">
   <div class="bars" aria-label="Share of studies with no harmonic or melodic analysis">
     <div class="row"><span>Health-science studies</span><div class="track"><div class="fill" style="width:98%;background:var(--diff)"></div></div><span class="pc">&asymp;98%</span></div>
     <div class="row"><span>Music-domain studies</span><div class="track"><div class="fill" style="width:70%;background:var(--anet)"></div></div><span class="pc">&asymp;70%</span></div>
   </div>
   <p class="cap"><b>Figure 2.</b> Share of studies containing no explicit harmonic or melodic analysis. Where
   physiological measures appear, they are usually analysed offline and correlated with the music post hoc.</p>
+  </figure>
   <p>Three causes recur. <b>Disciplinary silos:</b> large-scale health and psychophysiological research treats music
   as a generic stimulus &mdash; a familiar playlist, a preferred genre &mdash; while analytically rich music scholarship
   rarely reaches behavioural and physiological pipelines. <b>Annotation that does not scale:</b> functional harmonic
@@ -171,30 +173,28 @@
   <p>Linking a musical event to what a listener does, feels or shows physiologically at that moment places a
   requirement on the analyser that score-level analysis does not: the label has to exist <i>at</i> the moment, built
   only from what has already sounded. Current learned analysers are not designed for this. AnalysisGNN and
-  AugmentedNet are powerful score-level models; both read a complete score, and both use bidirectional context, so the
-  label at any point also depends on music that comes after it. That is appropriate for analysing a finished score,
+  AugmentedNet are powerful score-level models. Both take a finished score as input and both use bidirectional context &mdash; AnalysisGNN across a graph of the score&rsquo;s notes, AugmentedNet within fixed windows of about twenty bars of 4/4 &mdash; so the label at any point also depends on music that comes after it. That is appropriate for analysing a finished score,
   and it means the label cannot be available while the music is still unfolding.</p>
   <p>musWM takes the opposite design. It is <b>rule-based</b>: a label is retrieved from a precomputed lookup and
   refined by rules that cite the textbook. It is <b>causal</b>: a label is formed from the notes held in a
   capacity-limited window and uses nothing that has not yet sounded. And it is <b>explainable</b>: every label carries
   the pitch-class set, bass, root, chord code and local key it was derived from, so the reason for a label can be read
-  off the record and checked against the score. The result is a responsive analysis that unfolds with the music rather
-  than after it.</p>
+  off the record and checked against the score. The result is a responsive analysis that unfolds with the music.</p>
 <div style="overflow-x:auto">
   <table class="rtc">
     <thead><tr><th></th><th><span class="e-muswm">musWM</span></th><th><span class="e-gnn">AnalysisGNN</span></th><th><span class="e-anet">AugmentedNet</span></th></tr></thead>
     <tbody>
       <tr><td>Input</td><td>Notes as they sound</td><td>A complete score, turned into a graph of all its notes</td><td>A complete score, parsed and encoded frame by frame</td></tr>
-      <tr><td>Context behind a label</td><td><b>Past only.</b> A label uses nothing that has not yet sounded</td><td>Past and future: graph edges to later notes and bidirectional recurrent layers</td><td>Past and future: bidirectional recurrent layers over the whole sequence</td></tr>
+      <tr><td>Context behind a label</td><td><b>Past only.</b> A label uses nothing that has not yet sounded</td><td>Past and future: graph edges to later notes and bidirectional recurrent layers</td><td>Past and future: bidirectional recurrent layers within fixed windows of the score (about twenty bars of 4/4)</td></tr>
       <tr><td>When a label exists</td><td>During listening, once the chord in the window is stable</td><td>After the whole piece has been processed</td><td>After the whole piece has been processed; chord boundaries are resolved over the full output</td></tr>
       <tr><td>How it is derived</td><td>Deterministic lookup and textbook-referenced rules</td><td>Weights learned from annotated corpora</td><td>Weights learned from annotated corpora</td></tr>
       <tr><td>What can be traced</td><td>Pitch-class set, bass, root, chord code and local key are recorded with every label</td><td>The predicted label</td><td>The predicted label</td></tr>
     </tbody>
+    <caption><b>Table 1.</b> Design properties relevant to real-time use, from the implementations compared on this
+  site. This is a difference in design objective, not a judgement of analytical quality: score-level models answer a
+  different question well.</caption>
   </table>
   </div>
-  <p class="cap"><b>Table 1.</b> Design properties relevant to real-time use, from the implementations compared on this
-  site. This is a difference in design objective, not a judgement of analytical quality: score-level models answer a
-  different question well.</p>
 
   <h3 class="sect">5 &middot; What the work on this site contributes</h3>
   <p>Each component below answers one of these obstacles. The right-hand column states what each one does
@@ -255,8 +255,8 @@
     <li><b>Descriptor reliability.</b> Where do independent harmonic analysers converge and diverge on identical scores,
       and how far does realistic disagreement propagate into models of affective outcome built on their output?</li>
     <li><b>Episode-specific relevance.</b> Does the relevance of structural musical meaning vary across episodes as the
-      Episode Model predicts &mdash; larger for Enjoyment&ndash;Distraction&ndash;Relaxation and Focus&ndash;Motivation than
-      for the other three?</li>
+      Episode Model expects &mdash; larger for Enjoyment&ndash;Distraction&ndash;Relaxation and Focus&ndash;Motivation than
+      for Connection&ndash;Belonging, Personal Emotional Processing and Aesthetic&ndash;Interest&ndash;Awe, bearing in mind the authors&rsquo; note that Aesthetic&ndash;Interest&ndash;Awe has been linked to structural changes associated with chills?</li>
     <li><b>Incremental value.</b> Do time-resolved tonal and harmonic configurations explain goal attainment beyond
       high-level audio descriptors, listener characteristics, preference, familiarity and context?</li>
     <li><b>Reproducibility.</b> Do person- and function-specific structural profiles reproduce across repeated,
@@ -287,7 +287,7 @@
       <li>Kirts, C., Saarikallio, S., Anderson, C. J., Bannister, S., Céspedes-Guevara, J., et al. (2026). Measuring emotional experiences with music: Content validity assessment for Episode Model constructs. <i>Music &amp; Science, 9</i>, 1&ndash;17.</li>
       <li>Kostka, S., Payne, D., &amp; Almén, B. (2018). <i>Tonal harmony</i> (8th ed.). McGraw-Hill.</li>
       <li>Randall, W. M., Baltazar, M., &amp; Saarikallio, S. (2023). Success in reaching affect self-regulation goals through everyday music listening. <i>Journal of New Music Research, 51</i>(2&ndash;3), 243&ndash;258. <a href="https://doi.org/10.1080/09298215.2023.2187310" target="_blank" rel="noopener">doi:10.1080/09298215.2023.2187310</a></li>
-      <li>Tan, C., Mavrolampados, A., Ansani, A., Taipale, M., Koehler, F., Randall, W. M., &amp; Saarikallio, S. (2026). Relaxation music for stress alleviation: Exploring relationships of audio features and listener profiles. <i>Musicae Scientiae</i>.</li>
+      <li>Tan, C., Mavrolampados, A., Ansani, A., Taipale, M., Koehler, F., Randall, W. M., &amp; Saarikallio, S. (2026). Relaxation music for stress alleviation: Exploring relationships of audio features and listener profiles. <i>Musicae Scientiae, 30</i>(3), 486&ndash;506. <a href="https://doi.org/10.1177/10298649261421169" target="_blank" rel="noopener">doi:10.1177/10298649261421169</a></li>
       <li>Thompson, W. F., Bullot, N. J., &amp; Margulis, E. H. (2023). The psychological basis of music appreciation: Structure, self, source. <i>Psychological Review, 130</i>(1), 260&ndash;284.</li>
       <li>Tu&#287;ral, O. (2026). <i>A computational model of musical working memory: Software for real-time multimodal data integration in music and interdisciplinary research</i> [M.A. thesis]. University of Massachusetts Amherst.</li>
     </ul>

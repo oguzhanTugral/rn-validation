@@ -124,7 +124,7 @@
     document.body.insertAdjacentHTML('afterbegin',
       '<header class="site"><div class="wrap">' +
         '<div class="brand">' +
-          '<a class="logo" href="hero.html" aria-label="musWM home"><img src="assets/brand/muswm-mark-3d.svg" alt="" width="40" height="24"></a>' +
+          '<a class="logo" href="hero.html" aria-label="musWM home"><img src="assets/brand/muswm-mark-3d.svg" alt="" width="70" height="42"></a>' +
           '<h1>Roman numeral validation — musWM · AnalysisGNN · AugmentedNet</h1>' +
           '<span class="sub" id="rnvCorpusMeta"></span>' +
           (list.length > 1

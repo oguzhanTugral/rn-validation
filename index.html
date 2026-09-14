@@ -12,14 +12,13 @@
 <main class="wrap">
   <h2 class="page">Summary</h2>
   <p class="lede">musWM, AnalysisGNN and AugmentedNet are set side by side on one corpus and aligned by bar and
-  beat. Three quantities are reported &mdash; conformance to theory, agreement between engines and accuracy
-  against the textbook &mdash; and they are kept apart, because each answers a different question.</p>
+  beat. Three measures are reported, and they are kept apart because each answers a different question. <b>Theory conformance</b> asks whether musWM&rsquo;s own label is the one the textbook derives from the same notes and root. <b>Accuracy against the textbook</b> asks, for each engine, how many of its labels at the compared positions match the textbook label. <b>Agreement between engines</b> asks how often all three engines give the same label where all three produce one; it is shown below and row by row on the <a href="same.html">Alignment</a> and <a href="different.html">Disagreements</a> pages.</p>
 
   <div class="cards" style="margin:16px 0 6px">
     <div class="card"><span class="k">1 &middot; Theory conformance</span>
       <span class="v" id="kTheory">&mdash;</span>
       <span class="n" id="kTheoryNote">Does musWM&rsquo;s label follow the textbook? Measured against
-      Kostka, Payne &amp; Alm&eacute;n, <i>Tonal Harmony</i> 8e over the corpus shown. No human annotation
+      Kostka, Payne &amp; Alm&eacute;n, <i>Tonal Harmony</i>, 8th edition, over the corpus shown. No human annotation
       involved. &rarr; <a href="theory.html">Theory</a></span></div>
     <div class="card"><span class="k" id="kRatedHead">2 · Accuracy against the textbook</span>
       <span class="v" id="kRated">&mdash;</span>
@@ -75,7 +74,7 @@ fetch('data/theory.json').then(function (r) { return r.json(); }).then(function 
   if (n) n.innerHTML =
     'Given musWM&rsquo;s <b>own chord code</b>, does its label follow the textbook? It does at ' +
     p(a.conformantPct) + ' of ' + a.addresses + ' chord-code addresses. Kostka, Payne &amp; Alm&eacute;n, ' +
-    '<i>Tonal Harmony</i> 8e; ' + d.corpusWorks + ' works; no human annotation. &rarr; <a href="theory.html">Theory</a>';
+    '<i>Tonal Harmony</i>, 8th edition; ' + d.corpusWorks + ' works; no human annotation. &rarr; <a href="theory.html">Theory</a>';
 }).catch(function () {});
 </script>
 
