@@ -403,12 +403,25 @@ RNVData.boot({ page: 'theory.html', title: 'Theory', host: 'keyTables',
       esc(D.standard) + ' derives from the same notes and root in that key. Since every address is measured ' +
       'from the bass, one key per mode covers all transpositions of that mode. On the corpus this path ' +
       'reproduces the engine\u2019s own labels in 99.6% of 47,996 events; the remainder depend on neighbouring chords. ' +
-      'Open a key to inspect its cores. <b>In corpus</b> counts the musWM events of the ' + (D.corpusWorks || 335) +
-      '-work corpus at the same address \u2014 same mode, chord code and bass degree \u2014 in <i>every</i> key, ' +
-      'carrying that label, <b>at positions where all three engines produced a label</b> (the rows compared on the ' +
-      'Alignment and Disagreements pages, Normalised, onset only); events at that address labelled otherwise are listed beneath. ' +
-      'Each of those events falls on exactly one of the two pages, so <b>In corpus = Alignment + Disagreement</b>: ' +
-      '<b>Alignment</b> counts the events where all three engines agree, <b>Disagreement</b> those where at least one differs.';
+      'Open a key to inspect its cores.' +
+      '<span style="display:block;margin-top:10px">How to read a row:</span>' +
+      '<span style="display:block;margin:4px 0 0 14px">&bull; <b>Bass, Notes</b> \u2014 the core sounded on one of the twelve chromatic bass notes.</span>' +
+      '<span style="display:block;margin:4px 0 0 14px">&bull; <b>musWM</b> \u2014 the label the engine gives that chord in that key.</span>' +
+      '<span style="display:block;margin:4px 0 0 14px">&bull; <b>Textbook</b> \u2014 the label the textbook rules derive from the same notes, root and key; ' +
+      '\u2014 when they derive none.</span>' +
+      '<span style="display:block;margin:4px 0 0 14px">&bull; <b>Verdict</b> \u2014 <i>matches</i>: both labels are the same after normalisation. ' +
+      '<i>differs</i>: the textbook names the chord differently. <i>not derivable</i>: the notes do not determine a chord under the ' +
+      'textbook\u2019s rules, usually because only two notes sound (C\u2013Eb can belong to i, VI or iv7) or the shape is one the textbook ' +
+      'does not name mechanically; such a cell is neither right nor wrong and is left out of the match percentage. ' +
+      '<i>no label</i>: musWM withholds a label because the bass does not support a reading.</span>' +
+      '<span style="display:block;margin:4px 0 0 14px">&bull; <b>In corpus</b> \u2014 musWM events of the ' + (D.corpusWorks || 335) +
+      '-work corpus at the same address (same mode, chord code and bass degree) in <i>every</i> key, carrying this label, ' +
+      '<b>only at positions where all three engines produced a label</b> \u2014 the rows compared on the Alignment and ' +
+      'Disagreements pages (Normalised, onset only). Events at the same address with another label are shown beneath as ' +
+      '<i>+N other</i>.</span>' +
+      '<span style="display:block;margin:4px 0 0 14px">&bull; <b>Alignment</b> \u2014 of those events, the ones where all three engines agree; ' +
+      '<b>Disagreement</b> \u2014 the ones where at least one engine differs. Every compared event falls on exactly one of the two ' +
+      'pages, so In corpus = Alignment + Disagreement.</span>';
 
     function coreHtml(c, onlyDiv) {
       var cnt = ['match', 'diverge', 'underivable', 'none'].filter(function (v) { return c.counts[v]; })
