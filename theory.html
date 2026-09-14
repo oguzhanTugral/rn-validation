@@ -401,7 +401,10 @@ RNVData.boot({ page: 'theory.html', title: 'Theory', host: 'keyTables',
       'reproduces the engine\u2019s own labels in 99.6% of 47,996 events; the remainder depend on neighbouring chords. ' +
       'Open a key to inspect its cores. <b>In corpus</b> counts the musWM events of the ' + (D.corpusWorks || 335) +
       '-work corpus at the same address \u2014 same mode, chord code and bass degree \u2014 in <i>every</i> key, ' +
-      'carrying that label; events at that address labelled otherwise in context are listed beneath.';
+      'carrying that label; events at that address labelled otherwise in context are listed beneath. ' +
+      '<b>Alignment</b> and <b>Disagreement</b> count how many of those events appear on the Alignment page ' +
+      '(all three engines agree) and on the Disagreements page (at least one differs), under the same Normalised, ' +
+      'onset-only comparison; the rest are not compared because an engine gave no label at that onset.';
 
     function coreHtml(c, onlyDiv) {
       var cnt = ['match', 'diverge', 'underivable', 'none'].filter(function (v) { return c.counts[v]; })
@@ -414,17 +417,24 @@ RNVData.boot({ page: 'theory.html', title: 'Theory', host: 'keyTables',
             : '');
         return '<tr class="v-' + st.verdict + '"><td>' + esc(st.bassName) + '</td><td class="rn">' + esc(st.notes) +
           '</td><td class="rn"><b>' + esc(st.rn || '\u2014') + '</b></td><td class="rn">' + esc(pretty(st.book) || '\u2014') +
-          '</td><td>' + VNAME[st.verdict] + '</td><td style="text-align:right">' + inCorpus + '</td></tr>';
+          '</td><td>' + VNAME[st.verdict] + '</td><td style="text-align:right">' + inCorpus + '</td>' +
+          '<td style="text-align:right">' + (st.align === undefined ? '—' : nf(st.align)) + '</td>' +
+          '<td style="text-align:right">' + (st.disagree === undefined ? '—' : nf(st.disagree)) + '</td></tr>';
       }).join('');
       return '<details class="core"' + (onlyDiv ? ' open' : '') + '><summary>' +
         '<span class="code">' + esc(c.code) + '</span>' +
         '<span class="iv">intervals ' + c.intervals.join(' \u00b7 ') + '</span>' +
         '<span class="cnt">' + cnt + (c.corpusTotal !== undefined
           ? '<span class="pillv" style="background:rgba(47,107,255,.18)">' + nf(c.corpusTotal) + ' in corpus</span>' : '') +
+          (c.alignTotal !== undefined
+          ? '<span class="pillv" style="background:rgba(46,160,67,.18)">' + nf(c.alignTotal) + ' alignment</span>' +
+            '<span class="pillv" style="background:rgba(218,54,51,.16)">' + nf(c.disagreeTotal) + ' disagreement</span>' : '') +
         '</span></summary>' +
         '<div style="overflow-x:auto"><table><thead><tr><th>Bass</th><th>Notes</th><th>musWM</th>' +
         '<th>Textbook</th><th></th><th style="text-align:right" title="musWM events in the corpus at this address ' +
-        '(mode, chord code, bass degree), in every key, carrying this label">In corpus</th></tr></thead><tbody>' +
+        '(mode, chord code, bass degree), in every key, carrying this label">In corpus</th>' +
+        '<th style="text-align:right" title="Of those events, rows on the Alignment page: all three engines agree (Normalised, onset only)">Alignment</th>' +
+        '<th style="text-align:right" title="Of those events, rows on the Disagreements page: at least one engine differs (Normalised, onset only)">Disagreement</th></tr></thead><tbody>' +
         rows + '</tbody></table></div></details>';
     }
 
@@ -436,7 +446,8 @@ RNVData.boot({ page: 'theory.html', title: 'Theory', host: 'keyTables',
         '<span class="kpct">' + pc1(100 * (t.match || 0) / derived) + '%</span>' +
         '<span class="ksub">' + (t.match || 0) + ' of ' + derived + ' derivable cells match the textbook \u00b7 ' +
         (t.diverge || 0) + ' differ \u00b7 ' + T.cores.length + ' cores \u00d7 12 = ' + T.cells + ' cells' +
-        (T.corpusTotal !== undefined ? ' \u00b7 ' + nf(T.corpusTotal) + ' corpus events' : '') + '</span>' +
+        (T.corpusTotal !== undefined ? ' \u00b7 ' + nf(T.corpusTotal) + ' corpus events' : '') +
+        (T.alignTotal !== undefined ? ' (' + nf(T.alignTotal) + ' on Alignment, ' + nf(T.disagreeTotal) + ' on Disagreements)' : '') + '</span>' +
         '</summary><div class="kbody">' +
         '<p class="dim" style="font-size:13.5px;margin:0 0 8px">Bass notes ascend chromatically from the tonic, ' +
         esc(T.key.split(' ')[0]) + '. ' + (t.underivable || 0) + ' cells hold a two-note sonority or a shape the ' +
