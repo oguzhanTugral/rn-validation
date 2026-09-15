@@ -21,6 +21,7 @@
   .br-q .seg button{min-width:6.2em}
   .br-q .seg button[aria-pressed="true"].ok{background:#16a34a;color:#fff;border-color:#16a34a}
   .br-q .seg button[aria-pressed="true"].no{background:#dc2626;color:#fff;border-color:#dc2626}
+  .br-q .seg button[aria-pressed="true"].ex{background:#d97706;color:#fff;border-color:#d97706}
   .br-q .seg button[aria-pressed="true"].un{background:#6b7280;color:#fff;border-color:#6b7280}
   .br-rules{border-collapse:collapse;font-size:14px}
   .br-rules th{text-align:left;vertical-align:top;padding:4px 12px 4px 0;white-space:nowrap}
@@ -48,8 +49,9 @@
       <li>Answer the four questions. When you cannot decide, choose <b>Unclear</b>.</li>
     </ol>
     <div style="overflow-x:auto"><table class="br-rules">
-      <tr><th>Notes</th><td><b>Correct</b> = the list is exactly the chord notes. <b>Wrong</b> = a chord note is missing, or the list has a
-        passing/neighbour note or a note that does not sound. Spelling is ignored (G&flat; = F&sharp;; say so in the note).</td></tr>
+      <tr><th>Notes</th><td><b>Exactly</b> = the list is only the chord notes. <b>All + extra</b> = every chord note is there, plus a
+        passing/neighbour note or a note that does not sound. <b>Missing</b> = a chord note is not in the list. Spelling is ignored
+        (G&flat; = F&sharp;; say so in the note).</td></tr>
       <tr><th>Root</th><td>Is this the root of the chord at Start?</td></tr>
       <tr><th>Bass</th><td>Is this the lowest chord note at Start? If a lower note enters later among the blue notes (broken chord,
         moving bass), choose <b>Unclear</b> and write &ldquo;bass X&rarr;Y&rdquo;.</td></tr>
@@ -109,7 +111,8 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   var sheet = corpusId + '.blind';
   var sample = null, order = [], pos = 0, scope = 'bar';
   var OPT = [['y', 'Correct', 'ok'], ['n', 'Wrong', 'no'], ['u', 'Unclear', 'un']];
-  var Q = [['nt', 'Notes', OPT, 'Exactly the chord notes? Extra passing note or missing chord note = Wrong.'],
+  var Q = [['nt', 'Notes', [['y', 'Exactly', 'ok'], ['x', 'All + extra', 'ex'], ['n', 'Missing', 'no'], ['u', 'Unclear', 'un']],
+            'Exactly = only the chord notes. All + extra = every chord note plus a passing note. Missing = a chord note is not in the list.'],
            ['rt', 'Root', OPT, 'Root of the chord at Start?'],
            ['bs', 'Bass', OPT, 'Lowest chord note at Start? Lower note enters later = Unclear.'],
            ['sp', 'Span', [['y', 'Own chord', 'ok'], ['c', 'Chord change inside', 'no'], ['n', 'Merge with next', 'no'], ['u', 'Unclear', 'un']],
@@ -303,7 +306,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     var rows = sample.items.map(function (it) {
       var v = RNVReview.getKey(sheet, it.id);
       return [it.id, it.part, it.work, pretty(it.title), it.bar, it.beat, it.endBar == null ? 'end of work' : it.endBar, it.endBar == null ? '' : it.endBeat, it.localKey, it.notes, it.root, it.bass,
-              name[v.nt] || '', name[v.rt] || '', name[v.bs] || '', span[v.sp] || '', v.n || ''];
+              ({ y: 'exactly', x: 'all + extra', n: 'missing', u: 'unclear' })[v.nt] || '', name[v.rt] || '', name[v.bs] || '', span[v.sp] || '', v.n || ''];
     });
     download(RNVReview.xlsx('Blind review', header, rows, [7, 10, 8, 36, 9, 10, 8, 18, 12, 22, 8, 8, 10, 10, 10, 16, 40]),
       'blind_review_' + corpusId + '_' + new Date().toISOString().slice(0, 10) + '.xlsx');
