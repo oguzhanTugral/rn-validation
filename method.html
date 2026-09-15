@@ -346,6 +346,13 @@
     <h3>Corrections</h3>
     <p style="margin:0 0 6px"><b>15 September 2026.</b></p>
     <ul style="margin:0;padding-left:20px">
+      <li><b>One Roman numeral per beat no longer imposed</b> (user decision). musWM had kept only one Roman numeral per
+        metrical beat and dropped a different chord found later in the same beat (9,461 beats, 7,510 of them a different
+        chord). A different chord inside a beat is now kept as its own reading; two fragments that together form one
+        seventh chord are still read as that chord. The corpus was rebuilt: 115,968 rows; three-engine agreement 22.4%
+        over 16,581 comparable rows (was 22.5% over 16,091); musWM&ndash;AnalysisGNN 24.6%, musWM&ndash;AugmentedNet
+        38.4%; theory conformance 96.7%; note check root 99.3%, bass 100% (831 of 831). The blind-review sample was
+        redrawn from the new data (919 positions).</li>
       <li><b>Alignment fault corrected.</b> musWM labels had been placed on MIDI bar numbers rather than written bars
         (see <a href="#placement">Placement on the written bar</a>). The whole corpus was rebuilt with the current
         engine. Every figure on the site changed; the three-engine agreement rose from 20.2% to 22.5%

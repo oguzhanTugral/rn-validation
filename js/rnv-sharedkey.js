@@ -26,5 +26,5 @@ var RNV_SHARED_NOTE =
   'them. Both columns count only positions where all three emit a label, so the pairwise rates differ from the pairwise table below, which counts every position two engines share. Identity uses the published spelling normalisation, with a triad and a seventh on the same bass counted as equal. ' +
   '*The textbook label is the Roman numeral the textbook rules derive from musWM&rsquo;s key, root and analysed notes, so ' +
   'musWM&rsquo;s own score is high by construction and is not an accuracy; where the chord is unambiguous, musWM&rsquo;s ' +
-  'root and bass match the written score at 99.3% and 99.8%. A blind check of musWM&rsquo;s notes, root and bass on a fixed ' +
+  'root and bass match the written score at 99.3% and 100%. A blind check of musWM&rsquo;s notes, root and bass on a fixed ' +
   'sample of these positions is under way on the <a href="review.html">Blind review</a> page.';
