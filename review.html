@@ -42,11 +42,14 @@
     <span id="brDesign">Loading the sample&hellip;</span>
     A position covers the span over which musWM holds this reading: it starts at the bar and beat shown under
     <i>Start</i> and ends just before musWM&rsquo;s next reading, shown under <i>End</i> (that beat is not included; it
-    may lie in a later bar). Each position is rated four times: are the notes shown exactly the chord tones of that span (<i>Wrong</i> if a chord
+    may lie in a later bar). Beats are counted in the lower number of the time signature (in 2/2, beat 2 is the third quarter note); the card
+    also gives the quarter-note position. Notes, root and bass are judged for the chord sounding at <i>Start</i>.
+    Each position is rated four times: are the notes shown exactly the chord tones of that chord (<i>Wrong</i> if a chord
     tone is missing, or if a shown note is a passing, neighbour, suspended or ornamental note or does not sound;
     a non-chord tone in the score that is not shown does not count against musWM), is the root the root
-    of that chord, is the bass the lowest sounding note, and is the span a chord of its own, or should it be merged with the
-    reading that follows into one chord (for example a diminished triad whose dominant root arrives on the next beat)? <i>Unclear</i> is a valid answer (suspension, passing note,
+    of that chord, is the bass the lowest sounding note, and is the span right: one chord of its own, a span with a chord change inside that
+    musWM did not mark (too long), or a span that should be merged with the reading that follows into one chord (for
+    example a diminished triad whose dominant root arrives on the next beat)? <i>Unclear</i> is a valid answer (suspension, passing note,
     chord change inside the beat). The rater is the author &mdash; a single, non-independent rater; a second rater
     on the same sample is the next step. Every rating is published with the results, including those against musWM.
     Only the random part estimates an overall rate; the coverage part shows which variants were checked.
@@ -97,7 +100,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   var sample = null, order = [], pos = 0, scope = 'bar';
   var OPT = [['y', 'Correct', 'ok'], ['n', 'Wrong', 'no'], ['u', 'Unclear', 'un']];
   var Q = [['nt', 'Notes', OPT], ['rt', 'Root', OPT], ['bs', 'Bass', OPT],
-           ['sp', 'Span', [['y', 'Own chord', 'ok'], ['n', 'Merge with next', 'no'], ['u', 'Unclear', 'un']]]];
+           ['sp', 'Span', [['y', 'Own chord', 'ok'], ['c', 'Chord change inside', 'no'], ['n', 'Merge with next', 'no'], ['u', 'Unclear', 'un']]]];
 
   var el = function (id) { return document.getElementById(id); };
 
@@ -128,9 +131,10 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
       '<div class="br-work">' + esc(pretty(it.title)) + '</div>' +
       '<div class="br-pos">Work ' + it.work +
         (it.localKey ? ' · local key read by all three: <b>' + esc(it.localKey) + '</b>' : '') + '</div>' +
-      '<dl class="br-read"><dt>Start</dt><dd>bar ' + it.bar + ', beat ' + it.beat + '</dd>' +
-        '<dt>End</dt><dd>' + (it.endBar != null ? 'bar ' + it.endBar + ', beat ' + it.endBeat + ' <span class="dim">(not included)</span>'
+      '<dl class="br-read"><dt>Start</dt><dd>bar ' + it.bar + ', beat ' + it.beat + ' <span class="dim" id="brStartQ"></span></dd>' +
+        '<dt>End</dt><dd>' + (it.endBar != null ? 'bar ' + it.endBar + ', beat ' + it.endBeat + ' <span class="dim" id="brEndQ"></span> <span class="dim">(not included)</span>'
           : 'end of the work') + '</dd></dl>' +
+      '<div class="dim" id="brUnit" style="font-size:13px;margin:-6px 0 10px"></div>' +
       '<dl class="br-read"><dt>Notes</dt><dd>' + esc(it.notes || '—') + '</dd>' +
         '<dt>Root</dt><dd>' + esc(it.root || '—') + '</dd><dt>Bass</dt><dd>' + esc(it.bass || '—') + '</dd></dl>' +
       Q.map(function (q) {
@@ -159,6 +163,37 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     drawScore(it);
   }
 
+  // Beats are counted in the time signature's lower number (2/2: half notes, 6/8: eighths).
+  // Say so, and give the quarter-note position, so "beat 2" in 2/2 is not read as the second quarter.
+  function timeAt(xml, bar) {
+    var doc = new DOMParser().parseFromString(xml, 'application/xml');
+    var part = doc.getElementsByTagName('part')[0], t = { beats: 4, type: 4 };
+    if (!part) return t;
+    var ms = Array.prototype.filter.call(part.getElementsByTagName('measure'), function (m) { return m.parentNode === part; });
+    for (var i = 0; i < ms.length; i++) {
+      if (parseInt(String(ms[i].getAttribute('number')).replace(/[^\-0-9]/g, ''), 10) > bar) break;
+      var tm = ms[i].getElementsByTagName('time')[0];
+      if (tm && tm.getElementsByTagName('beats')[0]) {
+        t = { beats: parseInt(tm.getElementsByTagName('beats')[0].textContent, 10) || 4,
+              type: parseInt((tm.getElementsByTagName('beat-type')[0] || {}).textContent, 10) || 4 };
+      }
+    }
+    return t;
+  }
+  function showBeatUnit(xml, it) {
+    if (order[pos] !== it || !el('brUnit')) return;
+    var unit = { 1: 'whole notes', 2: 'half notes', 4: 'quarter notes', 8: 'eighth notes', 16: 'sixteenth notes' };
+    var q = function (bar, beat) {
+      var t = timeAt(xml, bar);
+      return t.type === 4 ? '' : '= quarter note ' + (+((beat - 1) * 4 / t.type + 1).toFixed(3));
+    };
+    var ts = timeAt(xml, it.bar);
+    el('brUnit').textContent = 'Time ' + ts.beats + '/' + ts.type + ': beats are counted in ' + (unit[ts.type] || '1/' + ts.type + ' notes') +
+      (ts.type === 4 ? '.' : ', not quarter notes.');
+    el('brStartQ').textContent = q(it.bar, it.beat);
+    if (el('brEndQ')) el('brEndQ').textContent = q(it.endBar, it.endBeat);
+  }
+
   function drawScore(it) {
     var box = el('brScore');
     box.innerHTML = '<div class="empty">Loading score&hellip;</div>';
@@ -166,6 +201,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     var from = it.bar, to = it.endBar == null ? it.bar : Math.max(it.bar, it.endBeat === 1 ? it.endBar - 1 : it.endBar);
     if (scope === 'context') { from--; to++; }
     RNVScore.loadScore(corpusId, it.work).then(function (xml) {
+      showBeatUnit(xml, it);
       var doc = new DOMParser().parseFromString(RNVScore.sliceMeasures(xml, from, to), 'application/xml');
       // blind: no harmony symbols or Roman numerals embedded in the score may be shown
       Array.prototype.slice.call(doc.getElementsByTagName('harmony')).forEach(function (h) { h.parentNode.removeChild(h); });
@@ -214,7 +250,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     e.target.value = '';
   });
   el('brXlsx').addEventListener('click', function () {
-    var name = { y: 'correct', n: 'wrong', u: 'unclear' }, span = { y: 'own chord', n: 'merge with next', u: 'unclear' };
+    var name = { y: 'correct', n: 'wrong', u: 'unclear' }, span = { y: 'own chord', c: 'chord change inside', n: 'merge with next', u: 'unclear' };
     var header = ['Id', 'Part', 'Work no', 'Work', 'Start bar', 'Start beat', 'End bar', 'End beat (not incl.)', 'Local key', 'Notes shown', 'Root shown', 'Bass shown',
                   'Notes', 'Root', 'Bass', 'Span', 'Note'];
     var rows = sample.items.map(function (it) {
