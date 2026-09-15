@@ -44,7 +44,7 @@
   <div class="note">
     <b>How to rate</b>
     <ol style="margin:6px 0 8px;padding-left:20px">
-      <li>Look at the <b style="color:#1f6feb">blue notes</b> in the score: they are the passage asked about (Start to End).</li>
+      <li>Each position is <b>one</b> musWM Roman numeral (hidden). Its notes are <b style="color:#1f6feb">blue</b> in the score, from Start to End.</li>
       <li>Find the chord at <b>Start</b>. Passing, neighbour, suspended and ornamental notes are not chord notes.</li>
       <li>Answer the four questions. When you cannot decide, choose <b>Unclear</b>.</li>
     </ol>
@@ -312,10 +312,11 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
       'blind_review_' + corpusId + '_' + new Date().toISOString().slice(0, 10) + '.xlsx');
   });
 
-  Promise.all([
-    fetch('data/corpora/' + encodeURIComponent(corpusId) + '/blind_sample.json', { cache: 'no-store' }).then(function (r) { return r.json(); }),
-    RNVReview.init(sheet)
-  ]).then(function (res) {
+  fetch('data/corpora/' + encodeURIComponent(corpusId) + '/blind_sample.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (s) {
+    // ratings belong to one sample: a new sample gets its own sheet, so old ratings never attach to new positions
+    if (s.sha256OfPositions.indexOf('33bd23d871c40d0f') !== 0) sheet = corpusId + '.blind.' + s.sha256OfPositions.slice(0, 12);
+    return RNVReview.init(sheet).then(function (serverOk) { return [s, serverOk]; });
+  }).then(function (res) {
     sample = res[0];
     el('brDesign').textContent = 'The sample has ' + sample.items.length + ' positions, drawn once with a fixed seed (' + sample.seed +
       ') from the positions where all three analysers read the same local key: ' + sample.coverageStrata +

@@ -1,48 +1,48 @@
 {
  "format": "rnv-shared-key",
  "corpus": "wir335",
- "packGenerated": "2026-09-15T08:20:59",
+ "packGenerated": "2026-09-15T16:33:53",
  "definition": "positions where all three analysers emit a label and read the same local key (tonic and mode)",
  "status": "exploratory: restriction chosen after the first results; selects stable-key passages",
  "pairwiseBasis": "positions where all three emit a label",
  "textbookReference": "Roman numeral the textbook rules derive from musWM's key, root and analysed notes",
  "figures": {
   "all": {
-   "positions": 16091,
-   "works": 317,
+   "positions": 17085,
+   "works": 318,
    "allThreeIdentical": {
-    "n": 3615,
-    "pct": 22.5
+    "n": 3762,
+    "pct": 22.0
    },
    "pairwise": {
-    "musWM-AnalysisGNN": 28.9,
-    "musWM-AugmentedNet": 38.5,
-    "AnalysisGNN-AugmentedNet": 39.6
+    "musWM-AnalysisGNN": 28.3,
+    "musWM-AugmentedNet": 38.3,
+    "AnalysisGNN-AugmentedNet": 38.9
    },
    "textbook": {
-    "graded": 15603,
+    "graded": 16581,
     "musWM": 99.6,
-    "AnalysisGNN": 30.4,
-    "AugmentedNet": 39.9
+    "AnalysisGNN": 29.8,
+    "AugmentedNet": 39.7
    }
   },
   "shared": {
-   "positions": 8277,
-   "works": 285,
+   "positions": 8738,
+   "works": 286,
    "allThreeIdentical": {
-    "n": 3337,
-    "pct": 40.3
+    "n": 3463,
+    "pct": 39.6
    },
    "pairwise": {
-    "musWM-AnalysisGNN": 46.2,
-    "musWM-AugmentedNet": 64.8,
-    "AnalysisGNN-AugmentedNet": 50.1
+    "musWM-AnalysisGNN": 45.5,
+    "musWM-AugmentedNet": 64.6,
+    "AnalysisGNN-AugmentedNet": 49.2
    },
    "textbook": {
-    "graded": 8029,
+    "graded": 8480,
     "musWM": 99.6,
-    "AnalysisGNN": 48.3,
-    "AugmentedNet": 67.1
+    "AnalysisGNN": 47.6,
+    "AugmentedNet": 67.0
    }
   }
  }
