@@ -22,6 +22,10 @@
   .br-q .seg button[aria-pressed="true"].ok{background:#16a34a;color:#fff;border-color:#16a34a}
   .br-q .seg button[aria-pressed="true"].no{background:#dc2626;color:#fff;border-color:#dc2626}
   .br-q .seg button[aria-pressed="true"].un{background:#6b7280;color:#fff;border-color:#6b7280}
+  .br-rules{border-collapse:collapse;font-size:14px}
+  .br-rules th{text-align:left;vertical-align:top;padding:4px 12px 4px 0;white-space:nowrap}
+  .br-rules td{padding:4px 0}
+  .br-hint{grid-column:2;font-size:12.5px;color:var(--muted);margin-top:-4px}
   .br-note{width:100%;min-height:60px;font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px}
   .br-nav{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}
   .br-score{min-height:260px;overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:8px}
@@ -33,26 +37,32 @@
 <body>
 <main class="wrap">
   <h2 class="page">Blind review</h2>
-  <p class="lede">A check, against the score, of the reading the textbook reference is built from: musWM&rsquo;s
-  <b>notes</b>, <b>root</b> and <b>bass</b> at a position. No Roman numeral and no engine label is shown, so the
-  judgement cannot lean towards any analyser&rsquo;s answer.</p>
+  <p class="lede">Check musWM&rsquo;s <b>notes</b>, <b>root</b> and <b>bass</b> against the score. No Roman numeral or
+  engine label is shown.</p>
 
   <div class="note">
-    <b>Protocol, fixed before rating.</b>
-    <span id="brDesign">Loading the sample&hellip;</span>
-    A position covers the span over which musWM holds this reading: it starts at the bar and beat shown under
-    <i>Start</i> and ends just before musWM&rsquo;s next reading or the first position where musWM shows no reading, shown under <i>End</i> (that beat is not included; it
-    may lie in a later bar). Beats are counted in the lower number of the time signature (in 2/2, beat 2 is the third quarter note); the card
-    also gives the quarter-note position. Notes, root and bass are judged for the chord sounding at <i>Start</i>.
-    Each position is rated four times: are the notes shown exactly the chord tones of that chord (<i>Wrong</i> if a chord
-    tone is missing, or if a shown note is a passing, neighbour, suspended or ornamental note or does not sound;
-    a non-chord tone in the score that is not shown does not count against musWM), is the root the root
-    of that chord, is the bass the lowest sounding note, and is the span right: one chord of its own, a span with a chord change inside that
-    musWM did not mark (too long), or a span that should be merged with the reading that follows into one chord (for
-    example a diminished triad whose dominant root arrives on the next beat)? <i>Unclear</i> is a valid answer (suspension, passing note,
-    chord change inside the beat). The rater is the author &mdash; a single, non-independent rater; a second rater
-    on the same sample is the next step. Every rating is published with the results, including those against musWM.
-    Only the random part estimates an overall rate; the coverage part shows which variants were checked.
+    <b>How to rate</b>
+    <ol style="margin:6px 0 8px;padding-left:20px">
+      <li>Look at the <b style="color:#1f6feb">blue notes</b> in the score: they are the passage asked about (Start to End).</li>
+      <li>Find the chord at <b>Start</b>. Passing, neighbour, suspended and ornamental notes are not chord notes.</li>
+      <li>Answer the four questions. When you cannot decide, choose <b>Unclear</b>.</li>
+    </ol>
+    <div style="overflow-x:auto"><table class="br-rules">
+      <tr><th>Notes</th><td><b>Correct</b> = the list is exactly the chord notes. <b>Wrong</b> = a chord note is missing, or the list has a
+        passing/neighbour note or a note that does not sound. Spelling is ignored (G&flat; = F&sharp;; say so in the note).</td></tr>
+      <tr><th>Root</th><td>Is this the root of the chord at Start?</td></tr>
+      <tr><th>Bass</th><td>Is this the lowest chord note at Start? If a lower note enters later among the blue notes (broken chord,
+        moving bass), choose <b>Unclear</b> and write &ldquo;bass X&rarr;Y&rdquo;.</td></tr>
+      <tr><th>Span</th><td><b>Own chord</b> = the blue notes are one chord. <b>Chord change inside</b> = the blue notes contain a second chord.
+        <b>Merge with next</b> = the chord goes on, or is completed, right after End.</td></tr>
+    </table></div>
+    <details style="margin-top:8px"><summary>Beats, sample and rater</summary>
+      <p style="margin:6px 0 0">Beats are counted in the lower number of the time signature (in 2/2, beat 2 is the third quarter
+      note); the card gives the quarter-note position when it differs. End is musWM&rsquo;s next reading, or the point where musWM
+      shows no reading, and is not included. <span id="brDesign">Loading the sample&hellip;</span> The rater is the author &mdash; a single,
+      non-independent rater; a second rater on the same sample is the next step. Every rating is published with the results,
+      including those against musWM. Only the random part estimates an overall rate.</p>
+    </details>
   </div>
 
   <div class="br-tools">
@@ -99,8 +109,11 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   var sheet = corpusId + '.blind';
   var sample = null, order = [], pos = 0, scope = 'bar';
   var OPT = [['y', 'Correct', 'ok'], ['n', 'Wrong', 'no'], ['u', 'Unclear', 'un']];
-  var Q = [['nt', 'Notes', OPT], ['rt', 'Root', OPT], ['bs', 'Bass', OPT],
-           ['sp', 'Span', [['y', 'Own chord', 'ok'], ['c', 'Chord change inside', 'no'], ['n', 'Merge with next', 'no'], ['u', 'Unclear', 'un']]]];
+  var Q = [['nt', 'Notes', OPT, 'Exactly the chord notes? Extra passing note or missing chord note = Wrong.'],
+           ['rt', 'Root', OPT, 'Root of the chord at Start?'],
+           ['bs', 'Bass', OPT, 'Lowest chord note at Start? Lower note enters later = Unclear.'],
+           ['sp', 'Span', [['y', 'Own chord', 'ok'], ['c', 'Chord change inside', 'no'], ['n', 'Merge with next', 'no'], ['u', 'Unclear', 'un']],
+            'Do the blue notes form one chord?']];
 
   var el = function (id) { return document.getElementById(id); };
 
@@ -142,7 +155,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
         return '<div class="br-q"><span>' + q[1] + '</span><div class="seg" data-q="' + q[0] + '">' +
           q[2].map(function (o) {
             return '<button type="button" class="' + o[2] + '" data-v="' + o[0] + '" aria-pressed="' + (v[q[0]] === o[0]) + '">' + o[1] + '</button>';
-          }).join('') + '</div></div>';
+          }).join('') + '</div><div class="br-hint">' + q[3] + '</div></div>';
       }).join('') +
       '<textarea class="br-note" id="brNote" placeholder="note (optional)">' + esc(v.n || '') + '</textarea>' +
       '<div class="br-nav"><button type="button" id="brPrev">&larr; Previous</button>' +
