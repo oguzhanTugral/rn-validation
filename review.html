@@ -132,7 +132,8 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
       '<div class="br-pos">Work ' + it.work +
         (it.localKey ? ' · local key read by all three: <b>' + esc(it.localKey) + '</b>' : '') + '</div>' +
       '<dl class="br-read"><dt>Start</dt><dd>bar ' + it.bar + ', beat ' + it.beat + ' <span class="dim" id="brStartQ"></span></dd>' +
-        '<dt>End</dt><dd>' + (it.endBar != null ? 'bar ' + it.endBar + ', beat ' + it.endBeat + ' <span class="dim" id="brEndQ"></span> <span class="dim">(not included)</span>'
+        '<dt>End</dt><dd>' + (it.endBar != null && it.endBeat === 1 ? 'end of bar ' + (it.endBar - 1) + ' <span class="dim">(bar ' + it.endBar + ' not included)</span>'
+          : it.endBar != null ? 'bar ' + it.endBar + ', beat ' + it.endBeat + ' <span class="dim" id="brEndQ"></span> <span class="dim">(not included)</span>'
           : 'end of the work') + '</dd></dl>' +
       '<div class="dim" id="brUnit" style="font-size:13px;margin:-6px 0 10px"></div>' +
       '<dl class="br-read"><dt>Notes</dt><dd>' + esc(it.notes || '—') + '</dd>' +
