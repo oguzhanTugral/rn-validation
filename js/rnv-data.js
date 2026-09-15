@@ -188,14 +188,22 @@
       footer(null);
       return;
     }
+
+
+
+    chrome(opts.page, opts.title, null);
+    var host = document.getElementById(opts.host);
+    var placeholder = host && host.tagName === 'DIV' && !host.innerHTML.trim();
+    if (placeholder) {
+      host.innerHTML = '<div class="empty" id="rnvLoading">Loading the corpus data (about 2 MB)&hellip; ' +
+        'On a phone this can take a little while.</div>';
+    }
     loadCorpus(id).then(function (corpus) {
-      chrome(opts.page, opts.title, corpus);
+      if (placeholder) host.innerHTML = '';
       opts.render(corpus);
       footer(corpus);
     }).catch(function (err) {
-      chrome(opts.page, opts.title, null);
-      document.getElementById(opts.host).innerHTML =
-        '<div class="empty">' + esc(err.message) + '</div>';
+      if (host) host.innerHTML = '<div class="empty">' + esc(err.message) + '</div>';
       footer(null);
     });
   }

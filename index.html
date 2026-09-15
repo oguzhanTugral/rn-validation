@@ -75,10 +75,38 @@
 </main>
 
 <script>
+/* Headline figures from the small summary file (build/summary_figures.cjs), shown at once; the full pack
+   recomputes the same figures when it has loaded. */
+(function () {
+  var id = 'wir335';
+  try { id = new URLSearchParams(location.search).get('corpus') || localStorage.getItem('rnv.corpus') || id; } catch (e) {}
+  fetch('data/corpora/' + encodeURIComponent(id) + '/summary.json').then(function (r) { return r.json(); }).then(function (s) {
+    var nf = function (x) { return Number(x).toLocaleString('en-US'); };
+    var cards = document.getElementById('cards');
+    if (cards && document.getElementById('rnvLoading')) {
+      cards.innerHTML = [
+        ['', 'Total rows', nf(s.total), ''], ['', 'Comparable', nf(s.comparable), 'all three engines produced a label'],
+        ['same', 'All three identical', nf(s.same), s.agreement + '% of comparable'],
+        ['diff', 'Different', nf(s.diff), (100 - s.agreement).toFixed(1) + '% of comparable']
+      ].map(function (c) {
+        return '<div class="card ' + c[0] + '"><span class="k">' + c[1] + '</span><span class="v">' + c[2] +
+          '</span><span class="n">' + c[3] + '</span></div>';
+      }).join('') + '<div class="empty" id="rnvLoading" style="grid-column:1/-1">Loading the row-level data (about 2 MB)&hellip;</div>';
+    }
+    var pt = document.getElementById('pairTable');
+    if (pt && !pt.innerHTML) {
+      pt.innerHTML = '<thead><tr><th>Engine pair</th><th>Rows in common</th><th>Identical</th><th>Agreement</th></tr></thead><tbody>' +
+        s.pairwise.map(function (p) {
+          return '<tr><td><b>' + p.a + '</b> ↔ <b>' + p.b + '</b></td><td class="num">' + nf(p.both) +
+            '</td><td class="num">' + nf(p.agree) + '</td><td class="num"><b>' + p.rate + '%</b></td></tr>';
+        }).join('') + '</tbody>';
+    }
+  }).catch(function () {});
+})();
 /* theory card: iki olcu de data/theory.json'dan gelir */
 fetch('data/theory.json').then(function (r) { return r.json(); }).then(function (d) {
   var a = d.codeBased;
-  var p = function (x) { return String(x).replace('.', ',') + '%'; };
+  var p = function (x) { return String(x) + '%'; };
   var v = document.getElementById('kTheory');
   if (v) v.textContent = p(a.conformantPct);
   var n = document.getElementById('kTheoryNote');
