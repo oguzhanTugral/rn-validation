@@ -40,9 +40,11 @@
   <div class="note">
     <b>Protocol, fixed before rating.</b>
     <span id="brDesign">Loading the sample&hellip;</span>
-    A position covers the span over which musWM holds this reading: from its beat until musWM&rsquo;s next reading in the
-    same bar, or to the end of the bar. Each position is rated three times: are the notes shown the notes sounding in that span, is the root the root
-    of that chord, is the bass the lowest sounding note? <i>Unclear</i> is a valid answer (suspension, passing note,
+    A position covers the span over which musWM holds this reading: it starts at the bar and beat shown under
+    <i>Start</i> and ends just before musWM&rsquo;s next reading, shown under <i>End</i> (that beat is not included; it
+    may lie in a later bar). Each position is rated four times: are the notes shown the notes sounding in that span, is the root the root
+    of that chord, is the bass the lowest sounding note, and is the span a chord of its own, or should it be merged with the
+    reading that follows into one chord (for example a diminished triad whose dominant root arrives on the next beat)? <i>Unclear</i> is a valid answer (suspension, passing note,
     chord change inside the beat). The rater is the author &mdash; a single, non-independent rater; a second rater
     on the same sample is the next step. Every rating is published with the results, including those against musWM.
     Only the random part estimates an overall rate; the coverage part shows which variants were checked.
@@ -70,8 +72,8 @@
     <div>
       <div class="br-tools">
         <div class="seg" id="brScope">
-          <button type="button" data-scope="bar" aria-pressed="true">This bar</button>
-          <button type="button" data-scope="context" aria-pressed="false">Bar &plusmn;1</button>
+          <button type="button" data-scope="bar" aria-pressed="true">Span bars</button>
+          <button type="button" data-scope="context" aria-pressed="false">Span &plusmn;1 bar</button>
         </div>
         <span class="dim" style="font-size:13px">Score with every harmony annotation removed.</span>
       </div>
@@ -91,11 +93,13 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   var corpusId = RNVData.currentCorpusId() || 'wir335';
   var sheet = corpusId + '.blind';
   var sample = null, order = [], pos = 0, scope = 'bar';
-  var Q = [['nt', 'Notes'], ['rt', 'Root'], ['bs', 'Bass']];
+  var OPT = [['y', 'Correct', 'ok'], ['n', 'Wrong', 'no'], ['u', 'Unclear', 'un']];
+  var Q = [['nt', 'Notes', OPT], ['rt', 'Root', OPT], ['bs', 'Bass', OPT],
+           ['sp', 'Span', [['y', 'Own chord', 'ok'], ['n', 'Merge with next', 'no'], ['u', 'Unclear', 'un']]]];
 
   var el = function (id) { return document.getElementById(id); };
 
-  function rated(it) { var v = RNVReview.getKey(sheet, it.id); return !!(v.nt && v.rt && v.bs); }
+  function rated(it) { var v = RNVReview.getKey(sheet, it.id); return !!(v.nt && v.rt && v.bs && v.sp); }
 
   function refreshOrder(keepId) {
     var show = el('brShow').value;
@@ -120,14 +124,16 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     el('brCard').innerHTML =
       '<div class="br-id">' + it.id + ' · ' + (pos + 1) + ' / ' + order.length + '</div>' +
       '<div class="br-work">' + esc(pretty(it.title)) + '</div>' +
-      '<div class="br-pos">Work ' + it.work + ' · bar <b>' + it.bar + '</b> · <b>from beat ' + it.beat +
-        (it.untilBeat != null ? ' until beat ' + it.untilBeat : ' to the end of the bar') + '</b>' +
+      '<div class="br-pos">Work ' + it.work +
         (it.localKey ? ' · local key read by all three: <b>' + esc(it.localKey) + '</b>' : '') + '</div>' +
+      '<dl class="br-read"><dt>Start</dt><dd>bar ' + it.bar + ', beat ' + it.beat + '</dd>' +
+        '<dt>End</dt><dd>' + (it.endBar != null ? 'bar ' + it.endBar + ', beat ' + it.endBeat + ' <span class="dim">(not included)</span>'
+          : 'end of the work') + '</dd></dl>' +
       '<dl class="br-read"><dt>Notes</dt><dd>' + esc(it.notes || '—') + '</dd>' +
         '<dt>Root</dt><dd>' + esc(it.root || '—') + '</dd><dt>Bass</dt><dd>' + esc(it.bass || '—') + '</dd></dl>' +
       Q.map(function (q) {
         return '<div class="br-q"><span>' + q[1] + '</span><div class="seg" data-q="' + q[0] + '">' +
-          [['y', 'Correct', 'ok'], ['n', 'Wrong', 'no'], ['u', 'Unclear', 'un']].map(function (o) {
+          q[2].map(function (o) {
             return '<button type="button" class="' + o[2] + '" data-v="' + o[0] + '" aria-pressed="' + (v[q[0]] === o[0]) + '">' + o[1] + '</button>';
           }).join('') + '</div></div>';
       }).join('') +
@@ -154,8 +160,9 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   function drawScore(it) {
     var box = el('brScore');
     box.innerHTML = '<div class="empty">Loading score&hellip;</div>';
-    var from = it.bar, to = it.bar;
-    if (scope === 'context') { from = it.bar - 1; to = it.bar + 1; }
+    // last bar the span touches: the end bar, unless the span ends exactly on its first beat
+    var from = it.bar, to = it.endBar == null ? it.bar : Math.max(it.bar, it.endBeat === 1 ? it.endBar - 1 : it.endBar);
+    if (scope === 'context') { from--; to++; }
     RNVScore.loadScore(corpusId, it.work).then(function (xml) {
       var doc = new DOMParser().parseFromString(RNVScore.sliceMeasures(xml, from, to), 'application/xml');
       // blind: no harmony symbols or Roman numerals embedded in the score may be shown
@@ -205,15 +212,15 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     e.target.value = '';
   });
   el('brXlsx').addEventListener('click', function () {
-    var name = { y: 'correct', n: 'wrong', u: 'unclear' };
-    var header = ['Id', 'Part', 'Work no', 'Work', 'Bar', 'From beat', 'Until beat', 'Local key', 'Notes shown', 'Root shown', 'Bass shown',
-                  'Notes', 'Root', 'Bass', 'Note'];
+    var name = { y: 'correct', n: 'wrong', u: 'unclear' }, span = { y: 'own chord', n: 'merge with next', u: 'unclear' };
+    var header = ['Id', 'Part', 'Work no', 'Work', 'Start bar', 'Start beat', 'End bar', 'End beat (not incl.)', 'Local key', 'Notes shown', 'Root shown', 'Bass shown',
+                  'Notes', 'Root', 'Bass', 'Span', 'Note'];
     var rows = sample.items.map(function (it) {
       var v = RNVReview.getKey(sheet, it.id);
-      return [it.id, it.part, it.work, pretty(it.title), it.bar, it.beat, it.untilBeat == null ? 'end of bar' : it.untilBeat, it.localKey, it.notes, it.root, it.bass,
-              name[v.nt] || '', name[v.rt] || '', name[v.bs] || '', v.n || ''];
+      return [it.id, it.part, it.work, pretty(it.title), it.bar, it.beat, it.endBar == null ? 'end of work' : it.endBar, it.endBar == null ? '' : it.endBeat, it.localKey, it.notes, it.root, it.bass,
+              name[v.nt] || '', name[v.rt] || '', name[v.bs] || '', span[v.sp] || '', v.n || ''];
     });
-    download(RNVReview.xlsx('Blind review', header, rows, [7, 10, 8, 36, 6, 8, 10, 12, 22, 8, 8, 10, 10, 10, 40]),
+    download(RNVReview.xlsx('Blind review', header, rows, [7, 10, 8, 36, 9, 10, 8, 18, 12, 22, 8, 8, 10, 10, 10, 16, 40]),
       'blind_review_' + corpusId + '_' + new Date().toISOString().slice(0, 10) + '.xlsx');
   });
 
