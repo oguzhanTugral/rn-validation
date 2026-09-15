@@ -90,7 +90,13 @@ body.home header.site .brand .logo{display:none}
 
 <main class="wrap">
   <section class="acc">
-    <h2>Textbook grade &mdash; reference derived from musWM&rsquo;s reading</h2>
+    <h2>Roman numerals where all three read the same key</h2>
+    <div class="panel" style="margin:0"><div id="skWrap"><div class="empty">Loading&hellip;</div></div>
+    <p class="dim" style="margin:10px 0 0;font-size:13px" id="skNote"></p></div>
+  </section>
+
+  <section class="acc">
+    <h2>Textbook grade &mdash; reference derived from musWM&rsquo;s reading (all positions)</h2>
     <div class="prelim"><b>Preliminary results.</b> Every figure on this site is recomputed from the corpus pack at each build. On 15 September 2026 the pack was rebuilt after an alignment fault was found and corrected, and the textbook criterion was audited against the book &mdash; see <a href="method.html#corrections">Corrections</a>. The textbook grades measure tolerant agreement with a label derived from musWM&rsquo;s own reading of the chord; they are not an accuracy against an independent reference.</div>
     <div class="rowsA" id="accRows"></div>
     <p class="dim" style="font-size:13px;margin:10px 0 0">The reference label is built from musWM&rsquo;s key, root, bass and notes, and the other two engines are judged in musWM&rsquo;s key, so musWM&rsquo;s score is high largely by construction. Read these bars as &ldquo;how often a label is written as the book writes musWM&rsquo;s reading&rdquo;, not as accuracy. A triad and a seventh on the same root and bass count as the same label.</p>
@@ -108,6 +114,13 @@ body.home header.site .brand .logo{display:none}
   </section>
 </main>
 
+<script src="js/rnv-sharedkey.js"></script>
+<script>
+fetch('data/corpora/wir335/shared_key.json').then(function (r) { return r.json(); }).then(function (sk) {
+  document.getElementById('skWrap').innerHTML = rnvSharedKeyTable(sk);
+  document.getElementById('skNote').innerHTML = RNV_SHARED_NOTE;
+}).catch(function () {});
+</script>
 <script src="data/corpora.js"></script>
 <script src="js/rnv-data.js"></script>
 <script>

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blind review · RN validation</title>
+<link rel="stylesheet" href="css/site.css">
+<style>
+  .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
+  @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
+  .br-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px}
+  .br-id{font-size:13px;color:var(--muted);letter-spacing:.04em}
+  .br-work{font-size:18px;font-weight:700;margin:4px 0 2px}
+  .br-pos{font-size:14px;color:var(--muted);margin-bottom:12px}
+  .br-read{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:15px;margin:10px 0 14px}
+  .br-read dt{color:var(--muted)}
+  .br-read dd{margin:0;font-weight:700}
+  .br-q{display:grid;grid-template-columns:5.5em 1fr;gap:8px;align-items:center;margin:8px 0}
+  .br-q .seg button{min-width:6.2em}
+  .br-q .seg button[aria-pressed="true"].ok{background:#16a34a;color:#fff;border-color:#16a34a}
+  .br-q .seg button[aria-pressed="true"].no{background:#dc2626;color:#fff;border-color:#dc2626}
+  .br-q .seg button[aria-pressed="true"].un{background:#6b7280;color:#fff;border-color:#6b7280}
+  .br-note{width:100%;min-height:60px;font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px}
+  .br-nav{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}
+  .br-score{min-height:260px;overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:8px}
+  .br-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
+  .br-prog{height:8px;border-radius:99px;background:var(--accent-soft);overflow:hidden;margin:6px 0 2px}
+  .br-prog span{display:block;height:100%;background:var(--accent)}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h2 class="page">Blind review</h2>
+  <p class="lede">A check, against the score, of the reading the textbook reference is built from: musWM&rsquo;s
+  <b>notes</b>, <b>root</b> and <b>bass</b> at a position. No Roman numeral and no engine label is shown, so the
+  judgement cannot lean towards any analyser&rsquo;s answer.</p>
+
+  <div class="note">
+    <b>Protocol, fixed before rating.</b>
+    <span id="brDesign">Loading the sample&hellip;</span>
+    Each position is rated three times: are the notes shown the notes sounding at this beat, is the root the root
+    of that chord, is the bass the lowest sounding note? <i>Unclear</i> is a valid answer (suspension, passing note,
+    chord change inside the beat). The rater is the author &mdash; a single, non-independent rater; a second rater
+    on the same sample is the next step. Every rating is published with the results, including those against musWM.
+    Only the random part estimates an overall rate; the coverage part shows which variants were checked.
+  </div>
+
+  <div class="br-tools">
+    <div class="field"><label for="brShow">Show</label>
+      <select id="brShow"><option value="todo">Not yet rated</option><option value="all">All positions</option>
+      <option value="done">Rated</option></select></div>
+    <div class="field"><label for="brJump">Go to</label>
+      <input id="brJump" type="text" placeholder="S001" style="width:6em"></div>
+    <div class="field"><label>&nbsp;</label><div class="seg">
+      <button id="brXlsx" type="button">Download .xlsx</button>
+      <button id="brJson" type="button">Download ratings (JSON)</button>
+      <button id="brLoad" type="button">Upload ratings (JSON)</button>
+      <input id="brFile" type="file" accept="application/json,.json" hidden>
+    </div></div>
+    <div class="count" id="brSaved"></div>
+  </div>
+  <div class="count" id="brCount"></div>
+  <div class="br-prog"><span id="brBar" style="width:0"></span></div>
+
+  <div class="br-grid" id="host">
+    <div class="br-card" id="brCard"><div class="empty">Loading&hellip;</div></div>
+    <div>
+      <div class="br-tools">
+        <div class="seg" id="brScope">
+          <button type="button" data-scope="bar" aria-pressed="true">This bar</button>
+          <button type="button" data-scope="context" aria-pressed="false">Bar &plusmn;1</button>
+        </div>
+        <span class="dim" style="font-size:13px">Score with every harmony annotation removed.</span>
+      </div>
+      <div class="br-score" id="brScore"></div>
+    </div>
+  </div>
+</main>
+
+<script src="data/corpora.js"></script>
+<script src="js/rnv-data.js"></script>
+<script src="js/rnv-review.js"></script>
+<script src="vendor/opensheetmusicdisplay.min.js"></script>
+<script src="js/rnv-score.js"></script>
+<script>
+RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
+  var esc = RNVData.esc, pretty = RNVData.pretty;
+  var corpusId = RNVData.currentCorpusId() || 'wir335';
+  var sheet = corpusId + '.blind';
+  var sample = null, order = [], pos = 0, scope = 'bar';
+  var Q = [['nt', 'Notes'], ['rt', 'Root'], ['bs', 'Bass']];
+
+  var el = function (id) { return document.getElementById(id); };
+
+  function rated(it) { var v = RNVReview.getKey(sheet, it.id); return !!(v.nt && v.rt && v.bs); }
+
+  function refreshOrder(keepId) {
+    var show = el('brShow').value;
+    order = sample.items.filter(function (it) {
+      return show === 'all' || (show === 'done' ? rated(it) : !rated(it));
+    });
+    pos = 0;
+    if (keepId) { var i = order.findIndex(function (it) { return it.id === keepId; }); if (i >= 0) pos = i; }
+    counts(); paint();
+  }
+
+  function counts() {
+    var done = sample.items.filter(rated).length, total = sample.items.length;
+    el('brCount').innerHTML = '<b>' + done + '</b> of ' + total + ' positions rated · showing ' + order.length;
+    el('brBar').style.width = (100 * done / total).toFixed(1) + '%';
+  }
+
+  function paint() {
+    var it = order[pos];
+    if (!it) { el('brCard').innerHTML = '<div class="empty">Nothing to show with this filter.</div>'; el('brScore').innerHTML = ''; return; }
+    var v = RNVReview.getKey(sheet, it.id);
+    el('brCard').innerHTML =
+      '<div class="br-id">' + it.id + ' · ' + (pos + 1) + ' / ' + order.length + '</div>' +
+      '<div class="br-work">' + esc(pretty(it.title)) + '</div>' +
+      '<div class="br-pos">Work ' + it.work + ' · bar <b>' + it.bar + '</b> · beat <b>' + it.beat + '</b>' +
+        (it.localKey ? ' · local key read by all three: <b>' + esc(it.localKey) + '</b>' : '') + '</div>' +
+      '<dl class="br-read"><dt>Notes</dt><dd>' + esc(it.notes || '—') + '</dd>' +
+        '<dt>Root</dt><dd>' + esc(it.root || '—') + '</dd><dt>Bass</dt><dd>' + esc(it.bass || '—') + '</dd></dl>' +
+      Q.map(function (q) {
+        return '<div class="br-q"><span>' + q[1] + '</span><div class="seg" data-q="' + q[0] + '">' +
+          [['y', 'Correct', 'ok'], ['n', 'Wrong', 'no'], ['u', 'Unclear', 'un']].map(function (o) {
+            return '<button type="button" class="' + o[2] + '" data-v="' + o[0] + '" aria-pressed="' + (v[q[0]] === o[0]) + '">' + o[1] + '</button>';
+          }).join('') + '</div></div>';
+      }).join('') +
+      '<textarea class="br-note" id="brNote" placeholder="note (optional)">' + esc(v.n || '') + '</textarea>' +
+      '<div class="br-nav"><button type="button" id="brPrev">&larr; Previous</button>' +
+      '<button type="button" id="brNext">Next &rarr;</button></div>';
+    Array.prototype.forEach.call(el('brCard').querySelectorAll('.seg[data-q] button'), function (b) {
+      b.addEventListener('click', function () {
+        var patch = {}; patch[b.parentNode.dataset.q] = b.dataset.v;
+        RNVReview.setKey(sheet, it.id, patch);
+        Array.prototype.forEach.call(b.parentNode.children, function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        counts();
+      });
+    });
+    el('brNote').addEventListener('input', function (e) { RNVReview.setKey(sheet, it.id, { n: e.target.value }); });
+    el('brPrev').addEventListener('click', function () { if (pos > 0) { pos--; paint(); } });
+    el('brNext').addEventListener('click', function () {
+      if (el('brShow').value === 'todo' && rated(it)) { refreshOrder(); return; }
+      if (pos < order.length - 1) { pos++; paint(); }
+    });
+    drawScore(it);
+  }
+
+  function drawScore(it) {
+    var box = el('brScore');
+    box.innerHTML = '<div class="empty">Loading score&hellip;</div>';
+    var from = it.bar, to = it.bar;
+    if (scope === 'context') { from = it.bar - 1; to = it.bar + 1; }
+    RNVScore.loadScore(corpusId, it.work).then(function (xml) {
+      var doc = new DOMParser().parseFromString(RNVScore.sliceMeasures(xml, from, to), 'application/xml');
+      // blind: no harmony symbols or Roman numerals embedded in the score may be shown
+      Array.prototype.slice.call(doc.getElementsByTagName('harmony')).forEach(function (h) { h.parentNode.removeChild(h); });
+      box.innerHTML = '';
+      return RNVScore.render(box, new XMLSerializer().serializeToString(doc));
+    }).catch(function (err) { box.innerHTML = '<div class="empty">' + esc(err.message || err) + '</div>'; });
+  }
+
+  Array.prototype.forEach.call(el('brScope').children, function (b) {
+    b.addEventListener('click', function () {
+      scope = b.dataset.scope;
+      Array.prototype.forEach.call(el('brScope').children, function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      if (order[pos]) drawScore(order[pos]);
+    });
+  });
+  el('brShow').addEventListener('change', function () { refreshOrder(order[pos] && order[pos].id); });
+  el('brJump').addEventListener('change', function (e) {
+    var id = e.target.value.trim().toUpperCase();
+    el('brShow').value = 'all'; refreshOrder(id);
+  });
+
+  RNVReview.onStatus(function (kind, detail) {
+    el('brSaved').textContent = kind === 'saved' ? 'Saved to file ' + String(detail || '').slice(11, 19)
+      : kind === 'saved-local' ? 'Saved in this browser — download the JSON to keep a copy'
+      : kind === 'saving' ? 'Saving…' : kind === 'pending' ? 'Unsaved changes…' : 'Not saved: ' + detail;
+  });
+
+  function download(blob, name) { RNVReview.download(blob, name); }
+  el('brJson').addEventListener('click', function () {
+    download(new Blob([JSON.stringify({ format: 'rnv-blind-ratings', sheet: sheet, sample: sample.sha256OfPositions,
+      exportedAt: new Date().toISOString(), rows: RNVReview.all(sheet) }, null, 1)], { type: 'application/json' }),
+      'blind_review_' + corpusId + '_' + new Date().toISOString().slice(0, 10) + '.json');
+  });
+  el('brLoad').addEventListener('click', function () { el('brFile').click(); });
+  el('brFile').addEventListener('change', function (e) {
+    var f = e.target.files[0]; if (!f) return;
+    f.text().then(function (t) {
+      var d = JSON.parse(t);
+      if (d.sample !== sample.sha256OfPositions) {
+        if (!confirm('This file was made for a different sample. Load it anyway?')) return;
+      }
+      var n = Object.keys(d.rows || {}).length;
+      if (!confirm('Replace the ratings in this browser with the ' + n + ' positions in the file?')) return;
+      RNVReview.replaceAll(sheet, d.rows || {}).then(function () { refreshOrder(); });
+    }).catch(function (err) { alert('Could not read the file: ' + err.message); });
+    e.target.value = '';
+  });
+  el('brXlsx').addEventListener('click', function () {
+    var name = { y: 'correct', n: 'wrong', u: 'unclear' };
+    var header = ['Id', 'Part', 'Work no', 'Work', 'Bar', 'Beat', 'Local key', 'Notes shown', 'Root shown', 'Bass shown',
+                  'Notes', 'Root', 'Bass', 'Note'];
+    var rows = sample.items.map(function (it) {
+      var v = RNVReview.getKey(sheet, it.id);
+      return [it.id, it.part, it.work, pretty(it.title), it.bar, it.beat, it.localKey, it.notes, it.root, it.bass,
+              name[v.nt] || '', name[v.rt] || '', name[v.bs] || '', v.n || ''];
+    });
+    download(RNVReview.xlsx('Blind review', header, rows, [7, 10, 8, 36, 6, 6, 12, 22, 8, 8, 10, 10, 10, 40]),
+      'blind_review_' + corpusId + '_' + new Date().toISOString().slice(0, 10) + '.xlsx');
+  });
+
+  Promise.all([
+    fetch('data/corpora/' + encodeURIComponent(corpusId) + '/blind_sample.json', { cache: 'no-store' }).then(function (r) { return r.json(); }),
+    RNVReview.init(sheet)
+  ]).then(function (res) {
+    sample = res[0];
+    el('brDesign').textContent = 'The sample has ' + sample.items.length + ' positions, drawn once with a fixed seed (' + sample.seed +
+      ') from the positions where all three analysers read the same local key: ' + sample.coverageStrata +
+      ' cover every combination of mode, musWM Roman numeral (with inversion) and agreement pattern once, and ' + sample.randomN +
+      ' are a simple random sample. The order is shuffled and the page does not show which part a position belongs to. Sample fingerprint ' +
+      sample.sha256OfPositions.slice(0, 16) + '.';
+    el('brSaved').textContent = res[1] ? 'Ratings are saved to a file on this computer' : 'Ratings are kept in this browser — download the JSON to keep a copy';
+    refreshOrder();
+  }).catch(function (err) { el('brCard').innerHTML = '<div class="empty">' + esc(err.message || err) + '</div>'; });
+}});
+</script>
+</body>
+</html>

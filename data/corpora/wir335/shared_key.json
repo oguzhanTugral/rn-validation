@@ -1,0 +1,49 @@
+{
+ "format": "rnv-shared-key",
+ "corpus": "wir335",
+ "packGenerated": "2026-09-15T08:20:59",
+ "definition": "positions where all three analysers emit a label and read the same local key (tonic and mode)",
+ "status": "exploratory: restriction chosen after the first results; selects stable-key passages",
+ "pairwiseBasis": "positions where all three emit a label",
+ "textbookReference": "Roman numeral the textbook rules derive from musWM's key, root and analysed notes",
+ "figures": {
+  "all": {
+   "positions": 16091,
+   "works": 317,
+   "allThreeIdentical": {
+    "n": 3615,
+    "pct": 22.5
+   },
+   "pairwise": {
+    "musWM-AnalysisGNN": 28.9,
+    "musWM-AugmentedNet": 38.5,
+    "AnalysisGNN-AugmentedNet": 39.6
+   },
+   "textbook": {
+    "graded": 15603,
+    "musWM": 99.6,
+    "AnalysisGNN": 30.4,
+    "AugmentedNet": 39.9
+   }
+  },
+  "shared": {
+   "positions": 8277,
+   "works": 285,
+   "allThreeIdentical": {
+    "n": 3337,
+    "pct": 40.3
+   },
+   "pairwise": {
+    "musWM-AnalysisGNN": 46.2,
+    "musWM-AugmentedNet": 64.8,
+    "AnalysisGNN-AugmentedNet": 50.1
+   },
+   "textbook": {
+    "graded": 8029,
+    "musWM": 99.6,
+    "AnalysisGNN": 48.3,
+    "AugmentedNet": 67.1
+   }
+  }
+ }
+}

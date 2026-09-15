@@ -406,5 +406,5 @@
     }
   }
 
-  global.RNVScore = { open: open, close: close, loadScore: loadScore, sliceMeasures: sliceMeasures };
+  global.RNVScore = { open: open, close: close, loadScore: loadScore, sliceMeasures: sliceMeasures, render: render };
 })(window);
