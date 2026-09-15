@@ -264,3 +264,12 @@ td.eng .grade.locked.book1,td.eng .grade.locked.book0,td.eng .grade.none{display
 .prelim{text-align:justify;hyphens:auto;margin:0 0 16px;padding:11px 16px;border-radius:var(--radius);border:1px solid #fcd9b6;border-left:4px solid #c2410c;background:#fff7ed;color:#431407;font-size:13.5px;line-height:1.55}
 .prelim b{color:#9a3412}
 .prelim a{color:#9a3412}
+
+/* local review sheet (js/rnv-review.js) */
+td.rowno{color:var(--muted);font-variant-numeric:tabular-nums}
+td.revcell{vertical-align:top}
+td.revcell .revcheck{width:18px;height:18px;margin:4px 2px;cursor:pointer}
+textarea.revnote{width:100%;min-width:13em;min-height:34px;resize:vertical;font:inherit;font-size:13px;padding:6px 8px;
+  border:1px solid var(--line);border-radius:8px;background:#fff}
+textarea.revnote.filled{border-color:var(--accent);background:#fffdf5}
+tr.reviewed td{background:rgba(34,197,94,.07)}

@@ -52,6 +52,13 @@
     var view = [];
     var shown = 0;
 
+    var sheet = opts.review && global.RNVReview && global.RNVReview.isAvailable() ? opts.review : null;
+    var pageRows = rows.filter(function (r) { return opts.match(r.status); });
+
+
+    var rowNo = {};
+    pageRows.forEach(function (r) { rowNo[r.id] = r.id + 1; });
+
     var pieceOptions = ['<option value="">All works (' + corpus.pieces.length + ')</option>']
       .concat(corpus.pieces.map(function (p) {
         return '<option value="' + p.i + '">' + esc(p.no + ' · ' + pretty(p.title)) + '</option>';
@@ -66,12 +73,22 @@
         '<div class="field"><label>Comparison</label><div class="seg" id="fMode">' +
           '<button data-mode="normal">Normalised</button>' +
         '</div></div>' +
+        (sheet ? '<div class="field"><label for="fReview">Review</label>' +
+          '<select id="fReview"><option value="">All rows</option><option value="checked">Checked</option>' +
+          '<option value="unchecked">Not checked</option><option value="noted">With a note</option></select></div>' +
+          '<div class="field"><label>&nbsp;</label><div class="seg">' +
+          '<button id="fSave" type="button" title="Save now (changes are also saved automatically)">Save</button>' +
+          '<button id="fXlsx" type="button" title="Download every row of this page with its check and note">Download .xlsx</button>' +
+          '</div></div>' +
+          '<div class="count" id="fSaveState" style="min-width:12em"></div>' : '') +
         '<div class="count" id="fCount"></div>' +
       '</div>' +
       '<p class="modenote" id="fModeNote"></p>' +
       '<div class="tablewrap"><table><thead><tr>' +
+        (sheet ? '<th class="num">#</th><th title="Checked">&#10003;</th>' : '') +
         '<th>Work</th><th>Bar</th><th>Beat</th>' +
         '<th>musWM</th><th>AnalysisGNN</th><th>AugmentedNet</th><th>Status</th>' +
+        (sheet ? '<th style="min-width:14em">Note</th>' : '') +
       '</tr></thead><tbody id="fBody"></tbody></table>' +
       '<button class="more" id="fMore" hidden></button>' +
       '<div class="empty" id="fEmpty" hidden></div></div>';
@@ -83,6 +100,7 @@
     var elEmpty = document.getElementById('fEmpty');
     var elCount = document.getElementById('fCount');
     var elMode = document.getElementById('fMode');
+    var elReview = document.getElementById('fReview');
 
     var ALIGN_NOTE = {
       window: 'Alignment: each musWM label sits at the beat where, by its own record, its analysis ' +
@@ -115,6 +133,12 @@
     function passes(r) {
       if (!opts.match(r.status)) return false;
       if (elPiece.value !== '' && String(r.piece) !== elPiece.value) return false;
+      if (sheet && elReview && elReview.value) {
+        var rv = global.RNVReview.get(sheet, corpus, r);
+        if (elReview.value === 'checked' && !rv.checked) return false;
+        if (elReview.value === 'unchecked' && rv.checked) return false;
+        if (elReview.value === 'noted' && !rv.note) return false;
+      }
       var gf = '';
       if (gf) {
         var g = gradesOf(r);
@@ -214,14 +238,20 @@
 
       var tag = { same: ['same', 'identical'], diff: ['diff', 'different'],
                   partial: ['partial', 'partial'], empty: ['partial', 'empty'] }[r.status];
-      return '<tr class="clickable" tabindex="0" data-id="' + r.id + '">' +
+      var rv = sheet ? global.RNVReview.get(sheet, corpus, r) : null;
+      return '<tr class="clickable' + (rv && rv.checked ? ' reviewed' : '') + '" tabindex="0" data-id="' + r.id + '">' +
+        (sheet ? '<td class="num rowno"><b>' + rowNo[r.id] + '</b></td>' +
+          '<td class="revcell"><input type="checkbox" class="revcheck" data-row="' + r.id + '"' +
+          (rv.checked ? ' checked' : '') + ' aria-label="Row ' + rowNo[r.id] + ' checked"></td>' : '') +
         '<td class="work"><span class="t">' + esc(pretty(p.title)) + '</span>' +
         '<span class="m">' + p.no + (p.key ? ' · ' + esc(p.key) : '') + '</span>' +
         (keyAt[r.id] ? '<span class="m" title="Local key at this position, as musWM read it">' +
           'key: <b>' + esc(keyAt[r.id]) + '</b></span>' : '') + '</td>' +
         '<td class="num"><b>' + r.measure + '</b></td>' +
         '<td class="num">' + r.beat + '</td>' + cells +
-        '<td><span class="tag ' + tag[0] + '">' + tag[1] + '</span></td></tr>';
+        '<td><span class="tag ' + tag[0] + '">' + tag[1] + '</span></td>' +
+        (sheet ? '<td class="revcell"><textarea class="revnote' + (rv.note ? ' filled' : '') + '" rows="1" data-row="' + r.id +
+          '" placeholder="note…">' + esc(rv.note) + '</textarea></td>' : '') + '</tr>';
     }
 
     function updateCount() {
@@ -230,6 +260,8 @@
         (view.length ? ' · ' + shown.toLocaleString('en-US') + ' shown' : '') +
         (s ? ' · graded ' + s.reduce(function (a, x) { return a + x.graded; }, 0) +
              ' / ' + s.reduce(function (a, x) { return a + x.labelled; }, 0) + ' cells' : '') +
+        (sheet ? (function () { var c = global.RNVReview.counts(sheet);
+          return ' · <b>' + c.checked + '</b> checked · <b>' + c.noted + '</b> notes'; })() : '') +
         '';
     }
 
@@ -260,6 +292,16 @@
         e.stopPropagation();
         return;
       }
+      if (e.target.closest && e.target.closest('.revcell')) {
+        e.stopPropagation();
+        var cb = e.target.classList.contains('revcheck') ? e.target : null;
+        if (cb) {
+          global.RNVReview.set(sheet, corpus, rows[Number(cb.dataset.row)], { checked: cb.checked });
+          cb.closest('tr').classList.toggle('reviewed', cb.checked);
+          updateCount();
+        }
+        return;
+      }
       var btn = e.target.closest('.grade button');
       if (btn) {
         e.stopPropagation();
@@ -277,8 +319,9 @@
     });
 
     elBody.addEventListener('keydown', function (e) {
-      if (e.target.classList && e.target.classList.contains('notebox')) {
-        e.stopPropagation();          // space and Enter belong to the text field
+      if (e.target.classList && (e.target.classList.contains('notebox') || e.target.classList.contains('revnote') ||
+          e.target.classList.contains('revcheck'))) {
+        e.stopPropagation();          // space and Enter belong to the field
         return;
       }
       if (e.key !== 'Enter' && e.key !== ' ') return;
@@ -289,6 +332,13 @@
     var noteTimers = {};
     elBody.addEventListener('input', function (e) {
       var box = e.target;
+      if (sheet && box.classList && box.classList.contains('revnote')) {
+        box.classList.toggle('filled', !!box.value.trim());
+        box.style.height = 'auto'; box.style.height = box.scrollHeight + 'px';
+        global.RNVReview.set(sheet, corpus, rows[Number(box.dataset.row)], { note: box.value });
+        updateCount();
+        return;
+      }
       if (!box.classList || !box.classList.contains('notebox')) return;
       var id = Number(box.dataset.row), idx = Number(box.dataset.engine);
       var timerKey = id + ':' + idx;
@@ -302,6 +352,40 @@
         }));
       }, 350);
     });
+
+    if (sheet) {
+      var elState = document.getElementById('fSaveState');
+      global.RNVReview.onStatus(function (kind, detail) {
+        elState.textContent = kind === 'saved' ? 'Saved ' + (detail ? String(detail).slice(11, 19) : '')
+          : kind === 'saving' ? 'Saving…' : kind === 'pending' ? 'Unsaved changes…'
+          : 'Not saved: ' + detail;
+        elState.style.color = kind === 'error' ? '#b91c1c' : '';
+      });
+      elState.textContent = 'All changes saved';
+      document.getElementById('fSave').addEventListener('click', function () { global.RNVReview.save(sheet); });
+      elReview.addEventListener('change', function () { paint(true); });
+      document.getElementById('fXlsx').addEventListener('click', function () {
+        var book = global.RNVGrades.book && global.RNVGrades.book(corpusId);
+        var header = ['No', 'Checked', 'Note', 'Work no', 'Work', 'Bar', 'Beat', 'Local key (musWM)',
+                      'musWM', 'AnalysisGNN', 'AugmentedNet', 'Status'];
+        if (book) header = header.concat(['Textbook label', 'musWM grade', 'AnalysisGNN grade', 'AugmentedNet grade']);
+        var data = pageRows.map(function (r) {
+          var p = corpus.pieces[r.piece], rv = global.RNVReview.get(sheet, corpus, r);
+          var line = [rowNo[r.id], rv.checked ? 'yes' : '', rv.note, p.no, pretty(p.title), r.measure, r.beat,
+                      keyAt[r.id] || '', r.raw[0] || '', r.raw[1] || '', r.raw[2] || '',
+                      { same: 'identical', diff: 'different' }[r.status] || r.status];
+          if (book) {
+            var bg = global.RNVGrades.bookGrade(corpusId, r);
+            line = line.concat(bg ? [bg[3], bg[0], bg[1], bg[2]] : ['not compared', '', '', '']);
+          }
+          return line;
+        });
+        var widths = [7, 9, 40, 9, 38, 7, 7, 16, 16, 16, 16, 11].concat(book ? [16, 12, 12, 12] : []);
+        var name = (opts.csvName || 'rows') + '_' + corpusId + '_review_' + new Date().toISOString().slice(0, 10) + '.xlsx';
+        global.RNVReview.download(global.RNVReview.xlsx(opts.csvName === 'identical' ? 'Alignment' : 'Disagreements',
+          header, data, widths), name);
+      });
+    }
 
     elMore.addEventListener('click', function () { paint(false); });
     elPiece.addEventListener('change', function () { paint(true); });
