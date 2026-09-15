@@ -80,7 +80,7 @@
           <button type="button" data-scope="bar" aria-pressed="true">Span bars</button>
           <button type="button" data-scope="context" aria-pressed="false">Span &plusmn;1 bar</button>
         </div>
-        <span class="dim" style="font-size:13px">Score with every harmony annotation removed.</span>
+        <span class="dim" style="font-size:13px">Score with every harmony annotation removed. Notes starting inside the span are <b style="color:#1f6feb">blue</b>.</span>
       </div>
       <div class="br-score" id="brScore"></div>
     </div>
@@ -194,6 +194,38 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     if (el('brEndQ')) el('brEndQ').textContent = q(it.endBar, it.endBeat);
   }
 
+  // Colour every note that starts inside the span [Start, End), so the rater sees which part of the bar is asked about.
+  // ponytail: notes held in from before the span stay black.
+  function markSpan(doc, it) {
+    var endBar = it.endBar == null ? Infinity : it.endBar, endBeat = it.endBar == null ? 0 : it.endBeat;
+    Array.prototype.forEach.call(doc.getElementsByTagName('part'), function (part) {
+      var div = 1, type = 4;
+      Array.prototype.forEach.call(part.children, function (m) {
+        if (m.tagName !== 'measure') return;
+        var bar = parseInt(String(m.getAttribute('number')).replace(/[^\-0-9]/g, ''), 10), t = 0, last = 0;
+        Array.prototype.forEach.call(m.children, function (c) {
+          if (c.tagName === 'attributes') {
+            var d = c.getElementsByTagName('divisions')[0], bt = c.getElementsByTagName('beat-type')[0];
+            if (d) div = +d.textContent || div;
+            if (bt) type = +bt.textContent || type;
+          } else if (c.tagName === 'backup' || c.tagName === 'forward') {
+            var du = +((c.getElementsByTagName('duration')[0] || {}).textContent || 0);
+            t += c.tagName === 'backup' ? -du : du;
+          } else if (c.tagName === 'note') {
+            var chord = c.getElementsByTagName('chord').length > 0, on = chord ? last : t;
+            if (!c.getElementsByTagName('grace').length) {
+              if (!chord) { last = t; t += +((c.getElementsByTagName('duration')[0] || {}).textContent || 0); }
+            }
+            var beat = on / div * type / 4 + 1, eps = 1e-6;
+            var after = bar > it.bar || (bar === it.bar && beat >= it.beat - eps);
+            var before = bar < endBar || (bar === endBar && beat < endBeat - eps);
+            if (after && before && !c.getElementsByTagName('rest').length) c.setAttribute('color', '#1f6feb');
+          }
+        });
+      });
+    });
+  }
+
   function drawScore(it) {
     var box = el('brScore');
     box.innerHTML = '<div class="empty">Loading score&hellip;</div>';
@@ -205,6 +237,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
       var doc = new DOMParser().parseFromString(RNVScore.sliceMeasures(xml, from, to), 'application/xml');
       // blind: no harmony symbols or Roman numerals embedded in the score may be shown
       Array.prototype.slice.call(doc.getElementsByTagName('harmony')).forEach(function (h) { h.parentNode.removeChild(h); });
+      markSpan(doc, it);
       box.innerHTML = '';
       return RNVScore.render(box, new XMLSerializer().serializeToString(doc));
     }).catch(function (err) { box.innerHTML = '<div class="empty">' + esc(err.message || err) + '</div>'; });
