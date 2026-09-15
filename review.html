@@ -40,7 +40,8 @@
   <div class="note">
     <b>Protocol, fixed before rating.</b>
     <span id="brDesign">Loading the sample&hellip;</span>
-    Each position is rated three times: are the notes shown the notes sounding at this beat, is the root the root
+    A position covers the span over which musWM holds this reading: from its beat until musWM&rsquo;s next reading in the
+    same bar, or to the end of the bar. Each position is rated three times: are the notes shown the notes sounding in that span, is the root the root
     of that chord, is the bass the lowest sounding note? <i>Unclear</i> is a valid answer (suspension, passing note,
     chord change inside the beat). The rater is the author &mdash; a single, non-independent rater; a second rater
     on the same sample is the next step. Every rating is published with the results, including those against musWM.
@@ -119,7 +120,8 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     el('brCard').innerHTML =
       '<div class="br-id">' + it.id + ' · ' + (pos + 1) + ' / ' + order.length + '</div>' +
       '<div class="br-work">' + esc(pretty(it.title)) + '</div>' +
-      '<div class="br-pos">Work ' + it.work + ' · bar <b>' + it.bar + '</b> · beat <b>' + it.beat + '</b>' +
+      '<div class="br-pos">Work ' + it.work + ' · bar <b>' + it.bar + '</b> · <b>from beat ' + it.beat +
+        (it.untilBeat != null ? ' until beat ' + it.untilBeat : ' to the end of the bar') + '</b>' +
         (it.localKey ? ' · local key read by all three: <b>' + esc(it.localKey) + '</b>' : '') + '</div>' +
       '<dl class="br-read"><dt>Notes</dt><dd>' + esc(it.notes || '—') + '</dd>' +
         '<dt>Root</dt><dd>' + esc(it.root || '—') + '</dd><dt>Bass</dt><dd>' + esc(it.bass || '—') + '</dd></dl>' +
@@ -204,14 +206,14 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   });
   el('brXlsx').addEventListener('click', function () {
     var name = { y: 'correct', n: 'wrong', u: 'unclear' };
-    var header = ['Id', 'Part', 'Work no', 'Work', 'Bar', 'Beat', 'Local key', 'Notes shown', 'Root shown', 'Bass shown',
+    var header = ['Id', 'Part', 'Work no', 'Work', 'Bar', 'From beat', 'Until beat', 'Local key', 'Notes shown', 'Root shown', 'Bass shown',
                   'Notes', 'Root', 'Bass', 'Note'];
     var rows = sample.items.map(function (it) {
       var v = RNVReview.getKey(sheet, it.id);
-      return [it.id, it.part, it.work, pretty(it.title), it.bar, it.beat, it.localKey, it.notes, it.root, it.bass,
+      return [it.id, it.part, it.work, pretty(it.title), it.bar, it.beat, it.untilBeat == null ? 'end of bar' : it.untilBeat, it.localKey, it.notes, it.root, it.bass,
               name[v.nt] || '', name[v.rt] || '', name[v.bs] || '', v.n || ''];
     });
-    download(RNVReview.xlsx('Blind review', header, rows, [7, 10, 8, 36, 6, 6, 12, 22, 8, 8, 10, 10, 10, 40]),
+    download(RNVReview.xlsx('Blind review', header, rows, [7, 10, 8, 36, 6, 8, 10, 12, 22, 8, 8, 10, 10, 10, 40]),
       'blind_review_' + corpusId + '_' + new Date().toISOString().slice(0, 10) + '.xlsx');
   });
 
