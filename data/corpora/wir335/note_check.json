@@ -1,0 +1,294 @@
+{
+ "format": "rnv-note-check",
+ "version": 1,
+ "corpus": "wir335",
+ "generated": "2026-09-15T08:22:40",
+ "packGenerated": "2026-09-15T08:20:59",
+ "reference": "notes written in the published MusicXML only (no engine output)",
+ "scope": "bars holding one complete triad or seventh chord with an unambiguous root throughout",
+ "notes": {
+  "analysisgnnFields": "AnalysisGNN reports root and bass from separate per-note prediction heads, not from the chord its label names; its rates describe those heads.",
+  "augmentednetRoot": "AugmentedNet reports no root field; only bass and key are checked.",
+  "key": "Key is checked only for compatibility with the written key signature; a modulation counts as incompatible, so this is not a key accuracy."
+ },
+ "gradedPositionsTotal": 15603,
+ "stats": {
+  "works": 332,
+  "bars": 33303,
+  "barsSingleChord": 4442,
+  "barsSymmetricExcluded": 402,
+  "barsChordChangesWithin": 1371,
+  "barsBassMoves": 2004,
+  "barsSpellingContradicts": 112,
+  "worksExcludedByGate": 3
+ },
+ "qualities": {
+  "M": 2240,
+  "mm7": 77,
+  "Mm7": 997,
+  "m": 833,
+  "MM7": 213,
+  "hd7": 43,
+  "d": 39
+ },
+ "results": {
+  "graded": {
+   "muswm": {
+    "onsets": 1404,
+    "root": {
+     "n": 1404,
+     "agree": 1394,
+     "rate": 0.9929
+    },
+    "bass": {
+     "n": 831,
+     "agree": 829,
+     "rate": 0.9976
+    },
+    "keySignatureCompatible": {
+     "n": 1404,
+     "agree": 1213,
+     "rate": 0.864
+    }
+   },
+   "analysisgnn": {
+    "onsets": 1404,
+    "root": {
+     "n": 1381,
+     "agree": 1027,
+     "rate": 0.7437
+    },
+    "bass": {
+     "n": 802,
+     "agree": 614,
+     "rate": 0.7656
+    },
+    "keySignatureCompatible": {
+     "n": 1404,
+     "agree": 1117,
+     "rate": 0.7956
+    }
+   },
+   "augmentednet": {
+    "onsets": 1404,
+    "root": {
+     "n": 0,
+     "agree": 0,
+     "rate": null
+    },
+    "bass": {
+     "n": 831,
+     "agree": 825,
+     "rate": 0.9928
+    },
+    "keySignatureCompatible": {
+     "n": 1404,
+     "agree": 1015,
+     "rate": 0.7229
+    }
+   }
+  },
+  "all_onsets": {
+   "muswm": {
+    "onsets": 3695,
+    "root": {
+     "n": 3695,
+     "agree": 3620,
+     "rate": 0.9797
+    },
+    "bass": {
+     "n": 1983,
+     "agree": 1968,
+     "rate": 0.9924
+    },
+    "keySignatureCompatible": {
+     "n": 3695,
+     "agree": 3171,
+     "rate": 0.8582
+    }
+   },
+   "analysisgnn": {
+    "onsets": 7697,
+    "root": {
+     "n": 7600,
+     "agree": 4171,
+     "rate": 0.5488
+    },
+    "bass": {
+     "n": 3414,
+     "agree": 1970,
+     "rate": 0.577
+    },
+    "keySignatureCompatible": {
+     "n": 7697,
+     "agree": 5904,
+     "rate": 0.7671
+    }
+   },
+   "augmentednet": {
+    "onsets": 4059,
+    "root": {
+     "n": 0,
+     "agree": 0,
+     "rate": null
+    },
+    "bass": {
+     "n": 2070,
+     "agree": 2047,
+     "rate": 0.9889
+    },
+    "keySignatureCompatible": {
+     "n": 4059,
+     "agree": 2900,
+     "rate": 0.7145
+    }
+   }
+  }
+ },
+ "muswmDifferencesAtGradedPositions": [
+  {
+   "work": "035",
+   "bar": 92,
+   "beat": 1.0,
+   "barChord": "MM7",
+   "barRootPc": 3,
+   "barBassPc": null,
+   "muswmPcSet": "D - G - Bb",
+   "muswmRootPc": 7,
+   "muswmBassPc": 7,
+   "muswmLabel": "v"
+  },
+  {
+   "work": "060",
+   "bar": 28,
+   "beat": 1.0,
+   "barChord": "d",
+   "barRootPc": 7,
+   "barBassPc": null,
+   "muswmPcSet": "Db - G - Bb",
+   "muswmRootPc": 1,
+   "muswmBassPc": 10,
+   "muswmLabel": "vii°42/vi"
+  },
+  {
+   "work": "062",
+   "bar": 171,
+   "beat": 1.0,
+   "barChord": "MM7",
+   "barRootPc": 5,
+   "barBassPc": null,
+   "muswmPcSet": "C - E - A",
+   "muswmRootPc": 9,
+   "muswmBassPc": 4,
+   "muswmLabel": "iii₆₄"
+  },
+  {
+   "work": "068",
+   "bar": 51,
+   "beat": 1.0,
+   "barChord": "d",
+   "barRootPc": 4,
+   "barBassPc": null,
+   "muswmPcSet": "E - G - A#",
+   "muswmRootPc": 10,
+   "muswmBassPc": 7,
+   "muswmLabel": "vii°42/vi"
+  },
+  {
+   "work": "081",
+   "bar": 11,
+   "beat": 1.0,
+   "barChord": "Mm7",
+   "barRootPc": 2,
+   "barBassPc": 6,
+   "muswmPcSet": "C - F# - A",
+   "muswmRootPc": 6,
+   "muswmBassPc": 6,
+   "muswmLabel": "vii°"
+  },
+  {
+   "work": "082",
+   "bar": 35,
+   "beat": 1.0,
+   "barChord": "Mm7",
+   "barRootPc": 4,
+   "barBassPc": 11,
+   "muswmPcSet": "D - G# - B",
+   "muswmRootPc": 8,
+   "muswmBassPc": 11,
+   "muswmLabel": "vii°₆/ii"
+  },
+  {
+   "work": "093",
+   "bar": 138,
+   "beat": 1.0,
+   "barChord": "Mm7",
+   "barRootPc": 2,
+   "barBassPc": 2,
+   "muswmPcSet": "D - F# - A",
+   "muswmRootPc": 2,
+   "muswmBassPc": 9,
+   "muswmLabel": "V₆₄"
+  },
+  {
+   "work": "093",
+   "bar": 325,
+   "beat": 1.0,
+   "barChord": "d",
+   "barRootPc": 9,
+   "barBassPc": null,
+   "muswmPcSet": "C - D# - A",
+   "muswmRootPc": 3,
+   "muswmBassPc": 3,
+   "muswmLabel": "vii°7/vi"
+  },
+  {
+   "work": "093",
+   "bar": 337,
+   "beat": 1.0,
+   "barChord": "d",
+   "barRootPc": 9,
+   "barBassPc": null,
+   "muswmPcSet": "C - D# - A",
+   "muswmRootPc": 3,
+   "muswmBassPc": 3,
+   "muswmLabel": "vii°7/vi"
+  },
+  {
+   "work": "093",
+   "bar": 341,
+   "beat": 1.0,
+   "barChord": "d",
+   "barRootPc": 9,
+   "barBassPc": null,
+   "muswmPcSet": "C - D# - A",
+   "muswmRootPc": 3,
+   "muswmBassPc": 9,
+   "muswmLabel": "vii°43/vi"
+  },
+  {
+   "work": "093",
+   "bar": 386,
+   "beat": 1.0,
+   "barChord": "Mm7",
+   "barRootPc": 7,
+   "barBassPc": 7,
+   "muswmPcSet": "D - G - B",
+   "muswmRootPc": 7,
+   "muswmBassPc": 2,
+   "muswmLabel": "I₆₄"
+  },
+  {
+   "work": "218",
+   "bar": 26,
+   "beat": 1.0,
+   "barChord": "Mm7",
+   "barRootPc": 2,
+   "barBassPc": null,
+   "muswmPcSet": "C - Gb - A",
+   "muswmRootPc": 6,
+   "muswmBassPc": 9,
+   "muswmLabel": "vii°₆/V"
+  }
+ ]
+}

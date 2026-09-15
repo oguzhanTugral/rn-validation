@@ -78,8 +78,8 @@
               engines that segment at different rates</td></tr>
       </tbody>
     </table>
-    <p style="margin:12px 0 0">In When-in-Rome 335, <b>37.5% of all labelled cells are held</b>
-    (105,584 of 281,690). A choice with that much influence on the result is fixed rather than left to a
+    <p style="margin:12px 0 0">In When-in-Rome 335, <b>37.8% of all labelled cells are held</b>
+    (105,278 of 278,392). A choice with that much influence on the result is fixed rather than left to a
     setting.</p>
   </div>
 
@@ -104,9 +104,9 @@
     return them. The builder restricts repositioning to musWM by name, and a before-and-after comparison
     confirmed that the rows of the other two engines pass through byte-identical.</p>
     <p class="dim" style="margin:8px 0 0;font-size:13px">Should two
-    musWM labels land on the same position, the build keeps the later one and records a warning; in
-    When-in-Rome 335 this occurred in <b>18 works</b>.</p>
-    <p style="margin:12px 0 0">In When-in-Rome 335, <b>13,325 of 47,996 musWM onsets (27.8%) were
+    musWM labels would land on the same position, the second move is not made and that label keeps its own
+    beat, so no label is lost.</p>
+    <p style="margin:12px 0 0">In When-in-Rome 335, <b>12,174 of 44,850 musWM onsets (27.1%) were
     repositioned.</b></p>
     <h4 style="margin:16px 0 8px;font-size:13.5px">What the choice of alignment changes</h4>
     <p style="margin:0">Repositioning can only move a musWM label away from one position and onto another.
@@ -199,7 +199,7 @@
             a label; a blank repeat cell is not a separate claim.</td></tr>
     </table>
     <p class="dim" style="margin:12px 0 0;font-size:13px">In When-in-Rome 335 nearly every repeat is a carried
-    cell rather than a genuine re-assertion: of 106,368 repeated cells, 105,584 are carried, and only
+    cell rather than a genuine re-assertion: of 106,074 repeated cells, 105,278 are carried, and only
     <b>784</b> are an engine emitting the same label again at the next onset (760 AnalysisGNN, 24
     AugmentedNet). On the onset basis, hiding repeats therefore changes what is read, not what is counted.</p>
   </div>
@@ -226,8 +226,8 @@
   </div>
 
   <div class="panel">
-    <h3>Grading and accuracy</h3>
-    <div class="prelim"><b>Preliminary results.</b> These are first results. After detailed validation, the final accuracy figures may change by up to <b>&plusmn;5 percentage points</b> for AnalysisGNN and AugmentedNet and by about <b>&plusmn;1 point</b> for musWM. The margin combines a 95% interval from resampling whole works (about &plusmn;3 points for the two learned engines, &plusmn;0.15 for musWM) with the shift already observed when a single normalisation rule changed (4&ndash;5 points). It applies under the present criterion; expert annotation may move all three engines further.</div>
+    <h3>Grading</h3>
+    <div class="prelim"><b>Preliminary results.</b> Every figure on this site is recomputed from the corpus pack at each build. On 15 September 2026 the pack was rebuilt after an alignment fault was found and corrected, and the textbook criterion was audited against the book &mdash; see <a href="method.html#corrections">Corrections</a>. The textbook grades measure tolerant agreement with a label derived from musWM&rsquo;s own reading of the chord; they are not an accuracy against an independent reference.</div>
     <p style="margin:0">All grades on this site are derived from the textbook and locked. At every row where
     <b>all three engines emit a label at the same onset</b>, the reference is the Roman numeral that Kostka,
     Payne &amp; Alm&eacute;n, <i>Tonal Harmony</i>, 8th edition, assign given <b>musWM&rsquo;s local key, mode and chord
@@ -246,7 +246,10 @@
     <a href="different.html">Disagreements</a>, and none can be changed by hand. Where the textbook accepts two
     spellings of one chord &mdash; a suspension figure over the same degree (pp. 201&ndash;202), or V/III
     &equiv; VII in minor (p. 257) &mdash; both count as equal for all three engines.</p>
-    <p style="margin:8px 0 0">An engine&rsquo;s accuracy is <b>correct &divide; graded</b>, reported over all
+    <p style="margin:8px 0 0"><b>Tolerances.</b> A triad and a seventh chord on the same root and bass count as the
+    same label (V = V7, V6 = V65, V64 = V43, vii&deg; = vii&deg;7 = vii&oslash;7); a different bass is still a
+    difference. The grades are therefore tolerant agreement with the textbook label, not exact label identity.</p>
+    <p style="margin:8px 0 0">An engine&rsquo;s score is <b>correct &divide; graded</b>, reported over all
     compared rows and separately for Alignment and Disagreements. <a href="scoring.html">Ratings</a> lists every
     reason a row was not compared, with counts, together with the number of labels each engine emitted, so
     the share of the corpus behind each figure is always in view.</p>
@@ -260,11 +263,67 @@
     wrote the same label and therefore share a score by definition.</p>
   </div>
 
+  <div class="panel" id="placement">
+    <h3>Placement on the written bar</h3>
+    <p style="margin:0 0 10px">AnalysisGNN and AugmentedNet read the MusicXML and report written bar numbers. musWM
+    reads MIDI, and until 15 September 2026 that MIDI was MuseScore&rsquo;s export of the score, which plays repeats
+    and numbers bars on its own timeline. musWM&rsquo;s bar numbers therefore did not always name the written bar: in
+    some works every label sat one bar or four bars off, repeated sections were analysed twice, and one export
+    stopped before the end of the score.</p>
+    <p style="margin:0 0 10px">musWM&rsquo;s input is now rendered from the MusicXML <b>in written bar order</b>, one
+    MIDI bar per written bar with the bar&rsquo;s real length (pickups and irregular bars included). Each musWM row is
+    placed by its own time position: tick &rarr; written bar &rarr; written bar number and beat. The label itself is
+    not touched. All three engines now share one timeline, and every work uses the direct bar map.</p>
+    <p style="margin:0 0 10px"><b>Alignment check.</b> The build then tests, for every work and engine, whether the
+    notes an engine reports at an onset exist in the written bar the row is shown on: the bass for all three engines,
+    and musWM&rsquo;s analysed pitch classes as well. It does not ask whether a chord is right, so it favours no
+    engine. A work fails when musWM&rsquo;s or AugmentedNet&rsquo;s bass is found in the bar less than
+    90.0% of the time; AnalysisGNN is reported but does not decide, because its bass is a separate
+    per-note prediction rather than the bass of the chord it labels.</p>
+    <table>
+      <thead><tr><th></th><th>Before (14 Sept)</th><th>After (15 Sept)</th></tr></thead>
+      <tbody>
+        <tr><td>musWM bass found in its bar</td><td class="num">90.8%</td><td class="num"><b>99.8%</b></td></tr>
+        <tr><td>musWM pitch classes within its bar</td><td class="num">81.0%</td><td class="num"><b>99.3%</b></td></tr>
+        <tr><td>AugmentedNet bass found in its bar</td><td class="num">99.3%</td><td class="num">99.3%</td></tr>
+        <tr><td>Works failing the check</td><td class="num">67 of 335</td><td class="num"><b>3 of 335</b></td></tr>
+        <tr><td>Works on an approximate or repeat-expanded bar map</td><td class="num">64</td><td class="num"><b>0</b></td></tr>
+      </tbody>
+    </table>
+    <p class="dim" style="margin:10px 0 0;font-size:13px">The 3 remaining works (126, 162, 179) show scattered
+    misses rather than a constant offset and are listed for review by eye; they are left out of the independent note
+    check. Where a musWM label would be moved onto a position another musWM label already holds, the move is not
+    made and the label stays on its own beat, so no label is lost; no collision
+    warning remains.</p>
+  </div>
+  <div class="panel" id="notecheck">
+    <h3>Independent note check</h3>
+    <p style="margin:0 0 10px">The textbook grades take musWM&rsquo;s key, root, bass and notes as given, so they
+    cannot show whether those choices are right. This check builds its reference <b>only from the notes written in
+    the score</b> &mdash; no engine output, no chord code &mdash; and applies it to every engine that reports the
+    field.</p>
+    <ul style="margin:0 0 10px;padding-left:20px">
+      <li>A bar is used only when all its notes (every part, concert pitch, grace notes ignored) form exactly one
+        complete triad or seventh chord; augmented triads and diminished sevenths are left out because their root
+        cannot be read from the notes.</li>
+      <li>The written spelling must stack in thirds from that root, so E&ndash;G&ndash;A&#9839; is not read as E
+        diminished.</li>
+      <li>Every beat must contain the root, and no beat may hold a complete triad on another root, so a bar that
+        moves C&ndash;E&ndash;A &rarr; F&ndash;A&ndash;C is not taken as one F major seventh.</li>
+      <li>The bass is the lowest sounding note, tested only where it stays the same through the bar.</li>
+      <li>Key cannot be read from one chord; it is tested only for compatibility with the written key signature,
+        which counts every modulation as incompatible and is therefore not a key accuracy.</li>
+    </ul>
+    <p class="dim" style="margin:0;font-size:13px">The check covers the unambiguous case only. It does not grade
+    Roman numerals, it does not reach passages with chord changes, suspensions or passing tones, and its result
+    cannot be generalised to the whole corpus. Results are on the <a href="index.html#notecheck">Summary</a>.</p>
+  </div>
+
   <div class="panel">
     <h3>Bar-number mapping</h3>
-    <p style="margin:0 0 10px">The bar number an engine reports is not always the written bar number: in some
-    works musWM follows the repeat-expanded order of performance, while AnalysisGNN and AugmentedNet remain on
-    the written bars. Each work is assigned one of three mappings.</p>
+    <p style="margin:0 0 10px">Since 15 September 2026 all three engines report written bars and every work uses <code>direct</code>. The
+    other two mappings are kept for corpora built before that date, where musWM could follow the repeat-expanded
+    order of performance.</p>
     <table>
       <thead><tr><th>Mapping</th><th>Condition</th><th>Transform</th></tr></thead>
       <tbody>
@@ -283,13 +342,46 @@
     confirm the bar by eye.</p>
   </div>
 
+  <div class="panel" id="corrections">
+    <h3>Corrections</h3>
+    <p style="margin:0 0 6px"><b>15 September 2026.</b></p>
+    <ul style="margin:0;padding-left:20px">
+      <li><b>Alignment fault corrected.</b> musWM labels had been placed on MIDI bar numbers rather than written bars
+        (see <a href="#placement">Placement on the written bar</a>). The whole corpus was rebuilt with the current
+        engine. Every figure on the site changed; the three-engine agreement rose from 20.2% to 22.5%
+        over 16,091 comparable rows.</li>
+      <li><b>Textbook criterion audited.</b> The coded rule set now reproduces all 56 labelled chords of the
+        book&rsquo;s reference examples (Examples 16-3, 16-4, 17-1, 17-2 and the tables on p. 65); the first version
+        reproduced 50. V7/VI in minor is now derived as the book writes it; the secondary functions of VII in minor
+        and the melodic-minor chords with the same notes are accepted in both spellings for every engine; positions
+        whose notes form an augmented sixth chord are left out for every engine, because the notes alone cannot
+        separate it from V7/&#9837;II. Known limits that need context (Picardy third, common-tone diminished seventh,
+        which note of a chord is a nonchord tone) are stated rather than hidden.</li>
+      <li><b>Two engine rules corrected after the audit</b> (user approval). In minor, a major-minor seventh chord on
+        III is now written V7/VI rather than III7 (Example 16-4, p. 257; 97 events). A leading-tone chord (vii&deg;,
+        vii&deg;7, vii&oslash;7, secondary ones included) is no longer read where the root of the V7 that contains it
+        sounds in musWM&rsquo;s window and had been set aside as a nonchord tone; the chord is then written as that V7
+        (187 cells). Theory conformance moved from 96.1% to 96.8%.</li>
+      <li><b>Grading: leading-tone references checked against the score.</b> Where the textbook reference is a
+        leading-tone chord but the root of the V7 containing it sounds in the written score at that onset, the
+        reference would rest on musWM&rsquo;s window leaving that note out; such positions (27) are not graded,
+        for any engine.</li>
+      <li><b>Margin statement withdrawn.</b> The earlier &ldquo;&plusmn;5 / &plusmn;1 point&rdquo; margin mixed a
+        resampling interval with a rule-change shift and is no longer given.</li>
+      <li><b>Independent note check added</b> (<a href="#notecheck">above</a>).</li>
+    </ul>
+  </div>
+
   <div class="panel">
     <h3>What these figures do not establish</h3>
     <ul style="margin:0;padding-left:20px" class="dim">
       <li>They do not show that any engine is correct in an absolute sense. Agreement among three engines may
         reflect a shared convention as readily as a shared mistake.</li>
       <li>The textbook grade tests naming, not hearing. The key and notes are musWM&rsquo;s, so the grade asks
-        whether a chord, as musWM read it, is named as the textbook would name it.</li>
+        whether a chord, as musWM read it, is named as the textbook would name it. It is not an accuracy, and the
+        three engines&rsquo; grades are not a ranking.</li>
+      <li>The independent note check covers only bars holding one unambiguous chord; it says nothing about
+        passages where the harmony changes inside the bar.</li>
       <li>An agreement rate depends on its denominator. The Summary reports agreement over comparable rows;
         a rate over all rows would be a different number and cannot stand in for it.</li>
       <li>A coverage gap is not a disagreement, and the two are never pooled.</li>

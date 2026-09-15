@@ -1,0 +1,6800 @@
+{
+ "corpus": "wir335",
+ "minBassFit": 0.9,
+ "works": 335,
+ "failing": 3,
+ "totals": {
+  "muswm": {
+   "bassFit": 0.9978,
+   "bassRows": 44593,
+   "pcsetFit": 0.9933
+  },
+  "analysisgnn": {
+   "bassFit": 0.8575,
+   "bassRows": 94328,
+   "pcsetFit": null
+  },
+  "augmentednet": {
+   "bassFit": 0.993,
+   "bassRows": 55376,
+   "pcsetFit": null
+  }
+ },
+ "rule": "bass pitch class of every emitted row must be a note of the written bar it is placed on; gate on musWM and AugmentedNet (AnalysisGNN reported only)",
+ "failingWorks": [
+  {
+   "no": "126",
+   "title": "Beethoven Ludwig van n13op130 02",
+   "muswm": {
+    "bassFit": 0.9692,
+    "bassRows": 130,
+    "pcsetFit": 0.9462
+   },
+   "analysisgnn": {
+    "bassFit": 0.6074,
+    "bassRows": 242,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.8462,
+    "bassRows": 117,
+    "pcsetFit": null
+   },
+   "fails": [
+    "augmentednet"
+   ]
+  },
+  {
+   "no": "162",
+   "title": "Mozart Wolfgang Amadeus K311 3",
+   "muswm": {
+    "bassFit": 0.8744,
+    "bassRows": 207,
+    "pcsetFit": 0.6184
+   },
+   "analysisgnn": {
+    "bassFit": 0.6355,
+    "bassRows": 417,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9687,
+    "bassRows": 351,
+    "pcsetFit": null
+   },
+   "fails": [
+    "muswm"
+   ]
+  },
+  {
+   "no": "179",
+   "title": "Brahms",
+   "muswm": {
+    "bassFit": 0.75,
+    "bassRows": 28,
+    "pcsetFit": 0.5
+   },
+   "analysisgnn": {
+    "bassFit": 0.9456,
+    "bassRows": 147,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9926,
+    "bassRows": 136,
+    "pcsetFit": null
+   },
+   "fails": [
+    "muswm"
+   ]
+  }
+ ],
+ "works_detail": [
+  {
+   "no": "001",
+   "title": "J S Bach Prelude No 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 43,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9841,
+    "bassRows": 126,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 33,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "002",
+   "title": "Fr d ric Chopin tude Op 10 No 1 in C major",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 84,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 241,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 83,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "003",
+   "title": "Brahms",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 21,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9077,
+    "bassRows": 130,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9915,
+    "bassRows": 118,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "004",
+   "title": "Franz Schubert Schwanengesang D 957 12 Am Meer",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 59,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.6264,
+    "bassRows": 91,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 79,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "005",
+   "title": "Robert Schumann Dichterliebe Op 48 7 Ich grolle nicht",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 66,
+    "pcsetFit": 0.9545
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 116,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 66,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "006",
+   "title": "Mozart Wolfgang Amadeus K279 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 195,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 448,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9953,
+    "bassRows": 215,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "007",
+   "title": "Mozart Wolfgang Amadeus K279 3",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 75,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8971,
+    "bassRows": 515,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9965,
+    "bassRows": 282,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "008",
+   "title": "Mozart Wolfgang Amadeus K283 2",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 95,
+    "pcsetFit": 0.9789
+   },
+   "analysisgnn": {
+    "bassFit": 0.9887,
+    "bassRows": 266,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 127,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "009",
+   "title": "Mozart Wolfgang Amadeus K309 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 225,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 505,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 246,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "010",
+   "title": "Mozart Wolfgang Amadeus K309 3",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 321,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9128,
+    "bassRows": 814,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9973,
+    "bassRows": 364,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "011",
+   "title": "Mozart Wolfgang Amadeus K330 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 196,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9937,
+    "bassRows": 475,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9878,
+    "bassRows": 245,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "012",
+   "title": "Mozart Wolfgang Amadeus K330 3",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 235,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9979,
+    "bassRows": 482,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9931,
+    "bassRows": 289,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "013",
+   "title": "Mozart Wolfgang Amadeus K545 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 118,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9967,
+    "bassRows": 299,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9906,
+    "bassRows": 106,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "014",
+   "title": "Mozart Wolfgang Amadeus K545 3",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 115,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8696,
+    "bassRows": 230,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 133,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "015",
+   "title": "Beethoven Ludwig van n02op18 2 02",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 42,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9018,
+    "bassRows": 285,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9943,
+    "bassRows": 176,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "016",
+   "title": "Beethoven Ludwig van n04op18 4 02",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 318,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5229,
+    "bassRows": 306,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9858,
+    "bassRows": 281,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "017",
+   "title": "Beethoven Ludwig van n08op59 2 04",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 497,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5615,
+    "bassRows": 894,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9943,
+    "bassRows": 525,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "018",
+   "title": "Beethoven Ludwig van n09op59 3 01",
+   "muswm": {
+    "bassFit": 0.9862,
+    "bassRows": 434,
+    "pcsetFit": 0.97
+   },
+   "analysisgnn": {
+    "bassFit": 0.9871,
+    "bassRows": 854,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9935,
+    "bassRows": 465,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "019",
+   "title": "Beethoven Ludwig van n09op59 3 03",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 177,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9967,
+    "bassRows": 299,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 163,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "020",
+   "title": "Beethoven Ludwig van n09op59 3 04",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 534,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.4833,
+    "bassRows": 1109,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9021,
+    "bassRows": 419,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "021",
+   "title": "Beethoven Ludwig van n15op132 03",
+   "muswm": {
+    "bassFit": 0.9755,
+    "bassRows": 327,
+    "pcsetFit": 0.9235
+   },
+   "analysisgnn": {
+    "bassFit": 0.7031,
+    "bassRows": 687,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9976,
+    "bassRows": 421,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "022",
+   "title": "J S Bach Prelude No 20",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 48,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5455,
+    "bassRows": 88,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 52,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "023",
+   "title": "M lanie Bonis 1858 1937 Allons prier",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 129,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 182,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 123,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "024",
+   "title": "Samuel Coleridge Taylor 6 Sorrow Songs Op 57 No 4 She sat and sa",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 90,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.597,
+    "bassRows": 67,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 67,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "025",
+   "title": "Fanny Mendelssohn Hensel 3 Lieder No 3 Die Nonne",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 38,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7105,
+    "bassRows": 38,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 30,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "026",
+   "title": "Fanny Mendelssohn Hensel 6 Lieder Op 1 No 3 Warum sind denn die",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 66,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.6143,
+    "bassRows": 140,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 74,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "027",
+   "title": "Louise Reichardt Zw lf Ges nge No 7 Die Wiese",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 19,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.65,
+    "bassRows": 20,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 25,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "028",
+   "title": "Franz Schubert Winterreise D 911 2 Die Wetterfahne",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 53,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.6835,
+    "bassRows": 79,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9571,
+    "bassRows": 70,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "029",
+   "title": "Franz Schubert Winterreise D 911 24 Der Leiermann",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 63,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 114,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 63,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "030",
+   "title": "Clara Schumann 6 Lieder Op 23 No 4 Auf einem gr nen H gel",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 50,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8416,
+    "bassRows": 101,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 75,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "031",
+   "title": "Robert Schumann Dichterliebe Op 48 No 8 Und w ssten s die Blumen",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 48,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9111,
+    "bassRows": 180,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 98,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "032",
+   "title": "Hugo Wolf Eichendorff Lieder 13 Der Scholar",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 134,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 251,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 127,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "033",
+   "title": "Mozart Wolfgang Amadeus K310 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 264,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 633,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 253,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "034",
+   "title": "Mozart Wolfgang Amadeus K310 3",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 315,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9839,
+    "bassRows": 623,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9975,
+    "bassRows": 399,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "035",
+   "title": "Beethoven Ludwig van n09op59 3 02",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 378,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5776,
+    "bassRows": 348,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9938,
+    "bassRows": 320,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "036",
+   "title": "Beethoven Ludwig van n15op132 01",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 536,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7919,
+    "bassRows": 1057,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9983,
+    "bassRows": 580,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "037",
+   "title": "Beethoven Ludwig van Quartet Op 132 Movement 5",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 645,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.992,
+    "bassRows": 1246,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9985,
+    "bassRows": 682,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "038",
+   "title": "J S Bach Prelude No 11",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 50,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8061,
+    "bassRows": 98,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 69,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "039",
+   "title": "Josephine Lang 3 Lieder Op 8 No 1 Schmetterling",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 101,
+    "pcsetFit": 0.9901
+   },
+   "analysisgnn": {
+    "bassFit": 0.9842,
+    "bassRows": 190,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 88,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "040",
+   "title": "Louise Reichardt 12 Deutsche und Itali nische Romantische Ges ng",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 12,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7333,
+    "bassRows": 30,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9615,
+    "bassRows": 26,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "041",
+   "title": "Louise Reichardt Zw lf Ges nge Op 3 No 4 Wachtelwacht",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 33,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7027,
+    "bassRows": 37,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 32,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "042",
+   "title": "Louise Reichardt Zw lf Ges nge No 7 Volkslied",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 10,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7143,
+    "bassRows": 7,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 11,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "043",
+   "title": "Louise Reichardt Zw lf Ges nge No 8 Ein recht Gem th",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 14,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8065,
+    "bassRows": 31,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 13,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "044",
+   "title": "Franz Schubert Schwanengesang D 957 No 2 Kriegers Ahnung",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 184,
+    "pcsetFit": 0.9891
+   },
+   "analysisgnn": {
+    "bassFit": 0.7934,
+    "bassRows": 305,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 169,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "045",
+   "title": "Franz Schubert Winterreise D 911 21 Das Wirtshaus",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 85,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 142,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 101,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "046",
+   "title": "Pauline Viardot 6 M lodies VWV 1133 1137 1176 No 4 S r nade Rosi",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 143,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 241,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 163,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "047",
+   "title": "Mozart Wolfgang Amadeus K279 2",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 49,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9402,
+    "bassRows": 234,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 141,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "048",
+   "title": "Mozart Wolfgang Amadeus K280 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 206,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9599,
+    "bassRows": 449,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9953,
+    "bassRows": 213,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "049",
+   "title": "Mozart Wolfgang Amadeus K280 3",
+   "muswm": {
+    "bassFit": 0.9836,
+    "bassRows": 61,
+    "pcsetFit": 0.9836
+   },
+   "analysisgnn": {
+    "bassFit": 0.5208,
+    "bassRows": 240,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9731,
+    "bassRows": 186,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "050",
+   "title": "Mozart Wolfgang Amadeus K309 2",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 144,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9943,
+    "bassRows": 351,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 208,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "051",
+   "title": "Mozart Wolfgang Amadeus K310 2",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 49,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9199,
+    "bassRows": 437,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 207,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "052",
+   "title": "Mozart Wolfgang Amadeus K330 2",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 17,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8655,
+    "bassRows": 238,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9934,
+    "bassRows": 152,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "053",
+   "title": "Mozart Wolfgang Amadeus K332 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 257,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9904,
+    "bassRows": 520,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9968,
+    "bassRows": 311,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "054",
+   "title": "Mozart Wolfgang Amadeus K332 3",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 258,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.6189,
+    "bassRows": 475,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9977,
+    "bassRows": 433,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "055",
+   "title": "Mozart Wolfgang Amadeus K533 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 134,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.6898,
+    "bassRows": 835,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9978,
+    "bassRows": 455,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "056",
+   "title": "Mozart Wolfgang Amadeus K533 3",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 285,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7414,
+    "bassRows": 584,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 359,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "057",
+   "title": "Beethoven Ludwig van n01op18 1 01",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 398,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9572,
+    "bassRows": 795,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9925,
+    "bassRows": 402,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "058",
+   "title": "Beethoven Ludwig van n01op18 1 03",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 45,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9844,
+    "bassRows": 64,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 53,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "059",
+   "title": "Beethoven Ludwig van n01op18 1 04",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 512,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.991,
+    "bassRows": 1114,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9946,
+    "bassRows": 557,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "060",
+   "title": "Beethoven Ludwig van n07op59 1 01",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 587,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9883,
+    "bassRows": 1193,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9964,
+    "bassRows": 549,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "061",
+   "title": "Beethoven Ludwig van n07op59 1 04",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 441,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9811,
+    "bassRows": 1007,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9966,
+    "bassRows": 583,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "062",
+   "title": "Beethoven Ludwig van n16op135 01",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 263,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9808,
+    "bassRows": 624,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9919,
+    "bassRows": 370,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "063",
+   "title": "Beethoven Ludwig van n16op135 02",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 282,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9323,
+    "bassRows": 620,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9946,
+    "bassRows": 373,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "064",
+   "title": "Beethoven Ludwig van n16op135 04",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 402,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.6296,
+    "bassRows": 710,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9939,
+    "bassRows": 492,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "065",
+   "title": "J S Bach Prelude No 6",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 76,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 252,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 105,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "066",
+   "title": "Harry Thacker Burleigh 5 Songs of Laurence Hope No 5 Till I Wake",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 128,
+    "pcsetFit": 0.9922
+   },
+   "analysisgnn": {
+    "bassFit": 0.9913,
+    "bassRows": 229,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 110,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "067",
+   "title": "Fanny Mendelssohn Hensel 3 Lieder No 2 Verlust",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 109,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 147,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 116,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "068",
+   "title": "Franz Schubert Schwanengesang No 4 St ndchen",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 67,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 129,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 54,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "069",
+   "title": "Franz Schubert Winterreise D 911 1 Gute Nacht",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 148,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 244,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 173,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "070",
+   "title": "Robert Schumann Dichterliebe Op 48 9 Das ist ein Fl ten und Geig",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 112,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7484,
+    "bassRows": 159,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 98,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "071",
+   "title": "Hugo Wolf Eichendorff Lieder 15 Unfall",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 64,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.56,
+    "bassRows": 75,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 66,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "072",
+   "title": "Beethoven Ludwig van n01op18 1 02",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 264,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.6566,
+    "bassRows": 297,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9919,
+    "bassRows": 247,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "073",
+   "title": "J S Bach Partita No 2 BWV1004 No 5 Chaconne",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 415,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7615,
+    "bassRows": 1472,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9949,
+    "bassRows": 395,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "074",
+   "title": "J S Bach Prelude No 15",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 42,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 168,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 72,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "075",
+   "title": "Samuel Coleridge Taylor 6 Sorrow Songs Op 57 No 2 When I am dead",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 112,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 151,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.991,
+    "bassRows": 111,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "076",
+   "title": "Fanny Mendelssohn Hensel 6 Lieder Op 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 75,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 137,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 76,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "077",
+   "title": "Maria Theresia von Paradis 12 Lieder 1786 alternative title Zw l",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 26,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8333,
+    "bassRows": 30,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 26,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "078",
+   "title": "Louise Reichardt Zw lf Ges nge Op 3 No 1 Fr hlingsblumen",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 21,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8333,
+    "bassRows": 18,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 23,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "079",
+   "title": "Louise Reichardt Zw lf Ges nge Op 3 No 2 Der traurige Wanderer",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 27,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8947,
+    "bassRows": 57,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 30,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "080",
+   "title": "Louise Reichardt Zw lf Ges nge No 5 Betteley der V gel",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 16,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 21,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 19,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "081",
+   "title": "Louise Reichardt Zw lf Ges nge No 10 Die Veilchen",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 35,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 50,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 32,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "082",
+   "title": "Franz Schubert Die sch ne M llerin No 2 Wohin",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 96,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9856,
+    "bassRows": 208,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 83,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "083",
+   "title": "Franz Schubert Schwanengesang D 957 No 1 Liebesbotschaft",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 110,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9831,
+    "bassRows": 296,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 150,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "084",
+   "title": "Franz Schubert Schwanengesang No 14 Die Taubenpost",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 135,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5768,
+    "bassRows": 241,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 144,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "085",
+   "title": "Franz Schubert Winterreise D 911 8 R ckblick",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 103,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9761,
+    "bassRows": 377,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 183,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "086",
+   "title": "Robert Schumann Dichterliebe Op 48 No 4 Wenn ich in deine Augen",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 32,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 61,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 45,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "087",
+   "title": "Mozart Wolfgang Amadeus K283 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 94,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8938,
+    "bassRows": 480,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 249,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "088",
+   "title": "Mozart Wolfgang Amadeus K283 3",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 256,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.4879,
+    "bassRows": 330,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9781,
+    "bassRows": 319,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "089",
+   "title": "Mozart Wolfgang Amadeus K311 2",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 150,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 282,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 212,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "090",
+   "title": "Mozart Wolfgang Amadeus K545 2",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 136,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 326,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 139,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "091",
+   "title": "Beethoven Ludwig van n02op18 2 01",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 327,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9973,
+    "bassRows": 744,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9978,
+    "bassRows": 463,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "092",
+   "title": "Beethoven Ludwig van n02op18 2 03",
+   "muswm": {
+    "bassFit": null,
+    "bassRows": 0,
+    "pcsetFit": null
+   },
+   "analysisgnn": {
+    "bassFit": 0.0,
+    "bassRows": 1,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.0,
+    "bassRows": 1,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "093",
+   "title": "Beethoven Ludwig van n02op18 2 04",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 464,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9693,
+    "bassRows": 848,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9913,
+    "bassRows": 461,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "094",
+   "title": "Beethoven Ludwig van n13op130 04",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 228,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.622,
+    "bassRows": 209,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 174,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "095",
+   "title": "J S Bach Prelude No 10",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 88,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 270,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 76,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "096",
+   "title": "Samuel Coleridge Taylor 6 Sorrow Songs Op 57 No 1 Oh what comes",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 59,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8841,
+    "bassRows": 69,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 83,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "097",
+   "title": "Franz Schubert Schwanengesang D 957 5 Aufenthalt",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 147,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9928,
+    "bassRows": 279,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 142,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "098",
+   "title": "Robert Schumann Dichterliebe Op 48 6 Im Rhein im heiligen Strome",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 73,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7302,
+    "bassRows": 126,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 104,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "099",
+   "title": "Hugo Wolf Eichendorff Lieder No 20 Waldm dchen",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 249,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5714,
+    "bassRows": 245,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9952,
+    "bassRows": 210,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "100",
+   "title": "Beethoven Ludwig van n08op59 2 01",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 427,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5757,
+    "bassRows": 535,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9904,
+    "bassRows": 418,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "101",
+   "title": "Bach Crucifixus from the B Minor mass BWV232",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 116,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5549,
+    "bassRows": 164,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 131,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "102",
+   "title": "J S Bach Prelude No 21",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 49,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 175,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 64,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "103",
+   "title": "Brahms",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 42,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8879,
+    "bassRows": 107,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 99,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "104",
+   "title": "Louise Reichardt Zw lf Ges nge No 5 F r die Laute componirt",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 8,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.75,
+    "bassRows": 8,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 10,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "105",
+   "title": "Franz Schubert Die sch ne M llerin D 795 No 1 Das Wandern",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 29,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 49,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 34,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "106",
+   "title": "Franz Schubert Die sch ne M llerin D 795 12 Pause",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 122,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 175,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 97,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "107",
+   "title": "work 128",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 40,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 96,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 37,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "108",
+   "title": "Franz Schubert Schwanengesang No 3 Fr hlingssehnsucht",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 138,
+    "pcsetFit": 0.9928
+   },
+   "analysisgnn": {
+    "bassFit": 0.991,
+    "bassRows": 223,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 149,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "109",
+   "title": "Robert Schumann Dichterliebe Op 48 No 12 Am leuchtenden Sommermo",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 49,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.6265,
+    "bassRows": 83,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 52,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "110",
+   "title": "Robert Schumann Frauenliebe und Leben Op 42 1 Seit ich ihn geseh",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 83,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 116,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 102,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "111",
+   "title": "Maude Val rie White 3 Little Songs No 1 When the Swallows Homewa",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 78,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9062,
+    "bassRows": 64,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 114,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "112",
+   "title": "Mozart Wolfgang Amadeus K281 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 149,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.99,
+    "bassRows": 402,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9946,
+    "bassRows": 184,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "113",
+   "title": "Mozart Wolfgang Amadeus K281 3",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 222,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.6344,
+    "bassRows": 547,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.988,
+    "bassRows": 333,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "114",
+   "title": "Mozart Wolfgang Amadeus K282 2",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 9,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8051,
+    "bassRows": 195,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 113,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "115",
+   "title": "Mozart Wolfgang Amadeus K332 2",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 93,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 253,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 125,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "116",
+   "title": "Mozart Wolfgang Amadeus K333 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 114,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.823,
+    "bassRows": 819,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 370,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "117",
+   "title": "Mozart Wolfgang Amadeus K333 3",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 319,
+    "pcsetFit": 0.9937
+   },
+   "analysisgnn": {
+    "bassFit": 0.6578,
+    "bassRows": 716,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 419,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "118",
+   "title": "Mozart Wolfgang Amadeus K533 2",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 197,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9906,
+    "bassRows": 427,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 215,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "119",
+   "title": "Mozart Wolfgang Amadeus K570 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 214,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9733,
+    "bassRows": 524,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9776,
+    "bassRows": 268,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "120",
+   "title": "Mozart Wolfgang Amadeus K570 3",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 85,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9546,
+    "bassRows": 463,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 226,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "121",
+   "title": "Beethoven Ludwig van n03op18 3 02",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 219,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9879,
+    "bassRows": 578,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9942,
+    "bassRows": 347,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "122",
+   "title": "Beethoven Ludwig van n06op18 6 01",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 299,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5244,
+    "bassRows": 614,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9947,
+    "bassRows": 380,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "123",
+   "title": "Beethoven Ludwig van n06op18 6 03",
+   "muswm": {
+    "bassFit": 0.9286,
+    "bassRows": 14,
+    "pcsetFit": 0.9286
+   },
+   "analysisgnn": {
+    "bassFit": 0.8498,
+    "bassRows": 233,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9854,
+    "bassRows": 137,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "124",
+   "title": "Beethoven Ludwig van n06op18 6 04",
+   "muswm": {
+    "bassFit": 0.9621,
+    "bassRows": 290,
+    "pcsetFit": 0.9
+   },
+   "analysisgnn": {
+    "bassFit": 0.6195,
+    "bassRows": 205,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9957,
+    "bassRows": 233,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "125",
+   "title": "Beethoven Ludwig van n07op59 1 02",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 568,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.4221,
+    "bassRows": 616,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9786,
+    "bassRows": 513,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "126",
+   "title": "Beethoven Ludwig van n13op130 02",
+   "muswm": {
+    "bassFit": 0.9692,
+    "bassRows": 130,
+    "pcsetFit": 0.9462
+   },
+   "analysisgnn": {
+    "bassFit": 0.6074,
+    "bassRows": 242,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.8462,
+    "bassRows": 117,
+    "pcsetFit": null
+   },
+   "fails": [
+    "augmentednet"
+   ]
+  },
+  {
+   "no": "127",
+   "title": "Beethoven Ludwig van n13op130 06",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 603,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9812,
+    "bassRows": 1333,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9649,
+    "bassRows": 655,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "128",
+   "title": "J S Bach Prelude No 16",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 53,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 190,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 108,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "129",
+   "title": "Brahms",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 19,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9762,
+    "bassRows": 42,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 30,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "130",
+   "title": "C cile Chaminade Sur la plage",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 63,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 89,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 63,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "131",
+   "title": "Samuel Coleridge Taylor 6 Sorrow Songs Op 57 No 6 Too late for l",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 185,
+    "pcsetFit": 0.9892
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 326,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 185,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "132",
+   "title": "Fanny Mendelssohn Hensel 5 Lieder Op 10 No 4 Im Herbste",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 90,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 169,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 84,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "133",
+   "title": "Fanny Mendelssohn Hensel 6 Lieder Op 1 No 1 Schwanenlied",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 96,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7634,
+    "bassRows": 131,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 92,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "134",
+   "title": "Fanny Mendelssohn Hensel 6 Lieder Op 9 No 2 Ferne",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 25,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 50,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 23,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "135",
+   "title": "Johanna Kinkel 1846 edition originally published under the name",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 44,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9247,
+    "bassRows": 93,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 42,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "136",
+   "title": "Gustav Mahler Kindertotenlieder No 2 Nun seh ich wohl warum so d",
+   "muswm": {
+    "bassFit": 0.992,
+    "bassRows": 125,
+    "pcsetFit": 0.944
+   },
+   "analysisgnn": {
+    "bassFit": 0.814,
+    "bassRows": 215,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 98,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "137",
+   "title": "Louise Reichardt Zw lf Ges nge Op 3 No 8 Kaeuzlein",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 19,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.65,
+    "bassRows": 20,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 17,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "138",
+   "title": "Louise Reichardt Zw lf Ges nge No 4 Vaters Klage",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 13,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.6154,
+    "bassRows": 13,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 14,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "139",
+   "title": "Franz Schubert Schwanengesang No 8 Der Atlas",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 66,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9949,
+    "bassRows": 195,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 79,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "140",
+   "title": "Franz Schubert Winterreise D 911 18 Der st rmische Morgen",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 32,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9902,
+    "bassRows": 102,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 46,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "141",
+   "title": "Franz Schubert Winterreise D 911 20 Der Wegweiser",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 98,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8203,
+    "bassRows": 217,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9921,
+    "bassRows": 127,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "142",
+   "title": "Clara Schumann 6 Lieder Op 13 No 2 Sie liebten sich beide",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 70,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8261,
+    "bassRows": 46,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 68,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "143",
+   "title": "Robert Schumann Dichterliebe Op 48 No 10 H r ich das Liedchen kl",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 43,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 110,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 48,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "144",
+   "title": "Purcell Chacony Chaconne in G Minor Z730",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 285,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9976,
+    "bassRows": 411,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 218,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "145",
+   "title": "Purcell Purcell Sonata in G Minor Z807",
+   "muswm": {
+    "bassFit": 0.9942,
+    "bassRows": 342,
+    "pcsetFit": 0.9912
+   },
+   "analysisgnn": {
+    "bassFit": 0.9219,
+    "bassRows": 653,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 388,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "146",
+   "title": "J S Bach Prelude No 5",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 81,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 251,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 94,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "147",
+   "title": "Robert Franz 6 Ges nge Op 14 5 Liebesfr hling",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 45,
+    "pcsetFit": 0.9778
+   },
+   "analysisgnn": {
+    "bassFit": 0.9873,
+    "bassRows": 79,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 66,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "148",
+   "title": "Fanny Mendelssohn Hensel 3 Lieder No 1 Sehnsucht",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 37,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 61,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 47,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "149",
+   "title": "Fanny Mendelssohn Hensel 6 Lieder No 2 Wanderlied",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 54,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5238,
+    "bassRows": 84,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 66,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "150",
+   "title": "Josephine Lang 6 Lieder Op 13 No 3 Aus der Ferne",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 57,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 131,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 53,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "151",
+   "title": "Louise Reichardt Zw lf Deutsche und Itali nische Romantische Ges",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 16,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.913,
+    "bassRows": 23,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 15,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "152",
+   "title": "Louise Reichardt Zw lf Ges nge Op 3 No 9 Hier liegt ein Spielman",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 20,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 30,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 21,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "153",
+   "title": "Louise Reichardt Zw lf Ges nge No 1 Erinnrung am Bach",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 16,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7586,
+    "bassRows": 29,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 17,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "154",
+   "title": "Franz Schubert Winterreise D 911 17 Im Dorfe",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 64,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5862,
+    "bassRows": 116,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 69,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "155",
+   "title": "Clara Schumann Die gute Nacht die ich dir sage",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 73,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7826,
+    "bassRows": 115,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9444,
+    "bassRows": 72,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "156",
+   "title": "Robert Schumann Dichterliebe Op 48 No 3 Die Rose die Lilie die T",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 36,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9623,
+    "bassRows": 106,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 62,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "157",
+   "title": "Hugo Wolf Eichendorff Lieder No 4 Das St ndchen",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 99,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.995,
+    "bassRows": 201,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 74,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "158",
+   "title": "Haydn Symphony 104 Movement 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 392,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5605,
+    "bassRows": 719,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 497,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "159",
+   "title": "Mozart Wolfgang Amadeus K284 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 219,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9807,
+    "bassRows": 623,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.996,
+    "bassRows": 248,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "160",
+   "title": "Mozart Wolfgang Amadeus K284 3",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 11,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7053,
+    "bassRows": 984,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9902,
+    "bassRows": 611,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "161",
+   "title": "Mozart Wolfgang Amadeus K311 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 228,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.991,
+    "bassRows": 555,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 288,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "162",
+   "title": "Mozart Wolfgang Amadeus K311 3",
+   "muswm": {
+    "bassFit": 0.8744,
+    "bassRows": 207,
+    "pcsetFit": 0.6184
+   },
+   "analysisgnn": {
+    "bassFit": 0.6355,
+    "bassRows": 417,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9687,
+    "bassRows": 351,
+    "pcsetFit": null
+   },
+   "fails": [
+    "muswm"
+   ]
+  },
+  {
+   "no": "163",
+   "title": "Mozart Wolfgang Amadeus K576 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 76,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.6,
+    "bassRows": 325,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9958,
+    "bassRows": 240,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "164",
+   "title": "Mozart Wolfgang Amadeus K576 3",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 282,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9825,
+    "bassRows": 687,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 371,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "165",
+   "title": "Beethoven Ludwig van n03op18 3 01",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 336,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5397,
+    "bassRows": 554,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9827,
+    "bassRows": 346,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "166",
+   "title": "Beethoven Ludwig van n03op18 3 03",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 13,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7665,
+    "bassRows": 334,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9637,
+    "bassRows": 248,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "167",
+   "title": "Beethoven Ludwig van n03op18 3 04",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 533,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5756,
+    "bassRows": 655,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9981,
+    "bassRows": 527,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "168",
+   "title": "Beethoven Ludwig van n05op18 5 03",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 7,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9253,
+    "bassRows": 455,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9953,
+    "bassRows": 213,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "169",
+   "title": "Beethoven Ludwig van n11op95 02",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 249,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9762,
+    "bassRows": 504,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9821,
+    "bassRows": 280,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "170",
+   "title": "Beethoven Ludwig van n14op131 02",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 290,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.6,
+    "bassRows": 265,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9938,
+    "bassRows": 325,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "171",
+   "title": "J S Bach Prelude No 24",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 126,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 277,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 141,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "172",
+   "title": "Franz Schubert Schwanengesang No 6 In der Ferne",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 149,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.994,
+    "bassRows": 336,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 133,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "173",
+   "title": "Franz Schubert Schwanengesang D 957 13 Der Doppelg nger",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 50,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 82,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 58,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "174",
+   "title": "Franz Schubert Winterreise D 911 9 Irrlicht",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 57,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7391,
+    "bassRows": 46,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 62,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "175",
+   "title": "Franz Schubert Winterreise D 911 12 Einsamkeit",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 57,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9784,
+    "bassRows": 139,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9839,
+    "bassRows": 62,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "176",
+   "title": "Robert Schumann Dichterliebe Op 48 No 5 Ich will meine Seele tau",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 35,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9184,
+    "bassRows": 147,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 58,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "177",
+   "title": "Beethoven Ludwig van n14op131 03",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 18,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 36,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.6667,
+    "bassRows": 6,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "178",
+   "title": "J S Bach Prelude No 7",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 206,
+    "pcsetFit": 0.9854
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 434,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 213,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "179",
+   "title": "Brahms",
+   "muswm": {
+    "bassFit": 0.75,
+    "bassRows": 28,
+    "pcsetFit": 0.5
+   },
+   "analysisgnn": {
+    "bassFit": 0.9456,
+    "bassRows": 147,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9926,
+    "bassRows": 136,
+    "pcsetFit": null
+   },
+   "fails": [
+    "muswm"
+   ]
+  },
+  {
+   "no": "180",
+   "title": "Brahms",
+   "muswm": {
+    "bassFit": 0.9375,
+    "bassRows": 32,
+    "pcsetFit": 0.8438
+   },
+   "analysisgnn": {
+    "bassFit": 0.8222,
+    "bassRows": 45,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 37,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "181",
+   "title": "C cile Chaminade Amoroso",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 73,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9837,
+    "bassRows": 123,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 90,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "182",
+   "title": "C cile Chaminade Berceuse",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 99,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7802,
+    "bassRows": 91,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 93,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "183",
+   "title": "Fanny Mendelssohn Hensel 5 Lieder Op 10 No 3 Abendbild",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 76,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5672,
+    "bassRows": 67,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 57,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "184",
+   "title": "Fanny Mendelssohn Hensel 6 Lieder No 1 Die Ersehnte",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 24,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9444,
+    "bassRows": 36,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 22,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "185",
+   "title": "Fanny Mendelssohn Hensel 6 Lieder Op 9 No 6 Die Mainacht",
+   "muswm": {
+    "bassFit": 0.9756,
+    "bassRows": 41,
+    "pcsetFit": 0.9756
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 77,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 38,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "186",
+   "title": "Josephine Lang 6 Lieder Op 26 No 1 Wiegenlied",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 145,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 259,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 124,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "187",
+   "title": "Louise Reichardt Sechs Lieder von Novalis",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 30,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 58,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 36,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "188",
+   "title": "Louise Reichardt Sechs Lieder von Novalis Op 4 5 Noch ein Bergma",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 10,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.75,
+    "bassRows": 20,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 15,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "189",
+   "title": "Louise Reichardt Sechs Lieder von Novalis No 6 Er besucht den Kl",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 31,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8462,
+    "bassRows": 52,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 31,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "190",
+   "title": "Louise Reichardt Zw lf Ges nge No 11 An Maria aus Novalis geistl",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 25,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7925,
+    "bassRows": 53,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 20,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "191",
+   "title": "Louise Reichardt Zw lf Ges nge No 6 Unruhiger Schlaf",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 24,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8,
+    "bassRows": 45,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 20,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "192",
+   "title": "Schubert Die Sterne Op 96 No 1 D 939",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 166,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 229,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 151,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "193",
+   "title": "Franz Schubert Op 59 No 3 Du bist die Ruh",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 91,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.6581,
+    "bassRows": 117,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 79,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "194",
+   "title": "Franz Schubert Winterreise D 911 13 Die Post",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 107,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.6957,
+    "bassRows": 92,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 101,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "195",
+   "title": "Franz Schubert Winterreise D 911 16 Letzte Hoffnung",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 71,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8616,
+    "bassRows": 159,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 69,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "196",
+   "title": "Clara Schumann 6 Lieder Op 13 No 1 Ich stand in dunklen Tr umen",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 70,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 116,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 79,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "197",
+   "title": "Clara Schumann 6 Lieder Op 13 No 3 Liebeszauber",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 115,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9295,
+    "bassRows": 241,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9914,
+    "bassRows": 116,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "198",
+   "title": "Robert Schumann 5 Lieder und Ges nge Op 127 No 2 Dein Angesicht",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 42,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 101,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 57,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "199",
+   "title": "Robert Schumann Dichterliebe Op 48 No 11 Ein J ngling liebt ein",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 59,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.825,
+    "bassRows": 160,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 70,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "200",
+   "title": "Mozart Wolfgang Amadeus K281 2",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 139,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7898,
+    "bassRows": 157,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9873,
+    "bassRows": 157,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "201",
+   "title": "Mozart Wolfgang Amadeus K282 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 80,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9953,
+    "bassRows": 214,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 90,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "202",
+   "title": "Mozart Wolfgang Amadeus K282 3",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 44,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8368,
+    "bassRows": 288,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9783,
+    "bassRows": 138,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "203",
+   "title": "Mozart Wolfgang Amadeus K333 2",
+   "muswm": {
+    "bassFit": 0.9927,
+    "bassRows": 137,
+    "pcsetFit": 0.9927
+   },
+   "analysisgnn": {
+    "bassFit": 0.9912,
+    "bassRows": 341,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 183,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "204",
+   "title": "Mozart Wolfgang Amadeus K457 2",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 146,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9977,
+    "bassRows": 435,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 199,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "205",
+   "title": "Mozart Wolfgang Amadeus K570 2",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 143,
+    "pcsetFit": 0.993
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 341,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 235,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "206",
+   "title": "Beethoven Ludwig van n04op18 4 03",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 16,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8522,
+    "bassRows": 203,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9286,
+    "bassRows": 126,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "207",
+   "title": "Beethoven Ludwig van n06op18 6 02",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 113,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 373,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9952,
+    "bassRows": 208,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "208",
+   "title": "Beethoven Ludwig van n10op74 01",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 458,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.6217,
+    "bassRows": 883,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 424,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "209",
+   "title": "Beethoven Ludwig van n10op74 04",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 13,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7895,
+    "bassRows": 532,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.986,
+    "bassRows": 286,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "210",
+   "title": "Beethoven Ludwig van n12op127 03",
+   "muswm": {
+    "bassFit": 0.997,
+    "bassRows": 333,
+    "pcsetFit": 0.994
+   },
+   "analysisgnn": {
+    "bassFit": 0.9752,
+    "bassRows": 644,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9851,
+    "bassRows": 404,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "211",
+   "title": "Beethoven Ludwig van n12op127 04",
+   "muswm": {
+    "bassFit": 0.9975,
+    "bassRows": 401,
+    "pcsetFit": 0.9875
+   },
+   "analysisgnn": {
+    "bassFit": 0.6993,
+    "bassRows": 1204,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.989,
+    "bassRows": 638,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "212",
+   "title": "Beethoven Ludwig van n13op130 05",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 149,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9777,
+    "bassRows": 269,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 174,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "213",
+   "title": "J S Bach Prelude No 2",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 87,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9922,
+    "bassRows": 256,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 60,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "214",
+   "title": "Fr d ric Chopin Prelude Op 28 No 20 in c minor",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 39,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 46,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 46,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "215",
+   "title": "Fr d ric Chopin tude Op 10 No 12 in C minor",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 127,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9875,
+    "bassRows": 401,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 87,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "216",
+   "title": "Brahms",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 21,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": null,
+    "bassRows": 0,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": null,
+    "bassRows": 0,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "217",
+   "title": "Franz Schubert Schwanengesang No 11 Die Stadt",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 36,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 63,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 38,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "218",
+   "title": "Franz Schubert Winterreise D 911 4 Erstarrung",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 187,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9834,
+    "bassRows": 483,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 221,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "219",
+   "title": "Franz Schubert Winterreise D 911 10 Rast",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 89,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 178,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 80,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "220",
+   "title": "Franz Schubert Winterreise D 911 14 Der greise Kopf",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 55,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7982,
+    "bassRows": 109,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9825,
+    "bassRows": 57,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "221",
+   "title": "Franz Schubert Winterreise D 911 15 Die Kr he",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 68,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9833,
+    "bassRows": 239,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 152,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "222",
+   "title": "Robert Schumann Frauenliebe und Leben 3 Ich kann s nicht fassen",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 79,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.541,
+    "bassRows": 61,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 80,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "223",
+   "title": "Hugo Wolf Eichendorff Lieder No 14 Der verzweifelte Liebhaber",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 55,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.3871,
+    "bassRows": 62,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 54,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "224",
+   "title": "Mozart Wolfgang Amadeus K457 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 241,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9863,
+    "bassRows": 583,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 267,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "225",
+   "title": "Mozart Wolfgang Amadeus K457 3",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 307,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.747,
+    "bassRows": 747,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.981,
+    "bassRows": 368,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "226",
+   "title": "Beethoven Ludwig van n04op18 4 01",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 410,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.933,
+    "bassRows": 925,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9979,
+    "bassRows": 470,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "227",
+   "title": "Beethoven Ludwig van n04op18 4 04",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 8,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.687,
+    "bassRows": 524,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9971,
+    "bassRows": 346,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "228",
+   "title": "Beethoven Ludwig van n10op74 03",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 14,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7399,
+    "bassRows": 942,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9959,
+    "bassRows": 489,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "229",
+   "title": "Beethoven Ludwig van n12op127 01",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 460,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9975,
+    "bassRows": 806,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 529,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "230",
+   "title": "J S Bach Prelude No 19",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 63,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 199,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 89,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "231",
+   "title": "Fanny Mendelssohn Hensel 5 Lieder Op 10 No 5 Bergeslust",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 106,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5093,
+    "bassRows": 108,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 97,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "232",
+   "title": "Fanny Mendelssohn Hensel 6 Lieder Op 1 No 6 Gondellied",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 72,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.6753,
+    "bassRows": 77,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 52,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "233",
+   "title": "Emilie Mayer 3 Lieder Op 7 No 2 O lass mich dein gedenken",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 41,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 88,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 39,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "234",
+   "title": "Louise Reichardt Zw lf Ges nge Op 3 No 6 Kriegslied des Mays",
+   "muswm": {
+    "bassFit": 0.9375,
+    "bassRows": 16,
+    "pcsetFit": 0.875
+   },
+   "analysisgnn": {
+    "bassFit": 0.8182,
+    "bassRows": 33,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 20,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "235",
+   "title": "Louise Reichardt Zw lf Ges nge Op 3 No 12 Duettino",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 63,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9231,
+    "bassRows": 52,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 70,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "236",
+   "title": "Franz Schubert Winterreise D 911 11 Fr hlingstraum",
+   "muswm": {
+    "bassFit": 0.9643,
+    "bassRows": 112,
+    "pcsetFit": 0.9018
+   },
+   "analysisgnn": {
+    "bassFit": 0.6732,
+    "bassRows": 153,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 145,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "237",
+   "title": "Franz Schubert Winterreise D 911 19 T uschung",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 40,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7292,
+    "bassRows": 48,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 53,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "238",
+   "title": "Franz Schubert Winterreise D 911 22 Muth",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 66,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 101,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 65,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "239",
+   "title": "Franz Schubert Winterreise D 911 23 Die Nebensonnen",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 53,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8313,
+    "bassRows": 83,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 80,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "240",
+   "title": "Robert Schumann Dichterliebe Op 48 No 1 Im wundersch nen Monat M",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 40,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9153,
+    "bassRows": 118,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 35,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "241",
+   "title": "Robert Schumann Dichterliebe Op 48 No 2 Aus meinen Tr nen spries",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 28,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8333,
+    "bassRows": 48,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 35,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "242",
+   "title": "Mozart Wolfgang Amadeus K284 2",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 146,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9889,
+    "bassRows": 361,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 201,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "243",
+   "title": "Mozart Wolfgang Amadeus K331 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 280,
+    "pcsetFit": 0.9893
+   },
+   "analysisgnn": {
+    "bassFit": 0.8881,
+    "bassRows": 420,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 379,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "244",
+   "title": "Mozart Wolfgang Amadeus K331 2",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 134,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 262,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 147,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "245",
+   "title": "Mozart Wolfgang Amadeus K331 3",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 7,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8561,
+    "bassRows": 264,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 133,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "246",
+   "title": "Mozart Wolfgang Amadeus K576 2",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 140,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 312,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 145,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "247",
+   "title": "Beethoven Ludwig van n05op18 5 01",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 325,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5764,
+    "bassRows": 373,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9976,
+    "bassRows": 421,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "248",
+   "title": "Beethoven Ludwig van n05op18 5 02",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 77,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7939,
+    "bassRows": 262,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 160,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "249",
+   "title": "Beethoven Ludwig van n05op18 5 04",
+   "muswm": {
+    "bassFit": 0.9922,
+    "bassRows": 128,
+    "pcsetFit": 0.9844
+   },
+   "analysisgnn": {
+    "bassFit": 0.5868,
+    "bassRows": 806,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9919,
+    "bassRows": 495,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "250",
+   "title": "Beethoven Ludwig van n14op131 04",
+   "muswm": {
+    "bassFit": 0.9826,
+    "bassRows": 344,
+    "pcsetFit": 0.9535
+   },
+   "analysisgnn": {
+    "bassFit": null,
+    "bassRows": 0,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9947,
+    "bassRows": 562,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "251",
+   "title": "Beethoven Ludwig van n15op132 02",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 339,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.981,
+    "bassRows": 684,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9846,
+    "bassRows": 456,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "252",
+   "title": "Beethoven Ludwig van Quartet Op 132 Movement 4",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 72,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9784,
+    "bassRows": 139,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 106,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "253",
+   "title": "J S Bach Prelude No 14",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 62,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 205,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 90,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "254",
+   "title": "Franz Schubert Winterreise D 911 6 Wasserfluth",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 44,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 70,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 47,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "255",
+   "title": "Hugo Wolf Eichendorff Lieder No 19 Die Nacht",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 59,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9732,
+    "bassRows": 149,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 54,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "256",
+   "title": "Beethoven Ludwig van n14op131 07",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 459,
+    "pcsetFit": 0.9978
+   },
+   "analysisgnn": {
+    "bassFit": 0.6617,
+    "bassRows": 869,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9432,
+    "bassRows": 317,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "257",
+   "title": "J S Bach Prelude No 17",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 72,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 195,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 65,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "258",
+   "title": "S Coleridge Taylor Oh the Summer",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 177,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.581,
+    "bassRows": 105,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 126,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "259",
+   "title": "Fanny Mendelssohn Hensel 6 Lieder No 4 Die fr hen Gr ber",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 35,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 49,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 30,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "260",
+   "title": "Marie Ja ll 4 M lodies No 1 A toi",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 42,
+    "pcsetFit": 0.6905
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 55,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 44,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "261",
+   "title": "Emilie Mayer 3 Lieder Op 7 No 1 Du bist wie eine Blume",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 57,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 100,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 61,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "262",
+   "title": "Emilie Mayer 3 Lieder Op 7 No 3 Wenn der Abendstern die Rosen",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 51,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8409,
+    "bassRows": 88,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 47,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "263",
+   "title": "Louise Reichardt Zw lf Ges nge No 3 Die Blume der Blumen",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 29,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8462,
+    "bassRows": 26,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 29,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "264",
+   "title": "Louise Reichardt Zw lf Ges nge No 11 Daphne am Bach",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 23,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7941,
+    "bassRows": 34,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 23,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "265",
+   "title": "Franz Schubert Das Rosenband",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 60,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7791,
+    "bassRows": 86,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 89,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "266",
+   "title": "Franz Schubert Schwanengesang D 957 7 Abschied",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 231,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 429,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 233,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "267",
+   "title": "Franz Schubert Schwanengesang D 957 No 10 Das Fischerm dchen",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 120,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5682,
+    "bassRows": 88,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 97,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "268",
+   "title": "Franz Schubert Winterreise D 911 3 Gefrorne Traenen",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 81,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5315,
+    "bassRows": 143,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9646,
+    "bassRows": 113,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "269",
+   "title": "Clara Schumann 6 Lieder Op 13 6 Die stille Lotosblume",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 76,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 134,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 93,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "270",
+   "title": "Maude Val rie White 3 Little Songs No 2 A Memory",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 71,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8462,
+    "bassRows": 39,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 90,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "271",
+   "title": "Emilie Zumsteeg 6 Lieder Op 4 No 1 Die Kapelle",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 48,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8627,
+    "bassRows": 51,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 51,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "272",
+   "title": "Beethoven Ludwig van n10op74 02",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 278,
+    "pcsetFit": 0.9892
+   },
+   "analysisgnn": {
+    "bassFit": 0.5459,
+    "bassRows": 207,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9945,
+    "bassRows": 183,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "273",
+   "title": "Beethoven Ludwig van n12op127 02",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 54,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7871,
+    "bassRows": 634,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9979,
+    "bassRows": 474,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "274",
+   "title": "J S Bach Prelude No 12",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 65,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 150,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 76,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "275",
+   "title": "Harry Thacker Burleigh 5 Songs of Laurence Hope No 2 The Jungle",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 100,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 181,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 103,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "276",
+   "title": "Samuel Coleridge Taylor 6 Sorrow Songs Op 57 No 3 Oh Roses for t",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 66,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 130,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 59,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "277",
+   "title": "Louise Reichardt Zw lf Deutsche und Itali nische Romantische Ges",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 16,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8333,
+    "bassRows": 30,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 14,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "278",
+   "title": "Louise Reichardt Zw lf Ges nge No 9 Der Spinnerin Nachtlied",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 10,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.875,
+    "bassRows": 24,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 15,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "279",
+   "title": "Mozart Wolfgang Amadeus K280 2",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 117,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.568,
+    "bassRows": 125,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9919,
+    "bassRows": 124,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "280",
+   "title": "Beethoven Ludwig van n07op59 1 03",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 226,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9986,
+    "bassRows": 690,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 316,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "281",
+   "title": "Beethoven Ludwig van n11op95 01",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 224,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9978,
+    "bassRows": 448,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 206,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "282",
+   "title": "Beethoven Ludwig van n11op95 03",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 237,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9531,
+    "bassRows": 490,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9875,
+    "bassRows": 320,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "283",
+   "title": "Beethoven Ludwig van n11op95 04",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 346,
+    "pcsetFit": 0.9942
+   },
+   "analysisgnn": {
+    "bassFit": 0.695,
+    "bassRows": 482,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 267,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "284",
+   "title": "J S Bach Prelude No 9",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 74,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7534,
+    "bassRows": 73,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 63,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "285",
+   "title": "Samuel Coleridge Taylor 6 Sorrow Songs Op 57 No 5 Unmindful of t",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 65,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 128,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 56,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "286",
+   "title": "Fanny Mendelssohn Hensel 5 Lieder Op 10 No 1 Nach S den",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 135,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.6685,
+    "bassRows": 181,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 120,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "287",
+   "title": "Fanny Mendelssohn Hensel 6 Lieder Op 1",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 75,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 167,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 85,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "288",
+   "title": "Fanny Mendelssohn Hensel 6 Lieder Op 9 No 3 Der Rosenkranz",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 79,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8378,
+    "bassRows": 74,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 91,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "289",
+   "title": "Holm s Augusta Contes divins No 3 Le Chemin du Ciel",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 141,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 196,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 146,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "290",
+   "title": "Johanna Kinkel originally published under the name J Mathieux 6",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 11,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 25,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 10,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "291",
+   "title": "Josephine Lang Sechs Lieder Op 25 4 Lied Immer sich rein kindlic",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 129,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 254,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 126,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "292",
+   "title": "Louise Reichardt Zw lf Ges nge Op 3 No 10 Der Mond",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 30,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 43,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 30,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "293",
+   "title": "Louise Reichardt Zw lf Ges nge No 2 Der S nger geht",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 27,
+    "pcsetFit": 0.963
+   },
+   "analysisgnn": {
+    "bassFit": 0.9796,
+    "bassRows": 49,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 29,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "294",
+   "title": "Louise Reichardt Zw lf Ges nge No 3 Nach Sevilla",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 21,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8478,
+    "bassRows": 46,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 26,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "295",
+   "title": "Franz Schubert Die sch ne M llerin D 795 No 18 Trockne Blumen",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 91,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 170,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 109,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "296",
+   "title": "Franz Schubert Winterreise D 911 5 Der Lindenbaum",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 95,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 266,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 147,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "297",
+   "title": "Robert Schumann Dichterliebe Op 48 No 15 Aus alten M rchen",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 150,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5333,
+    "bassRows": 135,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9922,
+    "bassRows": 128,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "298",
+   "title": "Beethoven Ludwig van n08op59 2 02",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 314,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 593,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 298,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "299",
+   "title": "Beethoven Ludwig van n08op59 2 03",
+   "muswm": {
+    "bassFit": 0.9947,
+    "bassRows": 188,
+    "pcsetFit": 0.9947
+   },
+   "analysisgnn": {
+    "bassFit": 0.993,
+    "bassRows": 426,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9784,
+    "bassRows": 231,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "300",
+   "title": "Beethoven Ludwig van n14op131 05",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 472,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.6077,
+    "bassRows": 938,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9442,
+    "bassRows": 484,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "301",
+   "title": "J S Bach Prelude No 4",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 109,
+    "pcsetFit": 0.9174
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 194,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 86,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "302",
+   "title": "Fanny Mendelssohn Hensel 5 Lieder Op 10 2 Vorwurf",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 88,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 161,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 99,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "303",
+   "title": "Robert Schumann Dichterliebe Op 48 No 16 Die alten b sen Lieder",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 115,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 213,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9912,
+    "bassRows": 113,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "304",
+   "title": "Beethoven Ludwig van n14op131 01",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 182,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.6298,
+    "bassRows": 443,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9968,
+    "bassRows": 308,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "305",
+   "title": "J S Bach Prelude No 3",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 87,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.4639,
+    "bassRows": 166,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9231,
+    "bassRows": 104,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "306",
+   "title": "Ernest Chausson 7 M lodies Op 2 7 Le Colibri",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 57,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9921,
+    "bassRows": 127,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 66,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "307",
+   "title": "Fanny Mendelssohn Hensel 6 Lieder Op 9 No 5 Der Maiabend",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 20,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9412,
+    "bassRows": 17,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 32,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "308",
+   "title": "Mathilde Kralik Mathilde Aloisia Kralik von Meyrswalden Blumenli",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 53,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 93,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 67,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "309",
+   "title": "Josephine Lang 6 Lieder Op 10 No 6 Abschied",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 79,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 127,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 75,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "310",
+   "title": "Louise Reichardt 12 Deutsche und Itali nische Romantische Ges ng",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 29,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 29,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 34,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "311",
+   "title": "Clara Schumann 6 Lieder Op 13 No 4 Der Mond kommt still gegangen",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 73,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8571,
+    "bassRows": 56,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 95,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "312",
+   "title": "Clara Schumann Lieder Op 12 No 4 Liebst du um Sch nheit",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 105,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 142,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 106,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "313",
+   "title": "Beethoven Ludwig van n13op130 03",
+   "muswm": {
+    "bassFit": 0.9836,
+    "bassRows": 244,
+    "pcsetFit": 0.9672
+   },
+   "analysisgnn": {
+    "bassFit": 0.9949,
+    "bassRows": 585,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9974,
+    "bassRows": 379,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "314",
+   "title": "Beethoven Ludwig van n16op135 03",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 137,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.7973,
+    "bassRows": 74,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 144,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "315",
+   "title": "J S Bach Prelude No 22",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 66,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 147,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 91,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "316",
+   "title": "Franz Schubert Schwanengesang No 9 Ihr Bild",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 38,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.3704,
+    "bassRows": 81,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 63,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "317",
+   "title": "Beethoven Ludwig van n13op130 01",
+   "muswm": {
+    "bassFit": 0.9861,
+    "bassRows": 502,
+    "pcsetFit": 0.9801
+   },
+   "analysisgnn": {
+    "bassFit": 0.9495,
+    "bassRows": 1128,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.9886,
+    "bassRows": 612,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "318",
+   "title": "J S Bach Prelude No 23",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 52,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 137,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 74,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "319",
+   "title": "Johannes Brahms 6 Songs Op 3 3 Liebe und Fr hling II",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 91,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9259,
+    "bassRows": 216,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 97,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "320",
+   "title": "Johannes Brahms 7 Lieder Op 48 3 Liebesklage des M dchens",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 81,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 156,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 112,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "321",
+   "title": "Augusta Holm s Les Heures No 4 L Heure d Azur",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 107,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9831,
+    "bassRows": 177,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 120,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "322",
+   "title": "Marie Ja ll 4 M lodies No 2 Eternel amour",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 92,
+    "pcsetFit": 0.9891
+   },
+   "analysisgnn": {
+    "bassFit": 0.9676,
+    "bassRows": 185,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 97,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "323",
+   "title": "Josephine Lang 6 Lieder Op 12 No 3 Abermals am See",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 154,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9966,
+    "bassRows": 291,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 0.993,
+    "bassRows": 143,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "324",
+   "title": "Franz Schubert Winterreise D 911 7 Auf dem Flusse",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 108,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9964,
+    "bassRows": 280,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 148,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "325",
+   "title": "Robert Schumann Dichterliebe Op 48 14 Alln chtlich im Traume",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 56,
+    "pcsetFit": 0.9821
+   },
+   "analysisgnn": {
+    "bassFit": 0.8763,
+    "bassRows": 97,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 70,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "326",
+   "title": "Robert Schumann Myrthen Op 25 No 16 R tsel",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 84,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9865,
+    "bassRows": 222,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 107,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "327",
+   "title": "J S Bach Prelude No 18",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 88,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.8268,
+    "bassRows": 127,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 96,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "328",
+   "title": "Robert Schumann Dichterliebe Op 48 No 13 Ich hab im Traum gewein",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 43,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.5778,
+    "bassRows": 45,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 52,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "329",
+   "title": "Beethoven Ludwig van n14op131 06",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 55,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 75,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 27,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "330",
+   "title": "J S Bach Prelude No 13",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 5,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.6545,
+    "bassRows": 55,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 67,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "331",
+   "title": "Hugo Wolf Eichendorff Lieder No 8 Nachtzauber",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 131,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9922,
+    "bassRows": 385,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 110,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "332",
+   "title": "J S Bach Prelude No 8",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 70,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.472,
+    "bassRows": 125,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 64,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "333",
+   "title": "Brahms",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 18,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 0.9412,
+    "bassRows": 68,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 54,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "334",
+   "title": "Gustav Mahler Kindertotenlieder No 4 Oft denk ich sie sind nur a",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 98,
+    "pcsetFit": 0.9898
+   },
+   "analysisgnn": {
+    "bassFit": 0.7528,
+    "bassRows": 178,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 152,
+    "pcsetFit": null
+   },
+   "fails": []
+  },
+  {
+   "no": "335",
+   "title": "Louise Reichardt Zw lf Deutsche und Itali nische Romantische Ges",
+   "muswm": {
+    "bassFit": 1.0,
+    "bassRows": 65,
+    "pcsetFit": 1.0
+   },
+   "analysisgnn": {
+    "bassFit": 1.0,
+    "bassRows": 96,
+    "pcsetFit": null
+   },
+   "augmentednet": {
+    "bassFit": 1.0,
+    "bassRows": 58,
+    "pcsetFit": null
+   },
+   "fails": []
+  }
+ ]
+}

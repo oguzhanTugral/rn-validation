@@ -72,9 +72,11 @@ body.home header.site .brand .logo{display:none}
       <p class="big">Three analysers of functional harmony &mdash; musWM, AnalysisGNN and AugmentedNet &mdash;
         read the same <span id="hWorks">335</span> scores of the <i>When in Rome</i> corpus
         (<a class="cite" href="#ref-gotham">Gotham et al., 2023</a>). Their Roman numerals are aligned by bar
-        and beat and held against a single yardstick: the label Kostka, Payne &amp; Alm&eacute;n&rsquo;s
-        <i>Tonal Harmony</i> assigns to the chord in question. Each verdict is a 1 or a 0, fixed once and not
-        revisited.</p>
+        and beat, and two kinds of evidence are kept apart. A <b>textbook grade</b> asks whether each label is
+        written as Kostka, Payne &amp; Alm&eacute;n&rsquo;s <i>Tonal Harmony</i> writes the chord musWM read; because
+        that reference comes from musWM&rsquo;s reading, it is not a contest between the engines. An
+        <b>independent note check</b> asks, from the written notes alone, whether an engine&rsquo;s root and bass
+        are the ones in the score where the chord is unambiguous.</p>
       <p class="ref" id="ref-gotham">Gotham, M., Micchi, G., N&aacute;poles L&oacute;pez, N., &amp; Sailor, M. (2023). When in Rome: A meta-corpus of functional harmony. <i>Transactions of the International Society for Music Information Retrieval</i>, 6(1), 150&ndash;166. <a href="https://doi.org/10.5334/tismir.165" target="_blank" rel="noopener">doi:10.5334/tismir.165</a></p>
     </div>
     <div class="mark"><img src="assets/brand/muswm-mark-3d.svg" alt="musWM logo" width="200" height="120"></div>
@@ -89,14 +91,21 @@ body.home header.site .brand .logo{display:none}
 
 <main class="wrap">
   <section class="acc">
-    <h2>Accuracy against the textbook</h2>
-    <div class="prelim"><b>Preliminary results.</b> The figures on this site are first results. After detailed validation, the final accuracy figures may change by up to <b>&plusmn;5 percentage points</b> for AnalysisGNN and AugmentedNet and by about <b>&plusmn;1 point</b> for musWM. See <a href="scoring.html">Ratings</a> for how the margin was estimated.</div>
+    <h2>Textbook grade &mdash; reference derived from musWM&rsquo;s reading</h2>
+    <div class="prelim"><b>Preliminary results.</b> Every figure on this site is recomputed from the corpus pack at each build. On 15 September 2026 the pack was rebuilt after an alignment fault was found and corrected, and the textbook criterion was audited against the book &mdash; see <a href="method.html#corrections">Corrections</a>. The textbook grades measure tolerant agreement with a label derived from musWM&rsquo;s own reading of the chord; they are not an accuracy against an independent reference.</div>
     <div class="rowsA" id="accRows"></div>
+    <p class="dim" style="font-size:13px;margin:10px 0 0">The reference label is built from musWM&rsquo;s key, root, bass and notes, and the other two engines are judged in musWM&rsquo;s key, so musWM&rsquo;s score is high largely by construction. Read these bars as &ldquo;how often a label is written as the book writes musWM&rsquo;s reading&rdquo;, not as accuracy. A triad and a seventh on the same root and bass count as the same label.</p>
+  </section>
+
+  <section class="acc">
+    <h2>Independent note check &mdash; root and bass from the written notes</h2>
+    <div class="rowsA" id="noteRows"></div>
+    <p class="dim" style="font-size:13px;margin:10px 0 0" id="noteNote">Bars holding one complete chord with an unambiguous root throughout. No engine output is used to build the reference. <a href="method.html#notecheck">How it works</a></p>
   </section>
 
   <section class="prelim-foot">
     <h2>Status of these results</h2>
-    <p>Everything reported here is a <b>first set of results</b>. The comparison, the textbook criterion and the figures are published so that they can be inspected and questioned while detailed validation is under way. When that validation is complete, the final accuracy figures may differ from those shown by up to <b>&plusmn;5 percentage points</b> for AnalysisGNN and AugmentedNet and by about <b>&plusmn;1 point</b> for musWM. This margin applies to accuracy under the present textbook criterion; comparison with independent expert annotation measures something different and may move all three engines further. How the margin was estimated is set out on <a href="scoring.html">Ratings</a>.</p>
+    <p>Everything reported here is a <b>first set of results</b>, published so that the comparison, the textbook criterion and the figures can be inspected and questioned. On 15 September 2026 an alignment fault was found: musWM&rsquo;s bar numbers had been counted on the MIDI timeline, so in some works its labels sat on the wrong written bar. The corpus was rebuilt with every musWM label placed on its written bar, 332 of the 335 works now pass an automatic check that each engine&rsquo;s reported notes exist in the bar it is shown on (the other three are listed for review), and the textbook rule set was checked against the book. All figures on this site come from that rebuild; the changes are listed under <a href="method.html#corrections">Corrections</a>.</p>
   </section>
 </main>
 
@@ -112,6 +121,32 @@ RNVData.boot({
       document.getElementById('hWorks').textContent = entry.works;
     }
     var id = RNVData.currentCorpusId() || (entry && entry.id) || 'wir335';
+
+    fetch('data/corpora/' + encodeURIComponent(RNVData.currentCorpusId() || 'wir335') + '/note_check.json')
+      .then(function (r) { return r.json(); })
+      .then(function (nc) {
+        var g = nc.results.graded, colors2 = { muswm: 'var(--muswm)', analysisgnn: 'var(--gnn)', augmentednet: 'var(--anet)' };
+        var names = { muswm: 'musWM', analysisgnn: 'AnalysisGNN', augmentednet: 'AugmentedNet' };
+        var rowsH = [];
+        ['muswm', 'analysisgnn', 'augmentednet'].forEach(function (e) {
+          [['root', 'root'], ['bass', 'bass']].forEach(function (f) {
+            var x = g[e][f[0]]; if (!x || !x.n) return;
+            var pc = (100 * x.rate).toFixed(1);
+            rowsH.push('<div class="eng"><span class="nm" style="color:' + colors2[e] + '">' + names[e] + ' &middot; ' + f[1] + '</span>' +
+              '<div class="track"><div class="fill" data-w="' + pc + '" style="background:' + colors2[e] + '"></div></div>' +
+              '<span class="pc">' + pc + '%</span></div>');
+          });
+        });
+        var host2 = document.getElementById('noteRows');
+        host2.innerHTML = rowsH.join('');
+        requestAnimationFrame(function () {
+          Array.prototype.forEach.call(host2.querySelectorAll('.fill'), function (f) { f.style.width = f.dataset.w + '%'; });
+        });
+        document.getElementById('noteNote').innerHTML = nf(g.muswm.onsets) + ' graded positions (of ' + nf(nc.gradedPositionsTotal) +
+          ') fall in bars holding one complete chord with an unambiguous root throughout. The reference root and bass are read from the ' +
+          'written notes only. AugmentedNet reports no root; AnalysisGNN&rsquo;s root and bass come from separate per-note ' +
+          'predictions. This covers the unambiguous case only. <a href="method.html#notecheck">How it works</a>';
+      }).catch(function () {});
 
     fetch('data/theory.json').then(function (r) { return r.json(); }).then(function (d) {
       document.getElementById('sTheory').textContent = d.codeBased.conformantPct + '%';

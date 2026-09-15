@@ -10,14 +10,17 @@
 </head>
 <body>
 <main class="wrap">
-  <h2 class="page">Accuracy against the textbook</h2>
+  <h2 class="page">Textbook grades</h2>
   <p class="lede">Each compared position yields one verdict per engine: <b>1</b> if its Roman numeral matches
-  the textbook label at that bar and beat, <b>0</b> if it does not. An engine&rsquo;s accuracy is the share of
-  its verdicts that are 1.</p>
+  the textbook label at that bar and beat, <b>0</b> if it does not. An engine&rsquo;s score is the share of
+  its verdicts that are 1. The textbook label is derived from <b>musWM&rsquo;s own key, root, bass and notes</b>,
+  so the score says whether a label is written as the book writes that reading; it does not say whether the
+  reading itself is right, and it is not a head-to-head accuracy. Root and bass are checked against the
+  written notes separately, on the <a href="method.html#notecheck">independent note check</a>.</p>
   <p class="lede" id="ledeWhy" hidden></p>
   <p class="lede" id="ledeSources"><b>All grades come from a single source: the textbook.</b> Each compared cell is fixed at 1 or 0 by the criterion below, on Alignment and Disagreement rows alike, and no grade can be altered by hand.</p>
 
-  <div class="prelim"><b>Preliminary results.</b> The figures on this site are first results. After detailed validation, the final accuracy figures may change by up to <b>&plusmn;5 percentage points</b> for AnalysisGNN and AugmentedNet and by about <b>&plusmn;1 point</b> for musWM. The margin combines two measured sources: resampling whole works gives a 95% interval of about &plusmn;3 points for AnalysisGNN and AugmentedNet and &plusmn;0.15 for musWM, and a single change to the normalisation rules has already moved the two learned engines by 4&ndash;5 points. It applies to accuracy under the present textbook criterion; comparison with independent expert annotation measures something different and may move all three engines further.</div>
+  <div class="prelim"><b>Preliminary results.</b> Every figure on this site is recomputed from the corpus pack at each build. On 15 September 2026 the pack was rebuilt after an alignment fault was found and corrected, and the textbook criterion was audited against the book &mdash; see <a href="method.html#corrections">Corrections</a>. The textbook grades measure tolerant agreement with a label derived from musWM&rsquo;s own reading of the chord; they are not an accuracy against an independent reference.</div>
 
   <div id="bookPanel" hidden></div>
 
@@ -162,12 +165,23 @@ RNVData.boot({
         'whether a chord is <i>named</i> as the book names it once key and notes are fixed — not whether musWM ' +
         'chose the key and notes a person would choose. For the same reason AnalysisGNN and AugmentedNet are ' +
         'judged in musWM&rsquo;s key, and a label that is correct in a key they read differently scores 0. ' +
-        'How often they read the same key as musWM on the compared rows: ' + ka + '.</p>';
+        'How often they read the same key as musWM on the compared rows: ' + ka + '. musWM&rsquo;s high score is ' +
+        'therefore largely a consequence of this construction. Whether musWM&rsquo;s root and bass match the ' +
+        'written notes is tested separately, from the score alone, on the ' +
+        '<a href="method.html#notecheck">independent note check</a>.</p>' +
+        '<h4 style="margin:4px 0 6px;font-size:14px">Tolerances</h4>' +
+        '<p style="margin:0 0 12px;font-size:13.5px">A triad and a seventh chord on the same root and bass count ' +
+        'as the same label (V = V7, V6 = V65, V64 = V43, vii&deg; = vii&deg;7 = vii&oslash;7); a different bass is still ' +
+        'a difference. The figures are therefore tolerant agreement, not exact label identity. Chords the book ' +
+        'writes in two ways count as equal for every engine: V/III = VII in minor (p. 257), the secondary ' +
+        'functions of VII in minor and the melodic-minor chords with the same notes (IV, &#9839;vi&deg;; ' +
+        'Examples 4-7, 16-4, 17-2), and a suspension figure over the same degree (pp. 201&ndash;202). The rule set ' +
+        'was checked against the book on 15 September 2026 &mdash; see <a href="method.html#corrections">Corrections</a>.</p>';
       var bp = document.getElementById('bookPanel');
       bp.hidden = false;
       bp.innerHTML =
         '<div class="panel" style="border-left:3px solid var(--accent-fill)">' +
-        '<h3>Accuracy against the textbook — locked</h3>' +
+        '<h3>Textbook grades — locked</h3>' +
         criterionHtml +
         '<p style="margin:0 0 12px;font-size:13.5px"><b>Rows compared.</b> ' + esc(B.comparison) +
         ' <b>' + nf(B.comparable) + '</b> rows from <b>' + nf(B.worksWithComparableRows) +
