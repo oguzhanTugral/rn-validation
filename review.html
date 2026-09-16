@@ -77,6 +77,7 @@
       <button id="brXlsx" type="button">Download .xlsx</button>
       <button id="brJson" type="button">Download ratings (JSON)</button>
       <button id="brLoad" type="button">Upload ratings (JSON)</button>
+      <button id="brClear" type="button">Clear all ratings</button>
       <input id="brFile" type="file" accept="application/json,.json" hidden>
     </div></div>
     <div class="count" id="brSaved"></div>
@@ -296,6 +297,12 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     download(new Blob([JSON.stringify({ format: 'rnv-blind-ratings', sheet: sheet, sample: sample.sha256OfPositions,
       exportedAt: new Date().toISOString(), rows: RNVReview.all(sheet) }, null, 1)], { type: 'application/json' }),
       'blind_review_' + corpusId + '_' + new Date().toISOString().slice(0, 10) + '.json');
+  });
+  el('brClear').addEventListener('click', function () {
+    var done = sample.items.filter(rated).length;
+    if (!confirm('Delete every rating on this page (' + done + ' of ' + sample.items.length +
+                 ' positions rated)? This cannot be undone. Download the JSON first if you want to keep a copy.')) return;
+    RNVReview.replaceAll(sheet, {}).then(function () { refreshOrder(); });
   });
   el('brLoad').addEventListener('click', function () { el('brFile').click(); });
   el('brFile').addEventListener('change', function (e) {
