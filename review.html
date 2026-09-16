@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260916182145">
+<link rel="stylesheet" href="css/site.css?v=20260916182528">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -148,12 +148,12 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260916182145"></script>
-<script src="js/rnv-data.js?v=20260916182145"></script>
-<script src="js/rnv-auth.js?v=20260916182145"></script>
-<script src="js/rnv-review.js?v=20260916182145"></script>
+<script src="data/corpora.js?v=20260916182528"></script>
+<script src="js/rnv-data.js?v=20260916182528"></script>
+<script src="js/rnv-auth.js?v=20260916182528"></script>
+<script src="js/rnv-review.js?v=20260916182528"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260916182145"></script>
+<script src="js/rnv-score.js?v=20260916182528"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -401,20 +401,24 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     // signed out: come back here after signing in; signed in: just manage the account
     location.href = window.RNVAuth && RNVAuth.user() ? 'account.html' : 'account.html?next=review.html';
   });
-  // real count from the database; never a guess: if it cannot be read, say so
-  (function analysisCount() {
+  // real count from the database, refreshed every minute so it grows as analyses arrive
+  function analysisCount() {
     if (!window.RNVAuth) return;
-    RNVAuth.stats().then(function (st) {
-      var n = Number(st && st.analyses) || 0, people = Number(st && st.participants) || 0;
-      el('brStatN').textContent = n;
-      el('brStatL').textContent = n === 0 ? 'uploaded analyses — none yet'
-        : (n === 1 ? 'uploaded analysis' : 'uploaded analyses') + ' · ' + people + (people === 1 ? ' participant' : ' participants') +
-          ' · latest ' + String(st.latest).slice(0, 10);
-    }).catch(function () {
-      el('brStatN').textContent = '—';
-      el('brStatL').textContent = 'count unavailable';
+    RNVAuth.stats().then(function (st) { show(Number(st && st.analyses) || 0, st); }).catch(function (e) {
+      // the counter or its table not created yet means no analysis can exist yet; any other failure is unknown
+      if (e.status === 404) show(0, null);
+      else { el('brStatN').textContent = '—'; el('brStatL').textContent = 'count unavailable'; }
     });
-  })();
+    function show(n, st) {
+      var people = Number(st && st.participants) || 0;
+      el('brStatN').textContent = n;
+      el('brStatL').textContent = n === 0 ? 'No analysis yet'
+        : (n === 1 ? 'analysis' : 'analyses') + ' uploaded · ' + people + (people === 1 ? ' participant' : ' participants');
+    }
+  }
+  analysisCount();
+  setInterval(analysisCount, 60000);
+
   (function accountStatus() {
     var u = window.RNVAuth && RNVAuth.user();
     el('brAccount').textContent = u ? 'Account' : 'Sign in';
