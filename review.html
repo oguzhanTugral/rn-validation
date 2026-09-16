@@ -33,6 +33,13 @@
   .br-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
   .br-prog{height:8px;border-radius:99px;background:var(--accent-soft);overflow:hidden;margin:6px 0 2px}
   .br-prog span{display:block;height:100%;background:var(--accent)}
+  .br-panel{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;
+    border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:10px 14px;margin:0 0 14px}
+  .br-field{display:grid;gap:4px;margin:10px 0}
+  .br-field label{font-size:13px;color:var(--muted)}
+  .br-field input{font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;width:100%}
+  .br-id-badge{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:15px;font-weight:700;letter-spacing:.06em}
+  .br-err{color:#dc2626;font-size:13px;min-height:1.2em}
   .br-ask{border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);background:var(--panel);
     color:inherit;padding:0;max-width:420px;width:calc(100% - 32px)}
   .br-ask::backdrop{background:rgba(15,23,42,.45)}
@@ -46,11 +53,34 @@
 </style>
 </head>
 <body>
+<dialog class="br-ask" id="brUp">
+  <div class="body">
+    <h3>Upload analysis</h3>
+    <p>Your ratings are stamped with the id below and with your e-mail, and saved as a file. The e-mail stays in the
+    file and is shown with the analysis when it is published, so everyone can see who made it.</p>
+    <div class="br-field"><label>Analysis id (assigned by the system)</label><div class="br-id-badge" id="brUpId"></div></div>
+    <div class="br-field"><label for="brUpName">Name shown with the analysis</label><input id="brUpName" type="text" placeholder="Name Surname"></div>
+    <div class="br-field"><label for="brUpMail">E-mail (required, kept in the file)</label><input id="brUpMail" type="email" placeholder="name@university.edu"></div>
+    <div class="br-err" id="brUpErr"></div>
+  </div>
+  <div class="row"><button type="button" id="brUpNo">Cancel</button><button type="button" id="brUpYes" class="danger">Save file</button></div>
+</dialog>
 <dialog class="br-ask" id="brAsk">
   <div class="body"><h3 id="brAskTitle"></h3><p id="brAskText"></p></div>
   <div class="row"><button type="button" id="brAskNo">Cancel</button><button type="button" id="brAskYes" class="danger">Delete</button></div>
 </dialog>
 <main class="wrap">
+  <div class="br-panel">
+    <div>
+      <b>Analyst panel</b>
+      <div class="dim" style="font-size:13px">Stamp your ratings with an id and an e-mail, or compare analyses side by side.</div>
+    </div>
+    <div class="seg">
+      <button id="brUpload" type="button">Upload analysis</button>
+      <button id="brCompare" type="button">Compare</button>
+    </div>
+  </div>
+
   <h2 class="page">Blind review</h2>
   <p class="lede">Check musWM&rsquo;s <b>notes</b>, <b>root</b> and <b>bass</b> against the score. No Roman numeral or
   engine label is shown.</p>
@@ -141,6 +171,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     el('brAskTitle').textContent = title;
     el('brAskText').textContent = text;
     yes.textContent = okLabel || 'Delete';
+    no.hidden = okLabel === 'Close';               // information only: one button is enough
     return new Promise(function (resolve) {
       function close(answer) {
         yes.removeEventListener('click', onYes); no.removeEventListener('click', onNo);
@@ -342,6 +373,59 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
       if (yes) RNVReview.replaceAll(sheet, {}).then(function () { refreshOrder(); });
     });
   });
+  el('brCompare').addEventListener('click', function () { location.href = 'compare.html'; });
+
+  // id assigned once per browser and kept, so a second upload from the same analyst carries the same id
+  function analysisId() {
+    var k = 'rnv.analysisId';
+    var v = null;
+    try { v = localStorage.getItem(k); } catch (e) {}
+    if (!v) {
+      var r = new Uint8Array(5);
+      (window.crypto || window.msCrypto).getRandomValues(r);
+      var A = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ', out = '';
+      for (var i = 0; i < r.length; i++) out += A[r[i] % A.length];
+      v = 'RNV-' + out.slice(0, 5);
+      try { localStorage.setItem(k, v); } catch (e) {}
+    }
+    return v;
+  }
+
+  el('brUpload').addEventListener('click', function () {
+    var dlg = el('brUp'), id = analysisId();
+    el('brUpId').textContent = id;
+    el('brUpErr').textContent = '';
+    try {
+      el('brUpName').value = localStorage.getItem('rnv.analyst') || '';
+      el('brUpMail').value = localStorage.getItem('rnv.analystMail') || '';
+    } catch (e) {}
+    function close() {
+      el('brUpYes').removeEventListener('click', onYes);
+      el('brUpNo').removeEventListener('click', onNo);
+      if (dlg.open) dlg.close();
+    }
+    function onNo() { close(); }
+    function onYes() {
+      var name = el('brUpName').value.trim(), mail = el('brUpMail').value.trim();
+      if (!name) { el('brUpErr').textContent = 'Please give a name.'; return; }
+      if (!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(mail)) { el('brUpErr').textContent = 'Please give a valid e-mail address.'; return; }
+      try { localStorage.setItem('rnv.analyst', name); localStorage.setItem('rnv.analystMail', mail); } catch (e) {}
+      var done = sample.items.filter(rated).length;
+      download(new Blob([JSON.stringify({
+        format: 'rnv-blind-ratings', analysisId: id, analyst: name, email: mail,
+        corpus: corpusId, sheet: sheet, sample: sample.sha256OfPositions, positionsRated: done,
+        exportedAt: new Date().toISOString(), rows: RNVReview.all(sheet)
+      }, null, 1)], { type: 'application/json' }), 'analysis_' + id + '.json');
+      close();
+      ask('File saved', 'analysis_' + id + '.json holds ' + done + ' rated positions, your id ' + id + ' and ' + mail +
+          '. To have it published on the Compare page, send this file in — it is added to the site unchanged. ' +
+          'You can also compare it right away on the Compare page, without publishing.', 'Close');
+    }
+    el('brUpYes').addEventListener('click', onYes);
+    el('brUpNo').addEventListener('click', onNo);
+    if (dlg.showModal) dlg.showModal();
+  });
+
   el('brLoad').addEventListener('click', function () { el('brFile').click(); });
   el('brFile').addEventListener('change', function (e) {
     var f = e.target.files[0]; if (!f) return;

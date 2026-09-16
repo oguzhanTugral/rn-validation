@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Compare analyses · RN validation</title>
+<link rel="stylesheet" href="css/site.css">
+<style>
+  .cmp-list{display:grid;gap:8px;margin:12px 0}
+  .cmp-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+  .cmp-item input{margin-top:3px}
+  .cmp-item .who{font-weight:700}
+  .cmp-item .meta{font-size:13px;color:var(--muted)}
+  .cmp-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0}
+  .cmp-wrap{overflow-x:auto}
+  .cmp-tag{display:inline-block;font-size:12px;padding:1px 7px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h2 class="page">Compare analyses</h2>
+  <p class="lede">Blind-review ratings, analyst by analyst. Pick <b>two</b> and compare them position by position.
+  Every published analysis carries the e-mail it was made under and the fingerprint of the sample it was made on.</p>
+
+  <div class="note" id="cmpNote">Loading the published analyses&hellip;</div>
+
+  <div class="cmp-tools">
+    <button id="cmpFileBtn" type="button">Add a file from this computer</button>
+    <input id="cmpFile" type="file" accept="application/json,.json" hidden multiple>
+    <button id="cmpRun" type="button" disabled>Compare the two selected</button>
+    <span class="dim" id="cmpPick" style="font-size:13px"></span>
+  </div>
+
+  <div class="cmp-list" id="cmpList"></div>
+  <div id="cmpOut"></div>
+</main>
+
+<script src="data/corpora.js"></script>
+<script src="js/rnv-data.js"></script>
+<script>
+RNVData.boot({ page: 'compare.html', title: 'Compare analyses', host: 'cmpList', needsCorpus: false, render: function () {
+  var esc = RNVData.esc;
+  var entries = [];                     // { id, analyst, email, sample, rows, source }
+  var el = function (id) { return document.getElementById(id); };
+
+  var QN = { nt: 'Notes', rt: 'Root', bs: 'Bass', sp: 'Span' };
+  var LBL = {
+    nt: { y: 'exactly', x: 'all + extra', n: 'missing', u: 'unclear' },
+    rt: { y: 'correct', n: 'wrong', u: 'unclear' },
+    bs: { y: 'correct', n: 'wrong', u: 'unclear' },
+    sp: { y: 'own chord', c: 'chord change inside', n: 'merge with next', u: 'unclear' }
+  };
+  var rated = function (v) { return !!(v && v.nt && v.rt && v.bs && v.sp); };
+
+  function add(file, source) {
+    var rows = file.rows || {};
+    entries.push({
+      id: file.analysisId || file.sheet || ('file-' + (entries.length + 1)),
+      analyst: file.analyst || 'unnamed',
+      email: file.email || '',
+      sample: file.sample || '',
+      exportedAt: file.exportedAt || '',
+      rated: Object.keys(rows).filter(function (k) { return rated(rows[k]); }).length,
+      rows: rows,
+      source: source
+    });
+  }
+
+  function paint() {
+    el('cmpList').innerHTML = entries.length ? entries.map(function (e, i) {
+      return '<label class="cmp-item"><input type="checkbox" data-i="' + i + '">' +
+        '<span><span class="who">' + esc(e.analyst) + '</span> ' +
+        '<span class="cmp-tag">' + esc(e.source) + '</span><br>' +
+        '<span class="meta">' + esc(e.id) + (e.email ? ' &middot; ' + esc(e.email) : '') +
+        ' &middot; ' + e.rated + ' positions rated' +
+        (e.exportedAt ? ' &middot; ' + esc(String(e.exportedAt).slice(0, 10)) : '') +
+        '<br>sample ' + esc(String(e.sample).slice(0, 16)) + '</span></span></label>';
+    }).join('') : '<div class="empty">No analysis loaded yet.</div>';
+    Array.prototype.forEach.call(el('cmpList').querySelectorAll('input'), function (b) {
+      b.addEventListener('change', function () {
+        var on = el('cmpList').querySelectorAll('input:checked');
+        if (on.length > 2) { b.checked = false; return; }          // at most two
+        on = el('cmpList').querySelectorAll('input:checked');
+        el('cmpRun').disabled = on.length !== 2;
+        el('cmpPick').textContent = on.length + ' of 2 selected';
+      });
+    });
+    el('cmpRun').disabled = true;
+    el('cmpPick').textContent = '0 of 2 selected';
+  }
+
+  function compare(a, b) {
+    var per = { nt: { n: 0, same: 0 }, rt: { n: 0, same: 0 }, bs: { n: 0, same: 0 }, sp: { n: 0, same: 0 } };
+    var rowsBoth = 0, diffs = [];
+    Object.keys(a.rows).forEach(function (k) {
+      var x = a.rows[k], y = b.rows[k];
+      if (!y) return;
+      var any = false, allSame = true;
+      Object.keys(QN).forEach(function (q) {
+        if (!x[q] || !y[q]) return;
+        any = true;
+        per[q].n += 1;
+        if (x[q] === y[q]) per[q].same += 1; else allSame = false;
+      });
+      if (!any) return;
+      rowsBoth += 1;
+      if (!allSame) diffs.push({ id: k, a: x, b: y });
+    });
+    var pct = function (p) { return p.n ? (100 * p.same / p.n).toFixed(1) + '%' : '&mdash;'; };
+    var head = '<h3 class="sect">' + esc(a.analyst) + ' vs ' + esc(b.analyst) + '</h3>' +
+      '<p class="dim">' + rowsBoth + ' positions rated by both' +
+      (a.sample && b.sample && a.sample !== b.sample
+        ? ' &mdash; <b>different samples</b>, so the same id may not be the same position' : '') + '</p>';
+    var table = '<div class="cmp-wrap"><table><thead><tr><th>Question</th><th class="num">Both rated</th>' +
+      '<th class="num">Same answer</th><th class="num">Agreement</th></tr></thead><tbody>' +
+      Object.keys(QN).map(function (q) {
+        return '<tr><td>' + QN[q] + '</td><td class="num">' + per[q].n + '</td><td class="num">' + per[q].same +
+          '</td><td class="num"><b>' + pct(per[q]) + '</b></td></tr>';
+      }).join('') + '</tbody></table></div>';
+    var list = !diffs.length ? '<p class="dim">No disagreement.</p>' :
+      '<h3 class="sect">Disagreements (' + diffs.length + ')</h3><div class="cmp-wrap"><table><thead><tr><th>Position</th>' +
+      Object.keys(QN).map(function (q) { return '<th>' + QN[q] + '</th>'; }).join('') + '<th>Notes</th></tr></thead><tbody>' +
+      diffs.slice(0, 500).map(function (d) {
+        return '<tr><td>' + esc(d.id) + '</td>' + Object.keys(QN).map(function (q) {
+          var x = LBL[q][d.a[q]] || '', y = LBL[q][d.b[q]] || '';
+          return '<td>' + (x === y ? esc(x) : '<b>' + esc(x || '?') + '</b> / <b>' + esc(y || '?') + '</b>') + '</td>';
+        }).join('') + '<td class="dim">' + esc([d.a.n, d.b.n].filter(Boolean).join(' | ')) + '</td></tr>';
+      }).join('') + '</tbody></table></div>' +
+      (diffs.length > 500 ? '<p class="dim">First 500 shown.</p>' : '');
+    el('cmpOut').innerHTML = head + table + list;
+    el('cmpOut').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  el('cmpRun').addEventListener('click', function () {
+    var on = el('cmpList').querySelectorAll('input:checked');
+    if (on.length === 2) compare(entries[+on[0].dataset.i], entries[+on[1].dataset.i]);
+  });
+  el('cmpFileBtn').addEventListener('click', function () { el('cmpFile').click(); });
+  el('cmpFile').addEventListener('change', function (e) {
+    var files = Array.prototype.slice.call(e.target.files);
+    Promise.all(files.map(function (f) {
+      return f.text().then(function (t) { add(JSON.parse(t), 'this computer'); })
+        .catch(function (err) { alert(f.name + ': ' + err.message); });
+    })).then(paint);
+    e.target.value = '';
+  });
+
+  fetch('data/analyses/index.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (ix) {
+    var list = ix.analyses || [];
+    el('cmpNote').innerHTML = list.length
+      ? '<b>' + list.length + ' published analysis file' + (list.length > 1 ? 's' : '') + '.</b> Each was sent in by its analyst and is ' +
+        'published unchanged, with the e-mail it was made under. Add your own file from this computer to compare against them.'
+      : '<b>No analysis is published yet.</b> An analysis is published when its analyst sends the file in from the ' +
+        '<a href="review.html">Blind review</a> page; until then you can compare two files from this computer.';
+    return Promise.all(list.map(function (a) {
+      return fetch('data/analyses/' + encodeURIComponent(a.file), { cache: 'no-store' })
+        .then(function (r) { return r.json(); }).then(function (f) { add(f, 'published'); }).catch(function () {});
+    }));
+  }).catch(function () {
+    el('cmpNote').textContent = 'The list of published analyses could not be loaded.';
+  }).then(paint);
+} });
+</script>
+</body>
+</html>
