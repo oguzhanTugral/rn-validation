@@ -24,7 +24,14 @@
   <p class="lede">Blind-review ratings, analyst by analyst. Only analyses uploaded to the system can be compared: pick <b>two</b> and compare them position by position.
   Every published analysis carries the e-mail it was made under and the fingerprint of the sample it was made on.</p>
 
-  <div class="note" id="cmpNote">Loading the published analyses&hellip;</div>
+  <div class="note" id="cmpLocked">
+    <b>This page opens after you give your details.</b> Name, e-mail, country, profession and education are required to
+    view and compare analyses. They are kept in this browser.
+    <div style="margin-top:10px"><button id="cmpUnlock" type="button">Enter my details</button></div>
+  </div>
+
+  <div id="cmpBody" hidden>
+  <div class="note" id="cmpNote">Loading the uploaded analyses&hellip;</div>
 
   <div class="cmp-tools">
     <button id="cmpRun" type="button" disabled>Compare the two selected</button>
@@ -33,6 +40,7 @@
 
   <div class="cmp-list" id="cmpList"></div>
   <div id="cmpOut"></div>
+  </div>
 </main>
 
 <script src="data/corpora.js"></script>
@@ -134,15 +142,23 @@ RNVData.boot({ page: 'compare.html', title: 'Compare analyses', host: 'cmpList',
 
   el('cmpRun').addEventListener('click', function () {
     var on = el('cmpList').querySelectorAll('input:checked');
-    if (on.length !== 2) return;
-    // comparing requires the same details as uploading, except the analysis itself
-    RNVReview.identity({ full: true, title: 'Before you compare',
-      text: 'Comparing analyses requires your name, e-mail, country, profession and education. They are kept in this browser.'
-    }).then(function (who) {
-      if (who) compare(entries[+on[0].dataset.i], entries[+on[1].dataset.i]);
-    });
+    if (on.length === 2) compare(entries[+on[0].dataset.i], entries[+on[1].dataset.i]);
   });
 
+  function unlock() {
+    RNVReview.identity({ full: true, title: 'Enter the Compare page',
+      text: 'The Compare page opens after you give your name, e-mail, country, profession and education.'
+    }).then(function (who) {
+      if (!who) return;                              // cancelled: the page stays closed
+      el('cmpLocked').hidden = true;
+      el('cmpBody').hidden = false;
+      loadAnalyses();
+    });
+  }
+  el('cmpUnlock').addEventListener('click', unlock);
+  unlock();
+
+  function loadAnalyses() {
   fetch('data/analyses/index.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (ix) {
     var list = ix.analyses || [];
     el('cmpNote').innerHTML = list.length
@@ -157,6 +173,7 @@ RNVData.boot({ page: 'compare.html', title: 'Compare analyses', host: 'cmpList',
   }).catch(function () {
     el('cmpNote').textContent = 'The list of published analyses could not be loaded.';
   }).then(paint);
+  }
 } });
 </script>
 </body>
