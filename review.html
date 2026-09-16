@@ -61,7 +61,7 @@
 <dialog class="br-ask" id="brUp">
   <div class="body">
     <h3>Upload analysis</h3>
-    <p>Your ratings are stamped with the id below and with your e-mail, and saved as a file. The e-mail stays in the
+<p>Every download carries this id and your e-mail, and holds all of your ratings in one file. The e-mail stays in the
     file and is shown with the analysis when it is published, so everyone can see who made it.</p>
     <div class="br-field"><label>Analysis id (assigned by the system)</label><div class="br-id-badge" id="brUpId"></div></div>
     <div class="br-field"><label for="brUpName">Name shown with the analysis</label><input id="brUpName" type="text" placeholder="Name Surname"></div>
@@ -123,8 +123,8 @@
     <div class="field"><label for="brJump">Go to</label>
       <input id="brJump" type="text" placeholder="S001" style="width:6em"></div>
     <div class="field"><label>&nbsp;</label><div class="seg">
-      <button id="brXlsx" type="button">Download .xlsx</button>
-      <button id="brJson" type="button">Download ratings (JSON)</button>
+      <button id="brXlsx" type="button">Download .xlsx (stamped)</button>
+      <button id="brJson" type="button">Download analysis (JSON)</button>
       <button id="brLoad" type="button">Upload ratings (JSON)</button>
       <button id="brClear" type="button">Clear all ratings</button>
       <input id="brFile" type="file" accept="application/json,.json" hidden>
@@ -388,9 +388,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
 
   function download(blob, name) { RNVReview.download(blob, name); }
   el('brJson').addEventListener('click', function () {
-    download(new Blob([JSON.stringify({ format: 'rnv-blind-ratings', sheet: sheet, sample: sample.sha256OfPositions,
-      exportedAt: new Date().toISOString(), rows: RNVReview.all(sheet) }, null, 1)], { type: 'application/json' }),
-      'blind_review_' + corpusId + '_' + new Date().toISOString().slice(0, 10) + '.json');
+    identity().then(function (who) { if (who) saveAnalysis(who); });
   });
   el('brClear').addEventListener('click', function () {
     var done = sample.items.filter(rated).length;
@@ -418,39 +416,54 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     return v;
   }
 
-  el('brUpload').addEventListener('click', function () {
-    var dlg = el('brUp'), id = analysisId();
+  // every download carries the analyst's id, name and e-mail: ask once, keep it
+  function identity() {
+    var id = analysisId(), name = '', mail = '';
+    try { name = localStorage.getItem('rnv.analyst') || ''; mail = localStorage.getItem('rnv.analystMail') || ''; } catch (e) {}
+    if (name && mail) return Promise.resolve({ id: id, analyst: name, email: mail });
+    var dlg = el('brUp');
     el('brUpId').textContent = id;
     el('brUpErr').textContent = '';
-    try {
-      el('brUpName').value = localStorage.getItem('rnv.analyst') || '';
-      el('brUpMail').value = localStorage.getItem('rnv.analystMail') || '';
-    } catch (e) {}
-    function close() {
-      el('brUpYes').removeEventListener('click', onYes);
-      el('brUpNo').removeEventListener('click', onNo);
-      if (dlg.open) dlg.close();
-    }
-    function onNo() { close(); }
-    function onYes() {
-      var name = el('brUpName').value.trim(), mail = el('brUpMail').value.trim();
-      if (!name) { el('brUpErr').textContent = 'Please give a name.'; return; }
-      if (!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(mail)) { el('brUpErr').textContent = 'Please give a valid e-mail address.'; return; }
-      try { localStorage.setItem('rnv.analyst', name); localStorage.setItem('rnv.analystMail', mail); } catch (e) {}
-      var done = sample.items.filter(rated).length;
-      download(new Blob([JSON.stringify({
-        format: 'rnv-blind-ratings', analysisId: id, analyst: name, email: mail,
-        corpus: corpusId, sheet: sheet, sample: sample.sha256OfPositions, positionsRated: done,
-        exportedAt: new Date().toISOString(), rows: RNVReview.all(sheet)
-      }, null, 1)], { type: 'application/json' }), 'analysis_' + id + '.json');
-      close();
-      ask('File saved', 'analysis_' + id + '.json holds ' + done + ' rated positions, your id ' + id + ' and ' + mail +
-          '. To have it published on the Compare page, send this file in — it is added to the site unchanged. ' +
-          'You can also compare it right away on the Compare page, without publishing.', 'Close');
-    }
-    el('brUpYes').addEventListener('click', onYes);
-    el('brUpNo').addEventListener('click', onNo);
-    if (dlg.showModal) dlg.showModal();
+    el('brUpName').value = name;
+    el('brUpMail').value = mail;
+    return new Promise(function (resolve) {
+      function close(answer) {
+        el('brUpYes').removeEventListener('click', onYes);
+        el('brUpNo').removeEventListener('click', onNo);
+        dlg.removeEventListener('close', onClose);
+        if (dlg.open) dlg.close();
+        resolve(answer);
+      }
+      function onNo() { close(null); }
+      function onClose() { close(null); }
+      function onYes() {
+        var n = el('brUpName').value.trim(), m = el('brUpMail').value.trim();
+        if (!n) { el('brUpErr').textContent = 'Please give a name.'; return; }
+        if (!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(m)) { el('brUpErr').textContent = 'Please give a valid e-mail address.'; return; }
+        try { localStorage.setItem('rnv.analyst', n); localStorage.setItem('rnv.analystMail', m); } catch (e) {}
+        close({ id: id, analyst: n, email: m });
+      }
+      el('brUpYes').addEventListener('click', onYes);
+      el('brUpNo').addEventListener('click', onNo);
+      dlg.addEventListener('close', onClose);
+      if (dlg.showModal) dlg.showModal();
+    });
+  }
+
+  function saveAnalysis(who) {
+    var done = sample.items.filter(rated).length;
+    download(new Blob([JSON.stringify({
+      format: 'rnv-blind-ratings', analysisId: who.id, analyst: who.analyst, email: who.email,
+      corpus: corpusId, sheet: sheet, sample: sample.sha256OfPositions, positionsRated: done,
+      exportedAt: new Date().toISOString(), rows: RNVReview.all(sheet)
+    }, null, 1)], { type: 'application/json' }), 'analysis_' + who.id + '.json');
+    ask('File saved', 'analysis_' + who.id + '.json holds all ' + done + ' rated positions, your id ' + who.id +
+        ' and ' + who.email + '. Send this one file in to have it published on the Compare page; it is added to the ' +
+        'site unchanged. You can also load it straight into the Compare page without publishing.', 'Close');
+  }
+
+  el('brUpload').addEventListener('click', function () {
+    identity().then(function (who) { if (who) saveAnalysis(who); });
   });
 
   el('brLoad').addEventListener('click', function () { el('brFile').click(); });
@@ -467,18 +480,20 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     }).catch(function (err) { alert('Could not read the file: ' + err.message); });
     e.target.value = '';
   });
-  el('brXlsx').addEventListener('click', function () {
+  el('brXlsx').addEventListener('click', function () { identity().then(function (who) { if (who) saveXlsx(who); }); });
+
+  function saveXlsx(who) {
     var name = { y: 'correct', n: 'wrong', u: 'unclear' }, span = { y: 'own chord', c: 'chord change inside', n: 'merge with next', u: 'unclear' };
-    var header = ['Id', 'Part', 'Work no', 'Work', 'Start bar', 'Start beat', 'End bar', 'End beat (not incl.)', 'Local key', 'Notes shown', 'Root shown', 'Bass shown',
+    var header = ['Analysis id', 'Analyst', 'E-mail', 'Id', 'Part', 'Work no', 'Work', 'Start bar', 'Start beat', 'End bar', 'End beat (not incl.)', 'Local key', 'Notes shown', 'Root shown', 'Bass shown',
                   'Notes', 'Root', 'Bass', 'Span', 'Note'];
     var rows = sample.items.map(function (it) {
       var v = RNVReview.getKey(sheet, it.id);
-      return [it.id, it.part, it.work, pretty(it.title), it.bar, it.beat, it.endBar == null ? 'end of work' : it.endBar, it.endBar == null ? '' : it.endBeat, it.localKey, it.notes, it.root, it.bass,
+      return [who.id, who.analyst, who.email, it.id, it.part, it.work, pretty(it.title), it.bar, it.beat, it.endBar == null ? 'end of work' : it.endBar, it.endBar == null ? '' : it.endBeat, it.localKey, it.notes, it.root, it.bass,
               ({ y: 'exactly', x: 'all + extra', n: 'missing', u: 'unclear' })[v.nt] || '', name[v.rt] || '', name[v.bs] || '', span[v.sp] || '', v.n || ''];
     });
-    download(RNVReview.xlsx('Blind review', header, rows, [7, 10, 8, 36, 9, 10, 8, 18, 12, 22, 8, 8, 10, 10, 10, 16, 40]),
-      'blind_review_' + corpusId + '_' + new Date().toISOString().slice(0, 10) + '.xlsx');
-  });
+    download(RNVReview.xlsx('Blind review', header, rows, [12, 20, 26, 7, 10, 8, 36, 9, 10, 8, 18, 12, 22, 8, 8, 10, 10, 10, 16, 40]),
+      'analysis_' + who.id + '.xlsx');
+  }
 
   fetch('data/corpora/' + encodeURIComponent(corpusId) + '/blind_sample.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (s) {
     // ratings belong to one sample: a new sample gets its own sheet, so old ratings never attach to new positions
