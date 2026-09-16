@@ -20,9 +20,11 @@
 "endBar": 7,
 "endBeat": 1.0,
 "localKey": "C minor",
-"notes": "C - D - Gb - A",
+"notes": "C - D - F# - A",
 "root": "D",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "e824b9f97a"
 },
 {
 "id": "S002",
@@ -36,9 +38,11 @@
 "endBar": 125,
 "endBeat": 1.0,
 "localKey": "G minor",
-"notes": "C - D - Gb - A",
+"notes": "C - D - F# - A",
 "root": "D",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "36fada622c"
 },
 {
 "id": "S003",
@@ -54,7 +58,9 @@
 "localKey": "C major",
 "notes": "D - F - A - B",
 "root": "B",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "90652d420d"
 },
 {
 "id": "S004",
@@ -68,9 +74,11 @@
 "endBar": 70,
 "endBeat": 1.0,
 "localKey": "Bb major",
-"notes": "Db - Eb - G",
+"notes": "C# - Eb - G",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "169d7d0c98"
 },
 {
 "id": "S005",
@@ -86,7 +94,9 @@
 "localKey": "F major",
 "notes": "D - F - Bb",
 "root": "Bb",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "d3ce3c6949"
 },
 {
 "id": "S006",
@@ -100,9 +110,11 @@
 "endBar": 48,
 "endBeat": 1.0,
 "localKey": "Eb major",
-"notes": "D - Eb - F - Ab - Bb",
+"notes": "D - F - Ab - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": true,
+"rev": "b7add9e7ad"
 },
 {
 "id": "S007",
@@ -118,7 +130,9 @@
 "localKey": "Gb minor",
 "notes": "C# - E - G - A#",
 "root": "A#",
-"bass": "A#"
+"bass": "A#",
+"changed": false,
+"rev": "898bc4c36f"
 },
 {
 "id": "S008",
@@ -134,7 +148,9 @@
 "localKey": "Eb major",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "ba94b7157f"
 },
 {
 "id": "S009",
@@ -150,7 +166,9 @@
 "localKey": "G minor",
 "notes": "D - F - Ab",
 "root": "D",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "9d6a910aa7"
 },
 {
 "id": "S010",
@@ -164,9 +182,11 @@
 "endBar": 113,
 "endBeat": 2.0,
 "localKey": "C minor",
-"notes": "D - Eb - Ab - B",
+"notes": "Eb - Ab - B",
 "root": "Ab",
-"bass": "Eb"
+"bass": "Eb",
+"changed": true,
+"rev": "6841a45851"
 },
 {
 "id": "S011",
@@ -180,9 +200,11 @@
 "endBar": 49,
 "endBeat": 2.5,
 "localKey": "Gb major",
-"notes": "C - D - F - Gb - A",
-"root": "F",
-"bass": "A"
+"notes": "B# - E# - A",
+"root": "E#",
+"bass": "A",
+"changed": true,
+"rev": "5d441cfdb6"
 },
 {
 "id": "S012",
@@ -198,7 +220,9 @@
 "localKey": "C minor",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "9b7cd7a3b5"
 },
 {
 "id": "S013",
@@ -212,9 +236,11 @@
 "endBar": 15,
 "endBeat": 4.5,
 "localKey": "G minor",
-"notes": "Db - D - E - G",
+"notes": "C# - D - E - G",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "d803057157"
 },
 {
 "id": "S014",
@@ -230,7 +256,9 @@
 "localKey": "F major",
 "notes": "C - E - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "0d01e0660b"
 },
 {
 "id": "S015",
@@ -246,7 +274,9 @@
 "localKey": "Db major",
 "notes": "C - Db - F - Ab",
 "root": "Db",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "e01a4fc1a9"
 },
 {
 "id": "S016",
@@ -260,9 +290,11 @@
 "endBar": 169,
 "endBeat": 1.0,
 "localKey": "C major",
-"notes": "D - F - Ab",
-"root": "Ab",
-"bass": "Ab"
+"notes": "D - F - G#",
+"root": "G#",
+"bass": "G#",
+"changed": false,
+"rev": "1e4488b5f0"
 },
 {
 "id": "S017",
@@ -278,7 +310,9 @@
 "localKey": "D major",
 "notes": "D - G - B",
 "root": "G",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "2bf2aed607"
 },
 {
 "id": "S018",
@@ -294,7 +328,9 @@
 "localKey": "C major",
 "notes": "C - F# - G - A",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "7cd0f8ec00"
 },
 {
 "id": "S019",
@@ -310,7 +346,9 @@
 "localKey": "Eb major",
 "notes": "Eb - F - Ab",
 "root": "F",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "61d4815875"
 },
 {
 "id": "S020",
@@ -324,9 +362,11 @@
 "endBar": 41,
 "endBeat": 3.0,
 "localKey": "Ab major",
-"notes": "C# - F - G - A#",
+"notes": "Db - F - G - Bb",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "7453599375"
 },
 {
 "id": "S021",
@@ -342,7 +382,9 @@
 "localKey": "Bb major",
 "notes": "D - F - Bb",
 "root": "Bb",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "61ed732744"
 },
 {
 "id": "S022",
@@ -358,7 +400,9 @@
 "localKey": "B major",
 "notes": "E - G - B",
 "root": "E",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "5c970c12d4"
 },
 {
 "id": "S023",
@@ -372,9 +416,11 @@
 "endBar": 305,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "C - Db - F - Bb",
+"notes": "Db - F - Bb",
 "root": "Bb",
-"bass": "Db"
+"bass": "Db",
+"changed": true,
+"rev": "a7dd9650e4"
 },
 {
 "id": "S024",
@@ -390,7 +436,9 @@
 "localKey": "G minor",
 "notes": "C - Eb - F - A",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "933ed551ef"
 },
 {
 "id": "S025",
@@ -404,9 +452,11 @@
 "endBar": 68,
 "endBeat": 2.0,
 "localKey": "C minor",
-"notes": "Eb - F - Ab - B",
+"notes": "Eb - F - Ab - Cb",
 "root": "F",
-"bass": "B"
+"bass": "Cb",
+"changed": false,
+"rev": "ac810c05db"
 },
 {
 "id": "S026",
@@ -420,9 +470,11 @@
 "endBar": 9,
 "endBeat": 2.0,
 "localKey": "D minor",
-"notes": "D - F - Ab - B",
-"root": "Ab",
-"bass": "F"
+"notes": "D - F - G# - B",
+"root": "G#",
+"bass": "F",
+"changed": false,
+"rev": "eb1a2ca24a"
 },
 {
 "id": "S027",
@@ -436,9 +488,11 @@
 "endBar": 5,
 "endBeat": 1.0,
 "localKey": "C major",
-"notes": "C - D - E - F - G - B",
+"notes": "D - F - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": true,
+"rev": "1e746df48b"
 },
 {
 "id": "S028",
@@ -454,7 +508,9 @@
 "localKey": "C major",
 "notes": "C - E - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "9ba287242b"
 },
 {
 "id": "S029",
@@ -470,7 +526,9 @@
 "localKey": "Bb major",
 "notes": "D - F - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "3aa43df09b"
 },
 {
 "id": "S030",
@@ -486,7 +544,9 @@
 "localKey": "E minor",
 "notes": "C - E - A",
 "root": "A",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "a762254eb5"
 },
 {
 "id": "S031",
@@ -500,9 +560,11 @@
 "endBar": 47,
 "endBeat": 2.0,
 "localKey": "A minor",
-"notes": "D - F - Ab - B",
-"root": "Ab",
-"bass": "D"
+"notes": "D - F - G# - B",
+"root": "G#",
+"bass": "D",
+"changed": false,
+"rev": "1c07080754"
 },
 {
 "id": "S032",
@@ -518,7 +580,9 @@
 "localKey": "F minor",
 "notes": "C - Eb - Gb - A",
 "root": "A",
-"bass": "Gb"
+"bass": "Gb",
+"changed": false,
+"rev": "787326f65f"
 },
 {
 "id": "S033",
@@ -534,7 +598,9 @@
 "localKey": "G minor",
 "notes": "D - F - G - Bb",
 "root": "G",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "4388050f1b"
 },
 {
 "id": "S034",
@@ -550,7 +616,9 @@
 "localKey": "Bb major",
 "notes": "G - A - Bb",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "9c5a157e48"
 },
 {
 "id": "S035",
@@ -566,7 +634,9 @@
 "localKey": "F minor",
 "notes": "C - D - F - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "a48dbe3b3b"
 },
 {
 "id": "S036",
@@ -580,9 +650,11 @@
 "endBar": 199,
 "endBeat": 1.0,
 "localKey": "A major",
-"notes": "C# - F - F# - A#",
+"notes": "C# - E# - F# - A#",
 "root": "F#",
-"bass": "A#"
+"bass": "A#",
+"changed": false,
+"rev": "9325c21a56"
 },
 {
 "id": "S037",
@@ -596,9 +668,11 @@
 "endBar": 37,
 "endBeat": 4.0,
 "localKey": "Db major",
-"notes": "Db - Eb - Gb - A",
+"notes": "Db - Eb - Gb - Bbb",
 "root": "Eb",
-"bass": "Gb"
+"bass": "Gb",
+"changed": false,
+"rev": "916e2114a8"
 },
 {
 "id": "S038",
@@ -614,7 +688,9 @@
 "localKey": "D minor",
 "notes": "D - G - Bb",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "ebfdb1a740"
 },
 {
 "id": "S039",
@@ -630,7 +706,9 @@
 "localKey": "F minor",
 "notes": "C - Eb - A",
 "root": "A",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "6a7bf1c9c0"
 },
 {
 "id": "S040",
@@ -646,7 +724,9 @@
 "localKey": "B major",
 "notes": "E - G - B",
 "root": "E",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "bf4cef6117"
 },
 {
 "id": "S041",
@@ -662,7 +742,9 @@
 "localKey": "Bb minor",
 "notes": "C - Eb - Bb",
 "root": "C",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "17f026fe2d"
 },
 {
 "id": "S042",
@@ -678,7 +760,9 @@
 "localKey": "G minor",
 "notes": "D - F - Ab - Bb",
 "root": "Bb",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "922376d812"
 },
 {
 "id": "S043",
@@ -692,9 +776,11 @@
 "endBar": 17,
 "endBeat": 1.5,
 "localKey": "D major",
-"notes": "C# - E - G - A#",
+"notes": "C# - E - G - Bb",
 "root": "C#",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "ec84927ff5"
 },
 {
 "id": "S044",
@@ -710,7 +796,9 @@
 "localKey": "Bb major",
 "notes": "C - E - G - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "5599c44b24"
 },
 {
 "id": "S045",
@@ -724,9 +812,11 @@
 "endBar": 66,
 "endBeat": 1.5,
 "localKey": "Eb major",
-"notes": "C - Eb - F - G - Bb",
+"notes": "C - Eb - G - Bb",
 "root": "C",
-"bass": "G"
+"bass": "G",
+"changed": true,
+"rev": "38307c3e78"
 },
 {
 "id": "S046",
@@ -742,7 +832,9 @@
 "localKey": "F major",
 "notes": "C - F - G - Bb",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "5571ae97fe"
 },
 {
 "id": "S047",
@@ -758,7 +850,9 @@
 "localKey": "F minor",
 "notes": "Db - Eb - G - Bb",
 "root": "Eb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "1ce4471584"
 },
 {
 "id": "S048",
@@ -772,9 +866,11 @@
 "endBar": 124,
 "endBeat": 2.0,
 "localKey": "A minor",
-"notes": "C - D - A - B",
+"notes": "D - A - B",
 "root": "B",
-"bass": "A"
+"bass": "A",
+"changed": true,
+"rev": "f9fb1db316"
 },
 {
 "id": "S049",
@@ -790,7 +886,9 @@
 "localKey": "Eb major",
 "notes": "C - E - G - Bb",
 "root": "C",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "0b443d0e53"
 },
 {
 "id": "S050",
@@ -806,7 +904,9 @@
 "localKey": "E major",
 "notes": "C# - E - G#",
 "root": "C#",
-"bass": "C#"
+"bass": "C#",
+"changed": false,
+"rev": "b34eeca5a1"
 },
 {
 "id": "S051",
@@ -822,7 +922,9 @@
 "localKey": "G major",
 "notes": "D - F - A - B",
 "root": "B",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "623603f3b4"
 },
 {
 "id": "S052",
@@ -838,7 +940,9 @@
 "localKey": "D minor",
 "notes": "D - Eb - G - Bb",
 "root": "Eb",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "894ac8de1e"
 },
 {
 "id": "S053",
@@ -854,7 +958,9 @@
 "localKey": "Eb major",
 "notes": "C - Eb - G - Bb",
 "root": "C",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "a382ea3b5c"
 },
 {
 "id": "S054",
@@ -870,7 +976,9 @@
 "localKey": "Eb major",
 "notes": "D - Eb - G - Bb",
 "root": "Eb",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "ff1c2c767c"
 },
 {
 "id": "S055",
@@ -886,7 +994,9 @@
 "localKey": "A major",
 "notes": "C# - E - F# - A",
 "root": "F#",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "6a412e3650"
 },
 {
 "id": "S056",
@@ -902,7 +1012,9 @@
 "localKey": "D minor",
 "notes": "Db - F - Ab - B",
 "root": "Db",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "39b7b1cd97"
 },
 {
 "id": "S057",
@@ -918,7 +1030,9 @@
 "localKey": "B minor",
 "notes": "C# - F# - B",
 "root": "F#",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "2046fb9853"
 },
 {
 "id": "S058",
@@ -934,7 +1048,9 @@
 "localKey": "D major",
 "notes": "D - F# - A",
 "root": "D",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "f8628360e8"
 },
 {
 "id": "S059",
@@ -948,9 +1064,11 @@
 "endBar": 172,
 "endBeat": 2.5,
 "localKey": "F major",
-"notes": "C - Eb - E - G - Bb",
+"notes": "C - D# - G - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "4df4d28ddb"
 },
 {
 "id": "S060",
@@ -966,7 +1084,9 @@
 "localKey": "Ab major",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "f27e7abc4f"
 },
 {
 "id": "S061",
@@ -980,9 +1100,11 @@
 "endBar": 13,
 "endBeat": 1.0,
 "localKey": "Db major",
-"notes": "Db - Eb - F - Ab - Bb",
+"notes": "Db - Eb - Bb",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": true,
+"rev": "5517154dcc"
 },
 {
 "id": "S062",
@@ -998,7 +1120,9 @@
 "localKey": "Eb major",
 "notes": "Eb - Gb - A - B",
 "root": "B",
-"bass": "Gb"
+"bass": "Gb",
+"changed": false,
+"rev": "08e556e29d"
 },
 {
 "id": "S063",
@@ -1014,7 +1138,9 @@
 "localKey": "A minor",
 "notes": "C - E - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "591c2c3c67"
 },
 {
 "id": "S064",
@@ -1030,7 +1156,9 @@
 "localKey": "F major",
 "notes": "Db - F - G - Bb",
 "root": "G",
-"bass": "Db"
+"bass": "Db",
+"changed": false,
+"rev": "76f2994d85"
 },
 {
 "id": "S065",
@@ -1046,7 +1174,9 @@
 "localKey": "G minor",
 "notes": "D - G - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "1c00af2d2b"
 },
 {
 "id": "S066",
@@ -1062,7 +1192,9 @@
 "localKey": "D major",
 "notes": "D - F# - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "ab6c7e0050"
 },
 {
 "id": "S067",
@@ -1078,7 +1210,9 @@
 "localKey": "Bb major",
 "notes": "Db - E - G",
 "root": "Db",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "c3e5f03445"
 },
 {
 "id": "S068",
@@ -1094,7 +1228,9 @@
 "localKey": "F major",
 "notes": "E - G - Bb",
 "root": "E",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "a813e12f43"
 },
 {
 "id": "S069",
@@ -1110,7 +1246,9 @@
 "localKey": "F minor",
 "notes": "Db - F - Ab - Bb",
 "root": "Bb",
-"bass": "Db"
+"bass": "Db",
+"changed": false,
+"rev": "a43e568222"
 },
 {
 "id": "S070",
@@ -1126,7 +1264,9 @@
 "localKey": "Eb major",
 "notes": "C - F - Ab",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "e7c093a90f"
 },
 {
 "id": "S071",
@@ -1140,9 +1280,11 @@
 "endBar": 30,
 "endBeat": 4.0,
 "localKey": "G minor",
-"notes": "C - Eb - Gb - G",
+"notes": "C - Eb - G",
 "root": "C",
-"bass": "Eb"
+"bass": "Eb",
+"changed": true,
+"rev": "ec17d96f4d"
 },
 {
 "id": "S072",
@@ -1156,9 +1298,11 @@
 "endBar": 70,
 "endBeat": 1.5,
 "localKey": "A major",
-"notes": "Db - E - Ab",
-"root": "Db",
-"bass": "Ab"
+"notes": "C# - E - G#",
+"root": "C#",
+"bass": "G#",
+"changed": false,
+"rev": "e704ae9436"
 },
 {
 "id": "S073",
@@ -1172,9 +1316,11 @@
 "endBar": 60,
 "endBeat": 1.5,
 "localKey": "Db major",
-"notes": "Db - Gb - Ab - B",
+"notes": "Db - Gb - Ab - Cb",
 "root": "Db",
-"bass": "Db"
+"bass": "Db",
+"changed": false,
+"rev": "d694ecd740"
 },
 {
 "id": "S074",
@@ -1188,9 +1334,11 @@
 "endBar": 6,
 "endBeat": 1.0,
 "localKey": "Db major",
-"notes": "Db - F - Ab",
-"root": "Db",
-"bass": "F"
+"notes": "C# - E# - G#",
+"root": "C#",
+"bass": "E#",
+"changed": false,
+"rev": "e3976bee60"
 },
 {
 "id": "S075",
@@ -1204,9 +1352,11 @@
 "endBar": 44,
 "endBeat": 1.0,
 "localKey": "Bb major",
-"notes": "C - Gb - G - A - Bb",
-"root": "Gb",
-"bass": "Gb"
+"notes": "C - F# - A",
+"root": "F#",
+"bass": "F#",
+"changed": true,
+"rev": "6d6d685966"
 },
 {
 "id": "S076",
@@ -1222,7 +1372,9 @@
 "localKey": "G minor",
 "notes": "D - G - Bb",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "681c0acd26"
 },
 {
 "id": "S077",
@@ -1236,9 +1388,11 @@
 "endBar": 5,
 "endBeat": 1.5,
 "localKey": "F minor",
-"notes": "C - F - Ab - A",
+"notes": "C - F - Ab",
 "root": "F",
-"bass": "Ab"
+"bass": "Ab",
+"changed": true,
+"rev": "071590f466"
 },
 {
 "id": "S078",
@@ -1254,7 +1408,9 @@
 "localKey": "G minor",
 "notes": "C - G - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "06bfd8d4c3"
 },
 {
 "id": "S079",
@@ -1270,7 +1426,9 @@
 "localKey": "G major",
 "notes": "C - E - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "438fb41556"
 },
 {
 "id": "S080",
@@ -1286,7 +1444,9 @@
 "localKey": "E major",
 "notes": "E - G# - B",
 "root": "E",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "e346fa566f"
 },
 {
 "id": "S081",
@@ -1302,7 +1462,9 @@
 "localKey": "Eb major",
 "notes": "C - Eb - G - Bb",
 "root": "C",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "8ed0cf1b1a"
 },
 {
 "id": "S082",
@@ -1318,7 +1480,9 @@
 "localKey": "F major",
 "notes": "D - F - Ab - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "55b4314b04"
 },
 {
 "id": "S083",
@@ -1332,9 +1496,11 @@
 "endBar": 33,
 "endBeat": 4.5,
 "localKey": "Ab major",
-"notes": "C - D - G - Bb",
+"notes": "C - G - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "6f89e07110"
 },
 {
 "id": "S084",
@@ -1350,7 +1516,9 @@
 "localKey": "F major",
 "notes": "D - F - A - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "afe384a249"
 },
 {
 "id": "S085",
@@ -1364,9 +1532,11 @@
 "endBar": 151,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "D - F - Ab - B",
+"notes": "D - F - G# - B",
 "root": "B",
-"bass": "Ab"
+"bass": "G#",
+"changed": false,
+"rev": "81366a72ee"
 },
 {
 "id": "S086",
@@ -1382,7 +1552,9 @@
 "localKey": "Eb major",
 "notes": "D - F - Ab - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "b6330e2f9f"
 },
 {
 "id": "S087",
@@ -1398,7 +1570,9 @@
 "localKey": "F minor",
 "notes": "C - F - G - Bb",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "cafc25f432"
 },
 {
 "id": "S088",
@@ -1414,7 +1588,9 @@
 "localKey": "A major",
 "notes": "D - G - B",
 "root": "G",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "cc80c59c59"
 },
 {
 "id": "S089",
@@ -1428,9 +1604,11 @@
 "endBar": 337,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "C - Eb - Gb - A",
-"root": "Gb",
-"bass": "Eb"
+"notes": "C - Eb - F# - A",
+"root": "F#",
+"bass": "Eb",
+"changed": false,
+"rev": "f814e08f7a"
 },
 {
 "id": "S090",
@@ -1446,7 +1624,9 @@
 "localKey": "F major",
 "notes": "Eb - F - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "d78fec4a1a"
 },
 {
 "id": "S091",
@@ -1460,9 +1640,11 @@
 "endBar": 52,
 "endBeat": 3.0,
 "localKey": "F major",
-"notes": "C - Eb - Gb",
-"root": "Gb",
-"bass": "C"
+"notes": "C - Eb - F#",
+"root": "F#",
+"bass": "C",
+"changed": false,
+"rev": "4d7131ecbb"
 },
 {
 "id": "S092",
@@ -1478,7 +1660,9 @@
 "localKey": "C minor",
 "notes": "C - Db - F - Ab",
 "root": "Db",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "acd44e578f"
 },
 {
 "id": "S093",
@@ -1494,7 +1678,9 @@
 "localKey": "Db minor",
 "notes": "C# - D# - F# - A",
 "root": "D#",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "ef93f76aa9"
 },
 {
 "id": "S094",
@@ -1508,9 +1694,11 @@
 "endBar": 148,
 "endBeat": 2.0,
 "localKey": "G minor",
-"notes": "C - Eb - Gb - G - A",
-"root": "Gb",
-"bass": "Eb"
+"notes": "C - Eb - F# - A",
+"root": "F#",
+"bass": "Eb",
+"changed": true,
+"rev": "0618c0416b"
 },
 {
 "id": "S095",
@@ -1526,7 +1714,9 @@
 "localKey": "G major",
 "notes": "C - D - F# - A",
 "root": "D",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "d6cb9bffaf"
 },
 {
 "id": "S096",
@@ -1540,9 +1730,11 @@
 "endBar": 45,
 "endBeat": 1.0,
 "localKey": "B minor",
-"notes": "D - F - G - B",
+"notes": "D - E# - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "b69868a589"
 },
 {
 "id": "S097",
@@ -1558,7 +1750,9 @@
 "localKey": "E minor",
 "notes": "C - E - F# - A",
 "root": "F#",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "f6b2be0bbe"
 },
 {
 "id": "S098",
@@ -1574,7 +1768,9 @@
 "localKey": "Eb major",
 "notes": "D - F - Ab - Bb",
 "root": "Bb",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "40a3c6f44a"
 },
 {
 "id": "S099",
@@ -1590,7 +1786,9 @@
 "localKey": "C major",
 "notes": "D - E - F",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "84c8d776e9"
 },
 {
 "id": "S100",
@@ -1606,7 +1804,9 @@
 "localKey": "Ab major",
 "notes": "Db - Eb - Ab - Bb",
 "root": "Ab",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "bd4b6a41e3"
 },
 {
 "id": "S101",
@@ -1620,9 +1820,11 @@
 "endBar": 121,
 "endBeat": 1.5,
 "localKey": "C major",
-"notes": "D - E - F - G",
+"notes": "D - E - F",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": true,
+"rev": "328adef513"
 },
 {
 "id": "S102",
@@ -1638,7 +1840,9 @@
 "localKey": "A major",
 "notes": "D# - F# - A - B",
 "root": "B",
-"bass": "D#"
+"bass": "D#",
+"changed": false,
+"rev": "3f2dcab83a"
 },
 {
 "id": "S103",
@@ -1654,7 +1858,9 @@
 "localKey": "E minor",
 "notes": "C - D# - F# - A",
 "root": "D#",
-"bass": "D#"
+"bass": "D#",
+"changed": false,
+"rev": "2905f30041"
 },
 {
 "id": "S104",
@@ -1670,7 +1876,9 @@
 "localKey": "Eb major",
 "notes": "C - Eb - F - A",
 "root": "F",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "dca8a40f71"
 },
 {
 "id": "S105",
@@ -1686,7 +1894,9 @@
 "localKey": "Eb major",
 "notes": "Db - F - Gb - Bb",
 "root": "Gb",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "b7c25be753"
 },
 {
 "id": "S106",
@@ -1702,7 +1912,9 @@
 "localKey": "F major",
 "notes": "C - D - F - G",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "649fb8c7f2"
 },
 {
 "id": "S107",
@@ -1718,7 +1930,9 @@
 "localKey": "C major",
 "notes": "E - G - Bb",
 "root": "E",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "f6de5ac83a"
 },
 {
 "id": "S108",
@@ -1732,9 +1946,11 @@
 "endBar": 62,
 "endBeat": 2.0,
 "localKey": "F minor",
-"notes": "C - Eb - F - Gb - A",
+"notes": "C - Eb - F - A",
 "root": "F",
-"bass": "Eb"
+"bass": "Eb",
+"changed": true,
+"rev": "d7fc48dbb6"
 },
 {
 "id": "S109",
@@ -1748,9 +1964,11 @@
 "endBar": 72,
 "endBeat": 2.0,
 "localKey": "D minor",
-"notes": "C - F - Ab",
+"notes": "C - F - G#",
 "root": "F",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "6da81f1ce1"
 },
 {
 "id": "S110",
@@ -1764,9 +1982,11 @@
 "endBar": 57,
 "endBeat": 2.5,
 "localKey": "A minor",
-"notes": "D - E - Ab - A - B",
+"notes": "D - E - A - B",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": true,
+"rev": "65f071b1ef"
 },
 {
 "id": "S111",
@@ -1782,7 +2002,9 @@
 "localKey": "Bb major",
 "notes": "C - F - Ab",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "ee31700f29"
 },
 {
 "id": "S112",
@@ -1796,9 +2018,11 @@
 "endBar": 64,
 "endBeat": 2.0,
 "localKey": "F minor",
-"notes": "C - Db - E - G - Bb",
+"notes": "C - E - G - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "f0d00e5a54"
 },
 {
 "id": "S113",
@@ -1814,7 +2038,9 @@
 "localKey": "Eb major",
 "notes": "C - D - F - Ab",
 "root": "D",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "2516957903"
 },
 {
 "id": "S114",
@@ -1828,9 +2054,11 @@
 "endBar": 8,
 "endBeat": 2.0,
 "localKey": "F minor",
-"notes": "Db - Eb - F - G - Bb",
+"notes": "Db - F - G - Bb",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": true,
+"rev": "9a586f015a"
 },
 {
 "id": "S115",
@@ -1844,9 +2072,11 @@
 "endBar": 4,
 "endBeat": 1.0,
 "localKey": "G minor",
-"notes": "C - Eb - Gb - Bb",
+"notes": "C - Eb - F# - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "90c09330d6"
 },
 {
 "id": "S116",
@@ -1860,9 +2090,11 @@
 "endBar": 137,
 "endBeat": 1.0,
 "localKey": "Bb major",
-"notes": "Eb - Gb - Bb - B",
-"root": "B",
-"bass": "Bb"
+"notes": "Eb - Gb - Bb - Cb",
+"root": "Cb",
+"bass": "Bb",
+"changed": false,
+"rev": "20f8dfdbb7"
 },
 {
 "id": "S117",
@@ -1876,9 +2108,11 @@
 "endBar": 43,
 "endBeat": 1.5,
 "localKey": "F major",
-"notes": "Db - D - E - Bb",
+"notes": "C# - E - Bb",
 "root": "E",
-"bass": "Bb"
+"bass": "Bb",
+"changed": true,
+"rev": "6565bcc080"
 },
 {
 "id": "S118",
@@ -1894,7 +2128,9 @@
 "localKey": "Bb major",
 "notes": "D - G - Bb",
 "root": "G",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "c7d57f7818"
 },
 {
 "id": "S119",
@@ -1908,9 +2144,11 @@
 "endBar": 24,
 "endBeat": 4.5,
 "localKey": "D minor",
-"notes": "D - F - Ab",
-"root": "Ab",
-"bass": "D"
+"notes": "D - F - G#",
+"root": "G#",
+"bass": "D",
+"changed": false,
+"rev": "fa5da21e8f"
 },
 {
 "id": "S120",
@@ -1926,7 +2164,9 @@
 "localKey": "F major",
 "notes": "E - G - Bb",
 "root": "E",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "299498ec64"
 },
 {
 "id": "S121",
@@ -1942,7 +2182,9 @@
 "localKey": "D minor",
 "notes": "D - G - Bb",
 "root": "G",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "33ff02baf8"
 },
 {
 "id": "S122",
@@ -1958,7 +2200,9 @@
 "localKey": "F major",
 "notes": "C - Eb - F - A",
 "root": "F",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "26f4cf1ae9"
 },
 {
 "id": "S123",
@@ -1974,7 +2218,9 @@
 "localKey": "Bb major",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "8be3e7a618"
 },
 {
 "id": "S124",
@@ -1990,7 +2236,9 @@
 "localKey": "G minor",
 "notes": "Db - F - Ab - B",
 "root": "Db",
-"bass": "Db"
+"bass": "Db",
+"changed": false,
+"rev": "dfe13875ce"
 },
 {
 "id": "S125",
@@ -2006,7 +2254,9 @@
 "localKey": "G major",
 "notes": "D - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "a94ffa2526"
 },
 {
 "id": "S126",
@@ -2020,9 +2270,11 @@
 "endBar": 274,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "Db - D - Gb - A",
+"notes": "C# - D - F# - A",
 "root": "D",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "a263c5f7d5"
 },
 {
 "id": "S127",
@@ -2038,7 +2290,9 @@
 "localKey": "E minor",
 "notes": "D - G - B",
 "root": "G",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "ae95f9a479"
 },
 {
 "id": "S128",
@@ -2052,9 +2306,11 @@
 "endBar": 8,
 "endBeat": 1.0,
 "localKey": "C minor",
-"notes": "C - Gb - A",
-"root": "Gb",
-"bass": "A"
+"notes": "C - F# - A",
+"root": "F#",
+"bass": "A",
+"changed": false,
+"rev": "d3230fd15b"
 },
 {
 "id": "S129",
@@ -2070,7 +2326,9 @@
 "localKey": "Bb major",
 "notes": "D - F - Bb",
 "root": "Bb",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "8773582fcd"
 },
 {
 "id": "S130",
@@ -2086,7 +2344,9 @@
 "localKey": "C minor",
 "notes": "C - Eb - Ab",
 "root": "Ab",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "6473546427"
 },
 {
 "id": "S131",
@@ -2100,9 +2360,11 @@
 "endBar": 97,
 "endBeat": 1.0,
 "localKey": "A minor",
-"notes": "Eb - Gb - A - B",
+"notes": "D# - F# - A - B",
 "root": "B",
-"bass": "Eb"
+"bass": "D#",
+"changed": false,
+"rev": "5ac22532f7"
 },
 {
 "id": "S132",
@@ -2118,7 +2380,9 @@
 "localKey": "Db major",
 "notes": "Db - F - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "e6203e68e7"
 },
 {
 "id": "S133",
@@ -2134,7 +2398,9 @@
 "localKey": "Bb major",
 "notes": "D - F - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "6c9b8523f4"
 },
 {
 "id": "S134",
@@ -2150,7 +2416,9 @@
 "localKey": "G minor",
 "notes": "C - D - F - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "5920084f6d"
 },
 {
 "id": "S135",
@@ -2164,9 +2432,11 @@
 "endBar": 149,
 "endBeat": 3.0,
 "localKey": "G minor",
-"notes": "C - Eb - F - G - A",
+"notes": "C - Eb - F - A",
 "root": "F",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "d7e769f004"
 },
 {
 "id": "S136",
@@ -2182,7 +2452,9 @@
 "localKey": "G major",
 "notes": "C# - E - A#",
 "root": "A#",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "ce7ca2919f"
 },
 {
 "id": "S137",
@@ -2198,7 +2470,9 @@
 "localKey": "G minor",
 "notes": "D - F - A",
 "root": "D",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "e30c1b6412"
 },
 {
 "id": "S138",
@@ -2214,7 +2488,9 @@
 "localKey": "E minor",
 "notes": "E - G - B",
 "root": "E",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "c661c934d7"
 },
 {
 "id": "S139",
@@ -2228,9 +2504,11 @@
 "endBar": 2,
 "endBeat": 3.0,
 "localKey": "Ab minor",
-"notes": "C# - D# - G - A#",
+"notes": "C# - D# - F## - A#",
 "root": "D#",
-"bass": "A#"
+"bass": "A#",
+"changed": false,
+"rev": "48d894b3f5"
 },
 {
 "id": "S140",
@@ -2246,7 +2524,9 @@
 "localKey": "G minor",
 "notes": "C - Eb - G - A",
 "root": "A",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "797503a3fc"
 },
 {
 "id": "S141",
@@ -2260,9 +2540,11 @@
 "endBar": 15,
 "endBeat": 3.0,
 "localKey": "D minor",
-"notes": "D - Gb - A",
+"notes": "D - F# - A",
 "root": "D",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "cdc003b29d"
 },
 {
 "id": "S142",
@@ -2278,7 +2560,9 @@
 "localKey": "C minor",
 "notes": "Db - Eb - G - Bb",
 "root": "Eb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "30b9b23e38"
 },
 {
 "id": "S143",
@@ -2292,9 +2576,11 @@
 "endBar": 16,
 "endBeat": 1.0,
 "localKey": "Bb major",
-"notes": "Db - E - G",
-"root": "Db",
-"bass": "E"
+"notes": "C# - E - G",
+"root": "C#",
+"bass": "E",
+"changed": false,
+"rev": "b17957b0cd"
 },
 {
 "id": "S144",
@@ -2310,7 +2596,9 @@
 "localKey": "C minor",
 "notes": "C - Eb - G - Bb",
 "root": "C",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "2c0c248a77"
 },
 {
 "id": "S145",
@@ -2324,9 +2612,11 @@
 "endBar": 24,
 "endBeat": 1.0,
 "localKey": "Eb major",
-"notes": "Eb - F - Ab - B",
+"notes": "Eb - F - Ab - Cb",
 "root": "F",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "8a08dea635"
 },
 {
 "id": "S146",
@@ -2342,7 +2632,9 @@
 "localKey": "D minor",
 "notes": "D - F - A - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "3e53784cd3"
 },
 {
 "id": "S147",
@@ -2358,7 +2650,9 @@
 "localKey": "F major",
 "notes": "C - E - G - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "f96885e6bd"
 },
 {
 "id": "S148",
@@ -2372,9 +2666,11 @@
 "endBar": 96,
 "endBeat": 1.0,
 "localKey": "A major",
-"notes": "Db - E - Gb - Bb",
-"root": "Gb",
-"bass": "E"
+"notes": "C# - E - F# - A#",
+"root": "F#",
+"bass": "E",
+"changed": false,
+"rev": "6fc433c8db"
 },
 {
 "id": "S149",
@@ -2388,9 +2684,11 @@
 "endBar": 88,
 "endBeat": 2.0,
 "localKey": "A major",
-"notes": "Db - F - A",
+"notes": "C# - E# - A",
 "root": "A",
-"bass": "Db"
+"bass": "C#",
+"changed": false,
+"rev": "3da3debca6"
 },
 {
 "id": "S150",
@@ -2406,7 +2704,9 @@
 "localKey": "F major",
 "notes": "Db - F - Ab - B",
 "root": "Db",
-"bass": "Db"
+"bass": "Db",
+"changed": false,
+"rev": "40593f538f"
 },
 {
 "id": "S151",
@@ -2422,7 +2722,9 @@
 "localKey": "G minor",
 "notes": "C - Eb - G - A",
 "root": "A",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "030bf01ad9"
 },
 {
 "id": "S152",
@@ -2436,9 +2738,11 @@
 "endBar": 229,
 "endBeat": 2.0,
 "localKey": "F major",
-"notes": "Db - Gb - G - A - Bb",
-"root": "Gb",
-"bass": "Db"
+"notes": "Db - F# - A",
+"root": "F#",
+"bass": "Db",
+"changed": true,
+"rev": "57ed39689d"
 },
 {
 "id": "S153",
@@ -2452,9 +2756,11 @@
 "endBar": 5,
 "endBeat": 1.0,
 "localKey": "C major",
-"notes": "C - E - Ab - B",
+"notes": "E - G# - B",
 "root": "E",
-"bass": "B"
+"bass": "B",
+"changed": true,
+"rev": "92e1fc64e5"
 },
 {
 "id": "S154",
@@ -2470,7 +2776,9 @@
 "localKey": "A minor",
 "notes": "C - E - A",
 "root": "A",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "963796ff08"
 },
 {
 "id": "S155",
@@ -2484,9 +2792,11 @@
 "endBar": 30,
 "endBeat": 1.5,
 "localKey": "A minor",
-"notes": "D - F - Ab - B",
-"root": "Ab",
-"bass": "F"
+"notes": "D - F - G# - B",
+"root": "G#",
+"bass": "F",
+"changed": false,
+"rev": "655c3bb10c"
 },
 {
 "id": "S156",
@@ -2502,7 +2812,9 @@
 "localKey": "Eb major",
 "notes": "D - Eb - G - Bb",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "71ed2f32ad"
 },
 {
 "id": "S157",
@@ -2518,7 +2830,9 @@
 "localKey": "Bb major",
 "notes": "C - Eb - Bb",
 "root": "C",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "9352f9b8d9"
 },
 {
 "id": "S158",
@@ -2534,7 +2848,9 @@
 "localKey": "E minor",
 "notes": "C# - E - G - B",
 "root": "C#",
-"bass": "C#"
+"bass": "C#",
+"changed": false,
+"rev": "e7f89317d0"
 },
 {
 "id": "S159",
@@ -2550,7 +2866,9 @@
 "localKey": "C minor",
 "notes": "D - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "4296845200"
 },
 {
 "id": "S160",
@@ -2564,9 +2882,11 @@
 "endBar": 69,
 "endBeat": 2.0,
 "localKey": "A major",
-"notes": "C - D# - E - A",
+"notes": "C - E - A",
 "root": "A",
-"bass": "E"
+"bass": "E",
+"changed": true,
+"rev": "04fc305d7d"
 },
 {
 "id": "S161",
@@ -2582,7 +2902,9 @@
 "localKey": "A minor",
 "notes": "C - E - A",
 "root": "A",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "59a8c13f98"
 },
 {
 "id": "S162",
@@ -2596,9 +2918,11 @@
 "endBar": 188,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "D - G - A#",
+"notes": "D - G - Bb",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "158daa8733"
 },
 {
 "id": "S163",
@@ -2614,7 +2938,9 @@
 "localKey": "C major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "f0ae0f4426"
 },
 {
 "id": "S164",
@@ -2630,7 +2956,9 @@
 "localKey": "G major",
 "notes": "C - E - A",
 "root": "A",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "8ce5eaf72a"
 },
 {
 "id": "S165",
@@ -2646,7 +2974,9 @@
 "localKey": "C major",
 "notes": "C - E - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "3c0b2e0c43"
 },
 {
 "id": "S166",
@@ -2662,7 +2992,9 @@
 "localKey": "C minor",
 "notes": "C - E - G",
 "root": "C",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "b8090af29a"
 },
 {
 "id": "S167",
@@ -2676,9 +3008,11 @@
 "endBar": 58,
 "endBeat": 1.5,
 "localKey": "C minor",
-"notes": "Eb - Gb - B",
+"notes": "Eb - F# - B",
 "root": "B",
-"bass": "Gb"
+"bass": "F#",
+"changed": false,
+"rev": "097b564d9e"
 },
 {
 "id": "S168",
@@ -2694,7 +3028,9 @@
 "localKey": "Eb major",
 "notes": "D - F - Bb",
 "root": "Bb",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "078106688f"
 },
 {
 "id": "S169",
@@ -2708,9 +3044,11 @@
 "endBar": 98,
 "endBeat": 1.0,
 "localKey": "A major",
-"notes": "Db - E - A",
+"notes": "C# - E - A",
 "root": "A",
-"bass": "Db"
+"bass": "C#",
+"changed": false,
+"rev": "cd9718207e"
 },
 {
 "id": "S170",
@@ -2726,7 +3064,9 @@
 "localKey": "Eb major",
 "notes": "C - Eb - F - Ab",
 "root": "F",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "e4eafd0e92"
 },
 {
 "id": "S171",
@@ -2742,7 +3082,9 @@
 "localKey": "E major",
 "notes": "E - G# - B",
 "root": "E",
-"bass": "G#"
+"bass": "G#",
+"changed": false,
+"rev": "e272153700"
 },
 {
 "id": "S172",
@@ -2756,9 +3098,11 @@
 "endBar": 37,
 "endBeat": 2.0,
 "localKey": "E major",
-"notes": "C# - E - F# - G# - A#",
+"notes": "C# - E - F# - A#",
 "root": "F#",
-"bass": "C#"
+"bass": "C#",
+"changed": true,
+"rev": "ccea5800f0"
 },
 {
 "id": "S173",
@@ -2772,9 +3116,11 @@
 "endBar": 19,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "C - Eb - Gb - A",
-"root": "Gb",
-"bass": "Gb"
+"notes": "C - Eb - F# - A",
+"root": "F#",
+"bass": "F#",
+"changed": false,
+"rev": "de5408965c"
 },
 {
 "id": "S174",
@@ -2790,7 +3136,9 @@
 "localKey": "E major",
 "notes": "E - G# - B",
 "root": "E",
-"bass": "G#"
+"bass": "G#",
+"changed": false,
+"rev": "6ee03614bc"
 },
 {
 "id": "S175",
@@ -2806,7 +3154,9 @@
 "localKey": "Eb minor",
 "notes": "D - Eb - F - Ab",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "0310dc3cee"
 },
 {
 "id": "S176",
@@ -2822,7 +3172,9 @@
 "localKey": "E minor",
 "notes": "D# - F# - A - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "2910064068"
 },
 {
 "id": "S177",
@@ -2838,7 +3190,9 @@
 "localKey": "D major",
 "notes": "C# - E - G - A",
 "root": "A",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "b57de74671"
 },
 {
 "id": "S178",
@@ -2852,9 +3206,11 @@
 "endBar": 11,
 "endBeat": 3.0,
 "localKey": "D major",
-"notes": "D - E - G - A#",
+"notes": "D - E - G - Bb",
 "root": "E",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "a71dfce0b6"
 },
 {
 "id": "S179",
@@ -2868,9 +3224,11 @@
 "endBar": 18,
 "endBeat": 1.0,
 "localKey": "A minor",
-"notes": "C - E - Ab - B",
+"notes": "E - G# - B",
 "root": "E",
-"bass": "E"
+"bass": "E",
+"changed": true,
+"rev": "0c78c14464"
 },
 {
 "id": "S180",
@@ -2886,7 +3244,9 @@
 "localKey": "Db major",
 "notes": "F - Ab - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "aa05bbb410"
 },
 {
 "id": "S181",
@@ -2902,7 +3262,9 @@
 "localKey": "Bb major",
 "notes": "Db - F - Bb",
 "root": "Bb",
-"bass": "Db"
+"bass": "Db",
+"changed": false,
+"rev": "2b342afea6"
 },
 {
 "id": "S182",
@@ -2916,9 +3278,11 @@
 "endBar": 2,
 "endBeat": 3.0,
 "localKey": "D minor",
-"notes": "D - E - Ab - Bb",
+"notes": "D - G# - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": true,
+"rev": "0eb954c010"
 },
 {
 "id": "S183",
@@ -2934,7 +3298,9 @@
 "localKey": "F major",
 "notes": "E - G - Bb",
 "root": "E",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "08b4db58cd"
 },
 {
 "id": "S184",
@@ -2950,7 +3316,9 @@
 "localKey": "G major",
 "notes": "C - F# - A",
 "root": "F#",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "f0d07fa3ac"
 },
 {
 "id": "S185",
@@ -2966,7 +3334,9 @@
 "localKey": "Eb major",
 "notes": "D - F - B",
 "root": "B",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "1ec4fc0ca6"
 },
 {
 "id": "S186",
@@ -2982,7 +3352,9 @@
 "localKey": "Ab major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "b8626f3c7d"
 },
 {
 "id": "S187",
@@ -2998,7 +3370,9 @@
 "localKey": "Eb major",
 "notes": "C - Eb - A",
 "root": "A",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "18bf8e9c68"
 },
 {
 "id": "S188",
@@ -3014,7 +3388,9 @@
 "localKey": "F major",
 "notes": "C - E - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "e8f5ea2af3"
 },
 {
 "id": "S189",
@@ -3030,7 +3406,9 @@
 "localKey": "F major",
 "notes": "C - Eb - F - A",
 "root": "F",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "a87a6a8dbc"
 },
 {
 "id": "S190",
@@ -3046,7 +3424,9 @@
 "localKey": "F major",
 "notes": "E - G - Bb",
 "root": "E",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "6f871b5b7e"
 },
 {
 "id": "S191",
@@ -3062,7 +3442,9 @@
 "localKey": "Bb major",
 "notes": "D - G - B",
 "root": "G",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "eac9647afa"
 },
 {
 "id": "S192",
@@ -3078,7 +3460,9 @@
 "localKey": "F minor",
 "notes": "C - E - G - Bb",
 "root": "C",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "11dad9a910"
 },
 {
 "id": "S193",
@@ -3092,9 +3476,11 @@
 "endBar": 75,
 "endBeat": 1.5,
 "localKey": "D minor",
-"notes": "Db - F - G - A",
+"notes": "C# - F - A",
 "root": "F",
-"bass": "Db"
+"bass": "C#",
+"changed": true,
+"rev": "1ef6122070"
 },
 {
 "id": "S194",
@@ -3110,7 +3496,9 @@
 "localKey": "E minor",
 "notes": "C# - E - F# - A#",
 "root": "F#",
-"bass": "A#"
+"bass": "A#",
+"changed": false,
+"rev": "5bf2ddbf58"
 },
 {
 "id": "S195",
@@ -3126,7 +3514,9 @@
 "localKey": "Bb major",
 "notes": "D - F - Bb",
 "root": "Bb",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "8dcd53eafb"
 },
 {
 "id": "S196",
@@ -3142,7 +3532,9 @@
 "localKey": "C minor",
 "notes": "D - Ab - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "baec22b40e"
 },
 {
 "id": "S197",
@@ -3156,9 +3548,11 @@
 "endBar": 10,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "C - E - F - G - A - Bb",
+"notes": "C - E - G - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "2e13b5b1a9"
 },
 {
 "id": "S198",
@@ -3172,9 +3566,11 @@
 "endBar": 12,
 "endBeat": 1.0,
 "localKey": "B minor",
-"notes": "C# - F - G#",
+"notes": "C# - E# - G#",
 "root": "C#",
-"bass": "C#"
+"bass": "C#",
+"changed": false,
+"rev": "81ea3e24e7"
 },
 {
 "id": "S199",
@@ -3188,9 +3584,11 @@
 "endBar": 83,
 "endBeat": 1.0,
 "localKey": "Db major",
-"notes": "Db - D - F - Bb - B",
+"notes": "D - F - Bb",
 "root": "Bb",
-"bass": "D"
+"bass": "D",
+"changed": true,
+"rev": "ee80d6ee3d"
 },
 {
 "id": "S200",
@@ -3204,9 +3602,11 @@
 "endBar": 25,
 "endBeat": 2.5,
 "localKey": "C major",
-"notes": "C - Eb - G",
+"notes": "C - D# - G",
 "root": "C",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "eafa928ca1"
 },
 {
 "id": "S201",
@@ -3222,7 +3622,9 @@
 "localKey": "Eb major",
 "notes": "D - Eb - G - Bb",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "e169c5f29f"
 },
 {
 "id": "S202",
@@ -3236,9 +3638,11 @@
 "endBar": 172,
 "endBeat": 2.0,
 "localKey": "D major",
-"notes": "D# - E - F# - G - B",
+"notes": "D# - F# - B",
 "root": "B",
-"bass": "F#"
+"bass": "F#",
+"changed": true,
+"rev": "29f0aad5ad"
 },
 {
 "id": "S203",
@@ -3254,7 +3658,9 @@
 "localKey": "E major",
 "notes": "C# - E - G# - B",
 "root": "C#",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "24e46b9058"
 },
 {
 "id": "S204",
@@ -3270,7 +3676,9 @@
 "localKey": "G minor",
 "notes": "D - G - Bb",
 "root": "G",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "737708a714"
 },
 {
 "id": "S205",
@@ -3286,7 +3694,9 @@
 "localKey": "A minor",
 "notes": "D - F - Bb",
 "root": "Bb",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "68c13042ee"
 },
 {
 "id": "S206",
@@ -3302,7 +3712,9 @@
 "localKey": "F major",
 "notes": "C - Eb - F - A",
 "root": "F",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "52b94aa9cd"
 },
 {
 "id": "S207",
@@ -3318,7 +3730,9 @@
 "localKey": "Eb major",
 "notes": "D - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "110f40606f"
 },
 {
 "id": "S208",
@@ -3334,7 +3748,9 @@
 "localKey": "A major",
 "notes": "D - G# - B",
 "root": "G#",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "0b0c22be0f"
 },
 {
 "id": "S209",
@@ -3350,7 +3766,9 @@
 "localKey": "C minor",
 "notes": "C - F - Ab",
 "root": "F",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "47793a1d87"
 },
 {
 "id": "S210",
@@ -3366,7 +3784,9 @@
 "localKey": "A minor",
 "notes": "E - G - B",
 "root": "E",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "51a43dc06a"
 },
 {
 "id": "S211",
@@ -3380,9 +3800,11 @@
 "endBar": 241,
 "endBeat": 2.0,
 "localKey": "G major",
-"notes": "Db - E - G - A",
+"notes": "C# - E - G - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "74f30c91bb"
 },
 {
 "id": "S212",
@@ -3396,9 +3818,11 @@
 "endBar": 125,
 "endBeat": 1.0,
 "localKey": "B major",
-"notes": "D - F - F# - G# - B",
+"notes": "D - F# - G# - B",
 "root": "G#",
-"bass": "F#"
+"bass": "F#",
+"changed": true,
+"rev": "d1e8ecec38"
 },
 {
 "id": "S213",
@@ -3414,7 +3838,9 @@
 "localKey": "Bb major",
 "notes": "C - Eb - F - A",
 "root": "F",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "fdad8a9c7e"
 },
 {
 "id": "S214",
@@ -3428,9 +3854,11 @@
 "endBar": 9,
 "endBeat": 1.0,
 "localKey": "D major",
-"notes": "C# - E - A - B",
+"notes": "C# - E - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": true,
+"rev": "edf0fc63a6"
 },
 {
 "id": "S215",
@@ -3446,7 +3874,9 @@
 "localKey": "G major",
 "notes": "D - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "926c77083c"
 },
 {
 "id": "S216",
@@ -3462,7 +3892,9 @@
 "localKey": "A minor",
 "notes": "D - F - B",
 "root": "B",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "c92a040f97"
 },
 {
 "id": "S217",
@@ -3478,7 +3910,9 @@
 "localKey": "C major",
 "notes": "C - E - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "1fd5fb50ae"
 },
 {
 "id": "S218",
@@ -3494,7 +3928,9 @@
 "localKey": "F major",
 "notes": "C - E - F - A",
 "root": "F",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "90c2fe2cb8"
 },
 {
 "id": "S219",
@@ -3508,9 +3944,11 @@
 "endBar": 55,
 "endBeat": 1.0,
 "localKey": "Bb major",
-"notes": "C - Eb - F - G - A",
+"notes": "C - Eb - F - A",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": true,
+"rev": "37d1c58491"
 },
 {
 "id": "S220",
@@ -3526,7 +3964,9 @@
 "localKey": "Eb major",
 "notes": "Db - G - Bb",
 "root": "G",
-"bass": "Db"
+"bass": "Db",
+"changed": false,
+"rev": "56ee68c6a3"
 },
 {
 "id": "S221",
@@ -3542,7 +3982,9 @@
 "localKey": "Db major",
 "notes": "D - F - Ab - Bb",
 "root": "Bb",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "298c583d9e"
 },
 {
 "id": "S222",
@@ -3558,7 +4000,9 @@
 "localKey": "E major",
 "notes": "E - G# - B",
 "root": "E",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "eb3e61465d"
 },
 {
 "id": "S223",
@@ -3574,7 +4018,9 @@
 "localKey": "A minor",
 "notes": "D - F - A - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "696349efac"
 },
 {
 "id": "S224",
@@ -3590,7 +4036,9 @@
 "localKey": "F major",
 "notes": "D - F - Ab - B",
 "root": "B",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "d489b5d619"
 },
 {
 "id": "S225",
@@ -3606,7 +4054,9 @@
 "localKey": "F major",
 "notes": "D - G - Bb",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "c1e3ff1ef9"
 },
 {
 "id": "S226",
@@ -3620,9 +4070,11 @@
 "endBar": 162,
 "endBeat": 4.5,
 "localKey": "C minor",
-"notes": "C - E - G - Ab - Bb",
+"notes": "C - E - G - Bb",
 "root": "C",
-"bass": "E"
+"bass": "E",
+"changed": true,
+"rev": "883dc4cde8"
 },
 {
 "id": "S227",
@@ -3638,7 +4090,9 @@
 "localKey": "Bb major",
 "notes": "C - E - G",
 "root": "C",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "917b1c872a"
 },
 {
 "id": "S228",
@@ -3654,7 +4108,9 @@
 "localKey": "G major",
 "notes": "D - G - B",
 "root": "G",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "8e2a9816a7"
 },
 {
 "id": "S229",
@@ -3668,9 +4124,11 @@
 "endBar": 4,
 "endBeat": 1.0,
 "localKey": "Bb major",
-"notes": "Db - Eb - G - Bb",
+"notes": "C# - Eb - G - Bb",
 "root": "Eb",
-"bass": "Db"
+"bass": "C#",
+"changed": false,
+"rev": "267ccd8cd3"
 },
 {
 "id": "S230",
@@ -3686,7 +4144,9 @@
 "localKey": "E minor",
 "notes": "E - F# - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "c6cc121053"
 },
 {
 "id": "S231",
@@ -3702,7 +4162,9 @@
 "localKey": "F minor",
 "notes": "Db - G - Bb",
 "root": "G",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "a1f7407dd5"
 },
 {
 "id": "S232",
@@ -3718,7 +4180,9 @@
 "localKey": "D minor",
 "notes": "C - E - G - B",
 "root": "C",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "195e1fe791"
 },
 {
 "id": "S233",
@@ -3732,9 +4196,11 @@
 "endBar": 33,
 "endBeat": 3.0,
 "localKey": "G minor",
-"notes": "Db - E - G - A",
+"notes": "C# - E - G - A",
 "root": "A",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "9e64a3cdd6"
 },
 {
 "id": "S234",
@@ -3750,7 +4216,9 @@
 "localKey": "D major",
 "notes": "D - F# - A",
 "root": "D",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "1f637ba01c"
 },
 {
 "id": "S235",
@@ -3766,7 +4234,9 @@
 "localKey": "C major",
 "notes": "D - F - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "e6c61f962b"
 },
 {
 "id": "S236",
@@ -3782,7 +4252,9 @@
 "localKey": "G minor",
 "notes": "C - Eb - G - A",
 "root": "A",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "2bc768585f"
 },
 {
 "id": "S237",
@@ -3798,7 +4270,9 @@
 "localKey": "Bb major",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "4f0ce3aad7"
 },
 {
 "id": "S238",
@@ -3814,7 +4288,9 @@
 "localKey": "G minor",
 "notes": "C - E - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "d50d1f1521"
 },
 {
 "id": "S239",
@@ -3830,7 +4306,9 @@
 "localKey": "F major",
 "notes": "F - A",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "53da37e164"
 },
 {
 "id": "S240",
@@ -3846,7 +4324,9 @@
 "localKey": "G major",
 "notes": "D - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "83a038f20a"
 },
 {
 "id": "S241",
@@ -3862,7 +4342,9 @@
 "localKey": "Bb minor",
 "notes": "Db - Eb - Gb - Bb",
 "root": "Eb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "81f3bc617e"
 },
 {
 "id": "S242",
@@ -3876,9 +4358,11 @@
 "endBar": 40,
 "endBeat": 1.0,
 "localKey": "Ab major",
-"notes": "C# - D# - F# - A",
-"root": "D#",
-"bass": "D#"
+"notes": "Db - Eb - Gb - Bbb",
+"root": "Eb",
+"bass": "Eb",
+"changed": false,
+"rev": "715c73b6e8"
 },
 {
 "id": "S243",
@@ -3894,7 +4378,9 @@
 "localKey": "B major",
 "notes": "D# - F# - A#",
 "root": "D#",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "fb19863be6"
 },
 {
 "id": "S244",
@@ -3910,7 +4396,9 @@
 "localKey": "G minor",
 "notes": "D - Eb - G - Bb",
 "root": "Eb",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "30f65191fa"
 },
 {
 "id": "S245",
@@ -3924,9 +4412,11 @@
 "endBar": 6,
 "endBeat": 2.5,
 "localKey": "D minor",
-"notes": "D - Gb - A",
+"notes": "D - F# - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "684320ffbb"
 },
 {
 "id": "S246",
@@ -3940,9 +4430,11 @@
 "endBar": 51,
 "endBeat": 2.0,
 "localKey": "Bb major",
-"notes": "C - D - F - A - Bb",
+"notes": "C - D - F - A",
 "root": "D",
-"bass": "A"
+"bass": "A",
+"changed": true,
+"rev": "7c6afe126a"
 },
 {
 "id": "S247",
@@ -3956,9 +4448,11 @@
 "endBar": 99,
 "endBeat": 1.0,
 "localKey": "A minor",
-"notes": "Eb - Gb - A",
-"root": "Eb",
-"bass": "Eb"
+"notes": "D# - F# - A",
+"root": "D#",
+"bass": "D#",
+"changed": false,
+"rev": "dda5a14708"
 },
 {
 "id": "S248",
@@ -3972,9 +4466,11 @@
 "endBar": 52,
 "endBeat": 1.0,
 "localKey": "B minor",
-"notes": "D - F - G - B",
+"notes": "D - E# - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "d970289647"
 },
 {
 "id": "S249",
@@ -3990,7 +4486,9 @@
 "localKey": "Eb major",
 "notes": "D - F - Ab - Bb",
 "root": "Bb",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "17d34c2871"
 },
 {
 "id": "S250",
@@ -4006,7 +4504,9 @@
 "localKey": "B minor",
 "notes": "D# - F# - A#",
 "root": "D#",
-"bass": "D#"
+"bass": "D#",
+"changed": false,
+"rev": "61a5ec47e5"
 },
 {
 "id": "S251",
@@ -4022,7 +4522,9 @@
 "localKey": "D major",
 "notes": "C# - E - G - A",
 "root": "A",
-"bass": "C#"
+"bass": "C#",
+"changed": false,
+"rev": "2258f0c369"
 },
 {
 "id": "S252",
@@ -4038,7 +4540,9 @@
 "localKey": "B minor",
 "notes": "C - F# - A",
 "root": "F#",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "4289203fd0"
 },
 {
 "id": "S253",
@@ -4052,9 +4556,11 @@
 "endBar": 159,
 "endBeat": 1.0,
 "localKey": "C minor",
-"notes": "C - Eb - Gb",
-"root": "Gb",
-"bass": "Gb"
+"notes": "C - Eb - F#",
+"root": "F#",
+"bass": "F#",
+"changed": false,
+"rev": "d783d16807"
 },
 {
 "id": "S254",
@@ -4068,9 +4574,11 @@
 "endBar": 4,
 "endBeat": 1.0,
 "localKey": "C minor",
-"notes": "C - Eb - Gb - A",
-"root": "Gb",
-"bass": "C"
+"notes": "C - Eb - F# - A",
+"root": "F#",
+"bass": "C",
+"changed": false,
+"rev": "771a4f183a"
 },
 {
 "id": "S255",
@@ -4086,7 +4594,9 @@
 "localKey": "F major",
 "notes": "Db - G - Bb",
 "root": "Db",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "b57317b3a7"
 },
 {
 "id": "S256",
@@ -4102,7 +4612,9 @@
 "localKey": "C major",
 "notes": "C - E - G - A",
 "root": "A",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "ef2198cb96"
 },
 {
 "id": "S257",
@@ -4116,9 +4628,11 @@
 "endBar": 17,
 "endBeat": 3.0,
 "localKey": "Gb minor",
-"notes": "C# - D - F - B",
-"root": "F",
-"bass": "F"
+"notes": "D - E# - B",
+"root": "E#",
+"bass": "E#",
+"changed": true,
+"rev": "650edae8b3"
 },
 {
 "id": "S258",
@@ -4132,9 +4646,11 @@
 "endBar": 12,
 "endBeat": 2.0,
 "localKey": "Bb major",
-"notes": "D - Eb - G - B",
+"notes": "Eb - G - B",
 "root": "Eb",
-"bass": "B"
+"bass": "B",
+"changed": true,
+"rev": "8d5951bbfc"
 },
 {
 "id": "S259",
@@ -4150,7 +4666,9 @@
 "localKey": "F major",
 "notes": "C - E - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "991f19023f"
 },
 {
 "id": "S260",
@@ -4166,7 +4684,9 @@
 "localKey": "F major",
 "notes": "C - E - G - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "65eca4f988"
 },
 {
 "id": "S261",
@@ -4182,7 +4702,9 @@
 "localKey": "B major",
 "notes": "C# - E - F# - B",
 "root": "F#",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "4360459831"
 },
 {
 "id": "S262",
@@ -4198,7 +4720,9 @@
 "localKey": "G major",
 "notes": "D - G - B",
 "root": "G",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "6b50dedc6d"
 },
 {
 "id": "S263",
@@ -4212,9 +4736,11 @@
 "endBar": 97,
 "endBeat": 2.0,
 "localKey": "D minor",
-"notes": "C - D - Gb",
+"notes": "C - D - F#",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "00dfe1ec3b"
 },
 {
 "id": "S264",
@@ -4230,7 +4756,9 @@
 "localKey": "D major",
 "notes": "D - F# - A",
 "root": "D",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "cb53f4efa4"
 },
 {
 "id": "S265",
@@ -4246,7 +4774,9 @@
 "localKey": "C major",
 "notes": "C - E - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "4841ae2e70"
 },
 {
 "id": "S266",
@@ -4260,9 +4790,11 @@
 "endBar": 85,
 "endBeat": 2.5,
 "localKey": "D minor",
-"notes": "C - E - Gb - A",
-"root": "Gb",
-"bass": "C"
+"notes": "C - E - F# - A",
+"root": "F#",
+"bass": "C",
+"changed": false,
+"rev": "c33af9bb2d"
 },
 {
 "id": "S267",
@@ -4278,7 +4810,9 @@
 "localKey": "D major",
 "notes": "D - F# - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "597e9621bf"
 },
 {
 "id": "S268",
@@ -4292,9 +4826,11 @@
 "endBar": 459,
 "endBeat": 2.5,
 "localKey": "Bb major",
-"notes": "C - D - F - G",
+"notes": "C - D - F",
 "root": "D",
-"bass": "F"
+"bass": "F",
+"changed": true,
+"rev": "3a9050e69c"
 },
 {
 "id": "S269",
@@ -4310,7 +4846,9 @@
 "localKey": "D minor",
 "notes": "D - F - G - B",
 "root": "G",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "b2aa0c7f4c"
 },
 {
 "id": "S270",
@@ -4326,7 +4864,9 @@
 "localKey": "Bb major",
 "notes": "C - Eb - F - G - A",
 "root": "F",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "5f050e973c"
 },
 {
 "id": "S271",
@@ -4342,7 +4882,9 @@
 "localKey": "F major",
 "notes": "C - D - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "e73e4f63dc"
 },
 {
 "id": "S272",
@@ -4356,9 +4898,11 @@
 "endBar": 9,
 "endBeat": 2.0,
 "localKey": "Eb major",
-"notes": "D - Gb - A",
+"notes": "D - F# - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "5f45c13f4e"
 },
 {
 "id": "S273",
@@ -4374,7 +4918,9 @@
 "localKey": "G minor",
 "notes": "C - Eb - G - A",
 "root": "A",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "6da659a376"
 },
 {
 "id": "S274",
@@ -4388,9 +4934,11 @@
 "endBar": 125,
 "endBeat": 2.5,
 "localKey": "C minor",
-"notes": "C - Db - Eb - Gb - A",
-"root": "Gb",
-"bass": "A"
+"notes": "C - Eb - F# - A",
+"root": "F#",
+"bass": "A",
+"changed": true,
+"rev": "b097b74c48"
 },
 {
 "id": "S275",
@@ -4406,7 +4954,9 @@
 "localKey": "Eb major",
 "notes": "C - Eb - G - Ab",
 "root": "Ab",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "773223eb8c"
 },
 {
 "id": "S276",
@@ -4422,7 +4972,9 @@
 "localKey": "B major",
 "notes": "C# - E - F# - A#",
 "root": "F#",
-"bass": "C#"
+"bass": "C#",
+"changed": false,
+"rev": "e559678159"
 },
 {
 "id": "S277",
@@ -4438,7 +4990,9 @@
 "localKey": "B major",
 "notes": "C# - E - G#",
 "root": "C#",
-"bass": "C#"
+"bass": "C#",
+"changed": false,
+"rev": "f54fca1e6c"
 },
 {
 "id": "S278",
@@ -4454,7 +5008,9 @@
 "localKey": "E major",
 "notes": "D# - F# - A - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "fc026f89bd"
 },
 {
 "id": "S279",
@@ -4468,9 +5024,11 @@
 "endBar": 116,
 "endBeat": 1.0,
 "localKey": "Bb major",
-"notes": "F - Ab - B",
+"notes": "F - G# - B",
 "root": "B",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "d05a8ddb76"
 },
 {
 "id": "S280",
@@ -4486,7 +5044,9 @@
 "localKey": "G minor",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "8c4bc27e5a"
 },
 {
 "id": "S281",
@@ -4502,7 +5062,9 @@
 "localKey": "A major",
 "notes": "D - F# - A#",
 "root": "D",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "f69c367981"
 },
 {
 "id": "S282",
@@ -4516,9 +5078,11 @@
 "endBar": 265,
 "endBeat": 2.5,
 "localKey": "Bb major",
-"notes": "C - Eb - F - G",
+"notes": "C - Eb - G",
 "root": "C",
-"bass": "Eb"
+"bass": "Eb",
+"changed": true,
+"rev": "69a2cc597b"
 },
 {
 "id": "S283",
@@ -4534,7 +5098,9 @@
 "localKey": "Bb major",
 "notes": "Db - E - G",
 "root": "Db",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "fcbfb0372f"
 },
 {
 "id": "S284",
@@ -4550,7 +5116,9 @@
 "localKey": "A minor",
 "notes": "C - E - A",
 "root": "A",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "8e660e83d1"
 },
 {
 "id": "S285",
@@ -4566,7 +5134,9 @@
 "localKey": "Eb major",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "261bb008b6"
 },
 {
 "id": "S286",
@@ -4580,9 +5150,11 @@
 "endBar": 3,
 "endBeat": 4.0,
 "localKey": "G minor",
-"notes": "Db - F - G - Bb",
+"notes": "C# - F - G - Bb",
 "root": "G",
-"bass": "Db"
+"bass": "C#",
+"changed": false,
+"rev": "8f82a04ead"
 },
 {
 "id": "S287",
@@ -4598,7 +5170,9 @@
 "localKey": "Eb major",
 "notes": "D - F - G - Bb",
 "root": "G",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "920a0c15ba"
 },
 {
 "id": "S288",
@@ -4612,9 +5186,11 @@
 "endBar": 149,
 "endBeat": 1.5,
 "localKey": "G minor",
-"notes": "C - D - F - Bb",
+"notes": "D - F - Bb",
 "root": "Bb",
-"bass": "D"
+"bass": "D",
+"changed": true,
+"rev": "fd5610c11e"
 },
 {
 "id": "S289",
@@ -4630,7 +5206,9 @@
 "localKey": "G major",
 "notes": "D - F - A",
 "root": "D",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "c94ce1422b"
 },
 {
 "id": "S290",
@@ -4646,7 +5224,9 @@
 "localKey": "Eb major",
 "notes": "C - Eb - Ab",
 "root": "Ab",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "3ec54ed08a"
 },
 {
 "id": "S291",
@@ -4660,9 +5240,11 @@
 "endBar": 144,
 "endBeat": 3.0,
 "localKey": "G minor",
-"notes": "C - D - E - G",
+"notes": "C - E - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "df53ae51fa"
 },
 {
 "id": "S292",
@@ -4676,9 +5258,11 @@
 "endBar": 83,
 "endBeat": 1.0,
 "localKey": "A major",
-"notes": "D - Ab - B",
-"root": "Ab",
-"bass": "Ab"
+"notes": "D - G# - B",
+"root": "G#",
+"bass": "G#",
+"changed": false,
+"rev": "a7785727f0"
 },
 {
 "id": "S293",
@@ -4694,7 +5278,9 @@
 "localKey": "D minor",
 "notes": "C - Eb - F - A",
 "root": "F",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "9d5db2444b"
 },
 {
 "id": "S294",
@@ -4710,7 +5296,9 @@
 "localKey": "C major",
 "notes": "D - E - G - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "ae7fbf2d9d"
 },
 {
 "id": "S295",
@@ -4724,9 +5312,11 @@
 "endBar": 142,
 "endBeat": 2.0,
 "localKey": "F major",
-"notes": "C - D - Eb - F - A - Bb",
+"notes": "C - D - F - A",
 "root": "D",
-"bass": "A"
+"bass": "A",
+"changed": true,
+"rev": "0ce1dc3449"
 },
 {
 "id": "S296",
@@ -4740,9 +5330,11 @@
 "endBar": 12,
 "endBeat": 2.5,
 "localKey": "Bb major",
-"notes": "Db - E - G - A - Bb",
+"notes": "Db - E - G - A",
 "root": "A",
-"bass": "G"
+"bass": "G",
+"changed": true,
+"rev": "c190940ccd"
 },
 {
 "id": "S297",
@@ -4758,7 +5350,9 @@
 "localKey": "F major",
 "notes": "D - E - G - Bb",
 "root": "E",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "1656aaa78e"
 },
 {
 "id": "S298",
@@ -4772,9 +5366,11 @@
 "endBar": 43,
 "endBeat": 2.5,
 "localKey": "E major",
-"notes": "C - D# - F# - G#",
+"notes": "B# - D# - F# - G#",
 "root": "G#",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "84fe116e49"
 },
 {
 "id": "S299",
@@ -4790,7 +5386,9 @@
 "localKey": "A minor",
 "notes": "D - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "8d8e894413"
 },
 {
 "id": "S300",
@@ -4804,9 +5402,11 @@
 "endBar": 7,
 "endBeat": 4.0,
 "localKey": "A minor",
-"notes": "Eb - Gb - A - B",
+"notes": "D# - F# - A - B",
 "root": "B",
-"bass": "Gb"
+"bass": "F#",
+"changed": false,
+"rev": "d4406d0270"
 },
 {
 "id": "S301",
@@ -4822,7 +5422,9 @@
 "localKey": "Eb major",
 "notes": "D - Ab - B",
 "root": "D",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "f4169ed4cd"
 },
 {
 "id": "S302",
@@ -4836,9 +5438,11 @@
 "endBar": 4,
 "endBeat": 1.0,
 "localKey": "B major",
-"notes": "D# - F - G# - B",
-"root": "F",
-"bass": "F"
+"notes": "D# - E# - G# - B",
+"root": "E#",
+"bass": "E#",
+"changed": false,
+"rev": "aa19df781c"
 },
 {
 "id": "S303",
@@ -4854,7 +5458,9 @@
 "localKey": "G minor",
 "notes": "C - G - A",
 "root": "A",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "e072f8ac1e"
 },
 {
 "id": "S304",
@@ -4870,7 +5476,9 @@
 "localKey": "F major",
 "notes": "C - E - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "4c17d788d2"
 },
 {
 "id": "S305",
@@ -4884,9 +5492,11 @@
 "endBar": 43,
 "endBeat": 4.0,
 "localKey": "Bb major",
-"notes": "C - D - Gb - G - Bb",
+"notes": "D - F# - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": true,
+"rev": "a9226778f8"
 },
 {
 "id": "S306",
@@ -4902,7 +5512,9 @@
 "localKey": "Eb major",
 "notes": "C - E - G - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "549fa1bace"
 },
 {
 "id": "S307",
@@ -4918,7 +5530,9 @@
 "localKey": "F major",
 "notes": "C - E - G - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "9292163bbc"
 },
 {
 "id": "S308",
@@ -4934,7 +5548,9 @@
 "localKey": "A minor",
 "notes": "D - G - B",
 "root": "G",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "04d0e3b361"
 },
 {
 "id": "S309",
@@ -4950,7 +5566,9 @@
 "localKey": "B major",
 "notes": "C# - G - B",
 "root": "C#",
-"bass": "C#"
+"bass": "C#",
+"changed": false,
+"rev": "7aace85c54"
 },
 {
 "id": "S310",
@@ -4964,9 +5582,11 @@
 "endBar": 254,
 "endBeat": 2.0,
 "localKey": "F major",
-"notes": "C - D - Gb - A",
+"notes": "C - D - F# - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "f7da05f376"
 },
 {
 "id": "S311",
@@ -4982,7 +5602,9 @@
 "localKey": "Db major",
 "notes": "D - F - Ab - Bb",
 "root": "Bb",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "e9ab748e65"
 },
 {
 "id": "S312",
@@ -4998,7 +5620,9 @@
 "localKey": "G minor",
 "notes": "C - E - G - Bb",
 "root": "C",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "94ff930e9e"
 },
 {
 "id": "S313",
@@ -5014,7 +5638,9 @@
 "localKey": "F major",
 "notes": "Db - F - Bb",
 "root": "Bb",
-"bass": "Db"
+"bass": "Db",
+"changed": false,
+"rev": "c25b85271f"
 },
 {
 "id": "S314",
@@ -5030,7 +5656,9 @@
 "localKey": "F major",
 "notes": "C - E - G - Bb",
 "root": "C",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "2e127d6888"
 },
 {
 "id": "S315",
@@ -5046,7 +5674,9 @@
 "localKey": "Ab major",
 "notes": "Eb - Gb - Bb",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "7b14db7f89"
 },
 {
 "id": "S316",
@@ -5062,7 +5692,9 @@
 "localKey": "G major",
 "notes": "C - E - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "501a324c0a"
 },
 {
 "id": "S317",
@@ -5078,7 +5710,9 @@
 "localKey": "F major",
 "notes": "D - F - G",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "09837ffddc"
 },
 {
 "id": "S318",
@@ -5094,7 +5728,9 @@
 "localKey": "A major",
 "notes": "C# - E - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "0847ed3bd4"
 },
 {
 "id": "S319",
@@ -5110,7 +5746,9 @@
 "localKey": "G major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "77745d0f4f"
 },
 {
 "id": "S320",
@@ -5126,7 +5764,9 @@
 "localKey": "G minor",
 "notes": "C - Eb - G",
 "root": "C",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "c720e21faf"
 },
 {
 "id": "S321",
@@ -5140,9 +5780,11 @@
 "endBar": 211,
 "endBeat": 2.0,
 "localKey": "G major",
-"notes": "D# - E - F# - G - A",
+"notes": "D# - E - F# - A",
 "root": "E",
-"bass": "E"
+"bass": "E",
+"changed": true,
+"rev": "703dfc1af4"
 },
 {
 "id": "S322",
@@ -5156,9 +5798,11 @@
 "endBar": 45,
 "endBeat": 1.0,
 "localKey": "D major",
-"notes": "C# - E - F - A - A#",
+"notes": "C# - E - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": true,
+"rev": "eb450ca681"
 },
 {
 "id": "S323",
@@ -5174,7 +5818,9 @@
 "localKey": "E major",
 "notes": "E - G# - B",
 "root": "E",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "73e77eb73e"
 },
 {
 "id": "S324",
@@ -5190,7 +5836,9 @@
 "localKey": "E major",
 "notes": "C - E - F# - A",
 "root": "F#",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "d49c63c9f0"
 },
 {
 "id": "S325",
@@ -5206,7 +5854,9 @@
 "localKey": "F major",
 "notes": "D - F - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "f88141621e"
 },
 {
 "id": "S326",
@@ -5222,7 +5872,9 @@
 "localKey": "F minor",
 "notes": "C - Eb - F - Ab",
 "root": "F",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "dc312b4f51"
 },
 {
 "id": "S327",
@@ -5236,9 +5888,11 @@
 "endBar": 47,
 "endBeat": 3.0,
 "localKey": "G minor",
-"notes": "D - Gb - A - Bb",
+"notes": "D - F# - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": true,
+"rev": "5fd0cfcaa3"
 },
 {
 "id": "S328",
@@ -5254,7 +5908,9 @@
 "localKey": "F major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "ddaeee8727"
 },
 {
 "id": "S329",
@@ -5270,7 +5926,9 @@
 "localKey": "A minor",
 "notes": "C - E - A",
 "root": "A",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "2bc2c36c2b"
 },
 {
 "id": "S330",
@@ -5284,9 +5942,11 @@
 "endBar": 60,
 "endBeat": 2.0,
 "localKey": "D minor",
-"notes": "Db - D - F - A",
+"notes": "C# - F - A",
 "root": "F",
-"bass": "A"
+"bass": "A",
+"changed": true,
+"rev": "ddc99179f5"
 },
 {
 "id": "S331",
@@ -5302,7 +5962,9 @@
 "localKey": "Bb major",
 "notes": "Db - E - B",
 "root": "Db",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "b612e96683"
 },
 {
 "id": "S332",
@@ -5318,7 +5980,9 @@
 "localKey": "Bb major",
 "notes": "Db - F - Gb - Bb",
 "root": "Gb",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "ab64e39d72"
 },
 {
 "id": "S333",
@@ -5332,9 +5996,11 @@
 "endBar": 6,
 "endBeat": 1.0,
 "localKey": "Bb major",
-"notes": "D - G - A - Bb",
+"notes": "D - G - Bb",
 "root": "G",
-"bass": "Bb"
+"bass": "Bb",
+"changed": true,
+"rev": "2c1231dcb9"
 },
 {
 "id": "S334",
@@ -5348,9 +6014,11 @@
 "endBar": 31,
 "endBeat": 2.0,
 "localKey": "Bb major",
-"notes": "D - Gb - Bb",
+"notes": "D - F# - Bb",
 "root": "Bb",
-"bass": "Gb"
+"bass": "F#",
+"changed": false,
+"rev": "34dbd5ba39"
 },
 {
 "id": "S335",
@@ -5366,7 +6034,9 @@
 "localKey": "A minor",
 "notes": "C - F - A",
 "root": "F",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "fea680067c"
 },
 {
 "id": "S336",
@@ -5380,9 +6050,11 @@
 "endBar": 104,
 "endBeat": 2.0,
 "localKey": "G minor",
-"notes": "D - Gb - Bb",
+"notes": "D - F# - Bb",
 "root": "Bb",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "0b990ef57b"
 },
 {
 "id": "S337",
@@ -5396,9 +6068,11 @@
 "endBar": 25,
 "endBeat": 4.5,
 "localKey": "Eb major",
-"notes": "Eb - Gb - B",
-"root": "B",
-"bass": "Eb"
+"notes": "Eb - Gb - Cb",
+"root": "Cb",
+"bass": "Eb",
+"changed": false,
+"rev": "cd7436e6e8"
 },
 {
 "id": "S338",
@@ -5414,7 +6088,9 @@
 "localKey": "C major",
 "notes": "C - E - G",
 "root": "C",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "06fb85a46e"
 },
 {
 "id": "S339",
@@ -5430,7 +6106,9 @@
 "localKey": "G major",
 "notes": "D - E - G - B",
 "root": "E",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "7f711ccf60"
 },
 {
 "id": "S340",
@@ -5446,7 +6124,9 @@
 "localKey": "F major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "f0a53b3a88"
 },
 {
 "id": "S341",
@@ -5460,9 +6140,11 @@
 "endBar": 19,
 "endBeat": 1.0,
 "localKey": "B minor",
-"notes": "D - F - A#",
-"root": "A#",
-"bass": "A#"
+"notes": "D - F - Bb",
+"root": "Bb",
+"bass": "Bb",
+"changed": false,
+"rev": "55e4b585e1"
 },
 {
 "id": "S342",
@@ -5476,9 +6158,11 @@
 "endBar": 57,
 "endBeat": 3.5,
 "localKey": "Gb major",
-"notes": "C - Eb - Ab - Cb",
+"notes": "C - D# - Ab",
 "root": "Ab",
-"bass": "Ab"
+"bass": "Ab",
+"changed": true,
+"rev": "3ffbbb01f4"
 },
 {
 "id": "S343",
@@ -5494,7 +6178,9 @@
 "localKey": "B minor",
 "notes": "E - G - B",
 "root": "E",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "9674ea8688"
 },
 {
 "id": "S344",
@@ -5508,9 +6194,11 @@
 "endBar": 13,
 "endBeat": 1.0,
 "localKey": "C minor",
-"notes": "D - F - G - B",
+"notes": "D - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": true,
+"rev": "7f302770bc"
 },
 {
 "id": "S345",
@@ -5524,9 +6212,11 @@
 "endBar": 66,
 "endBeat": 2.0,
 "localKey": "Bb major",
-"notes": "Db - Eb - E - F - G - Ab",
-"root": "Db",
-"bass": "Db"
+"notes": "C# - E - G",
+"root": "C#",
+"bass": "C#",
+"changed": true,
+"rev": "d249bc84a7"
 },
 {
 "id": "S346",
@@ -5540,9 +6230,11 @@
 "endBar": 5,
 "endBeat": 1.0,
 "localKey": "C minor",
-"notes": "C - D - Gb - B",
+"notes": "C - D - F#",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": true,
+"rev": "a95d170940"
 },
 {
 "id": "S347",
@@ -5558,7 +6250,9 @@
 "localKey": "E major",
 "notes": "D# - F# - A - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "b18cde2554"
 },
 {
 "id": "S348",
@@ -5574,7 +6268,9 @@
 "localKey": "F major",
 "notes": "C - E - G - Bb",
 "root": "C",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "21757f0ce2"
 },
 {
 "id": "S349",
@@ -5588,9 +6284,11 @@
 "endBar": 56,
 "endBeat": 3.0,
 "localKey": "C minor",
-"notes": "C - F - G - A",
+"notes": "C - F - A",
 "root": "F",
-"bass": "A"
+"bass": "A",
+"changed": true,
+"rev": "21666b2cc7"
 },
 {
 "id": "S350",
@@ -5606,7 +6304,9 @@
 "localKey": "Bb major",
 "notes": "D - F - G - Bb",
 "root": "G",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "d9fffb055a"
 },
 {
 "id": "S351",
@@ -5620,9 +6320,11 @@
 "endBar": 17,
 "endBeat": 2.5,
 "localKey": "F major",
-"notes": "Eb - Gb - A - Bb",
+"notes": "Eb - F# - Bb",
 "root": "Eb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": true,
+"rev": "65973ce925"
 },
 {
 "id": "S352",
@@ -5638,7 +6340,9 @@
 "localKey": "A minor",
 "notes": "C - E - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "574bbcb695"
 },
 {
 "id": "S353",
@@ -5654,7 +6358,9 @@
 "localKey": "Ab major",
 "notes": "Eb - Gb - A",
 "root": "A",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "76e66df450"
 },
 {
 "id": "S354",
@@ -5670,7 +6376,9 @@
 "localKey": "D minor",
 "notes": "D - G - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "2e38559971"
 },
 {
 "id": "S355",
@@ -5686,7 +6394,9 @@
 "localKey": "Eb major",
 "notes": "C - F - Ab",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "c3cfc1f250"
 },
 {
 "id": "S356",
@@ -5702,7 +6412,9 @@
 "localKey": "A major",
 "notes": "C# - E - G",
 "root": "C#",
-"bass": "C#"
+"bass": "C#",
+"changed": false,
+"rev": "3adfeb853a"
 },
 {
 "id": "S357",
@@ -5716,9 +6428,11 @@
 "endBar": 372,
 "endBeat": 1.0,
 "localKey": "Bb major",
-"notes": "C - D - F - Bb",
+"notes": "D - F - Bb",
 "root": "Bb",
-"bass": "D"
+"bass": "D",
+"changed": true,
+"rev": "1355aa4a16"
 },
 {
 "id": "S358",
@@ -5734,7 +6448,9 @@
 "localKey": "Bb major",
 "notes": "D - G - Bb",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "b1333c6f0f"
 },
 {
 "id": "S359",
@@ -5750,7 +6466,9 @@
 "localKey": "Eb major",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "6ee78ea0e2"
 },
 {
 "id": "S360",
@@ -5766,7 +6484,9 @@
 "localKey": "D major",
 "notes": "D - F# - A - B",
 "root": "B",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "5cd582c538"
 },
 {
 "id": "S361",
@@ -5780,9 +6500,11 @@
 "endBar": 57,
 "endBeat": 2.0,
 "localKey": "Gb major",
-"notes": "C - D - F - Bb",
+"notes": "D - E# - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": true,
+"rev": "18589f121b"
 },
 {
 "id": "S362",
@@ -5798,7 +6520,9 @@
 "localKey": "F major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "71e5bae3ca"
 },
 {
 "id": "S363",
@@ -5814,7 +6538,9 @@
 "localKey": "Bb major",
 "notes": "Db - E - G - Bb",
 "root": "E",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "8e7a79523a"
 },
 {
 "id": "S364",
@@ -5828,9 +6554,11 @@
 "endBar": 115,
 "endBeat": 1.0,
 "localKey": "C major",
-"notes": "C - D - E - F - G - B",
+"notes": "D - F - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": true,
+"rev": "4ea56e195c"
 },
 {
 "id": "S365",
@@ -5846,7 +6574,9 @@
 "localKey": "F major",
 "notes": "E - G - Bb",
 "root": "E",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "ac20e7a357"
 },
 {
 "id": "S366",
@@ -5862,7 +6592,9 @@
 "localKey": "E minor",
 "notes": "E - G - B",
 "root": "E",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "16a5e1b2f0"
 },
 {
 "id": "S367",
@@ -5876,9 +6608,11 @@
 "endBar": 3,
 "endBeat": 3.5,
 "localKey": "E major",
-"notes": "C# - D# - E - F# - A#",
+"notes": "C# - E - F# - A#",
 "root": "F#",
-"bass": "C#"
+"bass": "C#",
+"changed": true,
+"rev": "d55ecdeb85"
 },
 {
 "id": "S368",
@@ -5894,7 +6628,9 @@
 "localKey": "A major",
 "notes": "D - F# - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "c3c71a772b"
 },
 {
 "id": "S369",
@@ -5910,7 +6646,9 @@
 "localKey": "A minor",
 "notes": "C - D - F - A",
 "root": "D",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "09d22652b2"
 },
 {
 "id": "S370",
@@ -5926,7 +6664,9 @@
 "localKey": "C major",
 "notes": "C - E - G",
 "root": "C",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "385808b955"
 },
 {
 "id": "S371",
@@ -5942,7 +6682,9 @@
 "localKey": "G major",
 "notes": "D - F - G - B",
 "root": "G",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "5c3ff2c87b"
 },
 {
 "id": "S372",
@@ -5958,7 +6700,9 @@
 "localKey": "Bb major",
 "notes": "C - E - G - Bb",
 "root": "C",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "b67ce2a380"
 },
 {
 "id": "S373",
@@ -5972,9 +6716,11 @@
 "endBar": 380,
 "endBeat": 1.0,
 "localKey": "Bb major",
-"notes": "C - E - A - Bb",
+"notes": "C - E - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "e41f650af3"
 },
 {
 "id": "S374",
@@ -5990,7 +6736,9 @@
 "localKey": "F major",
 "notes": "D - F - Ab",
 "root": "Ab",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "4deee6a015"
 },
 {
 "id": "S375",
@@ -6004,9 +6752,11 @@
 "endBar": 304,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "C - D - F - Bb",
+"notes": "D - F - Bb",
 "root": "Bb",
-"bass": "D"
+"bass": "D",
+"changed": true,
+"rev": "92b2984f8c"
 },
 {
 "id": "S376",
@@ -6022,7 +6772,9 @@
 "localKey": "F major",
 "notes": "Db - F - Bb",
 "root": "Bb",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "5bba4ea207"
 },
 {
 "id": "S377",
@@ -6038,7 +6790,9 @@
 "localKey": "F minor",
 "notes": "C - Eb - F - Ab",
 "root": "F",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "17d5170b44"
 },
 {
 "id": "S378",
@@ -6054,7 +6808,9 @@
 "localKey": "F major",
 "notes": "C - Eb - F - Bb",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "aab211d29d"
 },
 {
 "id": "S379",
@@ -6070,7 +6826,9 @@
 "localKey": "A minor",
 "notes": "E - G - B",
 "root": "E",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "76dbc68823"
 },
 {
 "id": "S380",
@@ -6086,7 +6844,9 @@
 "localKey": "Bb major",
 "notes": "D - F - Ab - Bb",
 "root": "Bb",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "e2d2e47cb4"
 },
 {
 "id": "S381",
@@ -6102,7 +6862,9 @@
 "localKey": "D minor",
 "notes": "Eb - F - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "1817770b33"
 },
 {
 "id": "S382",
@@ -6118,7 +6880,9 @@
 "localKey": "F major",
 "notes": "E - G - Bb",
 "root": "E",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "bb9fe18d29"
 },
 {
 "id": "S383",
@@ -6132,9 +6896,11 @@
 "endBar": 219,
 "endBeat": 2.5,
 "localKey": "G major",
-"notes": "C - D - E - F# - A - B",
+"notes": "C - D - E - F# - A",
 "root": "D",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "07bb457901"
 },
 {
 "id": "S384",
@@ -6150,7 +6916,9 @@
 "localKey": "F major",
 "notes": "C - E - G - Bb",
 "root": "C",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "7739d08532"
 },
 {
 "id": "S385",
@@ -6164,9 +6932,11 @@
 "endBar": 81,
 "endBeat": 2.0,
 "localKey": "D minor",
-"notes": "Db - Gb - A",
-"root": "Gb",
-"bass": "Db"
+"notes": "C# - F# - A",
+"root": "F#",
+"bass": "C#",
+"changed": false,
+"rev": "66214202c1"
 },
 {
 "id": "S386",
@@ -6182,7 +6952,9 @@
 "localKey": "A major",
 "notes": "C# - D - F# - A",
 "root": "D",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "2742d24b1a"
 },
 {
 "id": "S387",
@@ -6196,9 +6968,11 @@
 "endBar": 10,
 "endBeat": 3.0,
 "localKey": "C minor",
-"notes": "C - D - Gb - Ab",
+"notes": "D - F# - Ab",
 "root": "Ab",
-"bass": "Ab"
+"bass": "Ab",
+"changed": true,
+"rev": "2f4e823e16"
 },
 {
 "id": "S388",
@@ -6214,7 +6988,9 @@
 "localKey": "G minor",
 "notes": "C - D - F - A",
 "root": "D",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "7ba645b8a4"
 },
 {
 "id": "S389",
@@ -6230,7 +7006,9 @@
 "localKey": "Db major",
 "notes": "C - Eb - Gb - Bb",
 "root": "C",
-"bass": "Gb"
+"bass": "Gb",
+"changed": false,
+"rev": "a66aaec188"
 },
 {
 "id": "S390",
@@ -6246,7 +7024,9 @@
 "localKey": "G minor",
 "notes": "D - F - G - Bb",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "49283b1df5"
 },
 {
 "id": "S391",
@@ -6262,7 +7042,9 @@
 "localKey": "D minor",
 "notes": "C - Eb - A",
 "root": "A",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "2d8430896e"
 },
 {
 "id": "S392",
@@ -6278,7 +7060,9 @@
 "localKey": "F major",
 "notes": "C - Eb - A",
 "root": "A",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "3ec8917bd3"
 },
 {
 "id": "S393",
@@ -6294,7 +7078,9 @@
 "localKey": "Eb major",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "973d39b98e"
 },
 {
 "id": "S394",
@@ -6310,7 +7096,9 @@
 "localKey": "A major",
 "notes": "E - F# - A - B",
 "root": "E",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "437ef3ebc8"
 },
 {
 "id": "S395",
@@ -6324,9 +7112,11 @@
 "endBar": 28,
 "endBeat": 1.0,
 "localKey": "C major",
-"notes": "Db - D - F - A - B",
+"notes": "D - F - A - B",
 "root": "B",
-"bass": "F"
+"bass": "F",
+"changed": true,
+"rev": "8938b1fc1b"
 },
 {
 "id": "S396",
@@ -6342,7 +7132,9 @@
 "localKey": "B minor",
 "notes": "D - F# - B",
 "root": "B",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "d790ede992"
 },
 {
 "id": "S397",
@@ -6358,7 +7150,9 @@
 "localKey": "D minor",
 "notes": "D - F - A - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "108cc6eb74"
 },
 {
 "id": "S398",
@@ -6374,7 +7168,9 @@
 "localKey": "G minor",
 "notes": "Db - Eb - G - Bb",
 "root": "Eb",
-"bass": "Db"
+"bass": "Db",
+"changed": false,
+"rev": "9985a1bf6b"
 },
 {
 "id": "S399",
@@ -6390,7 +7186,9 @@
 "localKey": "C major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "4db9429bb5"
 },
 {
 "id": "S400",
@@ -6406,7 +7204,9 @@
 "localKey": "C minor",
 "notes": "D - G - B",
 "root": "G",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "aec7897413"
 },
 {
 "id": "S401",
@@ -6422,7 +7222,9 @@
 "localKey": "A major",
 "notes": "C - D# - F# - G#",
 "root": "G#",
-"bass": "D#"
+"bass": "D#",
+"changed": false,
+"rev": "ee10bb8cc3"
 },
 {
 "id": "S402",
@@ -6438,7 +7240,9 @@
 "localKey": "A minor",
 "notes": "C - D - F - G",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "ffb288b7e7"
 },
 {
 "id": "S403",
@@ -6452,9 +7256,11 @@
 "endBar": 31,
 "endBeat": 1.0,
 "localKey": "Eb major",
-"notes": "Eb - G - A - Bb",
+"notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": true,
+"rev": "3bcd65c35e"
 },
 {
 "id": "S404",
@@ -6470,7 +7276,9 @@
 "localKey": "Eb major",
 "notes": "Eb - F - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "0ff4248bea"
 },
 {
 "id": "S405",
@@ -6484,9 +7292,11 @@
 "endBar": 7,
 "endBeat": 2.0,
 "localKey": "Eb major",
-"notes": "C - E - G - Ab - Bb",
+"notes": "C - E - Ab",
 "root": "Ab",
-"bass": "Ab"
+"bass": "Ab",
+"changed": true,
+"rev": "7d7545014d"
 },
 {
 "id": "S406",
@@ -6500,9 +7310,11 @@
 "endBar": 186,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "C - F - Ab - A",
+"notes": "C - F - G#",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": true,
+"rev": "cf969fa2ee"
 },
 {
 "id": "S407",
@@ -6518,7 +7330,9 @@
 "localKey": "Db minor",
 "notes": "C# - D# - F# - A",
 "root": "D#",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "312bd7c65c"
 },
 {
 "id": "S408",
@@ -6534,7 +7348,9 @@
 "localKey": "G major",
 "notes": "D - A - B",
 "root": "B",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "eacb6ce23d"
 },
 {
 "id": "S409",
@@ -6550,7 +7366,9 @@
 "localKey": "G major",
 "notes": "D - F - G - B",
 "root": "G",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "602891feae"
 },
 {
 "id": "S410",
@@ -6564,9 +7382,11 @@
 "endBar": 87,
 "endBeat": 4.0,
 "localKey": "Db major",
-"notes": "C - Db - Gb - Ab - Bb",
+"notes": "Db - Gb - Bb",
 "root": "Gb",
-"bass": "Gb"
+"bass": "Gb",
+"changed": true,
+"rev": "00b381c537"
 },
 {
 "id": "S411",
@@ -6582,7 +7402,9 @@
 "localKey": "Eb major",
 "notes": "Db - F - Bb",
 "root": "Bb",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "b227d3b36c"
 },
 {
 "id": "S412",
@@ -6596,9 +7418,11 @@
 "endBar": 13,
 "endBeat": 1.0,
 "localKey": "C major",
-"notes": "C - E - G - Bb - B",
+"notes": "C - E - G - Bb",
 "root": "C",
-"bass": "G"
+"bass": "G",
+"changed": true,
+"rev": "68b4b32e31"
 },
 {
 "id": "S413",
@@ -6614,7 +7438,9 @@
 "localKey": "A minor",
 "notes": "C - E - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "e3ec6bc759"
 },
 {
 "id": "S414",
@@ -6630,7 +7456,9 @@
 "localKey": "A minor",
 "notes": "D - F - A - Bb",
 "root": "Bb",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "2944557b72"
 },
 {
 "id": "S415",
@@ -6646,7 +7474,9 @@
 "localKey": "A minor",
 "notes": "C - E - A",
 "root": "A",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "1625e093cf"
 },
 {
 "id": "S416",
@@ -6662,7 +7492,9 @@
 "localKey": "Eb major",
 "notes": "D - G - Bb",
 "root": "G",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "2fd6383471"
 },
 {
 "id": "S417",
@@ -6678,7 +7510,9 @@
 "localKey": "Eb major",
 "notes": "C - Eb - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "b2244a4795"
 },
 {
 "id": "S418",
@@ -6694,7 +7528,9 @@
 "localKey": "Eb major",
 "notes": "D - F - G - Bb",
 "root": "G",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "720eef8c92"
 },
 {
 "id": "S419",
@@ -6708,9 +7544,11 @@
 "endBar": 66,
 "endBeat": 2.0,
 "localKey": "G major",
-"notes": "C - Eb - G",
+"notes": "C - D# - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "77a46c0c67"
 },
 {
 "id": "S420",
@@ -6724,9 +7562,11 @@
 "endBar": 27,
 "endBeat": 2.0,
 "localKey": "G major",
-"notes": "C - D# - F - G#",
+"notes": "C - Eb - F - Ab",
 "root": "F",
-"bass": "G#"
+"bass": "Ab",
+"changed": false,
+"rev": "87f9e905b7"
 },
 {
 "id": "S421",
@@ -6742,7 +7582,9 @@
 "localKey": "Eb major",
 "notes": "C - Eb - G - Bb",
 "root": "C",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "30898c79e8"
 },
 {
 "id": "S422",
@@ -6758,7 +7600,9 @@
 "localKey": "F minor",
 "notes": "C - E - G - Bb",
 "root": "C",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "92d1bf323e"
 },
 {
 "id": "S423",
@@ -6774,7 +7618,9 @@
 "localKey": "D major",
 "notes": "D - G - B",
 "root": "G",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "4f460666b0"
 },
 {
 "id": "S424",
@@ -6788,9 +7634,11 @@
 "endBar": 5,
 "endBeat": 4.5,
 "localKey": "A major",
-"notes": "C# - D# - A - B",
+"notes": "D# - A - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": true,
+"rev": "b53697e20f"
 },
 {
 "id": "S425",
@@ -6806,7 +7654,9 @@
 "localKey": "Bb major",
 "notes": "D - F - A",
 "root": "D",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "18e74d7016"
 },
 {
 "id": "S426",
@@ -6820,9 +7670,11 @@
 "endBar": 10,
 "endBeat": 2.5,
 "localKey": "Bb major",
-"notes": "D - Eb - F - G - B",
+"notes": "D - F - G - B",
 "root": "G",
-"bass": "B"
+"bass": "B",
+"changed": true,
+"rev": "fecc90e1a3"
 },
 {
 "id": "S427",
@@ -6838,7 +7690,9 @@
 "localKey": "G minor",
 "notes": "D - G - Bb",
 "root": "G",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "53aad18d4c"
 },
 {
 "id": "S428",
@@ -6852,9 +7706,11 @@
 "endBar": 92,
 "endBeat": 1.0,
 "localKey": "A major",
-"notes": "C - Db - D - E",
-"root": "C",
-"bass": "C"
+"notes": "B# - E",
+"root": "B#",
+"bass": "B#",
+"changed": true,
+"rev": "91d2662946"
 },
 {
 "id": "S429",
@@ -6868,9 +7724,11 @@
 "endBar": 68,
 "endBeat": 1.0,
 "localKey": "Eb major",
-"notes": "D - F - G - Ab",
+"notes": "D - F - Ab",
 "root": "D",
-"bass": "Ab"
+"bass": "Ab",
+"changed": true,
+"rev": "43763fdfa7"
 },
 {
 "id": "S430",
@@ -6884,9 +7742,11 @@
 "endBar": 96,
 "endBeat": 1.0,
 "localKey": "G minor",
-"notes": "D - Gb - A",
+"notes": "D - F# - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "6c52fbbcc9"
 },
 {
 "id": "S431",
@@ -6902,7 +7762,9 @@
 "localKey": "F minor",
 "notes": "C - Db - F - Ab",
 "root": "Db",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "34f67b8794"
 },
 {
 "id": "S432",
@@ -6918,7 +7780,9 @@
 "localKey": "Ab major",
 "notes": "C - Eb - Ab",
 "root": "Ab",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "654f152d2b"
 },
 {
 "id": "S433",
@@ -6934,7 +7798,9 @@
 "localKey": "Bb major",
 "notes": "Eb - Gb - Bb",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "b29af23c9e"
 },
 {
 "id": "S434",
@@ -6950,7 +7816,9 @@
 "localKey": "Bb major",
 "notes": "D - F - Ab - Bb",
 "root": "Bb",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "3288e70a68"
 },
 {
 "id": "S435",
@@ -6966,7 +7834,9 @@
 "localKey": "D major",
 "notes": "C - D# - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "d6f428492f"
 },
 {
 "id": "S436",
@@ -6982,7 +7852,9 @@
 "localKey": "Eb major",
 "notes": "D - F - Ab - Bb",
 "root": "Bb",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "27af4952c0"
 },
 {
 "id": "S437",
@@ -6998,7 +7870,9 @@
 "localKey": "Eb major",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "b99ad3961e"
 },
 {
 "id": "S438",
@@ -7014,7 +7888,9 @@
 "localKey": "Gb minor",
 "notes": "C# - F# - A#",
 "root": "F#",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "b658d5952f"
 },
 {
 "id": "S439",
@@ -7030,7 +7906,9 @@
 "localKey": "C minor",
 "notes": "C - Eb - F - Ab",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "96c02b39fb"
 },
 {
 "id": "S440",
@@ -7046,7 +7924,9 @@
 "localKey": "C minor",
 "notes": "C - D - F - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "0d7c68aca4"
 },
 {
 "id": "S441",
@@ -7062,7 +7942,9 @@
 "localKey": "E minor",
 "notes": "D - E - G# - B",
 "root": "E",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "9a15fdcb44"
 },
 {
 "id": "S442",
@@ -7078,7 +7960,9 @@
 "localKey": "E major",
 "notes": "D# - F# - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "d383efcbdf"
 },
 {
 "id": "S443",
@@ -7094,7 +7978,9 @@
 "localKey": "G minor",
 "notes": "C - G - A",
 "root": "A",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "8e151a42cc"
 },
 {
 "id": "S444",
@@ -7108,9 +7994,11 @@
 "endBar": 362,
 "endBeat": 1.0,
 "localKey": "Bb major",
-"notes": "C - Eb - Gb - Bb",
+"notes": "C - Eb - F# - Bb",
 "root": "C",
-"bass": "Gb"
+"bass": "F#",
+"changed": false,
+"rev": "979eb5fe90"
 },
 {
 "id": "S445",
@@ -7126,7 +8014,9 @@
 "localKey": "Eb major",
 "notes": "C - F - G - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "889c186c58"
 },
 {
 "id": "S446",
@@ -7142,7 +8032,9 @@
 "localKey": "C minor",
 "notes": "D - F - B",
 "root": "B",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "14026be330"
 },
 {
 "id": "S447",
@@ -7158,7 +8050,9 @@
 "localKey": "Ab major",
 "notes": "C - Eb - Ab",
 "root": "Ab",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "6853f9c408"
 },
 {
 "id": "S448",
@@ -7174,7 +8068,9 @@
 "localKey": "C major",
 "notes": "F - G - Bb",
 "root": "G",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "d5562c9a50"
 },
 {
 "id": "S449",
@@ -7190,7 +8086,9 @@
 "localKey": "B major",
 "notes": "D# - A - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "564dcd8b81"
 },
 {
 "id": "S450",
@@ -7206,7 +8104,9 @@
 "localKey": "D minor",
 "notes": "C - E - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "b729ebfabe"
 },
 {
 "id": "S451",
@@ -7222,7 +8122,9 @@
 "localKey": "B minor",
 "notes": "C# - G - A#",
 "root": "A#",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "5220f76993"
 },
 {
 "id": "S452",
@@ -7238,7 +8140,9 @@
 "localKey": "F minor",
 "notes": "C - E - G - Bb",
 "root": "C",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "0ea3abf51a"
 },
 {
 "id": "S453",
@@ -7254,7 +8158,9 @@
 "localKey": "C minor",
 "notes": "Eb - G - B",
 "root": "Eb",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "77397405a9"
 },
 {
 "id": "S454",
@@ -7270,7 +8176,9 @@
 "localKey": "E major",
 "notes": "C# - F# - A",
 "root": "F#",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "59cd754670"
 },
 {
 "id": "S455",
@@ -7284,9 +8192,11 @@
 "endBar": 44,
 "endBeat": 2.0,
 "localKey": "E major",
-"notes": "C# - E - F# - G - A - A#",
+"notes": "C# - E - F# - A#",
 "root": "F#",
-"bass": "A#"
+"bass": "A#",
+"changed": true,
+"rev": "5bcd1a690e"
 },
 {
 "id": "S456",
@@ -7302,7 +8212,9 @@
 "localKey": "Eb major",
 "notes": "C - Eb - G - Bb",
 "root": "C",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "c5387d2e46"
 },
 {
 "id": "S457",
@@ -7316,9 +8228,11 @@
 "endBar": 6,
 "endBeat": 2.0,
 "localKey": "D minor",
-"notes": "D - E - G - Ab - B",
+"notes": "D - E - G - B",
 "root": "E",
-"bass": "E"
+"bass": "E",
+"changed": true,
+"rev": "9b08b3087c"
 },
 {
 "id": "S458",
@@ -7332,9 +8246,11 @@
 "endBar": 4,
 "endBeat": 1.0,
 "localKey": "C minor",
-"notes": "D - F - G - B",
+"notes": "D - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": true,
+"rev": "4652d964e8"
 },
 {
 "id": "S459",
@@ -7350,7 +8266,9 @@
 "localKey": "G major",
 "notes": "E - G - B",
 "root": "E",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "e39e83c546"
 },
 {
 "id": "S460",
@@ -7366,7 +8284,9 @@
 "localKey": "C minor",
 "notes": "C - Eb - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "fe9c8533cc"
 },
 {
 "id": "S461",
@@ -7380,9 +8300,11 @@
 "endBar": 29,
 "endBeat": 2.0,
 "localKey": "G minor",
-"notes": "C - D - E - G - Bb",
+"notes": "D - E - G - Bb",
 "root": "E",
-"bass": "D"
+"bass": "D",
+"changed": true,
+"rev": "96b0501602"
 },
 {
 "id": "S462",
@@ -7396,9 +8318,11 @@
 "endBar": 197,
 "endBeat": 1.0,
 "localKey": "C major",
-"notes": "C - D - E - F - B",
+"notes": "C - D - F - B",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "e190a96173"
 },
 {
 "id": "S463",
@@ -7414,7 +8338,9 @@
 "localKey": "Bb major",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "6797548696"
 },
 {
 "id": "S464",
@@ -7428,9 +8354,11 @@
 "endBar": 73,
 "endBeat": 1.0,
 "localKey": "C minor",
-"notes": "Db - Eb - F - Ab",
+"notes": "Db - F - Ab",
 "root": "Db",
-"bass": "F"
+"bass": "F",
+"changed": true,
+"rev": "4183c2d1b0"
 },
 {
 "id": "S465",
@@ -7446,7 +8374,9 @@
 "localKey": "D major",
 "notes": "C# - D# - G",
 "root": "D#",
-"bass": "D#"
+"bass": "D#",
+"changed": false,
+"rev": "ee40972ef2"
 },
 {
 "id": "S466",
@@ -7462,7 +8392,9 @@
 "localKey": "G minor",
 "notes": "D - E - G - B",
 "root": "E",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "1c9160d654"
 },
 {
 "id": "S467",
@@ -7476,9 +8408,11 @@
 "endBar": 109,
 "endBeat": 1.0,
 "localKey": "G minor",
-"notes": "C - Eb - Gb - Bb",
+"notes": "C - Eb - F# - Bb",
 "root": "C",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "490f211337"
 },
 {
 "id": "S468",
@@ -7494,7 +8428,9 @@
 "localKey": "G major",
 "notes": "C# - E - G",
 "root": "C#",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "255b9bf70d"
 },
 {
 "id": "S469",
@@ -7508,9 +8444,11 @@
 "endBar": 120,
 "endBeat": 1.0,
 "localKey": "Bb major",
-"notes": "C - Eb - F - G - A",
+"notes": "C - Eb - F - A",
 "root": "F",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "6e08c33b3f"
 },
 {
 "id": "S470",
@@ -7526,7 +8464,9 @@
 "localKey": "F major",
 "notes": "D - F - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "0933f6e5de"
 },
 {
 "id": "S471",
@@ -7542,7 +8482,9 @@
 "localKey": "D major",
 "notes": "D - F# - A",
 "root": "D",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "636fdae9c4"
 },
 {
 "id": "S472",
@@ -7558,7 +8500,9 @@
 "localKey": "G minor",
 "notes": "C - Eb - G - A",
 "root": "A",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "0ad552c78d"
 },
 {
 "id": "S473",
@@ -7574,7 +8518,9 @@
 "localKey": "C major",
 "notes": "C - D - E - G - Bb",
 "root": "C",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "9f81192de4"
 },
 {
 "id": "S474",
@@ -7590,7 +8536,9 @@
 "localKey": "B minor",
 "notes": "D - F# - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "956468d8fe"
 },
 {
 "id": "S475",
@@ -7606,7 +8554,9 @@
 "localKey": "Eb major",
 "notes": "D - F - Ab - Bb",
 "root": "Bb",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "35719e22ad"
 },
 {
 "id": "S476",
@@ -7622,7 +8572,9 @@
 "localKey": "Bb major",
 "notes": "D - F - Bb",
 "root": "Bb",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "8962f8bb09"
 },
 {
 "id": "S477",
@@ -7638,7 +8590,9 @@
 "localKey": "C major",
 "notes": "C - D - G - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "d4b98ffa4d"
 },
 {
 "id": "S478",
@@ -7654,7 +8608,9 @@
 "localKey": "C major",
 "notes": "D - F - G - B",
 "root": "G",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "0a7f7602cb"
 },
 {
 "id": "S479",
@@ -7668,9 +8624,11 @@
 "endBar": 27,
 "endBeat": 1.0,
 "localKey": "E major",
-"notes": "C - F# - B",
+"notes": "F# - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": true,
+"rev": "97dd2a8777"
 },
 {
 "id": "S480",
@@ -7684,9 +8642,11 @@
 "endBar": 110,
 "endBeat": 1.0,
 "localKey": "D minor",
-"notes": "D - E - Ab - B",
+"notes": "D - E - G# - B",
 "root": "E",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "4cda544d9a"
 },
 {
 "id": "S481",
@@ -7700,9 +8660,11 @@
 "endBar": 217,
 "endBeat": 1.5,
 "localKey": "C major",
-"notes": "D - F - G# - B",
+"notes": "D - F - Ab - B",
 "root": "B",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "18dc677b4a"
 },
 {
 "id": "S482",
@@ -7716,9 +8678,11 @@
 "endBar": 12,
 "endBeat": 2.0,
 "localKey": "C minor",
-"notes": "C - D - Gb - A",
+"notes": "C - D - F# - A",
 "root": "D",
-"bass": "Gb"
+"bass": "F#",
+"changed": false,
+"rev": "a52cd5669c"
 },
 {
 "id": "S483",
@@ -7734,7 +8698,9 @@
 "localKey": "Bb major",
 "notes": "C - Eb - Bb",
 "root": "C",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "7db8a5db8a"
 },
 {
 "id": "S484",
@@ -7750,7 +8716,9 @@
 "localKey": "F major",
 "notes": "C - E - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "e8a12b61ef"
 },
 {
 "id": "S485",
@@ -7766,7 +8734,9 @@
 "localKey": "B minor",
 "notes": "C# - G - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "08352c762e"
 },
 {
 "id": "S486",
@@ -7782,7 +8752,9 @@
 "localKey": "Ab major",
 "notes": "C - Eb - G - Ab",
 "root": "Ab",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "064039d85b"
 },
 {
 "id": "S487",
@@ -7798,7 +8770,9 @@
 "localKey": "G minor",
 "notes": "D - F - G - Bb",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "7d0ed4d13d"
 },
 {
 "id": "S488",
@@ -7814,7 +8788,9 @@
 "localKey": "C major",
 "notes": "C - D - F - A",
 "root": "D",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "5c5ea099b4"
 },
 {
 "id": "S489",
@@ -7828,9 +8804,11 @@
 "endBar": 9,
 "endBeat": 4.5,
 "localKey": "D major",
-"notes": "C - D# - G - A",
+"notes": "C - Eb - G - A",
 "root": "A",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "6466821f25"
 },
 {
 "id": "S490",
@@ -7844,9 +8822,11 @@
 "endBar": 49,
 "endBeat": 3.0,
 "localKey": "G minor",
-"notes": "C - D - Gb - G - A - Bb",
+"notes": "D - F# - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": true,
+"rev": "07bf1c7c32"
 },
 {
 "id": "S491",
@@ -7862,7 +8842,9 @@
 "localKey": "Ab major",
 "notes": "C - Eb - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "403bf3d340"
 },
 {
 "id": "S492",
@@ -7876,9 +8858,11 @@
 "endBar": 12,
 "endBeat": 1.0,
 "localKey": "A minor",
-"notes": "Db - D - E - G - A",
+"notes": "C# - D - E - G",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": true,
+"rev": "8296956627"
 },
 {
 "id": "S493",
@@ -7892,9 +8876,11 @@
 "endBar": 7,
 "endBeat": 3.0,
 "localKey": "C major",
-"notes": "C - D - Gb - A",
+"notes": "C - D - F# - A",
 "root": "D",
-"bass": "Gb"
+"bass": "F#",
+"changed": false,
+"rev": "c18edb180a"
 },
 {
 "id": "S494",
@@ -7910,7 +8896,9 @@
 "localKey": "Ab major",
 "notes": "Db - Eb - Ab - Bb",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "373be6488c"
 },
 {
 "id": "S495",
@@ -7926,7 +8914,9 @@
 "localKey": "Gb minor",
 "notes": "C# - E - F# - A",
 "root": "F#",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "6c2cb251e1"
 },
 {
 "id": "S496",
@@ -7942,7 +8932,9 @@
 "localKey": "F major",
 "notes": "D - F - A - Bb",
 "root": "Bb",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "f6111b855d"
 },
 {
 "id": "S497",
@@ -7956,9 +8948,11 @@
 "endBar": 68,
 "endBeat": 2.0,
 "localKey": "F major",
-"notes": "C - Db - E - G - Bb",
+"notes": "C - E - G - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "7a75925ced"
 },
 {
 "id": "S498",
@@ -7974,7 +8968,9 @@
 "localKey": "Ab major",
 "notes": "C - Eb - Gb - Ab",
 "root": "Ab",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "b8188e51c1"
 },
 {
 "id": "S499",
@@ -7990,7 +8986,9 @@
 "localKey": "Bb major",
 "notes": "C - F - G - Bb",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "14b7d744e2"
 },
 {
 "id": "S500",
@@ -8006,7 +9004,9 @@
 "localKey": "B major",
 "notes": "C - D# - F# - A",
 "root": "C",
-"bass": "D#"
+"bass": "D#",
+"changed": false,
+"rev": "32b7db7209"
 },
 {
 "id": "S501",
@@ -8022,7 +9022,9 @@
 "localKey": "Eb major",
 "notes": "D - F - Ab - Bb",
 "root": "Bb",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "0bafe77b01"
 },
 {
 "id": "S502",
@@ -8038,7 +9040,9 @@
 "localKey": "Bb major",
 "notes": "C - Eb - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "485f7f71ac"
 },
 {
 "id": "S503",
@@ -8054,7 +9058,9 @@
 "localKey": "G minor",
 "notes": "D - F - Ab - B",
 "root": "B",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "9f893e9d5f"
 },
 {
 "id": "S504",
@@ -8068,9 +9074,11 @@
 "endBar": 131,
 "endBeat": 1.0,
 "localKey": "A minor",
-"notes": "Eb - E - Ab - B",
+"notes": "D# - E - G# - B",
 "root": "E",
-"bass": "Eb"
+"bass": "D#",
+"changed": false,
+"rev": "9fba053b14"
 },
 {
 "id": "S505",
@@ -8086,7 +9094,9 @@
 "localKey": "C major",
 "notes": "D - F - A - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "5893293c03"
 },
 {
 "id": "S506",
@@ -8102,7 +9112,9 @@
 "localKey": "Db major",
 "notes": "Db - Gb - Ab",
 "root": "Db",
-"bass": "Db"
+"bass": "Db",
+"changed": false,
+"rev": "9dd6d3ffb7"
 },
 {
 "id": "S507",
@@ -8116,9 +9128,11 @@
 "endBar": 14,
 "endBeat": 2.0,
 "localKey": "Gb minor",
-"notes": "C# - D - G# - B",
+"notes": "D - G# - B",
 "root": "G#",
-"bass": "G#"
+"bass": "G#",
+"changed": true,
+"rev": "384e916b38"
 },
 {
 "id": "S508",
@@ -8134,7 +9148,9 @@
 "localKey": "A major",
 "notes": "C - E - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "7f8db926a9"
 },
 {
 "id": "S509",
@@ -8150,7 +9166,9 @@
 "localKey": "D major",
 "notes": "E - F# - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "872395acb3"
 },
 {
 "id": "S510",
@@ -8164,9 +9182,11 @@
 "endBar": 59,
 "endBeat": 2.0,
 "localKey": "F minor",
-"notes": "C - E - Ab - Bb",
+"notes": "C - E - Ab",
 "root": "Ab",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "b8dfdbae11"
 },
 {
 "id": "S511",
@@ -8180,9 +9200,11 @@
 "endBar": 19,
 "endBeat": 1.0,
 "localKey": "B minor",
-"notes": "C# - F - B",
+"notes": "C# - E# - B",
 "root": "C#",
-"bass": "C#"
+"bass": "C#",
+"changed": false,
+"rev": "9c21cc2f53"
 },
 {
 "id": "S512",
@@ -8198,7 +9220,9 @@
 "localKey": "G minor",
 "notes": "C - Eb - G - Bb",
 "root": "C",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "4b1158c7e9"
 },
 {
 "id": "S513",
@@ -8214,7 +9238,9 @@
 "localKey": "F minor",
 "notes": "D - F - Ab",
 "root": "D",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "2fe6a0f54c"
 },
 {
 "id": "S514",
@@ -8230,7 +9256,9 @@
 "localKey": "D major",
 "notes": "D - F# - A",
 "root": "D",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "bb1229f6ff"
 },
 {
 "id": "S515",
@@ -8246,7 +9274,9 @@
 "localKey": "D minor",
 "notes": "E - G - Bb",
 "root": "E",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "76fe15e913"
 },
 {
 "id": "S516",
@@ -8260,9 +9290,11 @@
 "endBar": 10,
 "endBeat": 2.0,
 "localKey": "A minor",
-"notes": "D - F - Ab - B",
-"root": "Ab",
-"bass": "Ab"
+"notes": "D - F - G# - B",
+"root": "G#",
+"bass": "G#",
+"changed": false,
+"rev": "6745173db6"
 },
 {
 "id": "S517",
@@ -8278,7 +9310,9 @@
 "localKey": "D major",
 "notes": "C# - E - G - A",
 "root": "A",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "f7e2a906d5"
 },
 {
 "id": "S518",
@@ -8294,7 +9328,9 @@
 "localKey": "B minor",
 "notes": "D - F# - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "7df11a32dc"
 },
 {
 "id": "S519",
@@ -8308,9 +9344,11 @@
 "endBar": 87,
 "endBeat": 3.5,
 "localKey": "Db major",
-"notes": "F - Ab - B",
+"notes": "F - Ab - Cb",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "5a9b70cf83"
 },
 {
 "id": "S520",
@@ -8324,9 +9362,11 @@
 "endBar": 278,
 "endBeat": 1.0,
 "localKey": "G major",
-"notes": "D - Gb - A",
+"notes": "D - F# - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "2cd62c6471"
 },
 {
 "id": "S521",
@@ -8342,7 +9382,9 @@
 "localKey": "B minor",
 "notes": "D# - F# - A",
 "root": "D#",
-"bass": "D#"
+"bass": "D#",
+"changed": false,
+"rev": "2c67f2d381"
 },
 {
 "id": "S522",
@@ -8356,9 +9398,11 @@
 "endBar": 8,
 "endBeat": 4.0,
 "localKey": "A minor",
-"notes": "Db - E - G - A",
+"notes": "C# - E - G - A",
 "root": "A",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "fe13588dbd"
 },
 {
 "id": "S523",
@@ -8374,7 +9418,9 @@
 "localKey": "C major",
 "notes": "C - E - G - Bb",
 "root": "C",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "8c16a7120b"
 },
 {
 "id": "S524",
@@ -8390,7 +9436,9 @@
 "localKey": "G minor",
 "notes": "D - E - G - Bb",
 "root": "E",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "6e600fc0cf"
 },
 {
 "id": "S525",
@@ -8406,7 +9454,9 @@
 "localKey": "D minor",
 "notes": "G - A - Bb",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "20a96aa64e"
 },
 {
 "id": "S526",
@@ -8422,7 +9472,9 @@
 "localKey": "E minor",
 "notes": "C# - E - G - B",
 "root": "C#",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "bc73de887e"
 },
 {
 "id": "S527",
@@ -8438,7 +9490,9 @@
 "localKey": "D minor",
 "notes": "D - F - A - B",
 "root": "B",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "6b110eb90e"
 },
 {
 "id": "S528",
@@ -8452,9 +9506,11 @@
 "endBar": 82,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "D - F - Ab",
-"root": "Ab",
-"bass": "Ab"
+"notes": "D - F - G#",
+"root": "G#",
+"bass": "G#",
+"changed": false,
+"rev": "6b76f7894f"
 },
 {
 "id": "S529",
@@ -8470,7 +9526,9 @@
 "localKey": "G major",
 "notes": "C - E - A",
 "root": "A",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "711cbcff41"
 },
 {
 "id": "S530",
@@ -8484,9 +9542,11 @@
 "endBar": 119,
 "endBeat": 2.0,
 "localKey": "D major",
-"notes": "C# - E - G - A#",
+"notes": "C# - E - G - Bb",
 "root": "C#",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "2d30c89ce3"
 },
 {
 "id": "S531",
@@ -8502,7 +9562,9 @@
 "localKey": "F major",
 "notes": "F - Ab - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "bc144c31f1"
 },
 {
 "id": "S532",
@@ -8518,7 +9580,9 @@
 "localKey": "G minor",
 "notes": "C - D - G - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "d168fbcd11"
 },
 {
 "id": "S533",
@@ -8532,9 +9596,11 @@
 "endBar": 74,
 "endBeat": 3.0,
 "localKey": "C major",
-"notes": "C - D - G - A - B",
+"notes": "D - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": true,
+"rev": "fa5dab4a2c"
 },
 {
 "id": "S534",
@@ -8550,7 +9616,9 @@
 "localKey": "C minor",
 "notes": "C - Eb - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "09e20be988"
 },
 {
 "id": "S535",
@@ -8566,7 +9634,9 @@
 "localKey": "F major",
 "notes": "D - F - Bb",
 "root": "Bb",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "a51a1ddf3f"
 },
 {
 "id": "S536",
@@ -8582,7 +9652,9 @@
 "localKey": "C major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "e52fa756ff"
 },
 {
 "id": "S537",
@@ -8598,7 +9670,9 @@
 "localKey": "Eb major",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "3acc0ba30b"
 },
 {
 "id": "S538",
@@ -8614,7 +9688,9 @@
 "localKey": "Eb major",
 "notes": "C - Eb - F - A",
 "root": "F",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "e3ae0cf7ed"
 },
 {
 "id": "S539",
@@ -8630,7 +9706,9 @@
 "localKey": "C minor",
 "notes": "D - F - G - B",
 "root": "G",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "5d8a232563"
 },
 {
 "id": "S540",
@@ -8646,7 +9724,9 @@
 "localKey": "Db major",
 "notes": "C - Eb - Gb - Ab",
 "root": "Ab",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "db0c1e6194"
 },
 {
 "id": "S541",
@@ -8660,9 +9740,11 @@
 "endBar": 32,
 "endBeat": 2.0,
 "localKey": "C minor",
-"notes": "C - D - G - Ab",
+"notes": "C - D - G",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": true,
+"rev": "e5a2dc4b2f"
 },
 {
 "id": "S542",
@@ -8678,7 +9760,9 @@
 "localKey": "G major",
 "notes": "D - F - G# - B",
 "root": "G#",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "1fd6f6afa4"
 },
 {
 "id": "S543",
@@ -8692,9 +9776,11 @@
 "endBar": 159,
 "endBeat": 1.0,
 "localKey": "G minor",
-"notes": "D - Eb - G",
+"notes": "Eb - G",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": true,
+"rev": "e3acf6f683"
 },
 {
 "id": "S544",
@@ -8708,9 +9794,11 @@
 "endBar": 149,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "C - D - E - G - Bb",
+"notes": "C - E - G - Bb",
 "root": "C",
-"bass": "G"
+"bass": "G",
+"changed": true,
+"rev": "bb46454526"
 },
 {
 "id": "S545",
@@ -8726,7 +9814,9 @@
 "localKey": "B minor",
 "notes": "C - E - G",
 "root": "C",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "95572f1e56"
 },
 {
 "id": "S546",
@@ -8742,7 +9832,9 @@
 "localKey": "D major",
 "notes": "E - G - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "2047e654a0"
 },
 {
 "id": "S547",
@@ -8758,7 +9850,9 @@
 "localKey": "C major",
 "notes": "C - E - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "ff62ef14d8"
 },
 {
 "id": "S548",
@@ -8774,7 +9868,9 @@
 "localKey": "Bb major",
 "notes": "Eb - F - A",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "f0c3a98dfd"
 },
 {
 "id": "S549",
@@ -8790,7 +9886,9 @@
 "localKey": "F major",
 "notes": "Db - E - G",
 "root": "Db",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "2350bf5825"
 },
 {
 "id": "S550",
@@ -8806,7 +9904,9 @@
 "localKey": "F major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "798c3ea021"
 },
 {
 "id": "S551",
@@ -8822,7 +9922,9 @@
 "localKey": "F major",
 "notes": "C - E - G - Bb",
 "root": "C",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "084ba124bb"
 },
 {
 "id": "S552",
@@ -8836,9 +9938,11 @@
 "endBar": 316,
 "endBeat": 3.0,
 "localKey": "F major",
-"notes": "D - E - F - G - A - Bb",
+"notes": "D - F - G - Bb",
 "root": "G",
-"bass": "F"
+"bass": "F",
+"changed": true,
+"rev": "10473ffb38"
 },
 {
 "id": "S553",
@@ -8854,7 +9958,9 @@
 "localKey": "B minor",
 "notes": "C# - E - G - A",
 "root": "A",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "0806d0bde2"
 },
 {
 "id": "S554",
@@ -8870,7 +9976,9 @@
 "localKey": "C major",
 "notes": "D - F - A - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "6766ff0131"
 },
 {
 "id": "S555",
@@ -8886,7 +9994,9 @@
 "localKey": "A major",
 "notes": "E - F# - A - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "76781c4a18"
 },
 {
 "id": "S556",
@@ -8902,7 +10012,9 @@
 "localKey": "G minor",
 "notes": "D - G - Bb",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "eb60a51663"
 },
 {
 "id": "S557",
@@ -8918,7 +10030,9 @@
 "localKey": "G minor",
 "notes": "D - G - B",
 "root": "G",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "db2be3ece7"
 },
 {
 "id": "S558",
@@ -8934,7 +10048,9 @@
 "localKey": "B minor",
 "notes": "D - F# - B",
 "root": "B",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "4acd103965"
 },
 {
 "id": "S559",
@@ -8950,7 +10066,9 @@
 "localKey": "B major",
 "notes": "C# - F# - B",
 "root": "F#",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "5028f989c1"
 },
 {
 "id": "S560",
@@ -8966,7 +10084,9 @@
 "localKey": "Eb major",
 "notes": "C - D - Gb - A",
 "root": "D",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "0835b3e35f"
 },
 {
 "id": "S561",
@@ -8982,7 +10102,9 @@
 "localKey": "F minor",
 "notes": "C - Eb - F - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "06f8eadd9a"
 },
 {
 "id": "S562",
@@ -8998,7 +10120,9 @@
 "localKey": "A major",
 "notes": "D# - F# - A# - B",
 "root": "B",
-"bass": "D#"
+"bass": "D#",
+"changed": false,
+"rev": "67bfb1270a"
 },
 {
 "id": "S563",
@@ -9012,9 +10136,11 @@
 "endBar": 151,
 "endBeat": 1.0,
 "localKey": "G minor",
-"notes": "C - D - Gb - A",
+"notes": "D - F# - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": true,
+"rev": "c85518d2f2"
 },
 {
 "id": "S564",
@@ -9030,7 +10156,9 @@
 "localKey": "G minor",
 "notes": "C - Eb - F - A",
 "root": "F",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "4c69bace20"
 },
 {
 "id": "S565",
@@ -9046,7 +10174,9 @@
 "localKey": "Bb major",
 "notes": "C - Eb - G",
 "root": "C",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "2c45223970"
 },
 {
 "id": "S566",
@@ -9062,7 +10192,9 @@
 "localKey": "C minor",
 "notes": "Db - E - G",
 "root": "E",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "c171c99cdf"
 },
 {
 "id": "S567",
@@ -9078,7 +10210,9 @@
 "localKey": "Eb major",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "0f422b2c0c"
 },
 {
 "id": "S568",
@@ -9092,9 +10226,11 @@
 "endBar": 220,
 "endBeat": 2.0,
 "localKey": "G major",
-"notes": "D# - E - F# - G - B",
+"notes": "D# - F# - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": true,
+"rev": "0ac22ee1ad"
 },
 {
 "id": "S569",
@@ -9108,9 +10244,11 @@
 "endBar": 30,
 "endBeat": 1.0,
 "localKey": "C minor",
-"notes": "C - E - F - Ab",
+"notes": "C - F - Ab",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": true,
+"rev": "d32d2e5528"
 },
 {
 "id": "S570",
@@ -9126,7 +10264,9 @@
 "localKey": "B major",
 "notes": "E - G - A#",
 "root": "A#",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "6f3a3078f3"
 },
 {
 "id": "S571",
@@ -9142,7 +10282,9 @@
 "localKey": "Bb minor",
 "notes": "C - Eb - F - A",
 "root": "F",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "1935c63de1"
 },
 {
 "id": "S572",
@@ -9158,7 +10300,9 @@
 "localKey": "F major",
 "notes": "D - F - G - B",
 "root": "G",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "0c7669d553"
 },
 {
 "id": "S573",
@@ -9174,7 +10318,9 @@
 "localKey": "D major",
 "notes": "D - F - G#",
 "root": "G#",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "443081920d"
 },
 {
 "id": "S574",
@@ -9188,9 +10334,11 @@
 "endBar": 6,
 "endBeat": 3.0,
 "localKey": "Eb major",
-"notes": "C - Db - D - G - B",
+"notes": "D - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": true,
+"rev": "997e3863e7"
 },
 {
 "id": "S575",
@@ -9206,7 +10354,9 @@
 "localKey": "C major",
 "notes": "C - E - G - B",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "fa9b8e20ed"
 },
 {
 "id": "S576",
@@ -9222,7 +10372,9 @@
 "localKey": "C major",
 "notes": "D - E - G - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "f865fc6b21"
 },
 {
 "id": "S577",
@@ -9238,7 +10390,9 @@
 "localKey": "G major",
 "notes": "C - D - F# - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "13c6465ae7"
 },
 {
 "id": "S578",
@@ -9254,7 +10408,9 @@
 "localKey": "F major",
 "notes": "C - E - G - Bb",
 "root": "C",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "bf38139bbd"
 },
 {
 "id": "S579",
@@ -9270,7 +10426,9 @@
 "localKey": "Gb minor",
 "notes": "D - F# - A",
 "root": "D",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "406179cf18"
 },
 {
 "id": "S580",
@@ -9286,7 +10444,9 @@
 "localKey": "A major",
 "notes": "C - D# - F# - G#",
 "root": "G#",
-"bass": "D#"
+"bass": "D#",
+"changed": false,
+"rev": "89bad23d19"
 },
 {
 "id": "S581",
@@ -9300,9 +10460,11 @@
 "endBar": 8,
 "endBeat": 2.0,
 "localKey": "Bb major",
-"notes": "Db - E - F - Bb",
+"notes": "C# - F - Bb",
 "root": "Bb",
-"bass": "Db"
+"bass": "C#",
+"changed": true,
+"rev": "89954e2bb9"
 },
 {
 "id": "S582",
@@ -9316,9 +10478,11 @@
 "endBar": 179,
 "endBeat": 1.0,
 "localKey": "A minor",
-"notes": "E - Ab - B",
+"notes": "E - G# - B",
 "root": "E",
-"bass": "Ab"
+"bass": "G#",
+"changed": false,
+"rev": "c87af124fc"
 },
 {
 "id": "S583",
@@ -9334,7 +10498,9 @@
 "localKey": "C minor",
 "notes": "Db - F - Ab",
 "root": "Db",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "58a20cfeed"
 },
 {
 "id": "S584",
@@ -9350,7 +10516,9 @@
 "localKey": "C minor",
 "notes": "C - Eb - G",
 "root": "C",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "4efc11ce2a"
 },
 {
 "id": "S585",
@@ -9366,7 +10534,9 @@
 "localKey": "F major",
 "notes": "Db - E - G",
 "root": "Db",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "7dc8f46e97"
 },
 {
 "id": "S586",
@@ -9382,7 +10552,9 @@
 "localKey": "Db major",
 "notes": "C - Eb - Ab",
 "root": "Ab",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "40cdc431f0"
 },
 {
 "id": "S587",
@@ -9398,7 +10570,9 @@
 "localKey": "B major",
 "notes": "C# - E - G - A#",
 "root": "A#",
-"bass": "A#"
+"bass": "A#",
+"changed": false,
+"rev": "52e7d8546b"
 },
 {
 "id": "S588",
@@ -9414,7 +10588,9 @@
 "localKey": "C minor",
 "notes": "C - F - A",
 "root": "F",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "eadc202d36"
 },
 {
 "id": "S589",
@@ -9430,7 +10606,9 @@
 "localKey": "Db major",
 "notes": "Db - Eb - G - Bb",
 "root": "Eb",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "490ad603e5"
 },
 {
 "id": "S590",
@@ -9446,7 +10624,9 @@
 "localKey": "Eb major",
 "notes": "Db - Eb - G - Bb",
 "root": "Eb",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "62c74b78a6"
 },
 {
 "id": "S591",
@@ -9462,7 +10642,9 @@
 "localKey": "Ab major",
 "notes": "D - F - Ab - B",
 "root": "D",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "771e4d8cc7"
 },
 {
 "id": "S592",
@@ -9478,7 +10660,9 @@
 "localKey": "Eb major",
 "notes": "D - Eb - F - Ab",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "badde6da10"
 },
 {
 "id": "S593",
@@ -9492,9 +10676,11 @@
 "endBar": 16,
 "endBeat": 1.0,
 "localKey": "G minor",
-"notes": "Db - Eb - G - Bb",
+"notes": "C# - Eb - G - Bb",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "55c0b6364c"
 },
 {
 "id": "S594",
@@ -9510,7 +10696,9 @@
 "localKey": "A minor",
 "notes": "C - E - G - B",
 "root": "C",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "f6ca64d00b"
 },
 {
 "id": "S595",
@@ -9526,7 +10714,9 @@
 "localKey": "A minor",
 "notes": "C - E - A",
 "root": "A",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "d890643919"
 },
 {
 "id": "S596",
@@ -9542,7 +10732,9 @@
 "localKey": "F major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "d56def4e19"
 },
 {
 "id": "S597",
@@ -9558,7 +10750,9 @@
 "localKey": "Bb major",
 "notes": "C - Eb - Gb - Ab",
 "root": "Ab",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "1fa1a67257"
 },
 {
 "id": "S598",
@@ -9574,7 +10768,9 @@
 "localKey": "Db minor",
 "notes": "D# - F# - A - B",
 "root": "B",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "319a655958"
 },
 {
 "id": "S599",
@@ -9590,7 +10786,9 @@
 "localKey": "D major",
 "notes": "C# - D - F# - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "4c51fc4820"
 },
 {
 "id": "S600",
@@ -9604,9 +10802,11 @@
 "endBar": 57,
 "endBeat": 1.0,
 "localKey": "Gb major",
-"notes": "C - Eb - F - A",
-"root": "F",
-"bass": "F"
+"notes": "C - Eb - E# - A",
+"root": "E#",
+"bass": "E#",
+"changed": false,
+"rev": "1962cddcec"
 },
 {
 "id": "S601",
@@ -9620,9 +10820,11 @@
 "endBar": 7,
 "endBeat": 1.0,
 "localKey": "D major",
-"notes": "D - F - B",
-"root": "F",
-"bass": "B"
+"notes": "D - E# - B",
+"root": "E#",
+"bass": "B",
+"changed": false,
+"rev": "a87124fbe5"
 },
 {
 "id": "S602",
@@ -9638,7 +10840,9 @@
 "localKey": "G major",
 "notes": "D - F# - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "26192493f0"
 },
 {
 "id": "S603",
@@ -9654,7 +10858,9 @@
 "localKey": "C major",
 "notes": "C - D - F - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "7dccf5dc91"
 },
 {
 "id": "S604",
@@ -9668,9 +10874,11 @@
 "endBar": 12,
 "endBeat": 4.0,
 "localKey": "G minor",
-"notes": "C - D - Gb - A",
+"notes": "C - D - F# - A",
 "root": "D",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "d787fdf9fc"
 },
 {
 "id": "S605",
@@ -9686,7 +10894,9 @@
 "localKey": "C major",
 "notes": "C# - E - G# - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "4664c7a95f"
 },
 {
 "id": "S606",
@@ -9702,7 +10912,9 @@
 "localKey": "G minor",
 "notes": "C - Eb - G - A",
 "root": "A",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "cf88ca99a9"
 },
 {
 "id": "S607",
@@ -9718,7 +10930,9 @@
 "localKey": "C major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "a1ebb704bd"
 },
 {
 "id": "S608",
@@ -9732,9 +10946,11 @@
 "endBar": 111,
 "endBeat": 1.0,
 "localKey": "C minor",
-"notes": "C - Gb - A",
-"root": "Gb",
-"bass": "A"
+"notes": "C - F# - A",
+"root": "F#",
+"bass": "A",
+"changed": false,
+"rev": "2245d194f8"
 },
 {
 "id": "S609",
@@ -9748,9 +10964,11 @@
 "endBar": 123,
 "endBeat": 1.0,
 "localKey": "A minor",
-"notes": "Db - F - A",
+"notes": "C# - F - A",
 "root": "A",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "4b7c92050f"
 },
 {
 "id": "S610",
@@ -9764,9 +10982,11 @@
 "endBar": 36,
 "endBeat": 2.0,
 "localKey": "G minor",
-"notes": "Db - E - Gb - A",
-"root": "Gb",
-"bass": "Db"
+"notes": "C# - E - F# - A",
+"root": "F#",
+"bass": "C#",
+"changed": false,
+"rev": "8c23cfedcd"
 },
 {
 "id": "S611",
@@ -9780,9 +11000,11 @@
 "endBar": 26,
 "endBeat": 1.5,
 "localKey": "G minor",
-"notes": "Eb - Gb - Bb",
+"notes": "Eb - F# - Bb",
 "root": "Eb",
-"bass": "Gb"
+"bass": "F#",
+"changed": false,
+"rev": "3397be25f2"
 },
 {
 "id": "S612",
@@ -9796,9 +11018,11 @@
 "endBar": 124,
 "endBeat": 1.5,
 "localKey": "F major",
-"notes": "C - D - F - G - B",
+"notes": "C - D - F - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "035f71126a"
 },
 {
 "id": "S613",
@@ -9814,7 +11038,9 @@
 "localKey": "Bb major",
 "notes": "C - D - F - B",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "bb33a5a969"
 },
 {
 "id": "S614",
@@ -9830,7 +11056,9 @@
 "localKey": "C major",
 "notes": "C - E - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "27d4fdd032"
 },
 {
 "id": "S615",
@@ -9844,9 +11072,11 @@
 "endBar": 6,
 "endBeat": 1.0,
 "localKey": "E major",
-"notes": "D - F - B",
-"root": "F",
-"bass": "B"
+"notes": "D - E# - B",
+"root": "E#",
+"bass": "B",
+"changed": false,
+"rev": "85452afcce"
 },
 {
 "id": "S616",
@@ -9860,9 +11090,11 @@
 "endBar": 29,
 "endBeat": 1.0,
 "localKey": "C minor",
-"notes": "C - Eb - F - G",
+"notes": "C - Eb - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "19e3aa8e59"
 },
 {
 "id": "S617",
@@ -9878,7 +11110,9 @@
 "localKey": "E major",
 "notes": "C# - E - G - A#",
 "root": "A#",
-"bass": "A#"
+"bass": "A#",
+"changed": false,
+"rev": "bc23971aef"
 },
 {
 "id": "S618",
@@ -9892,9 +11126,11 @@
 "endBar": 25,
 "endBeat": 1.0,
 "localKey": "F minor",
-"notes": "C - Db - E - G - Bb",
+"notes": "C - E - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "d85b4b08cd"
 },
 {
 "id": "S619",
@@ -9910,7 +11146,9 @@
 "localKey": "E major",
 "notes": "D# - F# - A# - B",
 "root": "B",
-"bass": "A#"
+"bass": "A#",
+"changed": false,
+"rev": "4ef034776e"
 },
 {
 "id": "S620",
@@ -9926,7 +11164,9 @@
 "localKey": "C major",
 "notes": "D - F - A",
 "root": "D",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "038b5c3f19"
 },
 {
 "id": "S621",
@@ -9942,7 +11182,9 @@
 "localKey": "A minor",
 "notes": "C - E - G",
 "root": "C",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "13938fdb27"
 },
 {
 "id": "S622",
@@ -9958,7 +11200,9 @@
 "localKey": "Bb major",
 "notes": "C - E - G - A",
 "root": "A",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "fa2c54a663"
 },
 {
 "id": "S623",
@@ -9974,7 +11218,9 @@
 "localKey": "G major",
 "notes": "D - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "8d55023655"
 },
 {
 "id": "S624",
@@ -9990,7 +11236,9 @@
 "localKey": "Bb major",
 "notes": "D - F - Bb",
 "root": "Bb",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "067c2665ce"
 },
 {
 "id": "S625",
@@ -10006,7 +11254,9 @@
 "localKey": "Eb major",
 "notes": "Db - G - Bb",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "1f6af95640"
 },
 {
 "id": "S626",
@@ -10022,7 +11272,9 @@
 "localKey": "D minor",
 "notes": "D - E - G - Bb",
 "root": "E",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "e8d4e33ca8"
 },
 {
 "id": "S627",
@@ -10038,7 +11290,9 @@
 "localKey": "A minor",
 "notes": "D - F - A - Bb",
 "root": "Bb",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "c3776bf146"
 },
 {
 "id": "S628",
@@ -10052,9 +11306,11 @@
 "endBar": 2,
 "endBeat": 4.5,
 "localKey": "G minor",
-"notes": "C - Eb - Gb - Bb",
+"notes": "C - Eb - F# - Bb",
 "root": "C",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "bced4781cc"
 },
 {
 "id": "S629",
@@ -10070,7 +11326,9 @@
 "localKey": "C minor",
 "notes": "D - F - Ab",
 "root": "D",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "132a29ee42"
 },
 {
 "id": "S630",
@@ -10086,7 +11344,9 @@
 "localKey": "F major",
 "notes": "C - G - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "3b3cfa9f8b"
 },
 {
 "id": "S631",
@@ -10102,7 +11362,9 @@
 "localKey": "A major",
 "notes": "D - F# - A",
 "root": "D",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "fb48916982"
 },
 {
 "id": "S632",
@@ -10118,7 +11380,9 @@
 "localKey": "G major",
 "notes": "C - E - A",
 "root": "A",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "8ff3e17782"
 },
 {
 "id": "S633",
@@ -10134,7 +11398,9 @@
 "localKey": "D major",
 "notes": "C - D - F# - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "a2449c2e36"
 },
 {
 "id": "S634",
@@ -10150,7 +11416,9 @@
 "localKey": "G major",
 "notes": "C# - F# - A",
 "root": "F#",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "3e30d72a99"
 },
 {
 "id": "S635",
@@ -10166,7 +11434,9 @@
 "localKey": "Eb major",
 "notes": "E - G - Bb",
 "root": "E",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "18aed2b9bb"
 },
 {
 "id": "S636",
@@ -10180,9 +11450,11 @@
 "endBar": 336,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "Db - E - G - Bb",
+"notes": "C# - E - G - Bb",
 "root": "E",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "bfb588e3c7"
 },
 {
 "id": "S637",
@@ -10198,7 +11470,9 @@
 "localKey": "D major",
 "notes": "D - F# - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "deb4ead361"
 },
 {
 "id": "S638",
@@ -10214,7 +11488,9 @@
 "localKey": "Ab major",
 "notes": "C - Db - F - Ab",
 "root": "Db",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "11fb65d1de"
 },
 {
 "id": "S639",
@@ -10230,7 +11506,9 @@
 "localKey": "E major",
 "notes": "C# - E - F# - A",
 "root": "F#",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "db417e41c7"
 },
 {
 "id": "S640",
@@ -10246,7 +11524,9 @@
 "localKey": "Db major",
 "notes": "Db - Eb - Gb - Bb",
 "root": "Eb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "fbaf88cbc3"
 },
 {
 "id": "S641",
@@ -10260,9 +11540,11 @@
 "endBar": 14,
 "endBeat": 2.5,
 "localKey": "Ab major",
-"notes": "D - F - G - Ab - Bb",
+"notes": "D - F - G - Bb",
 "root": "G",
-"bass": "D"
+"bass": "D",
+"changed": true,
+"rev": "2a568daf3d"
 },
 {
 "id": "S642",
@@ -10278,7 +11560,9 @@
 "localKey": "C major",
 "notes": "C - D - F - A",
 "root": "D",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "4de6d626bb"
 },
 {
 "id": "S643",
@@ -10292,9 +11576,11 @@
 "endBar": 9,
 "endBeat": 1.0,
 "localKey": "C major",
-"notes": "Db - D - E - G - B",
+"notes": "D - E - G - B",
 "root": "E",
-"bass": "G"
+"bass": "G",
+"changed": true,
+"rev": "5af6b78765"
 },
 {
 "id": "S644",
@@ -10310,7 +11596,9 @@
 "localKey": "C major",
 "notes": "D - F - A",
 "root": "D",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "67bbc10ba9"
 },
 {
 "id": "S645",
@@ -10324,9 +11612,11 @@
 "endBar": 78,
 "endBeat": 3.0,
 "localKey": "D minor",
-"notes": "Db - Eb - F - G - Bb",
+"notes": "Db - Eb - G - Bb",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": true,
+"rev": "2e246ad2b2"
 },
 {
 "id": "S646",
@@ -10342,7 +11632,9 @@
 "localKey": "Eb major",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "48a92751f5"
 },
 {
 "id": "S647",
@@ -10358,7 +11650,9 @@
 "localKey": "F major",
 "notes": "D - F - Bb",
 "root": "Bb",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "b61aa1520c"
 },
 {
 "id": "S648",
@@ -10374,7 +11668,9 @@
 "localKey": "Db major",
 "notes": "Eb - Gb - Bb",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "66528f5a91"
 },
 {
 "id": "S649",
@@ -10390,7 +11686,9 @@
 "localKey": "F major",
 "notes": "C - Eb - F - A",
 "root": "F",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "d245d4fbdb"
 },
 {
 "id": "S650",
@@ -10406,7 +11704,9 @@
 "localKey": "Eb major",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "135a3c6d48"
 },
 {
 "id": "S651",
@@ -10420,9 +11720,11 @@
 "endBar": 27,
 "endBeat": 2.0,
 "localKey": "D major",
-"notes": "D# - F - A#",
-"root": "A#",
-"bass": "A#"
+"notes": "Eb - F - Bb",
+"root": "Bb",
+"bass": "Bb",
+"changed": false,
+"rev": "e5568ef87f"
 },
 {
 "id": "S652",
@@ -10436,9 +11738,11 @@
 "endBar": 64,
 "endBeat": 1.0,
 "localKey": "G minor",
-"notes": "C - Eb - Gb - A",
-"root": "Gb",
-"bass": "A"
+"notes": "C - Eb - F# - A",
+"root": "F#",
+"bass": "A",
+"changed": false,
+"rev": "6ecdde2ab6"
 },
 {
 "id": "S653",
@@ -10454,7 +11758,9 @@
 "localKey": "D minor",
 "notes": "D - F - A - Bb",
 "root": "Bb",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "11097a854a"
 },
 {
 "id": "S654",
@@ -10470,7 +11776,9 @@
 "localKey": "Eb major",
 "notes": "C - D - G",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "c9b8ba0019"
 },
 {
 "id": "S655",
@@ -10486,7 +11794,9 @@
 "localKey": "G minor",
 "notes": "C - Eb - A",
 "root": "A",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "ec0733fefc"
 },
 {
 "id": "S656",
@@ -10500,9 +11810,11 @@
 "endBar": 208,
 "endBeat": 1.0,
 "localKey": "C major",
-"notes": "E - Ab - B",
+"notes": "E - G# - B",
 "root": "E",
-"bass": "Ab"
+"bass": "G#",
+"changed": false,
+"rev": "8a12a93e0b"
 },
 {
 "id": "S657",
@@ -10516,9 +11828,11 @@
 "endBar": 13,
 "endBeat": 1.0,
 "localKey": "D minor",
-"notes": "Db - E - G - A",
+"notes": "C# - E - G - A",
 "root": "A",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "45163173b5"
 },
 {
 "id": "S658",
@@ -10532,9 +11846,11 @@
 "endBar": 107,
 "endBeat": 1.0,
 "localKey": "A major",
-"notes": "F - Ab - B",
-"root": "F",
-"bass": "F"
+"notes": "E# - G# - B",
+"root": "E#",
+"bass": "E#",
+"changed": false,
+"rev": "9c7777b750"
 },
 {
 "id": "S659",
@@ -10548,9 +11864,11 @@
 "endBar": 26,
 "endBeat": 3.5,
 "localKey": "Eb major",
-"notes": "Db - F - Ab",
-"root": "Db",
-"bass": "F"
+"notes": "C# - F - Ab",
+"root": "C#",
+"bass": "F",
+"changed": false,
+"rev": "5436c4f34b"
 },
 {
 "id": "S660",
@@ -10566,7 +11884,9 @@
 "localKey": "F major",
 "notes": "D - G - Bb",
 "root": "G",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "91fb26aee1"
 },
 {
 "id": "S661",
@@ -10580,9 +11900,11 @@
 "endBar": 103,
 "endBeat": 2.0,
 "localKey": "G minor",
-"notes": "D - Gb - Bb",
+"notes": "D - F# - Bb",
 "root": "Bb",
-"bass": "Gb"
+"bass": "F#",
+"changed": false,
+"rev": "63ed8c6d8d"
 },
 {
 "id": "S662",
@@ -10598,7 +11920,9 @@
 "localKey": "Db major",
 "notes": "C - Eb - Gb - Bb",
 "root": "C",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "50a45d4acd"
 },
 {
 "id": "S663",
@@ -10614,7 +11938,9 @@
 "localKey": "C minor",
 "notes": "C - Eb - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "19e3aa8e59"
 },
 {
 "id": "S664",
@@ -10630,7 +11956,9 @@
 "localKey": "C major",
 "notes": "C - E - G",
 "root": "C",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "5becd86ee7"
 },
 {
 "id": "S665",
@@ -10646,7 +11974,9 @@
 "localKey": "C minor",
 "notes": "Db - F - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "be870f236c"
 },
 {
 "id": "S666",
@@ -10662,7 +11992,9 @@
 "localKey": "F major",
 "notes": "Eb - F - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "ac9f4dee76"
 },
 {
 "id": "S667",
@@ -10676,9 +12008,11 @@
 "endBar": 8,
 "endBeat": 1.0,
 "localKey": "Bb major",
-"notes": "C - D - F - A - Bb",
+"notes": "C - D - F - A",
 "root": "D",
-"bass": "F"
+"bass": "F",
+"changed": true,
+"rev": "9b603e4c9f"
 },
 {
 "id": "S668",
@@ -10692,9 +12026,11 @@
 "endBar": 87,
 "endBeat": 1.0,
 "localKey": "B major",
-"notes": "C - E - F# - A",
+"notes": "B# - E - F# - G##",
 "root": "F#",
-"bass": "A"
+"bass": "G##",
+"changed": false,
+"rev": "d2f596d896"
 },
 {
 "id": "S669",
@@ -10710,7 +12046,9 @@
 "localKey": "C major",
 "notes": "D - F - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "a93f08fc70"
 },
 {
 "id": "S670",
@@ -10724,9 +12062,11 @@
 "endBar": 7,
 "endBeat": 2.5,
 "localKey": "A minor",
-"notes": "D - E - A - Bb",
+"notes": "D - E - Bb",
 "root": "E",
-"bass": "E"
+"bass": "E",
+"changed": true,
+"rev": "70be3af13b"
 },
 {
 "id": "S671",
@@ -10742,7 +12082,9 @@
 "localKey": "G major",
 "notes": "C - D - G",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "ce5d8b7fa7"
 },
 {
 "id": "S672",
@@ -10756,9 +12098,11 @@
 "endBar": 185,
 "endBeat": 1.0,
 "localKey": "A minor",
-"notes": "D - Ab - A - B",
+"notes": "D - G# - A - B",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "ce6a2dd270"
 },
 {
 "id": "S673",
@@ -10774,7 +12118,9 @@
 "localKey": "F major",
 "notes": "E - F - G - Bb",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "b5521e4d2c"
 },
 {
 "id": "S674",
@@ -10790,7 +12136,9 @@
 "localKey": "C minor",
 "notes": "Db - F - G - Bb",
 "root": "G",
-"bass": "Db"
+"bass": "Db",
+"changed": false,
+"rev": "f9fcb6b2bf"
 },
 {
 "id": "S675",
@@ -10806,7 +12154,9 @@
 "localKey": "A major",
 "notes": "C# - D# - F# - G#",
 "root": "C#",
-"bass": "C#"
+"bass": "C#",
+"changed": false,
+"rev": "62de030635"
 },
 {
 "id": "S676",
@@ -10820,9 +12170,11 @@
 "endBar": 5,
 "endBeat": 1.0,
 "localKey": "G minor",
-"notes": "C - Gb - A",
-"root": "Gb",
-"bass": "C"
+"notes": "C - F# - A",
+"root": "F#",
+"bass": "C",
+"changed": false,
+"rev": "eac4ede36d"
 },
 {
 "id": "S677",
@@ -10838,7 +12190,9 @@
 "localKey": "D minor",
 "notes": "D - F - A - B",
 "root": "B",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "60065cab44"
 },
 {
 "id": "S678",
@@ -10854,7 +12208,9 @@
 "localKey": "C minor",
 "notes": "Eb - F - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "9d94280fb9"
 },
 {
 "id": "S679",
@@ -10870,7 +12226,9 @@
 "localKey": "Eb major",
 "notes": "C - Eb - Ab",
 "root": "Ab",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "7fae21c9c6"
 },
 {
 "id": "S680",
@@ -10884,9 +12242,11 @@
 "endBar": 100,
 "endBeat": 4.0,
 "localKey": "A major",
-"notes": "D - E - F# - G - A",
+"notes": "E - G - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": true,
+"rev": "259d2507e9"
 },
 {
 "id": "S681",
@@ -10902,7 +12262,9 @@
 "localKey": "E major",
 "notes": "D# - F# - A - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "436ed7266f"
 },
 {
 "id": "S682",
@@ -10918,7 +12280,9 @@
 "localKey": "E minor",
 "notes": "C# - E - G - A#",
 "root": "A#",
-"bass": "A#"
+"bass": "A#",
+"changed": false,
+"rev": "086c63cacd"
 },
 {
 "id": "S683",
@@ -10934,7 +12298,9 @@
 "localKey": "G minor",
 "notes": "C - E - G",
 "root": "C",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "e836ccbc66"
 },
 {
 "id": "S684",
@@ -10950,7 +12316,9 @@
 "localKey": "E major",
 "notes": "D# - F# - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "1363e753d5"
 },
 {
 "id": "S685",
@@ -10966,7 +12334,9 @@
 "localKey": "G minor",
 "notes": "D - F - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "e0541b1215"
 },
 {
 "id": "S686",
@@ -10982,7 +12352,9 @@
 "localKey": "A minor",
 "notes": "C - E - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "f9490cb00a"
 },
 {
 "id": "S687",
@@ -10998,7 +12370,9 @@
 "localKey": "C major",
 "notes": "C - E - G - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "525e934521"
 },
 {
 "id": "S688",
@@ -11014,7 +12388,9 @@
 "localKey": "C major",
 "notes": "D - F - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "5de5faece5"
 },
 {
 "id": "S689",
@@ -11028,9 +12404,11 @@
 "endBar": 27,
 "endBeat": 1.0,
 "localKey": "B major",
-"notes": "C# - D# - G - A#",
+"notes": "C# - D# - F## - A#",
 "root": "D#",
-"bass": "A#"
+"bass": "A#",
+"changed": false,
+"rev": "ac821384e6"
 },
 {
 "id": "S690",
@@ -11046,7 +12424,9 @@
 "localKey": "Eb major",
 "notes": "Db - E - G - Bb",
 "root": "E",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "b48c37847e"
 },
 {
 "id": "S691",
@@ -11060,9 +12440,11 @@
 "endBar": 116,
 "endBeat": 1.0,
 "localKey": "D minor",
-"notes": "Db - E - G",
-"root": "Db",
-"bass": "E"
+"notes": "C# - E - G",
+"root": "C#",
+"bass": "E",
+"changed": false,
+"rev": "367ac3925c"
 },
 {
 "id": "S692",
@@ -11078,7 +12460,9 @@
 "localKey": "C major",
 "notes": "D - F - A",
 "root": "D",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "f2ee241fdf"
 },
 {
 "id": "S693",
@@ -11092,9 +12476,11 @@
 "endBar": 13,
 "endBeat": 2.0,
 "localKey": "F major",
-"notes": "C - Gb - G - A - Bb",
-"root": "Gb",
-"bass": "Gb"
+"notes": "C - F# - A",
+"root": "F#",
+"bass": "F#",
+"changed": true,
+"rev": "0c5fe346fc"
 },
 {
 "id": "S694",
@@ -11110,7 +12496,9 @@
 "localKey": "G major",
 "notes": "C# - E - G - B",
 "root": "C#",
-"bass": "C#"
+"bass": "C#",
+"changed": false,
+"rev": "327f6e6ef9"
 },
 {
 "id": "S695",
@@ -11124,9 +12512,11 @@
 "endBar": 15,
 "endBeat": 1.0,
 "localKey": "Db major",
-"notes": "Db - Gb - Ab - B",
+"notes": "Db - Gb - Ab - Cb",
 "root": "Gb",
-"bass": "Gb"
+"bass": "Gb",
+"changed": false,
+"rev": "04568bdcc2"
 },
 {
 "id": "S696",
@@ -11142,7 +12532,9 @@
 "localKey": "Bb major",
 "notes": "C - Eb - F",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "bd849021b0"
 },
 {
 "id": "S697",
@@ -11158,7 +12550,9 @@
 "localKey": "Eb major",
 "notes": "D - Eb - F - Ab",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "b24c30e2ad"
 },
 {
 "id": "S698",
@@ -11174,7 +12568,9 @@
 "localKey": "A major",
 "notes": "D# - F# - A - B",
 "root": "B",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "d4406d0270"
 },
 {
 "id": "S699",
@@ -11190,7 +12586,9 @@
 "localKey": "C major",
 "notes": "E - G - B",
 "root": "E",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "d6d7fa0e14"
 },
 {
 "id": "S700",
@@ -11204,9 +12602,11 @@
 "endBar": 3,
 "endBeat": 2.0,
 "localKey": "Ab minor",
-"notes": "C# - D# - G - A#",
+"notes": "C# - D# - F## - A#",
 "root": "D#",
-"bass": "G"
+"bass": "F##",
+"changed": false,
+"rev": "9ba496a3a6"
 },
 {
 "id": "S701",
@@ -11222,7 +12622,9 @@
 "localKey": "F major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "60c82b5e4b"
 },
 {
 "id": "S702",
@@ -11236,9 +12638,11 @@
 "endBar": 71,
 "endBeat": 3.5,
 "localKey": "A major",
-"notes": "C# - E - F# - G#",
+"notes": "C# - E - G#",
 "root": "C#",
-"bass": "C#"
+"bass": "C#",
+"changed": true,
+"rev": "f06536bad5"
 },
 {
 "id": "S703",
@@ -11254,7 +12658,9 @@
 "localKey": "F major",
 "notes": "E - G - Bb",
 "root": "E",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "ccba8fa384"
 },
 {
 "id": "S704",
@@ -11270,7 +12676,9 @@
 "localKey": "C minor",
 "notes": "C - Eb - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "21f3544318"
 },
 {
 "id": "S705",
@@ -11284,9 +12692,11 @@
 "endBar": 231,
 "endBeat": 1.0,
 "localKey": "Bb major",
-"notes": "C - D - Gb - A",
+"notes": "C - D - F# - A",
 "root": "D",
-"bass": "Gb"
+"bass": "F#",
+"changed": false,
+"rev": "42e7899996"
 },
 {
 "id": "S706",
@@ -11302,7 +12712,9 @@
 "localKey": "D major",
 "notes": "D - E - G - B",
 "root": "E",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "591d0fdbd1"
 },
 {
 "id": "S707",
@@ -11318,7 +12730,9 @@
 "localKey": "A minor",
 "notes": "C - D - F - A",
 "root": "D",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "9e28611643"
 },
 {
 "id": "S708",
@@ -11334,7 +12748,9 @@
 "localKey": "Bb major",
 "notes": "C - Eb - Bb",
 "root": "C",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "f4854a1521"
 },
 {
 "id": "S709",
@@ -11350,7 +12766,9 @@
 "localKey": "G minor",
 "notes": "D - G - Bb",
 "root": "G",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "a808ae5123"
 },
 {
 "id": "S710",
@@ -11366,7 +12784,9 @@
 "localKey": "Eb major",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "694788e067"
 },
 {
 "id": "S711",
@@ -11382,7 +12802,9 @@
 "localKey": "Bb major",
 "notes": "D - E - F",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "4f9f98e203"
 },
 {
 "id": "S712",
@@ -11398,7 +12820,9 @@
 "localKey": "Bb major",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "e8be84e37b"
 },
 {
 "id": "S713",
@@ -11412,9 +12836,11 @@
 "endBar": 307,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "C - D - E - F - G - A - Bb",
+"notes": "C - E - G - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "53c83cd376"
 },
 {
 "id": "S714",
@@ -11430,7 +12856,9 @@
 "localKey": "A major",
 "notes": "D - F# - A - B",
 "root": "B",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "050086b08f"
 },
 {
 "id": "S715",
@@ -11446,7 +12874,9 @@
 "localKey": "Bb major",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "b6c4c91e5f"
 },
 {
 "id": "S716",
@@ -11460,9 +12890,11 @@
 "endBar": 117,
 "endBeat": 3.0,
 "localKey": "A major",
-"notes": "D - Gb - Ab - B",
-"root": "Ab",
-"bass": "D"
+"notes": "D - F# - G# - B",
+"root": "G#",
+"bass": "D",
+"changed": false,
+"rev": "edecce18cf"
 },
 {
 "id": "S717",
@@ -11478,7 +12910,9 @@
 "localKey": "C major",
 "notes": "C - Eb - Gb - Bb",
 "root": "C",
-"bass": "Gb"
+"bass": "Gb",
+"changed": false,
+"rev": "ba55d07c8f"
 },
 {
 "id": "S718",
@@ -11492,9 +12926,11 @@
 "endBar": 113,
 "endBeat": 4.5,
 "localKey": "A minor",
-"notes": "Db - E - G - A",
+"notes": "C# - E - G - A",
 "root": "A",
-"bass": "Db"
+"bass": "C#",
+"changed": false,
+"rev": "7d12479ea0"
 },
 {
 "id": "S719",
@@ -11510,7 +12946,9 @@
 "localKey": "A major",
 "notes": "D# - F# - G#",
 "root": "G#",
-"bass": "G#"
+"bass": "G#",
+"changed": false,
+"rev": "2ffd33aa29"
 },
 {
 "id": "S720",
@@ -11526,7 +12964,9 @@
 "localKey": "F major",
 "notes": "C - D - G",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "ad047cf3b7"
 },
 {
 "id": "S721",
@@ -11542,7 +12982,9 @@
 "localKey": "G major",
 "notes": "C - D - F# - A",
 "root": "D",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "a7f2f85f30"
 },
 {
 "id": "S722",
@@ -11556,9 +12998,11 @@
 "endBar": 30,
 "endBeat": 1.0,
 "localKey": "Eb major",
-"notes": "D - Gb - A - Bb",
+"notes": "D - F# - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": true,
+"rev": "e9ceb700cb"
 },
 {
 "id": "S723",
@@ -11574,7 +13018,9 @@
 "localKey": "Ab major",
 "notes": "Db - F - Bb",
 "root": "Bb",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "82bab712ce"
 },
 {
 "id": "S724",
@@ -11590,7 +13036,9 @@
 "localKey": "C minor",
 "notes": "Eb - G",
 "root": "Eb",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "898802ec09"
 },
 {
 "id": "S725",
@@ -11606,7 +13054,9 @@
 "localKey": "Eb major",
 "notes": "C - D - G",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "faee96c496"
 },
 {
 "id": "S726",
@@ -11620,9 +13070,11 @@
 "endBar": 77,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "C - D - Gb - A",
+"notes": "C - D - F# - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "efc48aba62"
 },
 {
 "id": "S727",
@@ -11638,7 +13090,9 @@
 "localKey": "C minor",
 "notes": "C - E - G",
 "root": "C",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "4b082aa40a"
 },
 {
 "id": "S728",
@@ -11654,7 +13108,9 @@
 "localKey": "A minor",
 "notes": "C - F - A",
 "root": "F",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "6348c4a3a5"
 },
 {
 "id": "S729",
@@ -11670,7 +13126,9 @@
 "localKey": "F major",
 "notes": "D - G - B",
 "root": "G",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "85b6166cb3"
 },
 {
 "id": "S730",
@@ -11686,7 +13144,9 @@
 "localKey": "B minor",
 "notes": "D - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "2fb5359de0"
 },
 {
 "id": "S731",
@@ -11700,9 +13160,11 @@
 "endBar": 10,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "C - D - G - Bb",
+"notes": "C - G - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "05795a8a22"
 },
 {
 "id": "S732",
@@ -11716,9 +13178,11 @@
 "endBar": 59,
 "endBeat": 1.0,
 "localKey": "G major",
-"notes": "C - D - Gb - A",
+"notes": "C - D - F# - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "4ace7aabdc"
 },
 {
 "id": "S733",
@@ -11732,9 +13196,11 @@
 "endBar": 16,
 "endBeat": 3.0,
 "localKey": "F major",
-"notes": "C - Eb - Gb - Bb",
+"notes": "C - Eb - F# - Bb",
 "root": "C",
-"bass": "Gb"
+"bass": "F#",
+"changed": false,
+"rev": "368d0ca50d"
 },
 {
 "id": "S734",
@@ -11750,7 +13216,9 @@
 "localKey": "E minor",
 "notes": "D - F - G# - B",
 "root": "G#",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "f636757ce6"
 },
 {
 "id": "S735",
@@ -11766,7 +13234,9 @@
 "localKey": "D major",
 "notes": "C - D - F# - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "e6ad1f4ffa"
 },
 {
 "id": "S736",
@@ -11782,7 +13252,9 @@
 "localKey": "G major",
 "notes": "C - D - F# - A",
 "root": "D",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "a00a085ce5"
 },
 {
 "id": "S737",
@@ -11798,7 +13270,9 @@
 "localKey": "E major",
 "notes": "F# - G# - A",
 "root": "F#",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "d794b08e6f"
 },
 {
 "id": "S738",
@@ -11814,7 +13288,9 @@
 "localKey": "Eb minor",
 "notes": "D - Ab - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "5fe3cc584a"
 },
 {
 "id": "S739",
@@ -11828,9 +13304,11 @@
 "endBar": 33,
 "endBeat": 1.0,
 "localKey": "B minor",
-"notes": "C - E - F# - A#",
+"notes": "C - F# - A#",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "1d59995999"
 },
 {
 "id": "S740",
@@ -11846,7 +13324,9 @@
 "localKey": "Eb major",
 "notes": "Eb - G - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "dc1fa73048"
 },
 {
 "id": "S741",
@@ -11862,7 +13342,9 @@
 "localKey": "E minor",
 "notes": "C# - F - G# - B",
 "root": "C#",
-"bass": "C#"
+"bass": "C#",
+"changed": false,
+"rev": "693421a057"
 },
 {
 "id": "S742",
@@ -11878,7 +13360,9 @@
 "localKey": "D minor",
 "notes": "D - E - G - Bb",
 "root": "E",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "fa4c54f47a"
 },
 {
 "id": "S743",
@@ -11892,9 +13376,11 @@
 "endBar": 20,
 "endBeat": 1.0,
 "localKey": "Bb major",
-"notes": "Eb - Gb - B",
-"root": "B",
-"bass": "B"
+"notes": "Eb - Gb - Cb",
+"root": "Cb",
+"bass": "Cb",
+"changed": false,
+"rev": "d978bd59ec"
 },
 {
 "id": "S744",
@@ -11908,9 +13394,11 @@
 "endBar": 75,
 "endBeat": 1.0,
 "localKey": "F minor",
-"notes": "C - Db - E - G - Bb",
+"notes": "C - E - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "4013627afb"
 },
 {
 "id": "S745",
@@ -11926,7 +13414,9 @@
 "localKey": "E minor",
 "notes": "E - F# - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "4d761dadfb"
 },
 {
 "id": "S746",
@@ -11940,9 +13430,11 @@
 "endBar": 142,
 "endBeat": 2.5,
 "localKey": "F minor",
-"notes": "F - G - Ab - Bb",
+"notes": "F - G - Bb",
 "root": "G",
-"bass": "F"
+"bass": "F",
+"changed": true,
+"rev": "ebbc8c8131"
 },
 {
 "id": "S747",
@@ -11958,7 +13450,9 @@
 "localKey": "Eb major",
 "notes": "D - F - Ab - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "b3ea1ee757"
 },
 {
 "id": "S748",
@@ -11974,7 +13468,9 @@
 "localKey": "Eb major",
 "notes": "C - D - F - Ab",
 "root": "D",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "b89e075299"
 },
 {
 "id": "S749",
@@ -11990,7 +13486,9 @@
 "localKey": "E major",
 "notes": "D# - F# - G# - B",
 "root": "G#",
-"bass": "D#"
+"bass": "D#",
+"changed": false,
+"rev": "0f86841b26"
 },
 {
 "id": "S750",
@@ -12006,7 +13504,9 @@
 "localKey": "F major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "0a738fc296"
 },
 {
 "id": "S751",
@@ -12022,7 +13522,9 @@
 "localKey": "Bb major",
 "notes": "D - F - Ab - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "71cc930119"
 },
 {
 "id": "S752",
@@ -12038,7 +13540,9 @@
 "localKey": "Eb major",
 "notes": "C - F - Ab",
 "root": "F",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "47fb61acb6"
 },
 {
 "id": "S753",
@@ -12054,7 +13558,9 @@
 "localKey": "B minor",
 "notes": "D - F# - A",
 "root": "D",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "545a892968"
 },
 {
 "id": "S754",
@@ -12070,7 +13576,9 @@
 "localKey": "G major",
 "notes": "D - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "548df995eb"
 },
 {
 "id": "S755",
@@ -12086,7 +13594,9 @@
 "localKey": "Bb minor",
 "notes": "Db - F - Ab - Bb",
 "root": "Bb",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "16a7301c38"
 },
 {
 "id": "S756",
@@ -12102,7 +13612,9 @@
 "localKey": "Ab minor",
 "notes": "C# - F# - A#",
 "root": "F#",
-"bass": "A#"
+"bass": "A#",
+"changed": false,
+"rev": "d6cb1b8dbc"
 },
 {
 "id": "S757",
@@ -12116,9 +13628,11 @@
 "endBar": 56,
 "endBeat": 1.0,
 "localKey": "G major",
-"notes": "C - D# - G - A",
+"notes": "C - Eb - G - A",
 "root": "A",
-"bass": "D#"
+"bass": "Eb",
+"changed": false,
+"rev": "902117d692"
 },
 {
 "id": "S758",
@@ -12134,7 +13648,9 @@
 "localKey": "G major",
 "notes": "D - E - G#",
 "root": "E",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "3c7cde9785"
 },
 {
 "id": "S759",
@@ -12148,9 +13664,11 @@
 "endBar": 221,
 "endBeat": 1.0,
 "localKey": "G major",
-"notes": "C - E - F# - G# - B",
+"notes": "C - E - G#",
 "root": "C",
-"bass": "G#"
+"bass": "G#",
+"changed": true,
+"rev": "69b448c0a8"
 },
 {
 "id": "S760",
@@ -12164,9 +13682,11 @@
 "endBar": 26,
 "endBeat": 1.0,
 "localKey": "G minor",
-"notes": "Db - D - G - A - Bb",
+"notes": "D - G - Bb",
 "root": "G",
-"bass": "D"
+"bass": "D",
+"changed": true,
+"rev": "f0d98fe22b"
 },
 {
 "id": "S761",
@@ -12180,9 +13700,11 @@
 "endBar": 107,
 "endBeat": 1.0,
 "localKey": "Bb major",
-"notes": "Eb - Gb - Bb - B",
-"root": "B",
-"bass": "Eb"
+"notes": "Eb - Gb - Bb - Cb",
+"root": "Cb",
+"bass": "Eb",
+"changed": false,
+"rev": "317e2a9235"
 },
 {
 "id": "S762",
@@ -12198,7 +13720,9 @@
 "localKey": "Db major",
 "notes": "Db - F - G - Bb",
 "root": "G",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "b2dc13634d"
 },
 {
 "id": "S763",
@@ -12214,7 +13738,9 @@
 "localKey": "G major",
 "notes": "E - G - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "ecc04293aa"
 },
 {
 "id": "S764",
@@ -12230,7 +13756,9 @@
 "localKey": "Eb major",
 "notes": "C - D - F - B",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "d961a374b5"
 },
 {
 "id": "S765",
@@ -12244,9 +13772,11 @@
 "endBar": 89,
 "endBeat": 1.0,
 "localKey": "A minor",
-"notes": "C - Eb - F - A",
+"notes": "C - D# - F - A",
 "root": "F",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "89b396bff9"
 },
 {
 "id": "S766",
@@ -12260,9 +13790,11 @@
 "endBar": 101,
 "endBeat": 2.0,
 "localKey": "C major",
-"notes": "C - F - A - B",
+"notes": "C - F - A",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": true,
+"rev": "4de61d4ece"
 },
 {
 "id": "S767",
@@ -12278,7 +13810,9 @@
 "localKey": "Eb major",
 "notes": "Db - F - Bb",
 "root": "Bb",
-"bass": "Db"
+"bass": "Db",
+"changed": false,
+"rev": "b077581903"
 },
 {
 "id": "S768",
@@ -12294,7 +13828,9 @@
 "localKey": "Eb major",
 "notes": "C - Eb - G",
 "root": "C",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "6ff109c163"
 },
 {
 "id": "S769",
@@ -12308,9 +13844,11 @@
 "endBar": 258,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "C - D - E - F - A",
+"notes": "C - E - F - A",
 "root": "F",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "39900431e9"
 },
 {
 "id": "S770",
@@ -12326,7 +13864,9 @@
 "localKey": "D minor",
 "notes": "D - F - A - B",
 "root": "B",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "eee156cbcd"
 },
 {
 "id": "S771",
@@ -12340,9 +13880,11 @@
 "endBar": 17,
 "endBeat": 1.5,
 "localKey": "F minor",
-"notes": "C - Eb - F - Gb - Bb",
+"notes": "C - Eb - Gb - Bb",
 "root": "C",
-"bass": "Bb"
+"bass": "Bb",
+"changed": true,
+"rev": "617979ff32"
 },
 {
 "id": "S772",
@@ -12356,9 +13898,11 @@
 "endBar": 8,
 "endBeat": 3.0,
 "localKey": "F major",
-"notes": "C - D - Gb - A",
+"notes": "C - D - F# - A",
 "root": "D",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "61eb1afa9e"
 },
 {
 "id": "S773",
@@ -12372,9 +13916,11 @@
 "endBar": 23,
 "endBeat": 1.5,
 "localKey": "G minor",
-"notes": "D - Eb - G - A",
+"notes": "D - G - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": true,
+"rev": "d0e5288bbb"
 },
 {
 "id": "S774",
@@ -12390,7 +13936,9 @@
 "localKey": "E minor",
 "notes": "C# - E - A#",
 "root": "A#",
-"bass": "C#"
+"bass": "C#",
+"changed": false,
+"rev": "83a7ef3080"
 },
 {
 "id": "S775",
@@ -12406,7 +13954,9 @@
 "localKey": "F major",
 "notes": "D - F - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "8ca87a79ec"
 },
 {
 "id": "S776",
@@ -12422,7 +13972,9 @@
 "localKey": "Db major",
 "notes": "Db - E - Ab",
 "root": "Db",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "7231a4c346"
 },
 {
 "id": "S777",
@@ -12436,9 +13988,11 @@
 "endBar": 132,
 "endBeat": 1.0,
 "localKey": "A minor",
-"notes": "D - F - Ab - B",
-"root": "Ab",
-"bass": "D"
+"notes": "D - F - G# - B",
+"root": "G#",
+"bass": "D",
+"changed": false,
+"rev": "765a907dbf"
 },
 {
 "id": "S778",
@@ -12452,9 +14006,11 @@
 "endBar": 70,
 "endBeat": 1.0,
 "localKey": "C major",
-"notes": "C - D - E - F - G - B",
+"notes": "D - F - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": true,
+"rev": "e3e81f8919"
 },
 {
 "id": "S779",
@@ -12470,7 +14026,9 @@
 "localKey": "F major",
 "notes": "D - F - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "239c9e2cad"
 },
 {
 "id": "S780",
@@ -12486,7 +14044,9 @@
 "localKey": "Eb major",
 "notes": "C - Eb - Gb - A",
 "root": "A",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "bcac0bbd9b"
 },
 {
 "id": "S781",
@@ -12502,7 +14062,9 @@
 "localKey": "A major",
 "notes": "D - E - G# - B",
 "root": "E",
-"bass": "G#"
+"bass": "G#",
+"changed": false,
+"rev": "8aa9b99b79"
 },
 {
 "id": "S782",
@@ -12516,9 +14078,11 @@
 "endBar": 16,
 "endBeat": 1.0,
 "localKey": "Gb minor",
-"notes": "C# - F - G# - B",
+"notes": "C# - E# - G# - B",
 "root": "C#",
-"bass": "F"
+"bass": "E#",
+"changed": false,
+"rev": "c36a726c45"
 },
 {
 "id": "S783",
@@ -12534,7 +14098,9 @@
 "localKey": "C major",
 "notes": "D - F - Ab",
 "root": "Ab",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "f6c28bddee"
 },
 {
 "id": "S784",
@@ -12548,9 +14114,11 @@
 "endBar": 54,
 "endBeat": 1.0,
 "localKey": "G minor",
-"notes": "D - Gb - Bb",
+"notes": "D - F# - Bb",
 "root": "Bb",
-"bass": "Gb"
+"bass": "F#",
+"changed": false,
+"rev": "2b58db8028"
 },
 {
 "id": "S785",
@@ -12566,7 +14134,9 @@
 "localKey": "C minor",
 "notes": "C - F - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "33e1e464e9"
 },
 {
 "id": "S786",
@@ -12582,7 +14152,9 @@
 "localKey": "G major",
 "notes": "D - G - B",
 "root": "G",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "69059ae608"
 },
 {
 "id": "S787",
@@ -12596,9 +14168,11 @@
 "endBar": 7,
 "endBeat": 2.0,
 "localKey": "D minor",
-"notes": "Db - E - F - A",
+"notes": "C# - F - A",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": true,
+"rev": "7a894e1451"
 },
 {
 "id": "S788",
@@ -12614,7 +14188,9 @@
 "localKey": "Ab major",
 "notes": "C - Eb - Ab",
 "root": "Ab",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "200a8f2909"
 },
 {
 "id": "S789",
@@ -12628,9 +14204,11 @@
 "endBar": 297,
 "endBeat": 2.5,
 "localKey": "Bb major",
-"notes": "E - F - G - A - Bb",
+"notes": "E - F - G - Bb",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": true,
+"rev": "fb72c69a87"
 },
 {
 "id": "S790",
@@ -12646,7 +14224,9 @@
 "localKey": "C minor",
 "notes": "C - Eb - G",
 "root": "C",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "3d4837e098"
 },
 {
 "id": "S791",
@@ -12662,7 +14242,9 @@
 "localKey": "Eb major",
 "notes": "C - Eb - Gb - Bb",
 "root": "C",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "dcdc04611e"
 },
 {
 "id": "S792",
@@ -12678,7 +14260,9 @@
 "localKey": "A minor",
 "notes": "C - D - F - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "9d59ec76c2"
 },
 {
 "id": "S793",
@@ -12692,9 +14276,11 @@
 "endBar": 5,
 "endBeat": 4.0,
 "localKey": "C minor",
-"notes": "D - Gb - Ab - B",
+"notes": "D - F# - Ab - B",
 "root": "Ab",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "f808d6b768"
 },
 {
 "id": "S794",
@@ -12708,9 +14294,11 @@
 "endBar": 136,
 "endBeat": 1.0,
 "localKey": "C major",
-"notes": "C - E - Gb - G",
+"notes": "C - E - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "0465ba0740"
 },
 {
 "id": "S795",
@@ -12726,7 +14314,9 @@
 "localKey": "A major",
 "notes": "C# - E - G",
 "root": "C#",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "bb054c3af0"
 },
 {
 "id": "S796",
@@ -12742,7 +14332,9 @@
 "localKey": "F major",
 "notes": "C - D - G - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "8276780538"
 },
 {
 "id": "S797",
@@ -12758,7 +14350,9 @@
 "localKey": "Eb major",
 "notes": "Db - F - G - Bb",
 "root": "G",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "8791398424"
 },
 {
 "id": "S798",
@@ -12774,7 +14368,9 @@
 "localKey": "Bb major",
 "notes": "D - F - G - B",
 "root": "G",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "7b0618c275"
 },
 {
 "id": "S799",
@@ -12790,7 +14386,9 @@
 "localKey": "C major",
 "notes": "C - E - G - A",
 "root": "A",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "e87ccf7b1d"
 },
 {
 "id": "S800",
@@ -12804,9 +14402,11 @@
 "endBar": 73,
 "endBeat": 2.5,
 "localKey": "A major",
-"notes": "D - Gb - Bb",
+"notes": "D - F# - A#",
 "root": "D",
-"bass": "Bb"
+"bass": "A#",
+"changed": false,
+"rev": "f63ff6ff38"
 },
 {
 "id": "S801",
@@ -12822,7 +14422,9 @@
 "localKey": "Eb major",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "1f4a2ea9ae"
 },
 {
 "id": "S802",
@@ -12836,9 +14438,11 @@
 "endBar": 210,
 "endBeat": 2.5,
 "localKey": "Bb major",
-"notes": "D - Eb - F - G - Ab - Bb",
+"notes": "D - F - Ab - Bb",
 "root": "Bb",
-"bass": "F"
+"bass": "F",
+"changed": true,
+"rev": "453e2e52ff"
 },
 {
 "id": "S803",
@@ -12854,7 +14458,9 @@
 "localKey": "A minor",
 "notes": "C - D - F - A",
 "root": "D",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "3b3b431232"
 },
 {
 "id": "S804",
@@ -12868,9 +14474,11 @@
 "endBar": 69,
 "endBeat": 2.0,
 "localKey": "D major",
-"notes": "D# - G - A#",
-"root": "D#",
-"bass": "G"
+"notes": "Eb - G - Bb",
+"root": "Eb",
+"bass": "G",
+"changed": false,
+"rev": "35472b961d"
 },
 {
 "id": "S805",
@@ -12886,7 +14494,9 @@
 "localKey": "F major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "5feb9f492b"
 },
 {
 "id": "S806",
@@ -12902,7 +14512,9 @@
 "localKey": "F major",
 "notes": "G - Bb",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "015f9a4010"
 },
 {
 "id": "S807",
@@ -12918,7 +14530,9 @@
 "localKey": "Eb major",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "4c8f831672"
 },
 {
 "id": "S808",
@@ -12934,7 +14548,9 @@
 "localKey": "Bb major",
 "notes": "D - F - G - Bb",
 "root": "G",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "a9aa70661a"
 },
 {
 "id": "S809",
@@ -12948,9 +14564,11 @@
 "endBar": 69,
 "endBeat": 1.0,
 "localKey": "G major",
-"notes": "C - D - Gb - A",
+"notes": "C - D - F# - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "a19aae43ee"
 },
 {
 "id": "S810",
@@ -12966,7 +14584,9 @@
 "localKey": "A major",
 "notes": "D# - F# - A - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "3f3bab680b"
 },
 {
 "id": "S811",
@@ -12980,9 +14600,11 @@
 "endBar": 58,
 "endBeat": 1.5,
 "localKey": "A major",
-"notes": "D - F - F# - G#",
+"notes": "D - E# - G#",
 "root": "G#",
-"bass": "D"
+"bass": "D",
+"changed": true,
+"rev": "df31485c8a"
 },
 {
 "id": "S812",
@@ -12998,7 +14620,9 @@
 "localKey": "F major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "ec40037a24"
 },
 {
 "id": "S813",
@@ -13012,9 +14636,11 @@
 "endBar": 343,
 "endBeat": 3.0,
 "localKey": "F major",
-"notes": "C - E - F - G - Bb",
+"notes": "C - F - G - Bb",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": true,
+"rev": "8f1b9541bb"
 },
 {
 "id": "S814",
@@ -13030,7 +14656,9 @@
 "localKey": "Ab minor",
 "notes": "C# - E - F# - A#",
 "root": "F#",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "15887a023b"
 },
 {
 "id": "S815",
@@ -13044,9 +14672,11 @@
 "endBar": 250,
 "endBeat": 1.0,
 "localKey": "A minor",
-"notes": "E - Ab - B",
+"notes": "E - G# - B",
 "root": "E",
-"bass": "Ab"
+"bass": "G#",
+"changed": false,
+"rev": "8a0acd8e2d"
 },
 {
 "id": "S816",
@@ -13062,7 +14692,9 @@
 "localKey": "Bb major",
 "notes": "Db - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "c118e507a3"
 },
 {
 "id": "S817",
@@ -13078,7 +14710,9 @@
 "localKey": "Ab major",
 "notes": "C - Eb - F - A",
 "root": "F",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "a72788f074"
 },
 {
 "id": "S818",
@@ -13092,9 +14726,11 @@
 "endBar": 16,
 "endBeat": 2.5,
 "localKey": "B minor",
-"notes": "D - F - G - B",
+"notes": "D - E# - G - B",
 "root": "G",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "56d9d0ee93"
 },
 {
 "id": "S819",
@@ -13110,7 +14746,9 @@
 "localKey": "F major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "e8138f1ff9"
 },
 {
 "id": "S820",
@@ -13126,7 +14764,9 @@
 "localKey": "C minor",
 "notes": "C - Eb - F - Ab",
 "root": "F",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "04feacc1d2"
 },
 {
 "id": "S821",
@@ -13142,7 +14782,9 @@
 "localKey": "F major",
 "notes": "C - G - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "b173b5359a"
 },
 {
 "id": "S822",
@@ -13158,7 +14800,9 @@
 "localKey": "F major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "29232f8fb7"
 },
 {
 "id": "S823",
@@ -13174,7 +14818,9 @@
 "localKey": "G minor",
 "notes": "C - Eb - G - A",
 "root": "A",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "0442952bf5"
 },
 {
 "id": "S824",
@@ -13190,7 +14836,9 @@
 "localKey": "C major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "08fd00c325"
 },
 {
 "id": "S825",
@@ -13206,7 +14854,9 @@
 "localKey": "G major",
 "notes": "D - E - B",
 "root": "E",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "2ce5801ca9"
 },
 {
 "id": "S826",
@@ -13222,7 +14872,9 @@
 "localKey": "Ab major",
 "notes": "C - Eb - F - Ab",
 "root": "F",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "7315358650"
 },
 {
 "id": "S827",
@@ -13238,7 +14890,9 @@
 "localKey": "C minor",
 "notes": "Db - F - Ab",
 "root": "Db",
-"bass": "Db"
+"bass": "Db",
+"changed": false,
+"rev": "68fabca767"
 },
 {
 "id": "S828",
@@ -13252,9 +14906,11 @@
 "endBar": 334,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "Db - E - G - Bb",
+"notes": "C# - E - G - Bb",
 "root": "E",
-"bass": "Db"
+"bass": "C#",
+"changed": false,
+"rev": "819bda0ed9"
 },
 {
 "id": "S829",
@@ -13268,9 +14924,11 @@
 "endBar": 22,
 "endBeat": 1.0,
 "localKey": "G minor",
-"notes": "D - G - A - B",
+"notes": "D - G - B",
 "root": "G",
-"bass": "B"
+"bass": "B",
+"changed": true,
+"rev": "4f0eba9575"
 },
 {
 "id": "S830",
@@ -13284,9 +14942,11 @@
 "endBar": 23,
 "endBeat": 1.75,
 "localKey": "Eb major",
-"notes": "Eb - Gb - B",
-"root": "B",
-"bass": "Gb"
+"notes": "Eb - Gb - Cb",
+"root": "Cb",
+"bass": "Gb",
+"changed": false,
+"rev": "89208132f4"
 },
 {
 "id": "S831",
@@ -13302,7 +14962,9 @@
 "localKey": "C major",
 "notes": "C - E - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "d49361a297"
 },
 {
 "id": "S832",
@@ -13318,7 +14980,9 @@
 "localKey": "Bb major",
 "notes": "Eb - Gb - A - B",
 "root": "B",
-"bass": "Gb"
+"bass": "Gb",
+"changed": false,
+"rev": "0f83ac8236"
 },
 {
 "id": "S833",
@@ -13334,7 +14998,9 @@
 "localKey": "E minor",
 "notes": "C - E - G - A",
 "root": "A",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "4236f2739e"
 },
 {
 "id": "S834",
@@ -13350,7 +15016,9 @@
 "localKey": "Eb major",
 "notes": "D - F - Ab - Bb",
 "root": "Bb",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "b33d1cbd51"
 },
 {
 "id": "S835",
@@ -13366,7 +15034,9 @@
 "localKey": "C major",
 "notes": "C - D - G - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "98253e82f9"
 },
 {
 "id": "S836",
@@ -13380,9 +15050,11 @@
 "endBar": 30,
 "endBeat": 2.0,
 "localKey": "B minor",
-"notes": "C# - E - G - A#",
-"root": "A#",
-"bass": "G"
+"notes": "C# - E - G - Bb",
+"root": "Bb",
+"bass": "G",
+"changed": false,
+"rev": "b5da5e6742"
 },
 {
 "id": "S837",
@@ -13398,7 +15070,9 @@
 "localKey": "Bb major",
 "notes": "C - D - G",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "cdb2fd4400"
 },
 {
 "id": "S838",
@@ -13414,7 +15088,9 @@
 "localKey": "C minor",
 "notes": "C - E - G - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "2e13b5b1a9"
 },
 {
 "id": "S839",
@@ -13430,7 +15106,9 @@
 "localKey": "Eb major",
 "notes": "Db - Eb - G - Bb",
 "root": "Eb",
-"bass": "Db"
+"bass": "Db",
+"changed": false,
+"rev": "c565fd72e0"
 },
 {
 "id": "S840",
@@ -13444,9 +15122,11 @@
 "endBar": 26,
 "endBeat": 2.5,
 "localKey": "C minor",
-"notes": "E - G - Bb - B",
+"notes": "E - G - Bb",
 "root": "E",
-"bass": "E"
+"bass": "E",
+"changed": true,
+"rev": "40bb80bc68"
 },
 {
 "id": "S841",
@@ -13462,7 +15142,9 @@
 "localKey": "A major",
 "notes": "D - F# - A - B",
 "root": "B",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "82612668c7"
 },
 {
 "id": "S842",
@@ -13476,9 +15158,11 @@
 "endBar": 109,
 "endBeat": 2.0,
 "localKey": "E major",
-"notes": "C# - F - G# - B",
+"notes": "C# - E# - G# - B",
 "root": "C#",
-"bass": "C#"
+"bass": "C#",
+"changed": false,
+"rev": "c17dd4c41e"
 },
 {
 "id": "S843",
@@ -13494,7 +15178,9 @@
 "localKey": "Bb major",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "2a48b9e0a1"
 },
 {
 "id": "S844",
@@ -13508,9 +15194,11 @@
 "endBar": 178,
 "endBeat": 1.0,
 "localKey": "C major",
-"notes": "C - D - E - G - Ab - B",
+"notes": "C - E - G - B",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "78b13a7e55"
 },
 {
 "id": "S845",
@@ -13526,7 +15214,9 @@
 "localKey": "Eb major",
 "notes": "D - F - Ab - B",
 "root": "D",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "5cdb3cf60f"
 },
 {
 "id": "S846",
@@ -13542,7 +15232,9 @@
 "localKey": "G minor",
 "notes": "C - Eb - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "09c90986f1"
 },
 {
 "id": "S847",
@@ -13558,7 +15250,9 @@
 "localKey": "F major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "f06b63c889"
 },
 {
 "id": "S848",
@@ -13572,9 +15266,11 @@
 "endBar": 21,
 "endBeat": 1.0,
 "localKey": "A minor",
-"notes": "C - D - E - F",
+"notes": "C - D - F",
 "root": "D",
-"bass": "F"
+"bass": "F",
+"changed": true,
+"rev": "23ba32dc9d"
 },
 {
 "id": "S849",
@@ -13590,7 +15286,9 @@
 "localKey": "F minor",
 "notes": "D - F - Ab - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "6fabe4084a"
 },
 {
 "id": "S850",
@@ -13604,9 +15302,11 @@
 "endBar": 65,
 "endBeat": 1.0,
 "localKey": "Gb major",
-"notes": "C - Eb - Gb - Bb",
-"root": "C",
-"bass": "Eb"
+"notes": "B# - D# - F# - A#",
+"root": "B#",
+"bass": "D#",
+"changed": false,
+"rev": "b61d40edcb"
 },
 {
 "id": "S851",
@@ -13622,7 +15322,9 @@
 "localKey": "Eb major",
 "notes": "C - E - G - Bb",
 "root": "C",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "907375b3db"
 },
 {
 "id": "S852",
@@ -13638,7 +15340,9 @@
 "localKey": "C major",
 "notes": "D - G - B",
 "root": "G",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "b64f49e4e4"
 },
 {
 "id": "S853",
@@ -13654,7 +15358,9 @@
 "localKey": "D minor",
 "notes": "C - E - F - A",
 "root": "F",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "0998a07b00"
 },
 {
 "id": "S854",
@@ -13668,9 +15374,11 @@
 "endBar": 175,
 "endBeat": 4.0,
 "localKey": "G minor",
-"notes": "C - D - E - Gb - A",
+"notes": "C - D - F# - A",
 "root": "D",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "b66831fd94"
 },
 {
 "id": "S855",
@@ -13686,7 +15394,9 @@
 "localKey": "Eb major",
 "notes": "C - D - F - Ab - Bb",
 "root": "Bb",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "4ec98a981b"
 },
 {
 "id": "S856",
@@ -13700,9 +15410,11 @@
 "endBar": 14,
 "endBeat": 3.5,
 "localKey": "G minor",
-"notes": "C - D - E - G",
+"notes": "C - E - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "7320dec3a8"
 },
 {
 "id": "S857",
@@ -13716,9 +15428,11 @@
 "endBar": 20,
 "endBeat": 3.0,
 "localKey": "G minor",
-"notes": "Db - E - G - Bb",
-"root": "Db",
-"bass": "G"
+"notes": "C# - E - G - Bb",
+"root": "C#",
+"bass": "G",
+"changed": false,
+"rev": "73b75a7a88"
 },
 {
 "id": "S858",
@@ -13732,9 +15446,11 @@
 "endBar": 72,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "C - Eb - Gb - A",
-"root": "Gb",
-"bass": "A"
+"notes": "C - Eb - F# - A",
+"root": "F#",
+"bass": "A",
+"changed": false,
+"rev": "d8c6fe03c1"
 },
 {
 "id": "S859",
@@ -13750,7 +15466,9 @@
 "localKey": "B minor",
 "notes": "D - F# - B",
 "root": "B",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "5719a7e315"
 },
 {
 "id": "S860",
@@ -13766,7 +15484,9 @@
 "localKey": "Bb major",
 "notes": "C - Eb - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "75050cf375"
 },
 {
 "id": "S861",
@@ -13782,7 +15502,9 @@
 "localKey": "Eb major",
 "notes": "C - Eb - Ab",
 "root": "Ab",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "5b9930f63d"
 },
 {
 "id": "S862",
@@ -13798,7 +15520,9 @@
 "localKey": "C major",
 "notes": "C - E - G",
 "root": "C",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "b5757bdfef"
 },
 {
 "id": "S863",
@@ -13814,7 +15538,9 @@
 "localKey": "F minor",
 "notes": "C - Eb - F - A",
 "root": "F",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "1f2b2330b1"
 },
 {
 "id": "S864",
@@ -13830,7 +15556,9 @@
 "localKey": "C minor",
 "notes": "C - Eb - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "0f05deaa7a"
 },
 {
 "id": "S865",
@@ -13844,9 +15572,11 @@
 "endBar": 151,
 "endBeat": 2.0,
 "localKey": "F major",
-"notes": "Db - E - G - A",
+"notes": "C# - E - G - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "0dbad5baf3"
 },
 {
 "id": "S866",
@@ -13862,7 +15592,9 @@
 "localKey": "F minor",
 "notes": "C - Eb - F - Bb",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "ef45bb102f"
 },
 {
 "id": "S867",
@@ -13878,7 +15610,9 @@
 "localKey": "Eb major",
 "notes": "Db - G - Ab - Bb",
 "root": "Ab",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "4d93603e9f"
 },
 {
 "id": "S868",
@@ -13894,7 +15628,9 @@
 "localKey": "D major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "a470d543cc"
 },
 {
 "id": "S869",
@@ -13908,9 +15644,11 @@
 "endBar": 303,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "Db - E - G - A",
+"notes": "C# - E - G - A",
 "root": "A",
-"bass": "Db"
+"bass": "C#",
+"changed": false,
+"rev": "d7d26ab5a7"
 },
 {
 "id": "S870",
@@ -13924,9 +15662,11 @@
 "endBar": 90,
 "endBeat": 1.0,
 "localKey": "E major",
-"notes": "C - D# - A",
+"notes": "B# - D# - A",
 "root": "D#",
-"bass": "D#"
+"bass": "D#",
+"changed": false,
+"rev": "0ebaa68949"
 },
 {
 "id": "S871",
@@ -13942,7 +15682,9 @@
 "localKey": "F minor",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "6d231cf0fd"
 },
 {
 "id": "S872",
@@ -13958,7 +15700,9 @@
 "localKey": "Ab major",
 "notes": "Db - Ab - Bb",
 "root": "Bb",
-"bass": "Db"
+"bass": "Db",
+"changed": false,
+"rev": "7dffeef114"
 },
 {
 "id": "S873",
@@ -13972,9 +15716,11 @@
 "endBar": 28,
 "endBeat": 3.5,
 "localKey": "G minor",
-"notes": "C - D - Gb - Bb",
+"notes": "C - F# - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "1f769c5cdd"
 },
 {
 "id": "S874",
@@ -13990,7 +15736,9 @@
 "localKey": "F major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "9afd2faa73"
 },
 {
 "id": "S875",
@@ -14006,7 +15754,9 @@
 "localKey": "Gb minor",
 "notes": "C# - D# - G#",
 "root": "G#",
-"bass": "G#"
+"bass": "G#",
+"changed": false,
+"rev": "c23326259a"
 },
 {
 "id": "S876",
@@ -14022,7 +15772,9 @@
 "localKey": "C major",
 "notes": "C - D - F - Ab",
 "root": "D",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "cebf0ebb3e"
 },
 {
 "id": "S877",
@@ -14038,7 +15790,9 @@
 "localKey": "G minor",
 "notes": "C - Eb - G - A",
 "root": "A",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "3130ee04f5"
 },
 {
 "id": "S878",
@@ -14052,9 +15806,11 @@
 "endBar": 101,
 "endBeat": 2.0,
 "localKey": "D minor",
-"notes": "C - D - Gb",
+"notes": "C - D - F#",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "e29ebeb5ba"
 },
 {
 "id": "S879",
@@ -14070,7 +15826,9 @@
 "localKey": "C major",
 "notes": "C - E - F - A",
 "root": "F",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "ca389ae9c9"
 },
 {
 "id": "S880",
@@ -14086,7 +15844,9 @@
 "localKey": "D minor",
 "notes": "D - G - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "ee68e80199"
 },
 {
 "id": "S881",
@@ -14100,9 +15860,11 @@
 "endBar": 26,
 "endBeat": 1.0,
 "localKey": "C major",
-"notes": "Db - E - G - A",
+"notes": "C# - E - G - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "29c0b94d41"
 },
 {
 "id": "S882",
@@ -14116,9 +15878,11 @@
 "endBar": 149,
 "endBeat": 2.5,
 "localKey": "D major",
-"notes": "C - E - G - A#",
+"notes": "C - E - G - Bb",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "eb4aeb096d"
 },
 {
 "id": "S883",
@@ -14134,7 +15898,9 @@
 "localKey": "C major",
 "notes": "D - F - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "31be311773"
 },
 {
 "id": "S884",
@@ -14148,9 +15914,11 @@
 "endBar": 50,
 "endBeat": 1.0,
 "localKey": "B major",
-"notes": "C# - E - F - A",
+"notes": "C# - E# - G##",
 "root": "C#",
-"bass": "F"
+"bass": "E#",
+"changed": true,
+"rev": "2d294f29b7"
 },
 {
 "id": "S885",
@@ -14166,7 +15934,9 @@
 "localKey": "Bb major",
 "notes": "C - F - G",
 "root": "C",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "46fabe09af"
 },
 {
 "id": "S886",
@@ -14182,7 +15952,9 @@
 "localKey": "G minor",
 "notes": "C - D - F - A",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "8c67aedc41"
 },
 {
 "id": "S887",
@@ -14198,7 +15970,9 @@
 "localKey": "G major",
 "notes": "C - D - F# - A",
 "root": "D",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "83d463b3ca"
 },
 {
 "id": "S888",
@@ -14214,7 +15988,9 @@
 "localKey": "F major",
 "notes": "E - G - B",
 "root": "E",
-"bass": "E"
+"bass": "E",
+"changed": false,
+"rev": "5797d38660"
 },
 {
 "id": "S889",
@@ -14228,9 +16004,11 @@
 "endBar": 68,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "D - E - Ab - B",
+"notes": "D - E - G# - B",
 "root": "E",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "89a5753f7d"
 },
 {
 "id": "S890",
@@ -14246,7 +16024,9 @@
 "localKey": "Eb major",
 "notes": "D - F - Ab - Bb",
 "root": "Bb",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "ed98d450ee"
 },
 {
 "id": "S891",
@@ -14260,9 +16040,11 @@
 "endBar": 74,
 "endBeat": 1.0,
 "localKey": "F major",
-"notes": "D - F - G - A - B",
+"notes": "D - F - G - B",
 "root": "G",
-"bass": "D"
+"bass": "D",
+"changed": true,
+"rev": "6da9dcbae9"
 },
 {
 "id": "S892",
@@ -14276,9 +16058,11 @@
 "endBar": 122,
 "endBeat": 2.5,
 "localKey": "Eb major",
-"notes": "D - Gb - G - B",
+"notes": "D - F# - G - B",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "ff58e46954"
 },
 {
 "id": "S893",
@@ -14294,7 +16078,9 @@
 "localKey": "Db major",
 "notes": "Eb - Gb - A",
 "root": "A",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "acedc639ef"
 },
 {
 "id": "S894",
@@ -14308,9 +16094,11 @@
 "endBar": 78,
 "endBeat": 1.0,
 "localKey": "A major",
-"notes": "Db - Eb - Gb - Bb",
-"root": "Eb",
-"bass": "Gb"
+"notes": "C# - D# - F# - A#",
+"root": "D#",
+"bass": "F#",
+"changed": false,
+"rev": "0bf9e1e0e0"
 },
 {
 "id": "S895",
@@ -14326,7 +16114,9 @@
 "localKey": "Eb minor",
 "notes": "C - Eb - Gb - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "251b632f55"
 },
 {
 "id": "S896",
@@ -14342,7 +16132,9 @@
 "localKey": "F major",
 "notes": "D - G - B",
 "root": "G",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "cb557a0f15"
 },
 {
 "id": "S897",
@@ -14358,7 +16150,9 @@
 "localKey": "Bb major",
 "notes": "Gb - Bb",
 "root": "Gb",
-"bass": "Gb"
+"bass": "Gb",
+"changed": false,
+"rev": "2952482180"
 },
 {
 "id": "S898",
@@ -14374,7 +16168,9 @@
 "localKey": "G minor",
 "notes": "D - G - Bb",
 "root": "G",
-"bass": "G"
+"bass": "G",
+"changed": false,
+"rev": "187e4aff64"
 },
 {
 "id": "S899",
@@ -14390,7 +16186,9 @@
 "localKey": "D major",
 "notes": "D - E - G# - B",
 "root": "E",
-"bass": "D"
+"bass": "D",
+"changed": false,
+"rev": "b55d88677e"
 },
 {
 "id": "S900",
@@ -14406,7 +16204,9 @@
 "localKey": "A minor",
 "notes": "C - E - A",
 "root": "A",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "cf1a6c1406"
 },
 {
 "id": "S901",
@@ -14422,7 +16222,9 @@
 "localKey": "E major",
 "notes": "C# - F# - A",
 "root": "F#",
-"bass": "F#"
+"bass": "F#",
+"changed": false,
+"rev": "6ee84af67e"
 },
 {
 "id": "S902",
@@ -14438,7 +16240,9 @@
 "localKey": "F major",
 "notes": "C - Eb - F - A",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "bdba4abf82"
 },
 {
 "id": "S903",
@@ -14454,7 +16258,9 @@
 "localKey": "F major",
 "notes": "F - A - B",
 "root": "B",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "4b238931ee"
 },
 {
 "id": "S904",
@@ -14470,7 +16276,9 @@
 "localKey": "Bb major",
 "notes": "C - F - A",
 "root": "F",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "a64a6674c7"
 },
 {
 "id": "S905",
@@ -14486,7 +16294,9 @@
 "localKey": "Eb major",
 "notes": "D - F - G - B",
 "root": "G",
-"bass": "B"
+"bass": "B",
+"changed": false,
+"rev": "c3f4ad0c5b"
 },
 {
 "id": "S906",
@@ -14502,7 +16312,9 @@
 "localKey": "Ab major",
 "notes": "D - F - Ab - B",
 "root": "D",
-"bass": "Ab"
+"bass": "Ab",
+"changed": false,
+"rev": "f8ac2a0a8b"
 },
 {
 "id": "S907",
@@ -14518,7 +16330,9 @@
 "localKey": "F major",
 "notes": "C - F - Ab",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "4ed4457008"
 },
 {
 "id": "S908",
@@ -14532,9 +16346,11 @@
 "endBar": 15,
 "endBeat": 1.0,
 "localKey": "G minor",
-"notes": "C - Eb - Gb - G - A",
+"notes": "C - Eb - G - A",
 "root": "A",
-"bass": "G"
+"bass": "G",
+"changed": true,
+"rev": "f353e5a4fd"
 },
 {
 "id": "S909",
@@ -14548,9 +16364,11 @@
 "endBar": 34,
 "endBeat": 2.0,
 "localKey": "D major",
-"notes": "C# - E - G - A#",
+"notes": "C# - E - G - Bb",
 "root": "C#",
-"bass": "C#"
+"bass": "C#",
+"changed": false,
+"rev": "21b0e58d8b"
 },
 {
 "id": "S910",
@@ -14566,7 +16384,9 @@
 "localKey": "Eb major",
 "notes": "Db - G - Bb",
 "root": "G",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "b409b181d5"
 },
 {
 "id": "S911",
@@ -14582,7 +16402,9 @@
 "localKey": "Bb major",
 "notes": "Eb - G - Bb",
 "root": "Eb",
-"bass": "Bb"
+"bass": "Bb",
+"changed": false,
+"rev": "9d8216bc0b"
 },
 {
 "id": "S912",
@@ -14596,9 +16418,11 @@
 "endBar": 6,
 "endBeat": 2.0,
 "localKey": "A minor",
-"notes": "C - E - Gb - A",
-"root": "Gb",
-"bass": "Gb"
+"notes": "C - E - F# - A",
+"root": "F#",
+"bass": "F#",
+"changed": false,
+"rev": "83e5f64996"
 },
 {
 "id": "S913",
@@ -14612,9 +16436,11 @@
 "endBar": 27,
 "endBeat": 1.0,
 "localKey": "D major",
-"notes": "C - D# - F - A",
+"notes": "C - Eb - F - A",
 "root": "F",
-"bass": "C"
+"bass": "C",
+"changed": false,
+"rev": "8655a42d7b"
 },
 {
 "id": "S914",
@@ -14628,9 +16454,11 @@
 "endBar": 162,
 "endBeat": 2.0,
 "localKey": "Bb major",
-"notes": "C - Eb - Gb - A",
+"notes": "C - Eb - F# - A",
 "root": "A",
-"bass": "Gb"
+"bass": "F#",
+"changed": false,
+"rev": "b6d4188ad7"
 },
 {
 "id": "S915",
@@ -14644,9 +16472,11 @@
 "endBar": 9,
 "endBeat": 1.0,
 "localKey": "G major",
-"notes": "C - D - E - F# - A",
+"notes": "C - D - F# - A",
 "root": "D",
-"bass": "C"
+"bass": "C",
+"changed": true,
+"rev": "5d02811edd"
 },
 {
 "id": "S916",
@@ -14662,7 +16492,9 @@
 "localKey": "Eb major",
 "notes": "C - Eb - F - Ab",
 "root": "F",
-"bass": "F"
+"bass": "F",
+"changed": false,
+"rev": "5763d998c4"
 },
 {
 "id": "S917",
@@ -14678,7 +16510,9 @@
 "localKey": "Bb major",
 "notes": "D - E - G - A",
 "root": "A",
-"bass": "A"
+"bass": "A",
+"changed": false,
+"rev": "695d7e1e13"
 },
 {
 "id": "S918",
@@ -14692,9 +16526,11 @@
 "endBar": 3,
 "endBeat": 3.0,
 "localKey": "A major",
-"notes": "D - E - F - F#",
+"notes": "D - E - E#",
 "root": "D",
-"bass": "D"
+"bass": "D",
+"changed": true,
+"rev": "b8d054c021"
 },
 {
 "id": "S919",
@@ -14710,7 +16546,10 @@
 "localKey": "Bb major",
 "notes": "C - Eb - G - Ab",
 "root": "Ab",
-"bass": "Eb"
+"bass": "Eb",
+"changed": false,
+"rev": "3b263a8f05"
 }
-]
+],
+"refreshed": "positions unchanged; 140 positions show changed content, 0 no longer have a musWM reading"
 }
