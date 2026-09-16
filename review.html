@@ -33,9 +33,23 @@
   .br-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
   .br-prog{height:8px;border-radius:99px;background:var(--accent-soft);overflow:hidden;margin:6px 0 2px}
   .br-prog span{display:block;height:100%;background:var(--accent)}
+  .br-ask{border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);background:var(--panel);
+    color:inherit;padding:0;max-width:420px;width:calc(100% - 32px)}
+  .br-ask::backdrop{background:rgba(15,23,42,.45)}
+  .br-ask .body{padding:18px 20px 4px}
+  .br-ask h3{margin:0 0 8px;font-size:17px}
+  .br-ask p{margin:0;font-size:14px;color:var(--muted)}
+  .br-ask .row{display:flex;gap:8px;justify-content:flex-end;padding:16px 20px 18px}
+  .br-ask button{font:inherit;font-size:14px;padding:8px 14px;border-radius:8px;border:1px solid var(--line);
+    background:var(--panel);cursor:pointer}
+  .br-ask button.danger{background:#dc2626;border-color:#dc2626;color:#fff}
 </style>
 </head>
 <body>
+<dialog class="br-ask" id="brAsk">
+  <div class="body"><h3 id="brAskTitle"></h3><p id="brAskText"></p></div>
+  <div class="row"><button type="button" id="brAskNo">Cancel</button><button type="button" id="brAskYes" class="danger">Delete</button></div>
+</dialog>
 <main class="wrap">
   <h2 class="page">Blind review</h2>
   <p class="lede">Check musWM&rsquo;s <b>notes</b>, <b>root</b> and <b>bass</b> against the score. No Roman numeral or
@@ -120,6 +134,28 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
             'Do the notes in the span form one chord?']];
 
   var el = function (id) { return document.getElementById(id); };
+
+  // page's own confirmation dialog (no browser confirm box)
+  function ask(title, text, okLabel) {
+    var dlg = el('brAsk'), yes = el('brAskYes'), no = el('brAskNo');
+    el('brAskTitle').textContent = title;
+    el('brAskText').textContent = text;
+    yes.textContent = okLabel || 'Delete';
+    return new Promise(function (resolve) {
+      function close(answer) {
+        yes.removeEventListener('click', onYes); no.removeEventListener('click', onNo);
+        dlg.removeEventListener('close', onClose);
+        if (dlg.open) dlg.close();
+        resolve(answer);
+      }
+      function onYes() { close(true); }
+      function onNo() { close(false); }
+      function onClose() { close(false); }          // Esc
+      yes.addEventListener('click', onYes); no.addEventListener('click', onNo);
+      dlg.addEventListener('close', onClose);
+      if (dlg.showModal) dlg.showModal(); else resolve(window.confirm(text));
+    });
+  }
 
   function rated(it) { var v = RNVReview.getKey(sheet, it.id); return !!(v.nt && v.rt && v.bs && v.sp); }
 
@@ -300,21 +336,23 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   });
   el('brClear').addEventListener('click', function () {
     var done = sample.items.filter(rated).length;
-    if (!confirm('Delete every rating on this page (' + done + ' of ' + sample.items.length +
-                 ' positions rated)? This cannot be undone. Download the JSON first if you want to keep a copy.')) return;
-    RNVReview.replaceAll(sheet, {}).then(function () { refreshOrder(); });
+    ask('Clear all ratings?', 'This deletes every rating and note on this page (' + done + ' of ' + sample.items.length +
+        ' positions rated). It cannot be undone — download the JSON first if you want to keep a copy.',
+        'Delete all').then(function (yes) {
+      if (yes) RNVReview.replaceAll(sheet, {}).then(function () { refreshOrder(); });
+    });
   });
   el('brLoad').addEventListener('click', function () { el('brFile').click(); });
   el('brFile').addEventListener('change', function (e) {
     var f = e.target.files[0]; if (!f) return;
     f.text().then(function (t) {
       var d = JSON.parse(t);
-      if (d.sample !== sample.sha256OfPositions) {
-        if (!confirm('This file was made for a different sample. Load it anyway?')) return;
-      }
       var n = Object.keys(d.rows || {}).length;
-      if (!confirm('Replace the ratings in this browser with the ' + n + ' positions in the file?')) return;
-      RNVReview.replaceAll(sheet, d.rows || {}).then(function () { refreshOrder(); });
+      var warn = d.sample !== sample.sha256OfPositions ? 'This file was made for a different sample. ' : '';
+      ask('Load ratings from file?', warn + 'The ' + n + ' positions in the file replace the ratings in this browser.',
+          'Replace').then(function (yes) {
+        if (yes) RNVReview.replaceAll(sheet, d.rows || {}).then(function () { refreshOrder(); });
+      });
     }).catch(function (err) { alert('Could not read the file: ' + err.message); });
     e.target.value = '';
   });
