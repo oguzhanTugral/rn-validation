@@ -20,6 +20,7 @@
 </head>
 <body>
 <main class="wrap">
+  <p style="margin:0 0 6px;font-size:14px"><a href="review.html">&larr; Blind review</a></p>
   <h2 class="page">Compare analyses</h2>
   <p class="lede">Blind-review ratings, analyst by analyst. Only analyses uploaded to the system can be compared: pick <b>two</b> and compare them position by position.
   Every published analysis carries the e-mail it was made under and the fingerprint of the sample it was made on.</p>
@@ -48,7 +49,7 @@
 <script src="js/rnv-auth.js"></script>
 <script src="js/rnv-review.js"></script>
 <script>
-RNVData.boot({ page: 'compare.html', title: 'Compare analyses', host: 'cmpList', needsCorpus: false, render: function () {
+RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', needsCorpus: false, render: function () {
   var esc = RNVData.esc;
   var entries = [];                     // { id, analyst, email, sample, rows, source }
   var el = function (id) { return document.getElementById(id); };

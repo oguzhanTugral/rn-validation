@@ -25,6 +25,7 @@
 </head>
 <body>
 <main class="wrap">
+  <p style="margin:0 0 6px;font-size:14px"><a href="review.html">&larr; Blind review</a></p>
   <h2 class="page">Account</h2>
   <p class="lede">Participants sign in with their e-mail. The first time, a one-time code is e-mailed; after that you can
   sign in with your own password, which you set and change here.</p>
@@ -83,7 +84,7 @@
 <script src="js/rnv-data.js"></script>
 <script src="js/rnv-auth.js"></script>
 <script>
-RNVData.boot({ page: 'account.html', title: 'Account', host: 'accOut', needsCorpus: false, render: function () {
+RNVData.boot({ page: 'review.html', title: 'Account', host: 'accOut', needsCorpus: false, render: function () {
   var el = function (id) { return document.getElementById(id); };
   var esc = RNVData.esc;
   var next = new URLSearchParams(location.search).get('next');

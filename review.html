@@ -66,11 +66,13 @@
   <div class="br-panel">
     <div>
       <b>Analyst panel</b>
-      <div class="dim" style="font-size:13px">Sign in on the <a href="account.html">Account</a> page to upload and compare.
+      <div style="font-size:13px;margin:2px 0" id="brWho"></div>
+      <div class="dim" style="font-size:13px">Sign in to upload and compare.
         An uploaded analysis carries your name, e-mail, country, profession and education. Only a complete analysis can be
         downloaded, saved or submitted.</div>
     </div>
     <div class="seg">
+      <button id="brAccount" type="button">Sign in</button>
       <button id="brUpload" type="button">Upload analysis</button>
       <button id="brCompare" type="button">Compare</button>
     </div>
@@ -388,6 +390,15 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     });
   });
   el('brCompare').addEventListener('click', function () { location.href = 'compare.html'; });
+  el('brAccount').addEventListener('click', function () {
+    // signed out: come back here after signing in; signed in: just manage the account
+    location.href = window.RNVAuth && RNVAuth.user() ? 'account.html' : 'account.html?next=review.html';
+  });
+  (function accountStatus() {
+    var u = window.RNVAuth && RNVAuth.user();
+    el('brAccount').textContent = u ? 'Account' : 'Sign in';
+    el('brWho').innerHTML = u ? 'Signed in as <b>' + esc(u.email) + '</b>' : 'Not signed in';
+  })();
 
   // id assigned once per browser and kept, so a second upload from the same analyst carries the same id
   function analysisId() {
