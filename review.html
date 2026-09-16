@@ -40,6 +40,11 @@
   .br-field input{font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;width:100%}
   .br-id-badge{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:15px;font-weight:700;letter-spacing:.06em}
   .br-err{color:#dc2626;font-size:13px;min-height:1.2em}
+  .br-held{font-size:13px;font-weight:600;color:#9d174d;background:#fce7f3;border:1px solid #f9a8d4;
+    border-radius:8px;padding:7px 10px;margin:0 0 10px}
+  .br-held.blink{animation:brBlink .55s steps(1,end) 2}
+  @keyframes brBlink{0%,100%{opacity:1}50%{opacity:.15}}
+  @media (prefers-reduced-motion:reduce){.br-held.blink{animation:none}}
   .br-ask{border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);background:var(--panel);
     color:inherit;padding:0;max-width:420px;width:calc(100% - 32px)}
   .br-ask::backdrop{background:rgba(15,23,42,.45)}
@@ -137,7 +142,7 @@
           <button type="button" data-scope="bar" aria-pressed="true">Span bars</button>
           <button type="button" data-scope="context" aria-pressed="false">Span &plusmn;1 bar</button>
         </div>
-        <span class="dim" style="font-size:13px">Score with every harmony annotation removed. <b style="color:#1f6feb">Blue</b>: a note in musWM&rsquo;s list. <b style="color:#d97706">Orange</b>: sounds in the span but is not in the list.</span>
+        <span class="dim" style="font-size:13px">Score with every harmony annotation removed. <b style="color:#1f6feb">Blue</b>: a note in musWM&rsquo;s list. <b style="color:#d97706">Orange</b>: sounds in the span but is not in the list. <b style="color:#db2777">Pink</b>: was already sounding before Start.</span>
       </div>
       <div class="br-score" id="brScore"></div>
     </div>
@@ -220,6 +225,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
           : it.endBar != null ? 'bar ' + it.endBar + ', beat ' + it.endBeat + ' <span class="dim" id="brEndQ"></span> <span class="dim">(not included)</span>'
           : 'end of the work') + '</dd></dl>' +
       '<div class="dim" id="brUnit" style="font-size:13px;margin:-6px 0 10px"></div>' +
+      '<div class="br-held" id="brHeld" hidden></div>' +
       '<dl class="br-read"><dt>Notes</dt><dd>' + esc(it.notes || '—') + '</dd>' +
         '<dt>Root</dt><dd>' + esc(it.root || '—') + '</dd><dt>Bass</dt><dd>' + esc(it.bass || '—') + '</dd></dl>' +
       Q.map(function (q) {
@@ -283,6 +289,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   // ponytail: notes held in from before the span stay black.
   var PC = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
   function markSpan(doc, it) {
+    var sustained = 0;
     // blue: the note is one of musWM's listed notes; orange: it sounds in the span but is not in the list
     var listed = String(it.notes || '').split(' - ').map(function (n) {
       var m = /^([A-G])(b*|#*)$/.exec(n.trim());
@@ -307,9 +314,17 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
             if (!c.getElementsByTagName('grace').length) {
               if (!chord) { last = t; t += +((c.getElementsByTagName('duration')[0] || {}).textContent || 0); }
             }
-            var beat = on / div * type / 4 + 1, eps = 1e-6;
+            var dur = +((c.getElementsByTagName('duration')[0] || {}).textContent || 0);
+            var beat = on / div * type / 4 + 1, endBeatOfNote = (on + dur) / div * type / 4 + 1, eps = 1e-6;
             var after = bar > it.bar || (bar === it.bar && beat >= it.beat - eps);
             var before = bar < endBar || (bar === endBar && beat < endBeat - eps);
+            var tieStop = Array.prototype.some.call(c.getElementsByTagName('tie'), function (x) { return x.getAttribute('type') === 'stop'; });
+            // held into the span: began earlier in this bar and still sounds at Start, or is tied over from before
+            var held = !c.getElementsByTagName('rest').length && before &&
+              ((bar === it.bar && beat < it.beat - eps && endBeatOfNote > it.beat + eps) ||
+               (tieStop && after && Math.abs(beat - it.beat) < eps) ||
+               (bar === it.bar && tieStop && beat < it.beat + eps && endBeatOfNote > it.beat + eps));
+            if (held) { c.setAttribute('color', '#db2777'); sustained += 1; return; }
             if (after && before && !c.getElementsByTagName('rest').length) {
               var pit = c.getElementsByTagName('pitch')[0];
               var pcOf = pit && PC[(pit.getElementsByTagName('step')[0] || {}).textContent];
@@ -321,6 +336,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
         });
       });
     });
+    return sustained;
   }
 
   function drawScore(it) {
@@ -334,7 +350,18 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
       var doc = new DOMParser().parseFromString(RNVScore.sliceMeasures(xml, from, to), 'application/xml');
       // blind: no harmony symbols or Roman numerals embedded in the score may be shown
       Array.prototype.slice.call(doc.getElementsByTagName('harmony')).forEach(function (h) { h.parentNode.removeChild(h); });
-      markSpan(doc, it);
+      var sustained = markSpan(doc, it);
+      var warn = el('brHeld');
+      if (warn) {
+        warn.hidden = !sustained;
+        if (sustained) {
+          warn.textContent = sustained + (sustained > 1 ? ' notes were' : ' note was') +
+            ' already sounding before Start and still sound in this span (pink). Decide whether they belong to this chord.';
+          warn.classList.remove('blink');
+          void warn.offsetWidth;                    // restart the animation
+          warn.classList.add('blink');
+        }
+      }
       box.innerHTML = '';
       return RNVScore.render(box, new XMLSerializer().serializeToString(doc));
     }).catch(function (err) { box.innerHTML = '<div class="empty">' + esc(err.message || err) + '</div>'; });
