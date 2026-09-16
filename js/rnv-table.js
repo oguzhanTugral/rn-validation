@@ -365,13 +365,18 @@
       document.getElementById('fSave').addEventListener('click', function () { global.RNVReview.save(sheet); });
       elReview.addEventListener('change', function () { paint(true); });
       document.getElementById('fXlsx').addEventListener('click', function () {
+
+        global.RNVReview.identity().then(function (who) { if (who) writeXlsx(who); });
+      });
+
+      function writeXlsx(who) {
         var book = global.RNVGrades.book && global.RNVGrades.book(corpusId);
-        var header = ['No', 'Checked', 'Note', 'Work no', 'Work', 'Bar', 'Beat', 'Local key (musWM)',
+        var header = ['Analyst', 'E-mail', 'No', 'Checked', 'Note', 'Work no', 'Work', 'Bar', 'Beat', 'Local key (musWM)',
                       'musWM', 'AnalysisGNN', 'AugmentedNet', 'Status'];
         if (book) header = header.concat(['Textbook label', 'musWM grade', 'AnalysisGNN grade', 'AugmentedNet grade']);
         var data = pageRows.map(function (r) {
           var p = corpus.pieces[r.piece], rv = global.RNVReview.get(sheet, corpus, r);
-          var line = [rowNo[r.id], rv.checked ? 'yes' : '', rv.note, p.no, pretty(p.title), r.measure, r.beat,
+          var line = [who.analyst, who.email, rowNo[r.id], rv.checked ? 'yes' : '', rv.note, p.no, pretty(p.title), r.measure, r.beat,
                       keyAt[r.id] || '', r.raw[0] || '', r.raw[1] || '', r.raw[2] || '',
                       { same: 'identical', diff: 'different' }[r.status] || r.status];
           if (book) {
@@ -380,11 +385,11 @@
           }
           return line;
         });
-        var widths = [7, 9, 40, 9, 38, 7, 7, 16, 16, 16, 16, 11].concat(book ? [16, 12, 12, 12] : []);
+        var widths = [20, 26, 7, 9, 40, 9, 38, 7, 7, 16, 16, 16, 16, 11].concat(book ? [16, 12, 12, 12] : []);
         var name = (opts.csvName || 'rows') + '_' + corpusId + '_review_' + new Date().toISOString().slice(0, 10) + '.xlsx';
         global.RNVReview.download(global.RNVReview.xlsx(opts.csvName === 'identical' ? 'Alignment' : 'Disagreements',
           header, data, widths), name);
-      });
+      }
     }
 
     elMore.addEventListener('click', function () { paint(false); });
