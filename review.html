@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://atwkiqqtsfmxzkffcjxz.supabase.co; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
@@ -66,8 +66,9 @@
   <div class="br-panel">
     <div>
       <b>Analyst panel</b>
-      <div class="dim" style="font-size:13px">A finished analysis is saved with your id, name, e-mail, country,
-        profession and education. Only a complete analysis can be downloaded, saved or submitted.</div>
+      <div class="dim" style="font-size:13px">Sign in on the <a href="account.html">Account</a> page to upload and compare.
+        An uploaded analysis carries your name, e-mail, country, profession and education. Only a complete analysis can be
+        downloaded, saved or submitted.</div>
     </div>
     <div class="seg">
       <button id="brUpload" type="button">Upload analysis</button>
@@ -140,6 +141,7 @@
 
 <script src="data/corpora.js"></script>
 <script src="js/rnv-data.js"></script>
+<script src="js/rnv-auth.js"></script>
 <script src="js/rnv-review.js"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
 <script src="js/rnv-score.js"></script>
@@ -436,7 +438,26 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     identity().then(function (who) { if (who) next(who); });
   }
 
-  el('brUpload').addEventListener('click', function () { whenComplete(saveAnalysis); });
+  // a finished analysis goes into the database under the signed-in participant; it cannot be changed afterwards
+  function uploadAnalysis(who) {
+    var done = sample.items.filter(rated).length;
+    var code = who.id + '-' + new Date().toISOString().replace(/[-:T]/g, '').slice(0, 12);
+    RNVAuth.db('analyses', {
+      method: 'POST', headers: { Prefer: 'return=minimal' },
+      body: { analysis_code: code, corpus: corpusId, sample: sample.sha256OfPositions, positions_rated: done,
+              payload: { format: 'rnv-blind-ratings', analysisId: code, analyst: who.analyst, email: who.email,
+                         country: who.country, profession: who.profession, education: who.education,
+                         corpus: corpusId, sheet: sheet, sample: sample.sha256OfPositions, positionsRated: done,
+                         exportedAt: new Date().toISOString(), rows: RNVReview.all(sheet) } }
+    }).then(function () {
+      ask('Analysis uploaded', 'Your analysis ' + code + ' (' + done + ' positions) is uploaded under ' + who.email +
+          '. It is listed on your Account page and can be compared on the Compare page. It cannot be changed or deleted.', 'Close');
+    }).catch(function (e) {
+      ask('Upload failed', 'The analysis was not uploaded: ' + e.message + '. Your ratings are still in this browser.', 'Close');
+    });
+  }
+
+  el('brUpload').addEventListener('click', function () { whenComplete(uploadAnalysis); });
 
   el('brLoad').addEventListener('click', function () { el('brFile').click(); });
   el('brFile').addEventListener('change', function (e) {

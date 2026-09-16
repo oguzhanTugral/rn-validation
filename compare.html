@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://atwkiqqtsfmxzkffcjxz.supabase.co; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Compare analyses · RN comparison</title>
@@ -25,9 +25,9 @@
   Every published analysis carries the e-mail it was made under and the fingerprint of the sample it was made on.</p>
 
   <div class="note" id="cmpLocked">
-    <b>This page opens after you give your details.</b> Name, e-mail, country, profession and education are required to
-    view and compare analyses. They are kept in this browser.
-    <div style="margin-top:10px"><button id="cmpUnlock" type="button">Enter my details</button></div>
+    <b>This page is for signed-in participants.</b> Sign in on the Account page, with your name, e-mail, country,
+    profession and education filled in, to view and compare analyses.
+    <div style="margin-top:10px"><button id="cmpUnlock" type="button">Sign in</button></div>
   </div>
 
   <div id="cmpBody" hidden>
@@ -45,6 +45,7 @@
 
 <script src="data/corpora.js"></script>
 <script src="js/rnv-data.js"></script>
+<script src="js/rnv-auth.js"></script>
 <script src="js/rnv-review.js"></script>
 <script>
 RNVData.boot({ page: 'compare.html', title: 'Compare analyses', host: 'cmpList', needsCorpus: false, render: function () {
@@ -146,9 +147,7 @@ RNVData.boot({ page: 'compare.html', title: 'Compare analyses', host: 'cmpList',
   });
 
   function unlock() {
-    RNVReview.identity({ full: true, title: 'Enter the Compare page',
-      text: 'The Compare page opens after you give your name, e-mail, country, profession and education.'
-    }).then(function (who) {
+    RNVAuth.require().then(function (who) {
       if (!who) return;                              // cancelled: the page stays closed
       el('cmpLocked').hidden = true;
       el('cmpBody').hidden = false;
@@ -159,20 +158,22 @@ RNVData.boot({ page: 'compare.html', title: 'Compare analyses', host: 'cmpList',
   unlock();
 
   function loadAnalyses() {
-  fetch('data/analyses/index.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (ix) {
-    var list = ix.analyses || [];
-    el('cmpNote').innerHTML = list.length
-      ? '<b>' + list.length + ' uploaded analys' + (list.length > 1 ? 'es' : 'is') + '.</b> Each was uploaded by its analyst ' +
-        'and is shown unchanged, with the details it was submitted under.'
-      : '<b>No analysis has been uploaded yet.</b> Analyses appear here once they are uploaded from the ' +
-        '<a href="review.html">Blind review</a> page; only uploaded analyses can be compared.';
-    return Promise.all(list.map(function (a) {
-      return fetch('data/analyses/' + encodeURIComponent(a.file), { cache: 'no-store' })
-        .then(function (r) { return r.json(); }).then(function (f) { add(f, 'uploaded'); }).catch(function () {});
-    }));
-  }).catch(function () {
-    el('cmpNote').textContent = 'The list of published analyses could not be loaded.';
-  }).then(paint);
+    RNVAuth.db('analyses?select=analysis_code,sample,positions_rated,payload,created_at,' +
+               'profiles(name,email,country,profession,education)&order=created_at.desc')
+      .then(function (rows) {
+        rows.forEach(function (r) {
+          var who = r.profiles || {};
+          add({ analysisId: r.analysis_code, analyst: who.name, email: who.email, sample: r.sample,
+                exportedAt: r.created_at, rows: (r.payload || {}).rows || {} }, 'uploaded');
+        });
+        el('cmpNote').innerHTML = rows.length
+          ? '<b>' + rows.length + ' uploaded analys' + (rows.length > 1 ? 'es' : 'is') + '.</b> Each was uploaded by its ' +
+            'participant and cannot be changed or deleted afterwards.'
+          : '<b>No analysis has been uploaded yet.</b> A finished analysis is uploaded from the ' +
+            '<a href="review.html">Blind review</a> page.';
+      })
+      .catch(function (e) { el('cmpNote').textContent = 'The analyses could not be loaded: ' + e.message; })
+      .then(paint);
   }
 } });
 </script>

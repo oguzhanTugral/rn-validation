@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://atwkiqqtsfmxzkffcjxz.supabase.co; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Account · RN comparison</title>
+<link rel="stylesheet" href="css/site.css">
+<style>
+  .acc-box{max-width:520px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:18px 20px;margin:0 0 16px}
+  .acc-box h3{margin:0 0 10px;font-size:17px}
+  .acc-f{display:grid;gap:4px;margin:0 0 10px}
+  .acc-f label{font-size:13px;color:var(--muted)}
+  .acc-f input{font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;width:100%;box-sizing:border-box}
+  .acc-f input[readonly]{background:rgba(0,0,0,.03);color:var(--muted)}
+  .acc-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:6px}
+  .acc-row button{font:inherit;font-size:14px;padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:var(--panel);cursor:pointer}
+  .acc-row button.primary{background:#1d4ed8;border-color:#1d4ed8;color:#fff}
+  .acc-msg{font-size:13px;min-height:1.2em;margin-top:8px}
+  .acc-msg.err{color:#dc2626} .acc-msg.ok{color:#16a34a}
+  .acc-or{font-size:13px;color:var(--muted);margin:12px 0}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h2 class="page">Account</h2>
+  <p class="lede">Participants sign in with their e-mail. The first time, a one-time code is e-mailed; after that you can
+  sign in with your own password, which you set and change here.</p>
+
+  <!-- signed out -->
+  <div id="accOut" hidden>
+    <div class="acc-box">
+      <h3>Sign in</h3>
+      <div class="acc-f"><label for="aEmail">E-mail</label><input id="aEmail" type="email" autocomplete="email"></div>
+      <div id="aCodeWrap" hidden>
+        <div class="acc-f"><label for="aCode">Code from the e-mail</label><input id="aCode" type="text" inputmode="numeric" autocomplete="one-time-code"></div>
+      </div>
+      <div class="acc-row">
+        <button id="aSend" type="button" class="primary">E-mail me a code</button>
+        <button id="aVerify" type="button" class="primary" hidden>Sign in with the code</button>
+      </div>
+      <div class="acc-or">&mdash; or, if you have set a password &mdash;</div>
+      <div class="acc-f"><label for="aPass">Password</label><input id="aPass" type="password" autocomplete="current-password"></div>
+      <div class="acc-row"><button id="aPwIn" type="button">Sign in with password</button></div>
+      <div class="acc-msg" id="aMsg"></div>
+      <p class="dim" style="font-size:13px;margin:10px 0 0">Forgot your password? Ask for a code, sign in with it, and set a new password below.</p>
+    </div>
+  </div>
+
+  <!-- signed in -->
+  <div id="accIn" hidden>
+    <div class="acc-box">
+      <h3>Your details</h3>
+      <div class="acc-f"><label for="pEmail">E-mail</label><input id="pEmail" type="email" readonly></div>
+      <div class="acc-f"><label for="pName">Name</label><input id="pName" type="text" autocomplete="name"></div>
+      <div class="acc-f"><label for="pCountry">Country</label><input id="pCountry" type="text" autocomplete="country-name"></div>
+      <div class="acc-f"><label for="pJob">Profession</label><input id="pJob" type="text"></div>
+      <div class="acc-f"><label for="pEdu">Education</label><input id="pEdu" type="text"></div>
+      <div class="acc-row"><button id="pSave" type="button" class="primary">Save details</button></div>
+      <div class="acc-msg" id="pMsg"></div>
+    </div>
+
+    <div class="acc-box">
+      <h3>Password</h3>
+      <div class="acc-f"><label for="wNew">New password (at least 8 characters)</label><input id="wNew" type="password" autocomplete="new-password"></div>
+      <div class="acc-f"><label for="wRep">Repeat new password</label><input id="wRep" type="password" autocomplete="new-password"></div>
+      <div class="acc-row"><button id="wSave" type="button">Set password</button></div>
+      <div class="acc-msg" id="wMsg"></div>
+    </div>
+
+    <div class="acc-box">
+      <h3>Your uploaded analyses</h3>
+      <div id="myList" class="dim" style="font-size:14px">Loading&hellip;</div>
+    </div>
+
+    <div class="acc-row"><button id="aOut" type="button">Sign out</button></div>
+  </div>
+</main>
+
+<script src="data/corpora.js"></script>
+<script src="js/rnv-data.js"></script>
+<script src="js/rnv-auth.js"></script>
+<script>
+RNVData.boot({ page: 'account.html', title: 'Account', host: 'accOut', needsCorpus: false, render: function () {
+  var el = function (id) { return document.getElementById(id); };
+  var esc = RNVData.esc;
+  var next = new URLSearchParams(location.search).get('next');
+  // only return to a page of this site
+  if (next && !/^[a-z0-9_-]+\.html(\?.*)?$/i.test(next)) next = null;
+
+  function msg(id, text, ok) { el(id).textContent = text || ''; el(id).className = 'acc-msg ' + (ok ? 'ok' : 'err'); }
+  function busy(btn, on) { btn.disabled = on; }
+
+  function show() {
+    var u = RNVAuth.user();
+    el('accOut').hidden = !!u;
+    el('accIn').hidden = !u;
+    if (!u) return;
+    RNVAuth.profile().then(function (p) {
+      el('pEmail').value = p.email || u.email;
+      el('pName').value = p.name || '';
+      el('pCountry').value = p.country || '';
+      el('pJob').value = p.profession || '';
+      el('pEdu').value = p.education || '';
+      if (!RNVAuth.complete(p)) msg('pMsg', 'Please complete your details' + (next ? ' to continue.' : '.'));
+    }).catch(function (e) { msg('pMsg', e.message); });
+    RNVAuth.db('analyses?user_id=eq.' + encodeURIComponent(u.id) + '&select=analysis_code,positions_rated,sample,created_at&order=created_at.desc')
+      .then(function (rows) {
+        el('myList').innerHTML = rows.length ? '<table><thead><tr><th>Analysis</th><th class="num">Positions</th><th>Uploaded</th></tr></thead><tbody>' +
+          rows.map(function (r) {
+            return '<tr><td>' + esc(r.analysis_code) + '</td><td class="num">' + r.positions_rated + '</td><td>' +
+              esc(String(r.created_at).slice(0, 16).replace('T', ' ')) + '</td></tr>';
+          }).join('') + '</tbody></table>'
+          : 'None yet. A finished analysis is uploaded from the <a href="review.html">Blind review</a> page.';
+      }).catch(function (e) { el('myList').textContent = e.message; });
+  }
+
+  el('aSend').addEventListener('click', function () {
+    var email = el('aEmail').value.trim();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg('aMsg', 'Please give a valid e-mail address.'); return; }
+    busy(el('aSend'), true);
+    RNVAuth.sendCode(email).then(function () {
+      el('aCodeWrap').hidden = false;
+      el('aVerify').hidden = false;
+      el('aSend').textContent = 'Send a new code';
+      msg('aMsg', 'A code was sent to ' + email + '. It is valid for a short time.', true);
+      el('aCode').focus();
+    }).catch(function (e) { msg('aMsg', e.message); }).then(function () { busy(el('aSend'), false); });
+  });
+
+  el('aVerify').addEventListener('click', function () {
+    busy(el('aVerify'), true);
+    RNVAuth.verifyCode(el('aEmail').value.trim(), el('aCode').value.trim())
+      .then(function () {
+        return RNVAuth.profile().then(function (p) {
+          if (next && RNVAuth.complete(p)) { location.href = next; return; }
+          msg('aMsg', ''); show();
+        });
+      })
+      .catch(function (e) { msg('aMsg', e.message); })
+      .then(function () { busy(el('aVerify'), false); });
+  });
+
+  el('aPwIn').addEventListener('click', function () {
+    busy(el('aPwIn'), true);
+    RNVAuth.signInWithPassword(el('aEmail').value.trim(), el('aPass').value)
+      .then(function () {
+        return RNVAuth.profile().then(function (p) {
+          if (next && RNVAuth.complete(p)) { location.href = next; return; }
+          msg('aMsg', ''); show();
+        });
+      })
+      .catch(function (e) { msg('aMsg', e.message); })
+      .then(function () { busy(el('aPwIn'), false); });
+  });
+
+  el('pSave').addEventListener('click', function () {
+    var p = { name: el('pName').value.trim(), country: el('pCountry').value.trim(),
+              profession: el('pJob').value.trim(), education: el('pEdu').value.trim(), email: el('pEmail').value };
+    if (!RNVAuth.complete(p)) { msg('pMsg', 'Every field is required.'); return; }
+    busy(el('pSave'), true);
+    RNVAuth.saveProfile(p).then(function () {
+      if (next) { location.href = next; return; }
+      msg('pMsg', 'Saved.', true);
+    }).catch(function (e) { msg('pMsg', e.message); }).then(function () { busy(el('pSave'), false); });
+  });
+
+  el('wSave').addEventListener('click', function () {
+    var a = el('wNew').value, b = el('wRep').value;
+    if (a.length < 8) { msg('wMsg', 'Use at least 8 characters.'); return; }
+    if (a !== b) { msg('wMsg', 'The two passwords differ.'); return; }
+    busy(el('wSave'), true);
+    RNVAuth.setPassword(a).then(function () {
+      el('wNew').value = ''; el('wRep').value = '';
+      msg('wMsg', 'Password set. You can now sign in with it.', true);
+    }).catch(function (e) { msg('wMsg', e.message); }).then(function () { busy(el('wSave'), false); });
+  });
+
+  el('aOut').addEventListener('click', function () { RNVAuth.signOut().then(show); });
+
+  show();
+} });
+</script>
+</body>
+</html>

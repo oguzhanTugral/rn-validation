@@ -12,7 +12,8 @@
     ['different.html', 'Disagreements'],
     ['scoring.html', 'Ratings'],
     ['method.html', 'Method'],
-    ['review.html', 'Blind review']
+    ['review.html', 'Blind review'],
+    ['account.html', 'Account']
   ];
 
   var CORPUS_KEY = 'rnv.corpus';
