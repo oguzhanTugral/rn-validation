@@ -44,18 +44,18 @@
   <div class="note">
     <b>How to rate</b>
     <ol style="margin:6px 0 8px;padding-left:20px">
-      <li>Each position is <b>one</b> musWM Roman numeral (hidden). Its notes are <b style="color:#1f6feb">blue</b> in the score, from Start to End.</li>
+      <li>Each position is <b>one</b> musWM Roman numeral (hidden). From Start to End, <b style="color:#1f6feb">blue</b> notes are in musWM&rsquo;s list and <b style="color:#d97706">orange</b> ones are not.</li>
       <li>Find the chord at <b>Start</b>. Passing, neighbour, suspended and ornamental notes are not chord notes.</li>
       <li>Answer the four questions. When you cannot decide, choose <b>Unclear</b>.</li>
     </ol>
     <div style="overflow-x:auto"><table class="br-rules">
       <tr><th>Notes</th><td><b>Exactly</b> = the list is only the chord notes. <b>All + extra</b> = every chord note is there, plus a
-        passing/neighbour note or a note that does not sound. <b>Missing</b> = a chord note is not in the list. Spelling is ignored
+        passing/neighbour note or a note that does not sound. <b>Missing</b> = a chord note is not in the list &mdash; an <b style="color:#d97706">orange</b> note that is a chord note of the chord at Start. Spelling is ignored
         (G&flat; = F&sharp;; say so in the note).</td></tr>
       <tr><th>Root</th><td>Is this the root of the chord at Start?</td></tr>
-      <tr><th>Bass</th><td>Is this the lowest chord note at Start? If a lower note enters later among the blue notes (broken chord,
+      <tr><th>Bass</th><td>Is this the lowest chord note at Start? If a lower note enters later in the span (broken chord,
         moving bass), choose <b>Unclear</b> and write &ldquo;bass X&rarr;Y&rdquo;.</td></tr>
-      <tr><th>Span</th><td><b>Own chord</b> = the blue notes are one chord. <b>Chord change inside</b> = the blue notes contain a second chord.
+      <tr><th>Span</th><td><b>Own chord</b> = the notes in the span are one chord. <b>Chord change inside</b> = the span contains a second chord.
         <b>Merge with next</b> = the chord goes on, or is completed, right after End.</td></tr>
     </table></div>
     <details style="margin-top:8px"><summary>Beats, sample and rater</summary>
@@ -92,7 +92,7 @@
           <button type="button" data-scope="bar" aria-pressed="true">Span bars</button>
           <button type="button" data-scope="context" aria-pressed="false">Span &plusmn;1 bar</button>
         </div>
-        <span class="dim" style="font-size:13px">Score with every harmony annotation removed. Notes starting inside the span are <b style="color:#1f6feb">blue</b>.</span>
+        <span class="dim" style="font-size:13px">Score with every harmony annotation removed. <b style="color:#1f6feb">Blue</b>: a note in musWM&rsquo;s list. <b style="color:#d97706">Orange</b>: sounds in the span but is not in the list.</span>
       </div>
       <div class="br-score" id="brScore"></div>
     </div>
@@ -112,11 +112,11 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   var sample = null, order = [], pos = 0, scope = 'bar';
   var OPT = [['y', 'Correct', 'ok'], ['n', 'Wrong', 'no'], ['u', 'Unclear', 'un']];
   var Q = [['nt', 'Notes', [['y', 'Exactly', 'ok'], ['x', 'All + extra', 'ex'], ['n', 'Missing', 'no'], ['u', 'Unclear', 'un']],
-            'Exactly = only the chord notes. All + extra = every chord note plus a passing note. Missing = a chord note is not in the list.'],
+            'Blue = listed, orange = sounds but not listed. Missing = an orange note is a chord note of the chord at Start.'],
            ['rt', 'Root', OPT, 'Root of the chord at Start?'],
            ['bs', 'Bass', OPT, 'Lowest chord note at Start? Lower note enters later = Unclear.'],
            ['sp', 'Span', [['y', 'Own chord', 'ok'], ['c', 'Chord change inside', 'no'], ['n', 'Merge with next', 'no'], ['u', 'Unclear', 'un']],
-            'Do the blue notes form one chord?']];
+            'Do the notes in the span form one chord?']];
 
   var el = function (id) { return document.getElementById(id); };
 
@@ -213,7 +213,13 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
 
   // Colour every note that starts inside the span [Start, End), so the rater sees which part of the bar is asked about.
   // ponytail: notes held in from before the span stay black.
+  var PC = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
   function markSpan(doc, it) {
+    // blue: the note is one of musWM's listed notes; orange: it sounds in the span but is not in the list
+    var listed = String(it.notes || '').split(' - ').map(function (n) {
+      var m = /^([A-G])(b*|#*)$/.exec(n.trim());
+      return m ? (PC[m[1]] + (m[2][0] === '#' ? m[2].length : -m[2].length) + 120) % 12 : -1;
+    }).filter(function (x) { return x >= 0; });
     var endBar = it.endBar == null ? Infinity : it.endBar, endBeat = it.endBar == null ? 0 : it.endBeat;
     Array.prototype.forEach.call(doc.getElementsByTagName('part'), function (part) {
       var div = 1, type = 4;
@@ -236,7 +242,13 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
             var beat = on / div * type / 4 + 1, eps = 1e-6;
             var after = bar > it.bar || (bar === it.bar && beat >= it.beat - eps);
             var before = bar < endBar || (bar === endBar && beat < endBeat - eps);
-            if (after && before && !c.getElementsByTagName('rest').length) c.setAttribute('color', '#1f6feb');
+            if (after && before && !c.getElementsByTagName('rest').length) {
+              var pit = c.getElementsByTagName('pitch')[0];
+              var pcOf = pit && PC[(pit.getElementsByTagName('step')[0] || {}).textContent];
+              var alter = pit ? Number((pit.getElementsByTagName('alter')[0] || {}).textContent || 0) : 0;
+              var pcv = pcOf == null ? null : (pcOf + alter + 120) % 12;
+              c.setAttribute('color', pcv == null || listed.indexOf(pcv) >= 0 ? '#1f6feb' : '#d97706');
+            }
           }
         });
       });
