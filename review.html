@@ -82,7 +82,7 @@
     <div>
       <b>Analyst panel</b>
       <div class="dim" style="font-size:13px">A finished analysis is saved with your id, name, e-mail, country,
-        profession and education. Only a complete analysis can be saved or submitted.</div>
+        profession and education. Only a complete analysis can be downloaded, saved or submitted.</div>
     </div>
     <div class="seg">
       <button id="brUpload" type="button">Upload analysis</button>
@@ -483,8 +483,8 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   function whenComplete(next) {
     var done = sample.items.filter(rated).length, total = sample.items.length;
     if (done < total) {
-      ask('Not finished yet', 'You have rated ' + done + ' of ' + total + ' positions. An analysis can only be saved or ' +
-          'submitted once every position has all four answers. ' + (total - done) + ' still to go — set Show to ' +
+      ask('Not finished yet', 'You have rated ' + done + ' of ' + total + ' positions. An analysis can only be ' +
+          'downloaded, saved or submitted once every position has all four answers. ' + (total - done) + ' still to go — set Show to ' +
           '“Not yet rated” to find them.', 'Close');
       return;
     }
