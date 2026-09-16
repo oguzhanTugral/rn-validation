@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260916182528">
+<link rel="stylesheet" href="css/site.css?v=20260916213414">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -117,7 +117,7 @@
 
   <div class="br-tools">
     <div class="field"><label for="brShow">Show</label>
-      <select id="brShow"><option value="todo">Not yet rated</option><option value="all">All positions</option>
+      <select id="brShow" autocomplete="off"><option value="todo">Not yet rated</option><option value="all">All positions</option>
       <option value="done">Rated</option></select></div>
     <div class="field"><label for="brJump">Go to</label>
       <input id="brJump" type="text" placeholder="S001" style="width:6em"></div>
@@ -148,12 +148,12 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260916182528"></script>
-<script src="js/rnv-data.js?v=20260916182528"></script>
-<script src="js/rnv-auth.js?v=20260916182528"></script>
-<script src="js/rnv-review.js?v=20260916182528"></script>
+<script src="data/corpora.js?v=20260916213414"></script>
+<script src="js/rnv-data.js?v=20260916213414"></script>
+<script src="js/rnv-auth.js?v=20260916213414"></script>
+<script src="js/rnv-review.js?v=20260916213414"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260916182528"></script>
+<script src="js/rnv-score.js?v=20260916213414"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -194,6 +194,8 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   }
 
   function rated(it) { var v = RNVReview.getKey(sheet, it.id); return !!(v.nt && v.rt && v.bs && v.sp); }
+
+  function allRated() { return sample.items.every(rated); }
 
   function refreshOrder(keepId) {
     var show = el('brShow').value;
@@ -243,6 +245,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
         RNVReview.setKey(sheet, it.id, patch);
         Array.prototype.forEach.call(b.parentNode.children, function (x) { x.setAttribute('aria-pressed', String(x === b)); });
         counts();
+        if (el('brShow').value === 'todo' && allRated()) { el('brShow').value = 'all'; refreshOrder(it.id); }
       });
     });
     el('brNote').addEventListener('input', function (e) { RNVReview.setKey(sheet, it.id, { n: e.target.value }); });
@@ -537,6 +540,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
       ' are a simple random sample. The order is shuffled and the page does not show which part a position belongs to. Sample fingerprint ' +
       sample.sha256OfPositions.slice(0, 16) + '.';
     el('brSaved').textContent = res[1] ? 'Ratings are saved to a file on this computer' : 'Ratings are kept in this browser — download the JSON to keep a copy';
+    el('brShow').value = allRated() ? 'all' : 'todo';     // the browser may restore an old choice: always reset it
     refreshOrder();
   }).catch(function (err) { el('brCard').innerHTML = '<div class="empty">' + esc(err.message || err) + '</div>'; });
 }});
