@@ -152,7 +152,7 @@
   function exportMarkdown(corpusId, corpus, rows) {
     var items = collect(corpusId, corpus, rows);
     var lines = [];
-    lines.push('# RN validation — notes and questions');
+    lines.push('# RN comparison — notes and questions');
     lines.push('');
     lines.push('Corpus: **' + corpus.name + '** (`' + corpusId + '`)');
     lines.push('Alignment: `' + (corpus.alignment || 'beat') + '` · exported ' +

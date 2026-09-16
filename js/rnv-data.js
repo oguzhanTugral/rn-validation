@@ -126,7 +126,7 @@
       '<header class="site"><div class="wrap">' +
         '<div class="brand">' +
           '<a class="logo" href="hero.html" aria-label="musWM home"><img src="assets/brand/muswm-mark-3d.svg" alt="" width="70" height="42"></a>' +
-          '<h1>Roman numeral validation — musWM · AnalysisGNN · AugmentedNet</h1>' +
+          '<h1>Roman numeral comparison — musWM · AnalysisGNN · AugmentedNet</h1>' +
           '<span class="sub" id="rnvCorpusMeta"></span>' +
           (list.length > 1
             ? '<select id="rnvCorpusPick" class="corpus-pick" aria-label="Corpus">' + options + '</select>'
@@ -135,7 +135,7 @@
         '<nav class="site">' + navLinks(active) + '</nav>' +
       '</div></header>');
 
-    document.title = title + ' · RN validation';
+    document.title = title + ' · RN comparison';
 
     var nfm = function (x) { return Number(x).toLocaleString('en-US'); };
     var metaName = corpus ? corpus.name : (entry && entry.name);
