@@ -21,14 +21,12 @@
 <body>
 <main class="wrap">
   <h2 class="page">Compare analyses</h2>
-  <p class="lede">Blind-review ratings, analyst by analyst. Pick <b>two</b> and compare them position by position.
+  <p class="lede">Blind-review ratings, analyst by analyst. Only analyses uploaded to the system can be compared: pick <b>two</b> and compare them position by position.
   Every published analysis carries the e-mail it was made under and the fingerprint of the sample it was made on.</p>
 
   <div class="note" id="cmpNote">Loading the published analyses&hellip;</div>
 
   <div class="cmp-tools">
-    <button id="cmpFileBtn" type="button">Add a file from this computer</button>
-    <input id="cmpFile" type="file" accept="application/json,.json" hidden multiple>
     <button id="cmpRun" type="button" disabled>Compare the two selected</button>
     <span class="dim" id="cmpPick" style="font-size:13px"></span>
   </div>
@@ -39,6 +37,7 @@
 
 <script src="data/corpora.js"></script>
 <script src="js/rnv-data.js"></script>
+<script src="js/rnv-review.js"></script>
 <script>
 RNVData.boot({ page: 'compare.html', title: 'Compare analyses', host: 'cmpList', needsCorpus: false, render: function () {
   var esc = RNVData.esc;
@@ -135,28 +134,25 @@ RNVData.boot({ page: 'compare.html', title: 'Compare analyses', host: 'cmpList',
 
   el('cmpRun').addEventListener('click', function () {
     var on = el('cmpList').querySelectorAll('input:checked');
-    if (on.length === 2) compare(entries[+on[0].dataset.i], entries[+on[1].dataset.i]);
-  });
-  el('cmpFileBtn').addEventListener('click', function () { el('cmpFile').click(); });
-  el('cmpFile').addEventListener('change', function (e) {
-    var files = Array.prototype.slice.call(e.target.files);
-    Promise.all(files.map(function (f) {
-      return f.text().then(function (t) { add(JSON.parse(t), 'this computer'); })
-        .catch(function (err) { alert(f.name + ': ' + err.message); });
-    })).then(paint);
-    e.target.value = '';
+    if (on.length !== 2) return;
+    // comparing requires the same details as uploading, except the analysis itself
+    RNVReview.identity({ full: true, title: 'Before you compare',
+      text: 'Comparing analyses requires your name, e-mail, country, profession and education. They are kept in this browser.'
+    }).then(function (who) {
+      if (who) compare(entries[+on[0].dataset.i], entries[+on[1].dataset.i]);
+    });
   });
 
   fetch('data/analyses/index.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (ix) {
     var list = ix.analyses || [];
     el('cmpNote').innerHTML = list.length
-      ? '<b>' + list.length + ' published analysis file' + (list.length > 1 ? 's' : '') + '.</b> Each was sent in by its analyst and is ' +
-        'published unchanged, with the e-mail it was made under. Add your own file from this computer to compare against them.'
-      : '<b>No analysis is published yet.</b> An analysis is published when its analyst sends the file in from the ' +
-        '<a href="review.html">Blind review</a> page; until then you can compare two files from this computer.';
+      ? '<b>' + list.length + ' uploaded analys' + (list.length > 1 ? 'es' : 'is') + '.</b> Each was uploaded by its analyst ' +
+        'and is shown unchanged, with the details it was submitted under.'
+      : '<b>No analysis has been uploaded yet.</b> Analyses appear here once they are uploaded from the ' +
+        '<a href="review.html">Blind review</a> page; only uploaded analyses can be compared.';
     return Promise.all(list.map(function (a) {
       return fetch('data/analyses/' + encodeURIComponent(a.file), { cache: 'no-store' })
-        .then(function (r) { return r.json(); }).then(function (f) { add(f, 'published'); }).catch(function () {});
+        .then(function (r) { return r.json(); }).then(function (f) { add(f, 'uploaded'); }).catch(function () {});
     }));
   }).catch(function () {
     el('cmpNote').textContent = 'The list of published analyses could not be loaded.';

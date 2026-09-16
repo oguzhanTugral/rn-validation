@@ -58,21 +58,6 @@
 </style>
 </head>
 <body>
-<dialog class="br-ask" id="brUp">
-  <div class="body">
-    <h3>Upload analysis</h3>
-<p>Every download carries this id and your e-mail, and holds all of your ratings in one file. The e-mail stays in the
-    file and is shown with the analysis when it is published, so everyone can see who made it.</p>
-    <div class="br-field"><label>Analysis id (assigned by the system)</label><div class="br-id-badge" id="brUpId"></div></div>
-    <div class="br-field"><label for="brUpName">Name shown with the analysis</label><input id="brUpName" type="text" placeholder="Name Surname"></div>
-    <div class="br-field"><label for="brUpMail">E-mail (required, kept in the file)</label><input id="brUpMail" type="email" placeholder="name@university.edu"></div>
-    <div class="br-field"><label for="brUpCountry">Country</label><input id="brUpCountry" type="text" placeholder="Finland"></div>
-    <div class="br-field"><label for="brUpJob">Profession</label><input id="brUpJob" type="text" placeholder="music theorist, composer, performer&hellip;"></div>
-    <div class="br-field"><label for="brUpEdu">Education</label><input id="brUpEdu" type="text" placeholder="PhD in music theory, MA composition&hellip;"></div>
-    <div class="br-err" id="brUpErr"></div>
-  </div>
-  <div class="row"><button type="button" id="brUpNo">Cancel</button><button type="button" id="brUpYes" class="danger">Save file</button></div>
-</dialog>
 <dialog class="br-ask" id="brAsk">
   <div class="body"><h3 id="brAskTitle"></h3><p id="brAskText"></p></div>
   <div class="row"><button type="button" id="brAskNo">Cancel</button><button type="button" id="brAskYes" class="danger">Delete</button></div>
@@ -419,52 +404,12 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   }
 
   // every download carries the analyst's id, name and e-mail: ask once, keep it
-  var FIELDS = [['brUpName', 'analyst', 'rnv.analyst', 'a name'],
-                ['brUpMail', 'email', 'rnv.analystMail', 'a valid e-mail address'],
-                ['brUpCountry', 'country', 'rnv.analystCountry', 'a country'],
-                ['brUpJob', 'profession', 'rnv.analystJob', 'a profession'],
-                ['brUpEdu', 'education', 'rnv.analystEdu', 'an education']];
-
+  // the analysis file carries the analyst's id and every detail of the shared identity dialog
   function identity() {
-    var id = analysisId(), saved = {}, complete = true;
-    FIELDS.forEach(function (f) {
-      var v = '';
-      try { v = localStorage.getItem(f[2]) || ''; } catch (e) {}
-      saved[f[1]] = v;
-      if (!v) complete = false;
-    });
-    if (complete) return Promise.resolve(Object.assign({ id: id }, saved));
-    var dlg = el('brUp');
-    el('brUpId').textContent = id;
-    el('brUpErr').textContent = '';
-    FIELDS.forEach(function (f) { el(f[0]).value = saved[f[1]]; });
-    return new Promise(function (resolve) {
-      function close(answer) {
-        el('brUpYes').removeEventListener('click', onYes);
-        el('brUpNo').removeEventListener('click', onNo);
-        dlg.removeEventListener('close', onClose);
-        if (dlg.open) dlg.close();
-        resolve(answer);
-      }
-      function onNo() { close(null); }
-      function onClose() { close(null); }
-      function onYes() {
-        var who = { id: id }, bad = null;
-        FIELDS.forEach(function (f) {
-          var v = el(f[0]).value.trim();
-          who[f[1]] = v;
-          if (!bad && !v) bad = 'Please give ' + f[3] + '.';
-        });
-        if (!bad && !/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(who.email)) bad = 'Please give a valid e-mail address.';
-        if (bad) { el('brUpErr').textContent = bad; return; }
-        FIELDS.forEach(function (f) { try { localStorage.setItem(f[2], who[f[1]]); } catch (e) {} });
-        close(who);
-      }
-      el('brUpYes').addEventListener('click', onYes);
-      el('brUpNo').addEventListener('click', onNo);
-      dlg.addEventListener('close', onClose);
-      if (dlg.showModal) dlg.showModal();
-    });
+    return RNVReview.identity({ full: true, title: 'Upload analysis',
+      text: 'Your analysis is saved with the id ' + analysisId() + ' and the details below. They stay in the file ' +
+            'and are shown with the analysis when it is uploaded.'
+    }).then(function (who) { return who && Object.assign({ id: analysisId() }, who); });
   }
 
   function saveAnalysis(who) {
