@@ -83,6 +83,12 @@
       return s && s.user ? s.user : null;
     },
     
+    stats: function () {
+      return call('/rest/v1/rpc/analysis_stats', { method: 'POST', body: {} }).then(function (rows) {
+        return rows && rows[0];
+      });
+    },
+    
     db: function (path, opts) {
       return token().then(function (t) {
         if (!t) throw new Error('Please sign in.');

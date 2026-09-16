@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260916181809">
+<link rel="stylesheet" href="css/site.css?v=20260916182145">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -40,6 +40,9 @@
   .br-field input{font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;width:100%}
   .br-id-badge{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:15px;font-weight:700;letter-spacing:.06em}
   .br-err{color:#dc2626;font-size:13px;min-height:1.2em}
+  .br-stat{border:1px solid var(--line);border-radius:10px;padding:6px 14px;text-align:center;min-width:9em;background:var(--bg,transparent)}
+  .br-stat .n{font-size:24px;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+  .br-stat .l{font-size:12px;color:var(--muted)}
   .br-held{font-size:13px;font-weight:600;color:#9d174d;background:#fce7f3;border:1px solid #f9a8d4;
     border-radius:8px;padding:7px 10px;margin:0 0 10px}
   .br-held.blink{animation:brBlink .55s steps(1,end) 2}
@@ -70,6 +73,10 @@
       <div class="dim" style="font-size:13px">Sign in to upload and compare.
         An uploaded analysis carries your name, e-mail, country, profession and education. Only a complete analysis can be
         downloaded, saved or submitted.</div>
+    </div>
+    <div class="br-stat" id="brStat" aria-live="polite">
+      <div class="n" id="brStatN">&hellip;</div>
+      <div class="l" id="brStatL">uploaded analyses</div>
     </div>
     <div class="seg">
       <button id="brAccount" type="button">Sign in</button>
@@ -141,12 +148,12 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260916181809"></script>
-<script src="js/rnv-data.js?v=20260916181809"></script>
-<script src="js/rnv-auth.js?v=20260916181809"></script>
-<script src="js/rnv-review.js?v=20260916181809"></script>
+<script src="data/corpora.js?v=20260916182145"></script>
+<script src="js/rnv-data.js?v=20260916182145"></script>
+<script src="js/rnv-auth.js?v=20260916182145"></script>
+<script src="js/rnv-review.js?v=20260916182145"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260916181809"></script>
+<script src="js/rnv-score.js?v=20260916182145"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -394,6 +401,20 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     // signed out: come back here after signing in; signed in: just manage the account
     location.href = window.RNVAuth && RNVAuth.user() ? 'account.html' : 'account.html?next=review.html';
   });
+  // real count from the database; never a guess: if it cannot be read, say so
+  (function analysisCount() {
+    if (!window.RNVAuth) return;
+    RNVAuth.stats().then(function (st) {
+      var n = Number(st && st.analyses) || 0, people = Number(st && st.participants) || 0;
+      el('brStatN').textContent = n;
+      el('brStatL').textContent = n === 0 ? 'uploaded analyses — none yet'
+        : (n === 1 ? 'uploaded analysis' : 'uploaded analyses') + ' · ' + people + (people === 1 ? ' participant' : ' participants') +
+          ' · latest ' + String(st.latest).slice(0, 10);
+    }).catch(function () {
+      el('brStatN').textContent = '—';
+      el('brStatL').textContent = 'count unavailable';
+    });
+  })();
   (function accountStatus() {
     var u = window.RNVAuth && RNVAuth.user();
     el('brAccount').textContent = u ? 'Account' : 'Sign in';
