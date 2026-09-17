@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260916220649">
+<link rel="stylesheet" href="css/site.css?v=20260917111453">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -148,12 +148,12 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260916220649"></script>
-<script src="js/rnv-data.js?v=20260916220649"></script>
-<script src="js/rnv-auth.js?v=20260916220649"></script>
-<script src="js/rnv-review.js?v=20260916220649"></script>
+<script src="data/corpora.js?v=20260917111453"></script>
+<script src="js/rnv-data.js?v=20260917111453"></script>
+<script src="js/rnv-auth.js?v=20260917111453"></script>
+<script src="js/rnv-review.js?v=20260917111453"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260916220649"></script>
+<script src="js/rnv-score.js?v=20260917111453"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -221,7 +221,6 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     var it = order[pos];
     if (!it) { el('brCard').innerHTML = '<div class="empty">Nothing to show with this filter.</div>'; el('brScore').innerHTML = ''; return; }
     var v = RNVReview.getKey(sheet, it.id);
-    var stale = it.changed && v.rev !== it.rev && (v.nt || v.rt || v.bs || v.sp);
     if (it.changed && v.rev !== it.rev) v = {};
     el('brCard').innerHTML =
       '<div class="br-id">' + it.id + ' · ' + (pos + 1) + ' / ' + order.length + '</div>' +
@@ -234,7 +233,6 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
           : 'end of the work') + '</dd></dl>' +
       '<div class="dim" id="brUnit" style="font-size:13px;margin:-6px 0 10px"></div>' +
       '<div class="br-held" id="brHeld" hidden></div>' +
-      (stale ? '<div class="br-held">This position was updated after you rated it (musWM’s reading changed). Please rate it again.</div>' : '') +
       '<dl class="br-read"><dt>Notes</dt><dd>' + esc(it.notes || '—') + '</dd>' +
         '<dt>Root</dt><dd>' + esc(it.root || '—') + '</dd><dt>Bass</dt><dd>' + esc(it.bass || '—') + '</dd></dl>' +
       Q.map(function (q) {
