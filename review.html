@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260917111453">
+<link rel="stylesheet" href="css/site.css?v=20260917122538">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -148,12 +148,12 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260917111453"></script>
-<script src="js/rnv-data.js?v=20260917111453"></script>
-<script src="js/rnv-auth.js?v=20260917111453"></script>
-<script src="js/rnv-review.js?v=20260917111453"></script>
+<script src="data/corpora.js?v=20260917122538"></script>
+<script src="js/rnv-data.js?v=20260917122538"></script>
+<script src="js/rnv-auth.js?v=20260917122538"></script>
+<script src="js/rnv-review.js?v=20260917122538"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260917111453"></script>
+<script src="js/rnv-score.js?v=20260917122538"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -193,11 +193,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     });
   }
 
-  // a rating counts only for the content it was given on: if a rebuild changed the position, it must be rated again
-  function rated(it) {
-    var v = RNVReview.getKey(sheet, it.id);
-    return !!(v.nt && v.rt && v.bs && v.sp) && (!it.changed || v.rev === it.rev);
-  }
+  function rated(it) { var v = RNVReview.getKey(sheet, it.id); return !!(v.nt && v.rt && v.bs && v.sp); }
 
   function allRated() { return sample.items.every(rated); }
 
@@ -221,7 +217,6 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     var it = order[pos];
     if (!it) { el('brCard').innerHTML = '<div class="empty">Nothing to show with this filter.</div>'; el('brScore').innerHTML = ''; return; }
     var v = RNVReview.getKey(sheet, it.id);
-    if (it.changed && v.rev !== it.rev) v = {};
     el('brCard').innerHTML =
       '<div class="br-id">' + it.id + ' · ' + (pos + 1) + ' / ' + order.length + '</div>' +
       '<div class="br-work">' + esc(pretty(it.title)) + '</div>' +
@@ -246,11 +241,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
       '<button type="button" id="brNext">Next &rarr;</button></div>';
     Array.prototype.forEach.call(el('brCard').querySelectorAll('.seg[data-q] button'), function (b) {
       b.addEventListener('click', function () {
-        var patch = { rev: it.rev || '' }; patch[b.parentNode.dataset.q] = b.dataset.v;
-        if (it.changed && RNVReview.getKey(sheet, it.id).rev !== it.rev) {
-          // first answer on changed content: the old answers belong to the old content
-          patch = { rev: it.rev, nt: '', rt: '', bs: '', sp: '', n: '' }; patch[b.parentNode.dataset.q] = b.dataset.v;
-        }
+        var patch = {}; patch[b.parentNode.dataset.q] = b.dataset.v;
         RNVReview.setKey(sheet, it.id, patch);
         Array.prototype.forEach.call(b.parentNode.children, function (x) { x.setAttribute('aria-pressed', String(x === b)); });
         counts();
@@ -543,14 +534,11 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     return RNVReview.init(sheet).then(function (serverOk) { return [s, serverOk]; });
   }).then(function (res) {
     sample = res[0];
-    var goneN = sample.items.filter(function (it) { return it.gone; }).length;
-    sample.items = sample.items.filter(function (it) { return !it.gone; });
     el('brDesign').textContent = 'The sample has ' + sample.items.length + ' positions, drawn once with a fixed seed (' + sample.seed +
       ') from the positions where all three analysers read the same local key: ' + sample.coverageStrata +
       ' cover every combination of mode, musWM Roman numeral (with inversion) and agreement pattern once, and ' + sample.randomN +
       ' are a simple random sample. The order is shuffled and the page does not show which part a position belongs to. Sample fingerprint ' +
-      sample.sha256OfPositions.slice(0, 16) + '.' +
-      (goneN ? ' ' + goneN + ' position' + (goneN > 1 ? 's' : '') + ' no longer have a musWM reading after an engine correction and ' + (goneN > 1 ? 'are' : 'is') + ' left out.' : '');
+      sample.sha256OfPositions.slice(0, 16) + '.';
     el('brSaved').textContent = res[1] ? 'Ratings are saved to a file on this computer' : 'Ratings are kept in this browser — download the JSON to keep a copy';
     el('brShow').value = allRated() ? 'all' : 'todo';     // the browser may restore an old choice: always reset it
     refreshOrder();
