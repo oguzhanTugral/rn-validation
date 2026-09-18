@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260918201445">
+<link rel="stylesheet" href="css/site.css?v=20260919004343">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -27,6 +27,17 @@
   .br-rules th{text-align:left;vertical-align:top;padding:4px 12px 4px 0;white-space:nowrap}
   .br-rules td{padding:4px 0}
   .br-hint{grid-column:2;font-size:12.5px;color:var(--muted);margin-top:-4px}
+  .br-rn{border-top:1px solid var(--line);margin:14px 0 10px;padding-top:12px}
+  .br-rn h4{margin:0 0 6px;font-size:15px}
+  .br-rn label{display:flex;gap:8px;align-items:baseline;font-size:15px;margin:4px 0;flex-wrap:wrap}
+  .br-rn .rnlab{font-weight:700;font-family:ui-monospace,Menlo,Consolas,monospace}
+  .br-rn .who{font-size:13px;color:var(--muted)}
+  .br-rn .who.eng{color:#15803d;font-weight:600}
+  .br-rn input[type=text]{font:inherit;font-size:14px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;width:9em}
+  .br-rn .verdict{margin-top:8px;padding:8px 10px;border-radius:8px;background:#ecfdf5;border:1px solid #a7f3d0;font-size:14px}
+  .br-rn button{font:inherit;font-size:14px;padding:6px 12px;border-radius:8px;border:1px solid #1d4ed8;background:#1d4ed8;color:#fff;cursor:pointer}
+  .br-rn button:disabled{opacity:.45;cursor:default}
+  .br-q .seg button:disabled{cursor:default;opacity:.85}
   .br-note{width:100%;min-height:60px;font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px}
   .br-nav{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}
   .br-score{min-height:260px;overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:8px}
@@ -118,7 +129,7 @@
   <div class="br-tools">
     <div class="field"><label for="brShow">Show</label>
       <select id="brShow" autocomplete="off"><option value="todo">Not yet rated</option><option value="all">All positions</option>
-      <option value="done">Rated</option></select></div>
+      <option value="done">Rated</option><option value="rn">Roman numeral not yet answered</option></select></div>
     <div class="field"><label for="brJump">Go to</label>
       <input id="brJump" type="text" placeholder="S001" style="width:6em"></div>
     <div class="field"><label>&nbsp;</label><div class="seg">
@@ -148,13 +159,13 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260918201445"></script>
-<script src="js/rnv-data.js?v=20260918201445"></script>
-<script src="js/rnv-auth.js?v=20260918201445"></script>
-<script src="js/rnv-review.js?v=20260918201445"></script>
+<script src="data/corpora.js?v=20260919004343"></script>
+<script src="js/rnv-data.js?v=20260919004343"></script>
+<script src="js/rnv-auth.js?v=20260919004343"></script>
+<script src="js/rnv-review.js?v=20260919004343"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260918201445"></script>
-<script src="js/rnv-spell.js?v=20260918201445"></script>
+<script src="js/rnv-score.js?v=20260919004343"></script>
+<script src="js/rnv-spell.js?v=20260919004343"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -206,6 +217,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   function refreshOrder(keepId) {
     var show = el('brShow').value;
     order = sample.items.filter(function (it) {
+      if (show === 'rn') return rated(it) && !RNVReview.getKey(sheet, it.id).rnDone && !!RNOPT[it.id];
       return show === 'all' || (show === 'done' ? rated(it) : !rated(it));
     });
     pos = 0;
@@ -215,7 +227,9 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
 
   function counts() {
     var done = sample.items.filter(rated).length, total = sample.items.length;
-    el('brCount').innerHTML = '<b>' + done + '</b> of ' + total + ' positions rated · showing ' + order.length;
+    var rnDone = sample.items.filter(function (it) { return RNVReview.getKey(sheet, it.id).rnDone; }).length;
+    el('brCount').innerHTML = '<b>' + done + '</b> of ' + total + ' positions rated · Roman numerals answered <b>' + rnDone +
+      '</b> · showing ' + order.length;
     el('brBar').style.width = (100 * done / total).toFixed(1) + '%';
   }
 
@@ -243,6 +257,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
             return '<button type="button" class="' + o[2] + '" data-v="' + o[0] + '" aria-pressed="' + (v[q[0]] === o[0]) + '">' + o[1] + '</button>';
           }).join('') + '</div><div class="br-hint">' + q[3] + '</div></div>';
       }).join('') +
+      '<div class="br-rn" id="brRN"></div>' +
       '<textarea class="br-note" id="brNote" placeholder="note (optional)">' + esc(v.n || '') + '</textarea>' +
       '<div class="br-nav"><button type="button" id="brPrev">&larr; Previous</button>' +
       '<button type="button" id="brNext">Next &rarr;</button></div>';
@@ -252,6 +267,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
         RNVReview.setKey(sheet, it.id, patch);
         Array.prototype.forEach.call(b.parentNode.children, function (x) { x.setAttribute('aria-pressed', String(x === b)); });
         counts();
+        renderRN(it);
         if (el('brShow').value === 'todo' && allRated()) { el('brShow').value = 'all'; refreshOrder(it.id); }
       });
     });
@@ -259,9 +275,81 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     el('brPrev').addEventListener('click', function () { if (pos > 0) { pos--; paint(); } });
     el('brNext').addEventListener('click', function () {
       if (el('brShow').value === 'todo' && rated(it)) { refreshOrder(); return; }
+      if (el('brShow').value === 'rn' && RNVReview.getKey(sheet, it.id).rnDone) { refreshOrder(); return; }
       if (pos < order.length - 1) { pos++; paint(); }
     });
+    renderRN(it);
     drawScore(it);
+  }
+
+  // ---- Roman-numeral question: opens after the four answers, shows who gave what only after the answer
+  var RNOPT = {};
+  var ENGINES = ['musWM', 'AnalysisGNN', 'AugmentedNet'];
+
+  function lockFour(on) {
+    Array.prototype.forEach.call(el('brCard').querySelectorAll('.seg[data-q] button'), function (b) { b.disabled = on; });
+  }
+
+  function rightEngines(it, v) {
+    var opts = RNOPT[it.id] || [], chosen = v.rn || [];
+    return ENGINES.filter(function (e) {
+      return opts.some(function (o) { return chosen.indexOf(o.label) >= 0 && o.engines.indexOf(e) >= 0; });
+    });
+  }
+
+  function renderRN(it) {
+    var box = el('brRN'), opts = RNOPT[it.id];
+    if (!box) return;
+    if (!opts) { box.hidden = true; return; }
+    box.hidden = false;
+    var v = RNVReview.getKey(sheet, it.id);
+    lockFour(!!v.rnDone);
+    if (!(v.nt && v.rt && v.bs && v.sp)) {
+      box.innerHTML = '<h4>Roman numeral</h4><div class="dim" style="font-size:13px">This question opens after the four questions above are answered.</div>';
+      return;
+    }
+    if (!v.rnDone) {
+      box.innerHTML = '<h4>Which Roman numeral(s) are correct here?</h4>' +
+        '<div class="dim" style="font-size:13px;margin-bottom:6px">Tick every correct one. Who gave each option is shown after you confirm; ' +
+        'your four answers above are then locked.</div>' +
+        opts.map(function (o, i) {
+          return '<label><input type="checkbox" data-i="' + i + '"> <span class="rnlab">' + esc(o.label) + '</span></label>';
+        }).join('') +
+        '<label><input type="checkbox" id="rnNone"> None of these &mdash; correct: <input type="text" id="rnNoneText" placeholder="e.g. V65/V"></label>' +
+        '<label><input type="checkbox" id="rnUnclear"> Unclear</label>' +
+        '<div style="margin-top:8px"><button type="button" id="rnOk" disabled>Confirm</button></div>';
+      var boxes = box.querySelectorAll('input[type=checkbox]');
+      var sync = function () {
+        el('rnOk').disabled = !Array.prototype.some.call(boxes, function (b) { return b.checked; });
+      };
+      Array.prototype.forEach.call(boxes, function (b) { b.addEventListener('change', sync); });
+      el('rnOk').addEventListener('click', function () {
+        var chosen = Array.prototype.filter.call(box.querySelectorAll('input[data-i]'), function (b) { return b.checked; })
+          .map(function (b) { return opts[+b.dataset.i].label; });
+        RNVReview.setKey(sheet, it.id, { rn: chosen, rnNone: el('rnNone').checked ? (el('rnNoneText').value.trim() || '?') : '',
+                                         rnU: el('rnUnclear').checked, rnDone: true });
+        counts();
+        renderRN(it);
+      });
+      return;
+    }
+    var chosen = v.rn || [], right = rightEngines(it, v);
+    var verdict = right.length
+      ? 'According to your answer, correct: <b>' + right.join(', ') + '</b>' +
+        (right.length < 3 ? ' &middot; not correct: ' + ENGINES.filter(function (e) { return right.indexOf(e) < 0; }).join(', ') : '')
+      : v.rnU ? 'Your answer: <b>unclear</b> &mdash; no analyser is counted as correct or wrong here.'
+      : 'According to your answer, <b>none of the three analysers</b> is correct' +
+        (v.rnNone && v.rnNone !== '?' ? ' (you wrote ' + esc(v.rnNone) + ')' : '') + '.';
+    box.innerHTML = '<h4>Roman numeral &mdash; your answer</h4>' +
+      opts.map(function (o) {
+        var on = chosen.indexOf(o.label) >= 0;
+        return '<label>' + (on ? '&#10003;' : '&nbsp;&nbsp;') + ' <span class="rnlab">' + esc(o.label) + '</span> ' +
+          '<span class="who' + (o.engines.length ? ' eng' : '') + '">' +
+          (o.engines.length ? o.engines.join(', ') : 'alternative made by rule') + '</span></label>';
+      }).join('') +
+      (v.rnNone ? '<label>&#10003; None of these' + (v.rnNone !== '?' ? ': <span class="rnlab">' + esc(v.rnNone) + '</span>' : '') + '</label>' : '') +
+      (v.rnU ? '<label>&#10003; Unclear</label>' : '') +
+      '<div class="verdict">' + verdict + '</div>';
   }
 
   // Beats are counted in the time signature's lower number (2/2: half notes, 6/8: eighths).
@@ -524,14 +612,15 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   function saveXlsx(who) {
     var name = { y: 'correct', n: 'wrong', u: 'unclear' }, span = { y: 'own chord', c: 'chord change inside', n: 'merge with next', u: 'unclear' };
     var header = ['Analysis id', 'Analyst', 'E-mail', 'Country', 'Profession', 'Education', 'Id', 'Part', 'Work no', 'Work', 'Start bar', 'Start beat', 'End bar', 'End beat (not incl.)', 'Local key', 'Notes shown', 'Root shown', 'Bass shown',
-                  'Notes', 'Root', 'Bass', 'Span', 'Note'];
+                  'Notes', 'Root', 'Bass', 'Span', 'Note', 'RN chosen', 'RN none of these', 'RN unclear', 'Correct analysers'];
     var rows = sample.items.map(function (it) {
       var v = RNVReview.getKey(sheet, it.id);
       return [who.id, who.analyst, who.email, who.country, who.profession, who.education,
               it.id, it.part, it.work, pretty(it.title), it.bar, it.beat, it.endBar == null ? 'end of work' : it.endBar, it.endBar == null ? '' : it.endBeat, it.localKey, spelled(it).notes, spelled(it).root, spelled(it).bass,
-              ({ y: 'exactly', x: 'all + extra', n: 'missing', u: 'unclear' })[v.nt] || '', name[v.rt] || '', name[v.bs] || '', span[v.sp] || '', v.n || ''];
+              ({ y: 'exactly', x: 'all + extra', n: 'missing', u: 'unclear' })[v.nt] || '', name[v.rt] || '', name[v.bs] || '', span[v.sp] || '', v.n || '',
+              (v.rn || []).join(' | '), v.rnNone || '', v.rnU ? 'yes' : '', v.rnDone ? rightEngines(it, v).join(', ') : ''];
     });
-    download(RNVReview.xlsx('Blind review', header, rows, [12, 20, 26, 14, 20, 24, 7, 10, 8, 36, 9, 10, 8, 18, 12, 22, 8, 8, 10, 10, 10, 16, 40]),
+    download(RNVReview.xlsx('Blind review', header, rows, [12, 20, 26, 14, 20, 24, 7, 10, 8, 36, 9, 10, 8, 18, 12, 22, 8, 8, 10, 10, 10, 16, 40, 18, 14, 10, 28]),
       'analysis_' + who.id + '.xlsx');
   }
 
@@ -541,6 +630,11 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     return RNVReview.init(sheet).then(function (serverOk) { return [s, serverOk]; });
   }).then(function (res) {
     sample = res[0];
+    fetch('data/corpora/' + encodeURIComponent(corpusId) + '/rn_options.json', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (o) {
+        if (o && o.sample === sample.sha256OfPositions) { RNOPT = o.options || {}; if (order[pos]) renderRN(order[pos]); counts(); }
+      }).catch(function () {});
     el('brDesign').textContent = 'The sample has ' + sample.items.length + ' positions, drawn once with a fixed seed (' + sample.seed +
       ') from the positions where all three analysers read the same local key: ' + sample.coverageStrata +
       ' cover every combination of mode, musWM Roman numeral (with inversion) and agreement pattern once, and ' + sample.randomN +
