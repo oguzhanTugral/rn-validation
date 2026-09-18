@@ -56,7 +56,27 @@
   var Auth = {
     
     sendCode: function (email) {
-      return call('/auth/v1/otp', { method: 'POST', body: { email: email, create_user: true } });
+
+      var back = location.origin + location.pathname;
+      return call('/auth/v1/otp?redirect_to=' + encodeURIComponent(back), { method: 'POST', body: { email: email, create_user: true } });
+    },
+    
+    fromUrl: function () {
+      var h = new URLSearchParams(String(location.hash || '').replace(/^#/, ''));
+      var clean = function () { history.replaceState(null, '', location.pathname + location.search); };
+      if (h.get('error_description') || h.get('error')) {
+        clean();
+        return Promise.reject(new Error(h.get('error_description') || h.get('error')));
+      }
+      if (!h.get('access_token')) return Promise.resolve(false);
+      var s = { access_token: h.get('access_token'), refresh_token: h.get('refresh_token'),
+                expires_in: Number(h.get('expires_in')) || 3600, token_type: h.get('token_type') || 'bearer' };
+      clean();
+      return call('/auth/v1/user', {}, s.access_token).then(function (user) {
+        s.user = user;
+        writeSession(s);
+        return true;
+      });
     },
     verifyCode: function (email, code) {
       return call('/auth/v1/verify', { method: 'POST', body: { type: 'email', email: email, token: code } })

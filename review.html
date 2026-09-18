@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260917122538">
+<link rel="stylesheet" href="css/site.css?v=20260918200609">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -148,12 +148,13 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260917122538"></script>
-<script src="js/rnv-data.js?v=20260917122538"></script>
-<script src="js/rnv-auth.js?v=20260917122538"></script>
-<script src="js/rnv-review.js?v=20260917122538"></script>
+<script src="data/corpora.js?v=20260918200609"></script>
+<script src="js/rnv-data.js?v=20260918200609"></script>
+<script src="js/rnv-auth.js?v=20260918200609"></script>
+<script src="js/rnv-review.js?v=20260918200609"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260917122538"></script>
+<script src="js/rnv-score.js?v=20260918200609"></script>
+<script src="js/rnv-spell.js?v=20260918200609"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -193,6 +194,11 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     });
   }
 
+  // names spelled for the local key (display only: the pitches, and so the colours and ratings, do not change)
+  function spelled(it) {
+    return window.RNVSpell ? RNVSpell.respell(it.notes, it.root, it.bass, it.localKey) : { notes: it.notes, root: it.root, bass: it.bass };
+  }
+
   function rated(it) { var v = RNVReview.getKey(sheet, it.id); return !!(v.nt && v.rt && v.bs && v.sp); }
 
   function allRated() { return sample.items.every(rated); }
@@ -217,6 +223,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     var it = order[pos];
     if (!it) { el('brCard').innerHTML = '<div class="empty">Nothing to show with this filter.</div>'; el('brScore').innerHTML = ''; return; }
     var v = RNVReview.getKey(sheet, it.id);
+    var sp = spelled(it);
     el('brCard').innerHTML =
       '<div class="br-id">' + it.id + ' · ' + (pos + 1) + ' / ' + order.length + '</div>' +
       '<div class="br-work">' + esc(pretty(it.title)) + '</div>' +
@@ -228,8 +235,8 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
           : 'end of the work') + '</dd></dl>' +
       '<div class="dim" id="brUnit" style="font-size:13px;margin:-6px 0 10px"></div>' +
       '<div class="br-held" id="brHeld" hidden></div>' +
-      '<dl class="br-read"><dt>Notes</dt><dd>' + esc(it.notes || '—') + '</dd>' +
-        '<dt>Root</dt><dd>' + esc(it.root || '—') + '</dd><dt>Bass</dt><dd>' + esc(it.bass || '—') + '</dd></dl>' +
+      '<dl class="br-read"><dt>Notes</dt><dd>' + esc(sp.notes || '—') + '</dd>' +
+        '<dt>Root</dt><dd>' + esc(sp.root || '—') + '</dd><dt>Bass</dt><dd>' + esc(sp.bass || '—') + '</dd></dl>' +
       Q.map(function (q) {
         return '<div class="br-q"><span>' + q[1] + '</span><div class="seg" data-q="' + q[0] + '">' +
           q[2].map(function (o) {
@@ -521,7 +528,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     var rows = sample.items.map(function (it) {
       var v = RNVReview.getKey(sheet, it.id);
       return [who.id, who.analyst, who.email, who.country, who.profession, who.education,
-              it.id, it.part, it.work, pretty(it.title), it.bar, it.beat, it.endBar == null ? 'end of work' : it.endBar, it.endBar == null ? '' : it.endBeat, it.localKey, it.notes, it.root, it.bass,
+              it.id, it.part, it.work, pretty(it.title), it.bar, it.beat, it.endBar == null ? 'end of work' : it.endBar, it.endBar == null ? '' : it.endBeat, it.localKey, spelled(it).notes, spelled(it).root, spelled(it).bass,
               ({ y: 'exactly', x: 'all + extra', n: 'missing', u: 'unclear' })[v.nt] || '', name[v.rt] || '', name[v.bs] || '', span[v.sp] || '', v.n || ''];
     });
     download(RNVReview.xlsx('Blind review', header, rows, [12, 20, 26, 14, 20, 24, 7, 10, 8, 36, 9, 10, 8, 18, 12, 22, 8, 8, 10, 10, 10, 16, 40]),
