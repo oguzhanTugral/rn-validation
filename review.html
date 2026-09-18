@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260919011300">
+<link rel="stylesheet" href="css/site.css?v=20260919012230">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -19,6 +19,7 @@
   .br-read dd{margin:0;font-weight:700}
   .br-q{display:grid;grid-template-columns:5.5em 1fr;gap:8px;align-items:center;margin:8px 0}
   .br-q .seg button{min-width:6.2em}
+  @media (max-width:520px){.br-q{grid-template-columns:1fr}.br-hint{grid-column:1}.br-q .seg{flex-wrap:wrap}.br-q .seg button{min-width:0;flex:1 1 auto}}
   .br-q .seg button[aria-pressed="true"].ok{background:#16a34a;color:#fff;border-color:#16a34a}
   .br-q .seg button[aria-pressed="true"].no{background:#dc2626;color:#fff;border-color:#dc2626}
   .br-q .seg button[aria-pressed="true"].ex{background:#d97706;color:#fff;border-color:#d97706}
@@ -39,6 +40,20 @@
   .br-rn button{font:inherit;font-size:14px;padding:6px 12px;border-radius:8px;border:1px solid #1d4ed8;background:#1d4ed8;color:#fff;cursor:pointer}
   .br-rn button:disabled{opacity:.45;cursor:default}
   .br-q .seg button:disabled{cursor:default;opacity:.85}
+  .br-live{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:10px 14px;margin:0 0 14px;z-index:5}
+  @media (min-width:900px){.br-live{position:sticky;top:0}}
+  .br-live .ttl{font-size:13px;color:var(--muted);margin:0 0 6px}
+  .br-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .br-tile{border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+  .br-tile .e{font-size:13px;font-weight:700}
+  .br-tile .p{font-size:26px;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+  .br-tile .k{font-size:12px;color:var(--muted)}
+  .br-tile .bar{height:6px;border-radius:99px;background:var(--accent-soft);overflow:hidden;margin:5px 0 3px}
+  .br-tile .bar span{display:block;height:100%;background:var(--accent);transition:width .4s}
+  .br-tile.lead{border-color:#16a34a;box-shadow:0 0 0 1px #16a34a inset}
+  .br-live .pool{font-size:13px;margin-top:6px}
+  @media (max-width:520px){.br-tiles{gap:6px}.br-tile{padding:6px}.br-tile .p{font-size:19px}.br-tile .e{font-size:11.5px}}
   .br-note{width:100%;min-height:60px;font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px}
   .br-nav{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}
   .br-score{min-height:260px;overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:8px}
@@ -83,7 +98,6 @@
       <b>Analyst panel</b>
       <div style="font-size:13px;margin:2px 0" id="brWho"></div>
       <div style="font-size:13px;margin:2px 0" id="brSync"></div>
-      <div style="font-size:13px;margin:2px 0" id="brMine"></div>
       <div class="dim" style="font-size:13px">Signed in, your answers are saved to your account automatically as you go,
         with your name, e-mail, country, profession and education.</div>
     </div>
@@ -146,6 +160,12 @@
   <div class="count" id="brCount"></div>
   <div class="br-prog"><span id="brBar" style="width:0"></span></div>
 
+  <div class="br-live" id="brLive" aria-live="polite">
+    <div class="ttl" id="brLiveTtl">Roman numerals judged correct, by analyser</div>
+    <div class="br-tiles" id="brTiles"></div>
+    <div class="pool dim" id="brPool"></div>
+  </div>
+
   <div class="br-grid" id="host">
     <div class="br-card" id="brCard"><div class="empty">Loading&hellip;</div></div>
     <div>
@@ -161,14 +181,14 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260919011300"></script>
-<script src="js/rnv-data.js?v=20260919011300"></script>
-<script src="js/rnv-auth.js?v=20260919011300"></script>
-<script src="js/rnv-review.js?v=20260919011300"></script>
+<script src="data/corpora.js?v=20260919012230"></script>
+<script src="js/rnv-data.js?v=20260919012230"></script>
+<script src="js/rnv-auth.js?v=20260919012230"></script>
+<script src="js/rnv-review.js?v=20260919012230"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260919011300"></script>
-<script src="js/rnv-spell.js?v=20260919011300"></script>
-<script src="js/rnv-rnscore.js?v=20260919011300"></script>
+<script src="js/rnv-score.js?v=20260919012230"></script>
+<script src="js/rnv-spell.js?v=20260919012230"></script>
+<script src="js/rnv-rnscore.js?v=20260919012230"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -290,16 +310,40 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   // ---- automatic saving to the participant's account (one live row per participant)
   var syncTimer = null, syncOn = false;
 
-  function mine() {
-    var box = el('brMine');
-    if (!box || !window.RNVRnScore) return;
-    var t = RNVRnScore.score([RNVReview.all(sheet)], RNOPT);
-    box.innerHTML = t.n
-      ? 'Your Roman-numeral answers (' + t.n + ' positions): ' + RNVRnScore.ENGINES.map(function (e) {
-          return e + ' <b>' + RNVRnScore.pct(t, e) + '</b>';
-        }).join(' &middot; ')
-      : '<span class="dim">Your percentages for the three analysers appear here once you answer Roman-numeral questions.</span>';
+  function tiles(t) {
+    var E = RNVRnScore.ENGINES, best = -1;
+    E.forEach(function (e) { if (t.n && t.right[e] > best) best = t.right[e]; });
+    el('brTiles').innerHTML = E.map(function (e) {
+      var pct = t.n ? 100 * t.right[e] / t.n : 0;
+      return '<div class="br-tile' + (t.n && t.right[e] === best ? ' lead' : '') + '"><div class="e">' + e + '</div>' +
+        '<div class="p">' + (t.n ? pct.toFixed(1) + '%' : '\u2014') + '</div>' +
+        '<div class="bar"><span style="width:' + pct.toFixed(1) + '%"></span></div>' +
+        '<div class="k">' + (t.n ? t.right[e] + ' of ' + t.n + ' positions' : 'no answers yet') + '</div></div>';
+    }).join('');
   }
+
+  function mine() {
+    if (!el('brTiles') || !window.RNVRnScore) return;
+    var t = RNVRnScore.score([RNVReview.all(sheet)], RNOPT);
+    el('brLiveTtl').textContent = t.n
+      ? 'Your answers so far: Roman numerals judged correct, by analyser (' + t.n + ' positions)'
+      : 'Roman numerals judged correct, by analyser \u2014 fills in as you answer the Roman-numeral questions';
+    tiles(t);
+  }
+
+  // all participants together, when signed in and the answers table exists; refreshed every minute
+  function pooledLine() {
+    if (!window.RNVAuth || !RNVAuth.user() || !window.RNVRnScore) return;
+    RNVAuth.db('live_answers?select=rows').then(function (list) {
+      var t = RNVRnScore.score(list.map(function (r) { return r.rows || {}; }), RNOPT);
+      el('brPool').innerHTML = t.n
+        ? 'All participants (' + list.length + ', ' + t.n + ' answers): ' + RNVRnScore.ENGINES.map(function (e) {
+            return e + ' <b>' + RNVRnScore.pct(t, e) + '</b>';
+          }).join(' &middot; ') + ' &middot; <a href="compare.html">Compare</a>'
+        : '';
+    }).catch(function () { el('brPool').textContent = ''; });
+  }
+  setInterval(pooledLine, 60000);
 
   function syncNow() {
     if (!window.RNVAuth || !RNVAuth.user()) {
@@ -317,6 +361,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
               updated_at: new Date().toISOString() }
     }).then(function () {
       el('brSync').innerHTML = '&#10003; Saved to your account ' + new Date().toTimeString().slice(0, 5);
+      pooledLine();
       return true;
     }).catch(function (e) {
       el('brSync').textContent = 'Not saved to your account: ' + e.message;
@@ -700,6 +745,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
           el('brShow').value = allRated() ? 'all' : 'todo';
           refreshOrder(el('brShow').value === 'all' ? keep : null);
           mine();
+          pooledLine();
         }
       }).catch(function () {});
     el('brDesign').textContent = 'The sample has ' + sample.items.length + ' positions, drawn once with a fixed seed (' + sample.seed +
