@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260919005221">
+<link rel="stylesheet" href="css/site.css?v=20260919005757">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -34,6 +34,7 @@
   .br-rn .who{font-size:13px;color:var(--muted)}
   .br-rn .who.eng{color:#15803d;font-weight:600}
   .br-rn input[type=text]{font:inherit;font-size:14px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;width:9em}
+  .br-rn .rnout{display:grid;gap:3px;margin-top:8px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:14px}
   .br-rn .verdict{margin-top:8px;padding:8px 10px;border-radius:8px;background:#ecfdf5;border:1px solid #a7f3d0;font-size:14px}
   .br-rn button{font:inherit;font-size:14px;padding:6px 12px;border-radius:8px;border:1px solid #1d4ed8;background:#1d4ed8;color:#fff;cursor:pointer}
   .br-rn button:disabled{opacity:.45;cursor:default}
@@ -160,14 +161,14 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260919005221"></script>
-<script src="js/rnv-data.js?v=20260919005221"></script>
-<script src="js/rnv-auth.js?v=20260919005221"></script>
-<script src="js/rnv-review.js?v=20260919005221"></script>
+<script src="data/corpora.js?v=20260919005757"></script>
+<script src="js/rnv-data.js?v=20260919005757"></script>
+<script src="js/rnv-auth.js?v=20260919005757"></script>
+<script src="js/rnv-review.js?v=20260919005757"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260919005221"></script>
-<script src="js/rnv-spell.js?v=20260919005221"></script>
-<script src="js/rnv-rnscore.js?v=20260919005221"></script>
+<script src="js/rnv-score.js?v=20260919005757"></script>
+<script src="js/rnv-spell.js?v=20260919005757"></script>
+<script src="js/rnv-rnscore.js?v=20260919005757"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -417,7 +418,14 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
       }).join('') +
       (v.rnNone ? '<label>&#10003; None of these' + (v.rnNone !== '?' ? ': <span class="rnlab">' + esc(v.rnNone) + '</span>' : '') + '</label>' : '') +
       (v.rnU ? '<label>&#10003; Unclear</label>' : '') +
-      '<div class="verdict">' + verdict + '</div>';
+      '<div class="verdict">' + verdict + '</div>' +
+      // each analyser's own Roman numeral, after the verdict
+      '<div class="rnout">' + ENGINES.map(function (e) {
+        var o = opts.filter(function (x) { return x.engines.indexOf(e) >= 0; })[0];
+        var ok = right.indexOf(e) >= 0;
+        return '<div><span class="who' + (ok ? ' eng' : '') + '">' + e + '</span> <span class="rnlab">' + esc(o ? o.label : '—') + '</span>' +
+          (ok ? ' &#10003;' : '') + '</div>';
+      }).join('') + '</div>';
   }
 
   // Beats are counted in the time signature's lower number (2/2: half notes, 6/8: eighths).
