@@ -153,7 +153,7 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
   });
 
   // public page: everyone's saved answers load straight away (no e-mail addresses are ever returned)
-  var RNOPT = {};
+  var RNOPT = {}, sampleItems = {}, sampleFingerprint = '';
   loadAnalyses();
 
   function pooled() {
@@ -192,7 +192,9 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
         var answers = (v.rn || []).slice();
         if (v.rnNone) answers.push('None of these' + (v.rnNone !== '?' ? ': ' + v.rnNone : ''));
         if (v.rnU) answers.push('Unclear');
-        var cells = [entry.analyst, entry.sample, id];
+        var item = entry.sample === sampleFingerprint ? sampleItems[id] : null;
+        var cells = [entry.analyst, entry.sample, id, item ? item.localKey : 'Unavailable for this sample',
+          item ? item.notes : '—', item ? item.root : '—', item ? item.bass : '—'];
         Object.keys(QN).forEach(function (q) { cells.push(LBL[q][v[q]] || '—'); });
         cells.push(answers.join(' | ') || '—', v.rnDone ? 'Confirmed' : 'Not confirmed');
         RNVRnScore.ENGINES.forEach(function (engine) {
@@ -205,7 +207,7 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
         body.push('<tr>' + cells.map(function (value) { return '<td>' + esc(String(value)) + '</td>'; }).join('') + '</tr>');
       });
     });
-    var headings = ['Participant', 'Sample', 'Position', 'Notes', 'Root', 'Bass', 'Span', 'Roman numeral answer', 'Status'].concat(RNVRnScore.ENGINES, ['Comment']);
+    var headings = ['Participant', 'Sample', 'Position', 'Local key', 'musWM note list', 'Root note', 'Bass note', 'Notes rating', 'Root rating', 'Bass rating', 'Span', 'Roman numeral answer', 'Status'].concat(RNVRnScore.ENGINES, ['Comment']);
     el('cmpDetailsTable').innerHTML = body.length ? '<table><caption>Saved answers (' + body.length + ' rows)</caption><thead><tr>' +
       headings.map(function (h) { return '<th scope="col">' + esc(h) + '</th>'; }).join('') + '</tr></thead><tbody>' + body.join('') + '</tbody></table>' : '<p>No saved answers.</p>';
     el('cmpDetails').hidden = false;
@@ -221,6 +223,15 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
     fetch('data/corpora/wir335/rn_options.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; })
       .then(function (o) { RNOPT = (o && o.options) || {}; })
       .catch(function () {})
+      .then(function () {
+        return fetch('data/corpora/wir335/blind_sample.json', { cache: 'no-store' }).then(function (r) {
+          if (!r.ok) throw new Error('Sample unavailable');
+          return r.json();
+        }).then(function (sample) {
+          sampleFingerprint = sample.sha256OfPositions;
+          sample.items.forEach(function (item) { sampleItems[item.id] = item; });
+        }).catch(function () {});
+      })
       .then(function () {
         return RNVAuth.publicAnswers();
       })
