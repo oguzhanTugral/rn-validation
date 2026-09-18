@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260919022134">
+<link rel="stylesheet" href="css/site.css?v=20260919023117">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -36,6 +36,7 @@
   .br-rn .who.eng{color:#15803d;font-weight:600}
   .br-rn input[type=text]{font:inherit;font-size:14px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;width:9em}
   .br-rn .rnout{display:grid;gap:3px;margin-top:8px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:14px}
+  .br-undo4 button{font:inherit;font-size:13px;padding:5px 10px;border-radius:8px;border:1px solid var(--line);background:var(--panel);cursor:pointer;margin:4px 0}
   .br-rn .rnundo{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px;font-size:12.5px}
   .br-rn button.ghost{background:var(--panel);color:inherit;border:1px solid var(--line)}
   .br-rn .verdict{margin-top:8px;padding:8px 10px;border-radius:8px;background:#ecfdf5;border:1px solid #a7f3d0;font-size:14px}
@@ -183,14 +184,14 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260919022134"></script>
-<script src="js/rnv-data.js?v=20260919022134"></script>
-<script src="js/rnv-auth.js?v=20260919022134"></script>
-<script src="js/rnv-review.js?v=20260919022134"></script>
+<script src="data/corpora.js?v=20260919023117"></script>
+<script src="js/rnv-data.js?v=20260919023117"></script>
+<script src="js/rnv-auth.js?v=20260919023117"></script>
+<script src="js/rnv-review.js?v=20260919023117"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260919022134"></script>
-<script src="js/rnv-spell.js?v=20260919022134"></script>
-<script src="js/rnv-rnscore.js?v=20260919022134"></script>
+<script src="js/rnv-score.js?v=20260919023117"></script>
+<script src="js/rnv-spell.js?v=20260919023117"></script>
+<script src="js/rnv-rnscore.js?v=20260919023117"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -284,6 +285,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
             return '<button type="button" class="' + o[2] + '" data-v="' + o[0] + '" aria-pressed="' + (v[q[0]] === o[0]) + '">' + o[1] + '</button>';
           }).join('') + '</div><div class="br-hint">' + q[3] + '</div></div>';
       }).join('') +
+      '<div class="br-undo4"><button type="button" id="brUndo4" hidden>Undo these four answers</button></div>' +
       '<div class="br-rn" id="brRN"></div>' +
       '<textarea class="br-note" id="brNote" placeholder="note (optional)">' + esc(v.n || '') + '</textarea>' +
       '<div class="br-nav"><button type="button" id="brPrev">&larr; Previous</button>' +
@@ -299,6 +301,12 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
       });
     });
     el('brNote').addEventListener('input', function (e) { RNVReview.setKey(sheet, it.id, { n: e.target.value }); });
+    el('brUndo4').addEventListener('click', function () {
+      RNVReview.setKey(sheet, it.id, { nt: '', rt: '', bs: '', sp: '' });
+      Array.prototype.forEach.call(el('brCard').querySelectorAll('.seg[data-q] button'), function (x) { x.setAttribute('aria-pressed', 'false'); });
+      counts();
+      renderRN(it);
+    });
     el('brPrev').addEventListener('click', function () { if (pos > 0) { pos--; paint(); } });
     el('brNext').addEventListener('click', function () {
       if (el('brShow').value === 'todo' && complete(it)) { refreshOrder(); return; }
@@ -415,6 +423,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
 
   function lockFour(on) {
     Array.prototype.forEach.call(el('brCard').querySelectorAll('.seg[data-q] button'), function (b) { b.disabled = on; });
+    if (el('brUndo4')) el('brUndo4').hidden = !on;
   }
 
   function rightEngines(it, v) {
@@ -430,7 +439,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     if (!opts) { box.hidden = true; return; }
     box.hidden = false;
     var v = RNVReview.getKey(sheet, it.id);
-    lockFour(!!v.rnDone || !!(v.nt && v.rt && v.bs && v.sp));
+    lockFour(!!(v.nt && v.rt && v.bs && v.sp));                 // locked while all four are answered; Undo reopens them
     if (!(v.nt && v.rt && v.bs && v.sp)) {
       box.innerHTML = '<h4>Roman numeral</h4><div class="dim" style="font-size:13px">This question opens after the four questions above are answered.</div>';
       return;
