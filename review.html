@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260919013200">
+<link rel="stylesheet" href="css/site.css?v=20260919014313">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -183,14 +183,14 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260919013200"></script>
-<script src="js/rnv-data.js?v=20260919013200"></script>
-<script src="js/rnv-auth.js?v=20260919013200"></script>
-<script src="js/rnv-review.js?v=20260919013200"></script>
+<script src="data/corpora.js?v=20260919014313"></script>
+<script src="js/rnv-data.js?v=20260919014313"></script>
+<script src="js/rnv-auth.js?v=20260919014313"></script>
+<script src="js/rnv-review.js?v=20260919014313"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260919013200"></script>
-<script src="js/rnv-spell.js?v=20260919013200"></script>
-<script src="js/rnv-rnscore.js?v=20260919013200"></script>
+<script src="js/rnv-score.js?v=20260919014313"></script>
+<script src="js/rnv-spell.js?v=20260919014313"></script>
+<script src="js/rnv-rnscore.js?v=20260919014313"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -335,8 +335,8 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
 
   // all participants together, when signed in and the answers table exists; refreshed every minute
   function pooledLine() {
-    if (!window.RNVAuth || !RNVAuth.user() || !window.RNVRnScore) return;
-    RNVAuth.db('live_answers?select=rows').then(function (list) {
+    if (!window.RNVAuth || !window.RNVRnScore) return;
+    RNVAuth.publicAnswers().then(function (list) {
       var t = RNVRnScore.score(list.map(function (r) { return r.rows || {}; }), RNOPT);
       el('brPool').innerHTML = t.n
         ? 'All participants (' + list.length + ', ' + t.n + ' answers): ' + RNVRnScore.ENGINES.map(function (e) {
@@ -347,7 +347,16 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   }
   setInterval(pooledLine, 60000);
 
-  function syncNow() {
+  // closing or leaving the page: save what is still pending right away (keepalive lets it finish after the page is gone)
+  function flushOnLeave() {
+    if (!syncOn || !syncTimer) return;
+    clearTimeout(syncTimer); syncTimer = null;
+    syncNow(true);
+  }
+  window.addEventListener('pagehide', flushOnLeave);
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') flushOnLeave(); });
+
+  function syncNow(onLeave) {
     if (!window.RNVAuth || !RNVAuth.user()) {
       identity();                                         // sends a signed-out user to sign in
       return Promise.resolve(false);
@@ -356,7 +365,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     var ids = sample.items.map(function (it) { return it.id; });
     el('brSync').textContent = 'Saving\u2026';
     return RNVAuth.db('live_answers?on_conflict=user_id', {
-      method: 'POST', headers: { Prefer: 'resolution=merge-duplicates,return=minimal' },
+      method: 'POST', headers: { Prefer: 'resolution=merge-duplicates,return=minimal' }, keepalive: !!onLeave,
       body: { user_id: u.id, corpus: corpusId, sample: sample.sha256OfPositions, rows: rows,
               positions_rated: sample.items.filter(rated).length,
               rn_answered: ids.filter(function (id) { return rows[id] && rows[id].rnDone; }).length,
@@ -375,7 +384,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     mine();
     if (!syncOn) return;
     clearTimeout(syncTimer);
-    syncTimer = setTimeout(syncNow, 3000);                // a few seconds after the last answer
+    syncTimer = setTimeout(function () { syncTimer = null; syncNow(); }, 3000);   // a few seconds after the last answer
   }
 
   function startLiveSync() {

@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Compare analyses · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260919013200">
+<link rel="stylesheet" href="css/site.css?v=20260919014313">
 <style>
   .cmp-list{display:grid;gap:8px;margin:12px 0}
   .cmp-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
@@ -23,15 +23,9 @@
   <p style="margin:0 0 6px;font-size:14px"><a href="review.html">&larr; Blind review</a></p>
   <h2 class="page">Compare analyses</h2>
   <p class="lede">Blind-review ratings, analyst by analyst. Only analyses uploaded to the system can be compared: pick <b>two</b> and compare them position by position.
-  Every published analysis carries the e-mail it was made under and the fingerprint of the sample it was made on.</p>
+  Every participant&rsquo;s answers appear here as they are saved; e-mail addresses are never shown.</p>
 
-  <div class="note" id="cmpLocked">
-    <b>This page is for signed-in participants.</b> Sign in on the Account page, with your name, e-mail, country,
-    profession and education filled in, to view and compare analyses.
-    <div style="margin-top:10px"><button id="cmpUnlock" type="button">Sign in</button></div>
-  </div>
-
-  <div id="cmpBody" hidden>
+  <div id="cmpBody">
   <div class="note" id="cmpNote">Loading the uploaded analyses&hellip;</div>
 
   <h3 class="sect">Roman numerals: how often each analyser was judged correct</h3>
@@ -48,11 +42,11 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260919013200"></script>
-<script src="js/rnv-data.js?v=20260919013200"></script>
-<script src="js/rnv-auth.js?v=20260919013200"></script>
-<script src="js/rnv-review.js?v=20260919013200"></script>
-<script src="js/rnv-rnscore.js?v=20260919013200"></script>
+<script src="data/corpora.js?v=20260919014313"></script>
+<script src="js/rnv-data.js?v=20260919014313"></script>
+<script src="js/rnv-auth.js?v=20260919014313"></script>
+<script src="js/rnv-review.js?v=20260919014313"></script>
+<script src="js/rnv-rnscore.js?v=20260919014313"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', needsCorpus: false, render: function () {
   var esc = RNVData.esc;
@@ -152,18 +146,9 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
     if (on.length === 2) compare(entries[+on[0].dataset.i], entries[+on[1].dataset.i]);
   });
 
-  function unlock() {
-    RNVAuth.require().then(function (who) {
-      if (!who) return;                              // cancelled: the page stays closed
-      el('cmpLocked').hidden = true;
-      el('cmpBody').hidden = false;
-      loadAnalyses();
-    });
-  }
-  el('cmpUnlock').addEventListener('click', unlock);
-  unlock();
-
+  // public page: everyone's saved answers load straight away (no e-mail addresses are ever returned)
   var RNOPT = {};
+  loadAnalyses();
 
   function pooled() {
     var E = RNVRnScore.ENGINES;
@@ -190,18 +175,18 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
       .then(function (o) { RNOPT = (o && o.options) || {}; })
       .catch(function () {})
       .then(function () {
-        return RNVAuth.db('live_answers?select=user_id,sample,positions_rated,rn_answered,rows,updated_at,' +
-                          'profiles(name,email,country,profession,education)&order=updated_at.desc');
+        return RNVAuth.publicAnswers();
       })
       .then(function (rows) {
         rows.forEach(function (r) {
-          var who = r.profiles || {};
-          add({ analysisId: (who.name || 'participant') + ' \u00b7 ' + r.positions_rated + ' rated, ' + r.rn_answered + ' Roman numerals',
-                analyst: who.name, email: who.email, sample: r.sample, exportedAt: r.updated_at, rows: r.rows || {} }, 'saved answers');
+          add({ analysisId: [r.country, r.profession, r.education].filter(Boolean).join(' \u00b7 ') +
+                            ' \u00b7 ' + r.positions_rated + ' rated, ' + r.rn_answered + ' Roman numerals',
+                analyst: r.participant, email: '', sample: r.sample, exportedAt: r.updated_at, rows: r.rows || {} }, 'saved answers');
         });
         el('cmpNote').innerHTML = rows.length
           ? '<b>' + rows.length + ' participant' + (rows.length > 1 ? 's' : '') + ' with saved answers.</b> Answers are saved ' +
-            'automatically while each participant works, so these figures grow as they go.'
+            'automatically while each participant works and when they close the page, so these figures grow as they go. ' +
+            'Shown with name, country, profession and education; e-mail addresses are not shown.'
           : '<b>No saved answers yet.</b> Answers appear here as participants work on the <a href="review.html">Blind review</a> page.';
         pooled();
       })

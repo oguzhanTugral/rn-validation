@@ -27,7 +27,7 @@
     if (token) headers.Authorization = 'Bearer ' + token;
     Object.keys(opts.headers || {}).forEach(function (k) { headers[k] = opts.headers[k]; });
     return fetch(URL_ + path, {
-      method: opts.method || 'GET', headers: headers,
+      method: opts.method || 'GET', headers: headers, keepalive: !!opts.keepalive,   // keepalive: finishes after the page closes
       body: opts.body == null ? undefined : JSON.stringify(opts.body)
     }).then(function (r) {
       return r.text().then(function (t) {
@@ -107,6 +107,10 @@
       return call('/rest/v1/rpc/analysis_stats', { method: 'POST', body: {} }).then(function (rows) {
         return rows && rows[0];
       });
+    },
+    
+    publicAnswers: function () {
+      return call('/rest/v1/rpc/public_answers', { method: 'POST', body: {} });
     },
     
     db: function (path, opts) {
