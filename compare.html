@@ -15,6 +15,8 @@
   .cmp-item .meta{font-size:13px;color:var(--muted)}
   .cmp-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0}
   .cmp-wrap{overflow-x:auto}
+  .cmp-view{font:inherit;color:#1d4ed8;background:none;border:0;padding:4px 0;text-decoration:underline;cursor:pointer;text-align:left}
+  #cmpDetails{margin:18px 0;padding:16px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
   .cmp-tag{display:inline-block;font-size:12px;padding:1px 7px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
 </style>
 </head>
@@ -30,6 +32,10 @@
 
   <h3 class="sect">Roman numerals: how often each analyser was judged correct</h3>
   <div class="note" id="cmpPooled">Loading&hellip;</div>
+  <section id="cmpDetails" hidden aria-labelledby="cmpDetailsTitle">
+    <div class="cmp-tools"><h3 id="cmpDetailsTitle" tabindex="-1"></h3><button id="cmpDetailsClose" type="button">Close details</button></div>
+    <div id="cmpDetailsTable" class="cmp-wrap"></div>
+  </section>
 
   <h3 class="sect">Compare two participants</h3>
   <div class="cmp-tools">
@@ -155,12 +161,12 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
     var all = RNVRnScore.score(entries.map(function (e) { return e.rows; }), RNOPT);
     var head = '<div style="overflow-x:auto"><table><thead><tr><th>Who</th><th class="num">Positions</th>' +
       E.map(function (e) { return '<th class="num">' + e + '</th>'; }).join('') + '</tr></thead><tbody>';
-    var line = function (who, t, bold) {
-      return '<tr><td>' + (bold ? '<b>' + who + '</b>' : esc(who)) + '</td><td class="num">' + t.n + '</td>' +
+    var line = function (who, t, bold, index) {
+      return '<tr><td><button type="button" class="cmp-view" data-entry="' + index + '" aria-controls="cmpDetails">' + esc(who) + '</button></td><td class="num">' + t.n + '</td>' +
         E.map(function (e) { return '<td class="num">' + (bold ? '<b>' : '') + RNVRnScore.pct(t, e) + (bold ? '</b>' : '') + '</td>'; }).join('') + '</tr>';
     };
-    var rowsHtml = line('All participants (pooled)', all, true) + entries.map(function (e) {
-      return line(e.analyst, RNVRnScore.score([e.rows], RNOPT), false);
+    var rowsHtml = line('All participants (pooled)', all, true, -1) + entries.map(function (e, i) {
+      return line(e.analyst, RNVRnScore.score([e.rows], RNOPT), false, i);
     }).join('');
     el('cmpPooled').innerHTML = all.n
       ? head + rowsHtml + '</tbody></table></div><p class="dim" style="margin:8px 0 0;font-size:13px">A position counts once its ' +
@@ -169,6 +175,47 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
         'over-represents rare chords.</p>'
       : 'No Roman-numeral answers yet.';
   }
+
+  var detailTrigger;
+  el('cmpPooled').addEventListener('click', function (event) {
+    var button = event.target.closest('button[data-entry]');
+    if (!button) return;
+    detailTrigger = button;
+    var index = Number(button.dataset.entry);
+    var selected = index === -1 ? entries : [entries[index]];
+    el('cmpDetailsTitle').textContent = index === -1 ? 'All participants — saved answers' : selected[0].analyst + ' — saved answers';
+    var body = [];
+    selected.forEach(function (entry) {
+      Object.keys(entry.rows).sort(function (a, b) { return a.localeCompare(b, undefined, { numeric: true }); }).forEach(function (id) {
+        var v = entry.rows[id];
+        if (!v) return;
+        var answers = (v.rn || []).slice();
+        if (v.rnNone) answers.push('None of these' + (v.rnNone !== '?' ? ': ' + v.rnNone : ''));
+        if (v.rnU) answers.push('Unclear');
+        var cells = [entry.analyst, entry.sample, id];
+        Object.keys(QN).forEach(function (q) { cells.push(LBL[q][v[q]] || '—'); });
+        cells.push(answers.join(' | ') || '—', v.rnDone ? 'Confirmed' : 'Not confirmed');
+        RNVRnScore.ENGINES.forEach(function (engine) {
+          var opts = RNOPT[id];
+          cells.push(!v.rnDone || v.rnU || !opts ? 'Not scored' : opts.some(function (o) {
+            return (v.rn || []).indexOf(o.label) >= 0 && o.engines.indexOf(engine) >= 0;
+          }) ? 'Correct' : 'Not selected');
+        });
+        cells.push(v.n || '—');
+        body.push('<tr>' + cells.map(function (value) { return '<td>' + esc(String(value)) + '</td>'; }).join('') + '</tr>');
+      });
+    });
+    var headings = ['Participant', 'Sample', 'Position', 'Notes', 'Root', 'Bass', 'Span', 'Roman numeral answer', 'Status'].concat(RNVRnScore.ENGINES, ['Comment']);
+    el('cmpDetailsTable').innerHTML = body.length ? '<table><caption>Saved answers (' + body.length + ' rows)</caption><thead><tr>' +
+      headings.map(function (h) { return '<th scope="col">' + esc(h) + '</th>'; }).join('') + '</tr></thead><tbody>' + body.join('') + '</tbody></table>' : '<p>No saved answers.</p>';
+    el('cmpDetails').hidden = false;
+    el('cmpDetailsTitle').focus();
+    el('cmpDetails').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  el('cmpDetailsClose').addEventListener('click', function () {
+    el('cmpDetails').hidden = true;
+    if (detailTrigger) detailTrigger.focus();
+  });
 
   function loadAnalyses() {
     fetch('data/corpora/wir335/rn_options.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; })
