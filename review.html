@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260919004343">
+<link rel="stylesheet" href="css/site.css?v=20260919005221">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -81,13 +81,14 @@
     <div>
       <b>Analyst panel</b>
       <div style="font-size:13px;margin:2px 0" id="brWho"></div>
-      <div class="dim" style="font-size:13px">Sign in to upload and compare.
-        An uploaded analysis carries your name, e-mail, country, profession and education. Only a complete analysis can be
-        downloaded, saved or submitted.</div>
+      <div style="font-size:13px;margin:2px 0" id="brSync"></div>
+      <div style="font-size:13px;margin:2px 0" id="brMine"></div>
+      <div class="dim" style="font-size:13px">Signed in, your answers are saved to your account automatically as you go,
+        with your name, e-mail, country, profession and education.</div>
     </div>
     <div class="br-stat" id="brStat" aria-live="polite">
       <div class="n" id="brStatN">&hellip;</div>
-      <div class="l" id="brStatL">uploaded analyses</div>
+      <div class="l" id="brStatL">participants</div>
     </div>
     <div class="seg">
       <button id="brAccount" type="button">Sign in</button>
@@ -159,13 +160,14 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260919004343"></script>
-<script src="js/rnv-data.js?v=20260919004343"></script>
-<script src="js/rnv-auth.js?v=20260919004343"></script>
-<script src="js/rnv-review.js?v=20260919004343"></script>
+<script src="data/corpora.js?v=20260919005221"></script>
+<script src="js/rnv-data.js?v=20260919005221"></script>
+<script src="js/rnv-auth.js?v=20260919005221"></script>
+<script src="js/rnv-review.js?v=20260919005221"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260919004343"></script>
-<script src="js/rnv-spell.js?v=20260919004343"></script>
+<script src="js/rnv-score.js?v=20260919005221"></script>
+<script src="js/rnv-spell.js?v=20260919005221"></script>
+<script src="js/rnv-rnscore.js?v=20260919005221"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -280,6 +282,72 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     });
     renderRN(it);
     drawScore(it);
+  }
+
+  // ---- automatic saving to the participant's account (one live row per participant)
+  var syncTimer = null, syncOn = false;
+
+  function mine() {
+    var box = el('brMine');
+    if (!box || !window.RNVRnScore) return;
+    var t = RNVRnScore.score([RNVReview.all(sheet)], RNOPT);
+    box.innerHTML = t.n
+      ? 'Your Roman-numeral answers (' + t.n + ' positions): ' + RNVRnScore.ENGINES.map(function (e) {
+          return e + ' <b>' + RNVRnScore.pct(t, e) + '</b>';
+        }).join(' &middot; ')
+      : '<span class="dim">Your percentages for the three analysers appear here once you answer Roman-numeral questions.</span>';
+  }
+
+  function syncNow() {
+    if (!window.RNVAuth || !RNVAuth.user()) {
+      identity();                                         // sends a signed-out user to sign in
+      return Promise.resolve(false);
+    }
+    var rows = RNVReview.all(sheet), u = RNVAuth.user();
+    var ids = sample.items.map(function (it) { return it.id; });
+    el('brSync').textContent = 'Saving\u2026';
+    return RNVAuth.db('live_answers?on_conflict=user_id', {
+      method: 'POST', headers: { Prefer: 'resolution=merge-duplicates,return=minimal' },
+      body: { user_id: u.id, corpus: corpusId, sample: sample.sha256OfPositions, rows: rows,
+              positions_rated: sample.items.filter(rated).length,
+              rn_answered: ids.filter(function (id) { return rows[id] && rows[id].rnDone; }).length,
+              updated_at: new Date().toISOString() }
+    }).then(function () {
+      el('brSync').innerHTML = '&#10003; Saved to your account ' + new Date().toTimeString().slice(0, 5);
+      return true;
+    }).catch(function (e) {
+      el('brSync').textContent = 'Not saved to your account: ' + e.message;
+      return false;
+    });
+  }
+
+  function changed() {
+    mine();
+    if (!syncOn) return;
+    clearTimeout(syncTimer);
+    syncTimer = setTimeout(syncNow, 3000);                // a few seconds after the last answer
+  }
+
+  function startLiveSync() {
+    var set = RNVReview.setKey, all = RNVReview.replaceAll;
+    RNVReview.setKey = function () { var r = set.apply(RNVReview, arguments); changed(); return r; };
+    RNVReview.replaceAll = function () { var r = all.apply(RNVReview, arguments); Promise.resolve(r).then(changed); return r; };
+    mine();
+    if (!window.RNVAuth || !RNVAuth.user()) { el('brSync').innerHTML = '<span class="dim">Sign in to have your answers saved to your account.</span>'; return; }
+    // continue where this participant left off, also on another device: saved answers fill what this browser lacks
+    RNVAuth.db('live_answers?user_id=eq.' + encodeURIComponent(RNVAuth.user().id) + '&select=rows,sample').then(function (got) {
+      var saved = got && got[0];
+      if (saved && saved.sample === sample.sha256OfPositions) {
+        var local = RNVReview.all(sheet), merged = {};
+        Object.keys(saved.rows || {}).forEach(function (k) { merged[k] = saved.rows[k]; });
+        Object.keys(local).forEach(function (k) { merged[k] = local[k]; });           // this browser's answers win
+        return all.call(RNVReview, sheet, merged).then(function () { refreshOrder(order[pos] && order[pos].id); });
+      }
+    }).catch(function () {}).then(function () {
+      syncOn = true;
+      el('brSync').innerHTML = '<span class="dim">Your answers are saved to your account automatically.</span>';
+      mine();
+    });
   }
 
   // ---- Roman-numeral question: opens after the four answers, shows who gave what only after the answer
@@ -511,7 +579,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
       var people = Number(st && st.participants) || 0;
       el('brStatN').textContent = n;
       el('brStatL').textContent = n === 0 ? 'No analysis yet'
-        : (n === 1 ? 'analysis' : 'analyses') + ' uploaded · ' + people + (people === 1 ? ' participant' : ' participants');
+        : (n === 1 ? 'participant' : 'participants') + ' with saved answers';
     }
   }
   analysisCount();
@@ -561,33 +629,16 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   }
 
   // a file is only produced when the whole sample is rated
+  // no completion requirement: saving and downloading work at any point
   function whenComplete(next) {
-    var done = sample.items.filter(rated).length, total = sample.items.length;
-    if (done < total) {
-      ask('Not finished yet', 'You have rated ' + done + ' of ' + total + ' positions. An analysis can only be ' +
-          'downloaded, saved or submitted once every position has all four answers. ' + (total - done) + ' still to go — set Show to ' +
-          '“Not yet rated” to find them.', 'Close');
-      return;
-    }
     identity().then(function (who) { if (who) next(who); });
   }
 
-  // a finished analysis goes into the database under the signed-in participant; it cannot be changed afterwards
-  function uploadAnalysis(who) {
-    var done = sample.items.filter(rated).length;
-    var code = who.id + '-' + new Date().toISOString().replace(/[-:T]/g, '').slice(0, 12);
-    RNVAuth.db('analyses', {
-      method: 'POST', headers: { Prefer: 'return=minimal' },
-      body: { analysis_code: code, corpus: corpusId, sample: sample.sha256OfPositions, positions_rated: done,
-              payload: { format: 'rnv-blind-ratings', analysisId: code, analyst: who.analyst, email: who.email,
-                         country: who.country, profession: who.profession, education: who.education,
-                         corpus: corpusId, sheet: sheet, sample: sample.sha256OfPositions, positionsRated: done,
-                         exportedAt: new Date().toISOString(), rows: RNVReview.all(sheet) } }
-    }).then(function () {
-      ask('Analysis uploaded', 'Your analysis ' + code + ' (' + done + ' positions) is uploaded under ' + who.email +
-          '. It is listed on your Account page and can be compared on the Compare page. It cannot be changed or deleted.', 'Close');
-    }).catch(function (e) {
-      ask('Upload failed', 'The analysis was not uploaded: ' + e.message + '. Your ratings are still in this browser.', 'Close');
+  // Upload: save the current answers to the account right away (they are also saved automatically)
+  function uploadAnalysis() {
+    syncNow().then(function (ok) {
+      if (ok) ask('Saved to your account', 'Your answers so far are saved. They keep being saved automatically while you work, ' +
+                  'and your percentages appear on the Compare page.', 'Close');
     });
   }
 
@@ -633,7 +684,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     fetch('data/corpora/' + encodeURIComponent(corpusId) + '/rn_options.json', { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (o) {
-        if (o && o.sample === sample.sha256OfPositions) { RNOPT = o.options || {}; if (order[pos]) renderRN(order[pos]); counts(); }
+        if (o && o.sample === sample.sha256OfPositions) { RNOPT = o.options || {}; if (order[pos]) renderRN(order[pos]); counts(); mine(); }
       }).catch(function () {});
     el('brDesign').textContent = 'The sample has ' + sample.items.length + ' positions, drawn once with a fixed seed (' + sample.seed +
       ') from the positions where all three analysers read the same local key: ' + sample.coverageStrata +
@@ -641,6 +692,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
       ' are a simple random sample. The order is shuffled and the page does not show which part a position belongs to. Sample fingerprint ' +
       sample.sha256OfPositions.slice(0, 16) + '.';
     el('brSaved').textContent = res[1] ? 'Ratings are saved to a file on this computer' : 'Ratings are kept in this browser — download the JSON to keep a copy';
+    startLiveSync();
     el('brShow').value = allRated() ? 'all' : 'todo';     // the browser may restore an old choice: always reset it
     refreshOrder();
   }).catch(function (err) { el('brCard').innerHTML = '<div class="empty">' + esc(err.message || err) + '</div>'; });

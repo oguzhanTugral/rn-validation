@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Compare analyses · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260919004343">
+<link rel="stylesheet" href="css/site.css?v=20260919005221">
 <style>
   .cmp-list{display:grid;gap:8px;margin:12px 0}
   .cmp-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
@@ -34,6 +34,10 @@
   <div id="cmpBody" hidden>
   <div class="note" id="cmpNote">Loading the uploaded analyses&hellip;</div>
 
+  <h3 class="sect">Roman numerals: how often each analyser was judged correct</h3>
+  <div class="note" id="cmpPooled">Loading&hellip;</div>
+
+  <h3 class="sect">Compare two participants</h3>
   <div class="cmp-tools">
     <button id="cmpRun" type="button" disabled>Compare the two selected</button>
     <span class="dim" id="cmpPick" style="font-size:13px"></span>
@@ -44,10 +48,11 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260919004343"></script>
-<script src="js/rnv-data.js?v=20260919004343"></script>
-<script src="js/rnv-auth.js?v=20260919004343"></script>
-<script src="js/rnv-review.js?v=20260919004343"></script>
+<script src="data/corpora.js?v=20260919005221"></script>
+<script src="js/rnv-data.js?v=20260919005221"></script>
+<script src="js/rnv-auth.js?v=20260919005221"></script>
+<script src="js/rnv-review.js?v=20260919005221"></script>
+<script src="js/rnv-rnscore.js?v=20260919005221"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', needsCorpus: false, render: function () {
   var esc = RNVData.esc;
@@ -158,22 +163,49 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
   el('cmpUnlock').addEventListener('click', unlock);
   unlock();
 
+  var RNOPT = {};
+
+  function pooled() {
+    var E = RNVRnScore.ENGINES;
+    var all = RNVRnScore.score(entries.map(function (e) { return e.rows; }), RNOPT);
+    var head = '<div style="overflow-x:auto"><table><thead><tr><th>Who</th><th class="num">Positions</th>' +
+      E.map(function (e) { return '<th class="num">' + e + '</th>'; }).join('') + '</tr></thead><tbody>';
+    var line = function (who, t, bold) {
+      return '<tr><td>' + (bold ? '<b>' + who + '</b>' : esc(who)) + '</td><td class="num">' + t.n + '</td>' +
+        E.map(function (e) { return '<td class="num">' + (bold ? '<b>' : '') + RNVRnScore.pct(t, e) + (bold ? '</b>' : '') + '</td>'; }).join('') + '</tr>';
+    };
+    var rowsHtml = line('All participants (pooled)', all, true) + entries.map(function (e) {
+      return line(e.analyst, RNVRnScore.score([e.rows], RNOPT), false);
+    }).join('');
+    el('cmpPooled').innerHTML = all.n
+      ? head + rowsHtml + '</tbody></table></div><p class="dim" style="margin:8px 0 0;font-size:13px">A position counts once its ' +
+        'Roman-numeral answer is confirmed and not &ldquo;Unclear&rdquo;; an analyser is correct there when a Roman numeral it gave was ' +
+        'ticked. Pooled = all participants&rsquo; answers together. The sample&rsquo;s random part estimates rates; the coverage part ' +
+        'over-represents rare chords.</p>'
+      : 'No Roman-numeral answers yet.';
+  }
+
   function loadAnalyses() {
-    RNVAuth.db('analyses?select=analysis_code,sample,positions_rated,payload,created_at,' +
-               'profiles(name,email,country,profession,education)&order=created_at.desc')
+    fetch('data/corpora/wir335/rn_options.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (o) { RNOPT = (o && o.options) || {}; })
+      .catch(function () {})
+      .then(function () {
+        return RNVAuth.db('live_answers?select=user_id,sample,positions_rated,rn_answered,rows,updated_at,' +
+                          'profiles(name,email,country,profession,education)&order=updated_at.desc');
+      })
       .then(function (rows) {
         rows.forEach(function (r) {
           var who = r.profiles || {};
-          add({ analysisId: r.analysis_code, analyst: who.name, email: who.email, sample: r.sample,
-                exportedAt: r.created_at, rows: (r.payload || {}).rows || {} }, 'uploaded');
+          add({ analysisId: (who.name || 'participant') + ' \u00b7 ' + r.positions_rated + ' rated, ' + r.rn_answered + ' Roman numerals',
+                analyst: who.name, email: who.email, sample: r.sample, exportedAt: r.updated_at, rows: r.rows || {} }, 'saved answers');
         });
         el('cmpNote').innerHTML = rows.length
-          ? '<b>' + rows.length + ' uploaded analys' + (rows.length > 1 ? 'es' : 'is') + '.</b> Each was uploaded by its ' +
-            'participant and cannot be changed or deleted afterwards.'
-          : '<b>No analysis has been uploaded yet.</b> A finished analysis is uploaded from the ' +
-            '<a href="review.html">Blind review</a> page.';
+          ? '<b>' + rows.length + ' participant' + (rows.length > 1 ? 's' : '') + ' with saved answers.</b> Answers are saved ' +
+            'automatically while each participant works, so these figures grow as they go.'
+          : '<b>No saved answers yet.</b> Answers appear here as participants work on the <a href="review.html">Blind review</a> page.';
+        pooled();
       })
-      .catch(function (e) { el('cmpNote').textContent = 'The analyses could not be loaded: ' + e.message; })
+      .catch(function (e) { el('cmpNote').textContent = 'The answers could not be loaded: ' + e.message; el('cmpPooled').textContent = ''; })
       .then(paint);
   }
 } });
