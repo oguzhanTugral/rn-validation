@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260919012230">
+<link rel="stylesheet" href="css/site.css?v=20260919013200">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -36,6 +36,8 @@
   .br-rn .who.eng{color:#15803d;font-weight:600}
   .br-rn input[type=text]{font:inherit;font-size:14px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;width:9em}
   .br-rn .rnout{display:grid;gap:3px;margin-top:8px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:14px}
+  .br-rn .rnundo{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px;font-size:12.5px}
+  .br-rn button.ghost{background:var(--panel);color:inherit;border:1px solid var(--line)}
   .br-rn .verdict{margin-top:8px;padding:8px 10px;border-radius:8px;background:#ecfdf5;border:1px solid #a7f3d0;font-size:14px}
   .br-rn button{font:inherit;font-size:14px;padding:6px 12px;border-radius:8px;border:1px solid #1d4ed8;background:#1d4ed8;color:#fff;cursor:pointer}
   .br-rn button:disabled{opacity:.45;cursor:default}
@@ -181,14 +183,14 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260919012230"></script>
-<script src="js/rnv-data.js?v=20260919012230"></script>
-<script src="js/rnv-auth.js?v=20260919012230"></script>
-<script src="js/rnv-review.js?v=20260919012230"></script>
+<script src="data/corpora.js?v=20260919013200"></script>
+<script src="js/rnv-data.js?v=20260919013200"></script>
+<script src="js/rnv-auth.js?v=20260919013200"></script>
+<script src="js/rnv-review.js?v=20260919013200"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260919012230"></script>
-<script src="js/rnv-spell.js?v=20260919012230"></script>
-<script src="js/rnv-rnscore.js?v=20260919012230"></script>
+<script src="js/rnv-score.js?v=20260919013200"></script>
+<script src="js/rnv-spell.js?v=20260919013200"></script>
+<script src="js/rnv-rnscore.js?v=20260919013200"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -472,7 +474,32 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
         var ok = right.indexOf(e) >= 0;
         return '<div><span class="who' + (ok ? ' eng' : '') + '">' + e + '</span> <span class="rnlab">' + esc(o ? o.label : '—') + '</span>' +
           (ok ? ' &#10003;' : '') + '</div>';
-      }).join('') + '</div>';
+      }).join('') + '</div>' +
+      (v.rnUndone
+        ? '<div class="dim" style="font-size:12.5px;margin-top:8px">Answer changed once after seeing the result (first answer: ' +
+          esc(firstAnswer(v.rnPrev)) + '). Both are kept in the file.</div>'
+        : '<div class="rnundo"><button type="button" id="rnUndo" class="ghost">Undo my answer</button>' +
+          '<span class="dim">Once per position. Please use it only to correct a mistake you had already meant to fix &mdash; ' +
+          'not to follow the analysers. Your first answer stays on record.</span></div>');
+    var undo = el('rnUndo');
+    if (undo) undo.addEventListener('click', function () {
+      ask('Undo this answer?', 'You can change this Roman-numeral answer once. Your first answer is kept on record next to the new one. ' +
+          'Please use this only to correct a mistake, not to follow the analysers.', 'Undo').then(function (yes) {
+        if (!yes) return;
+        RNVReview.setKey(sheet, it.id, { rnPrev: { rn: v.rn || [], rnNone: v.rnNone || '', rnU: !!v.rnU },
+                                         rnUndone: true, rnDone: false, rn: [], rnNone: '', rnU: false });
+        counts();
+        renderRN(it);
+      });
+    });
+  }
+
+  function firstAnswer(a) {
+    if (!a) return '';
+    var parts = (a.rn || []).slice();
+    if (a.rnNone) parts.push('none of these' + (a.rnNone !== '?' ? ' (' + a.rnNone + ')' : ''));
+    if (a.rnU) parts.push('unclear');
+    return parts.join(', ') || '\u2014';
   }
 
   // Beats are counted in the time signature's lower number (2/2: half notes, 6/8: eighths).
@@ -718,15 +745,16 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   function saveXlsx(who) {
     var name = { y: 'correct', n: 'wrong', u: 'unclear' }, span = { y: 'own chord', c: 'chord change inside', n: 'merge with next', u: 'unclear' };
     var header = ['Analysis id', 'Analyst', 'E-mail', 'Country', 'Profession', 'Education', 'Id', 'Part', 'Work no', 'Work', 'Start bar', 'Start beat', 'End bar', 'End beat (not incl.)', 'Local key', 'Notes shown', 'Root shown', 'Bass shown',
-                  'Notes', 'Root', 'Bass', 'Span', 'Note', 'RN chosen', 'RN none of these', 'RN unclear', 'Correct analysers'];
+                  'Notes', 'Root', 'Bass', 'Span', 'Note', 'RN chosen', 'RN none of these', 'RN unclear', 'Correct analysers', 'RN first answer (changed after reveal)'];
     var rows = sample.items.map(function (it) {
       var v = RNVReview.getKey(sheet, it.id);
       return [who.id, who.analyst, who.email, who.country, who.profession, who.education,
               it.id, it.part, it.work, pretty(it.title), it.bar, it.beat, it.endBar == null ? 'end of work' : it.endBar, it.endBar == null ? '' : it.endBeat, it.localKey, spelled(it).notes, spelled(it).root, spelled(it).bass,
               ({ y: 'exactly', x: 'all + extra', n: 'missing', u: 'unclear' })[v.nt] || '', name[v.rt] || '', name[v.bs] || '', span[v.sp] || '', v.n || '',
-              (v.rn || []).join(' | '), v.rnNone || '', v.rnU ? 'yes' : '', v.rnDone ? rightEngines(it, v).join(', ') : ''];
+              (v.rn || []).join(' | '), v.rnNone || '', v.rnU ? 'yes' : '', v.rnDone ? rightEngines(it, v).join(', ') : '',
+              v.rnUndone ? firstAnswer(v.rnPrev) : ''];
     });
-    download(RNVReview.xlsx('Blind review', header, rows, [12, 20, 26, 14, 20, 24, 7, 10, 8, 36, 9, 10, 8, 18, 12, 22, 8, 8, 10, 10, 10, 16, 40, 18, 14, 10, 28]),
+    download(RNVReview.xlsx('Blind review', header, rows, [12, 20, 26, 14, 20, 24, 7, 10, 8, 36, 9, 10, 8, 18, 12, 22, 8, 8, 10, 10, 10, 16, 40, 18, 14, 10, 28, 30]),
       'analysis_' + who.id + '.xlsx');
   }
 
