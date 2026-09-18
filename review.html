@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260919005757">
+<link rel="stylesheet" href="css/site.css?v=20260919011300">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -161,14 +161,14 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260919005757"></script>
-<script src="js/rnv-data.js?v=20260919005757"></script>
-<script src="js/rnv-auth.js?v=20260919005757"></script>
-<script src="js/rnv-review.js?v=20260919005757"></script>
+<script src="data/corpora.js?v=20260919011300"></script>
+<script src="js/rnv-data.js?v=20260919011300"></script>
+<script src="js/rnv-auth.js?v=20260919011300"></script>
+<script src="js/rnv-review.js?v=20260919011300"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260919005757"></script>
-<script src="js/rnv-spell.js?v=20260919005757"></script>
-<script src="js/rnv-rnscore.js?v=20260919005757"></script>
+<script src="js/rnv-score.js?v=20260919011300"></script>
+<script src="js/rnv-spell.js?v=20260919011300"></script>
+<script src="js/rnv-rnscore.js?v=20260919011300"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -215,13 +215,15 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
 
   function rated(it) { var v = RNVReview.getKey(sheet, it.id); return !!(v.nt && v.rt && v.bs && v.sp); }
 
-  function allRated() { return sample.items.every(rated); }
+  // finished = the four answers and, where there is one, the Roman-numeral question
+  function complete(it) { return rated(it) && (!RNOPT[it.id] || !!RNVReview.getKey(sheet, it.id).rnDone); }
+  function allRated() { return sample.items.every(complete); }
 
   function refreshOrder(keepId) {
     var show = el('brShow').value;
     order = sample.items.filter(function (it) {
       if (show === 'rn') return rated(it) && !RNVReview.getKey(sheet, it.id).rnDone && !!RNOPT[it.id];
-      return show === 'all' || (show === 'done' ? rated(it) : !rated(it));
+      return show === 'all' || (show === 'done' ? complete(it) : !complete(it));
     });
     pos = 0;
     if (keepId) { var i = order.findIndex(function (it) { return it.id === keepId; }); if (i >= 0) pos = i; }
@@ -277,7 +279,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     el('brNote').addEventListener('input', function (e) { RNVReview.setKey(sheet, it.id, { n: e.target.value }); });
     el('brPrev').addEventListener('click', function () { if (pos > 0) { pos--; paint(); } });
     el('brNext').addEventListener('click', function () {
-      if (el('brShow').value === 'todo' && rated(it)) { refreshOrder(); return; }
+      if (el('brShow').value === 'todo' && complete(it)) { refreshOrder(); return; }
       if (el('brShow').value === 'rn' && RNVReview.getKey(sheet, it.id).rnDone) { refreshOrder(); return; }
       if (pos < order.length - 1) { pos++; paint(); }
     });
@@ -372,15 +374,14 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     if (!opts) { box.hidden = true; return; }
     box.hidden = false;
     var v = RNVReview.getKey(sheet, it.id);
-    lockFour(!!v.rnDone);
+    lockFour(!!v.rnDone || !!(v.nt && v.rt && v.bs && v.sp));
     if (!(v.nt && v.rt && v.bs && v.sp)) {
       box.innerHTML = '<h4>Roman numeral</h4><div class="dim" style="font-size:13px">This question opens after the four questions above are answered.</div>';
       return;
     }
     if (!v.rnDone) {
       box.innerHTML = '<h4>Which Roman numeral(s) are correct here?</h4>' +
-        '<div class="dim" style="font-size:13px;margin-bottom:6px">Tick every correct one. Who gave each option is shown after you confirm; ' +
-        'your four answers above are then locked.</div>' +
+        '<div class="dim" style="font-size:13px;margin-bottom:6px">Tick every correct one. Who gave each option is shown after you confirm. Your four answers above are locked now that the Roman numerals are shown.</div>' +
         opts.map(function (o, i) {
           return '<label><input type="checkbox" data-i="' + i + '"> <span class="rnlab">' + esc(o.label) + '</span></label>';
         }).join('') +
@@ -399,6 +400,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
                                          rnU: el('rnUnclear').checked, rnDone: true });
         counts();
         renderRN(it);
+        if (el('brShow').value === 'todo' && allRated()) { el('brShow').value = 'all'; refreshOrder(it.id); }
       });
       return;
     }
@@ -692,7 +694,13 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     fetch('data/corpora/' + encodeURIComponent(corpusId) + '/rn_options.json', { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (o) {
-        if (o && o.sample === sample.sha256OfPositions) { RNOPT = o.options || {}; if (order[pos]) renderRN(order[pos]); counts(); mine(); }
+        if (o && o.sample === sample.sha256OfPositions) {
+          RNOPT = o.options || {};
+          var keep = order[pos] && order[pos].id;
+          el('brShow').value = allRated() ? 'all' : 'todo';
+          refreshOrder(el('brShow').value === 'all' ? keep : null);
+          mine();
+        }
       }).catch(function () {});
     el('brDesign').textContent = 'The sample has ' + sample.items.length + ' positions, drawn once with a fixed seed (' + sample.seed +
       ') from the positions where all three analysers read the same local key: ' + sample.coverageStrata +
