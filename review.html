@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260919090210">
+<link rel="stylesheet" href="css/site.css?v=20260919094430">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -103,8 +103,8 @@
       <b>Analyst panel</b>
       <div style="font-size:13px;margin:2px 0" id="brWho"></div>
       <div style="font-size:13px;margin:2px 0" id="brSync"></div>
-      <div class="dim" style="font-size:13px">Signed in, your answers are saved to your account automatically as you go,
-        with your name, e-mail, country, profession and education.</div>
+      <div class="dim" style="font-size:13px">Sign in to take part as a rater. Your answers are saved to your account
+        automatically and appear on the Compare page with your name, country, profession and education &mdash; never your e-mail.</div>
     </div>
     <div class="br-stat" id="brStat" aria-live="polite">
       <div class="n" id="brStatN">&hellip;</div>
@@ -118,32 +118,68 @@
   </div>
 
   <h2 class="page">Blind review</h2>
-  <p class="lede">Check musWM&rsquo;s <b>notes</b>, <b>root</b> and <b>bass</b> against the score. No Roman numeral or
-  engine label is shown.</p>
+  <p class="lede">Rate, against the score, what the analysers read at a position. <b>Part 1</b> checks musWM&rsquo;s
+  <b>notes</b>, <b>root</b> and <b>bass</b> with no Roman numeral in sight. <b>Part 2</b> then asks which Roman numeral(s)
+  are acceptable, choosing among the three analysers&rsquo; answers shown without names; who gave which is revealed only
+  after you confirm.</p>
 
   <div class="note">
     <b>How to rate</b>
     <ol style="margin:6px 0 8px;padding-left:20px">
-      <li>Each position is <b>one</b> musWM Roman numeral (hidden). From Start to End, <b style="color:#1f6feb">blue</b> notes are in musWM&rsquo;s list and <b style="color:#d97706">orange</b> ones are not.</li>
-      <li>Find the chord at <b>Start</b>. Passing, neighbour, suspended and ornamental notes are not chord notes.</li>
-      <li>Answer the four questions. When you cannot decide, choose <b>Unclear</b>.</li>
+      <li>Each position is <b>one</b> musWM reading, from <b>Start</b> to <b>End</b>. In the score,
+        <b style="color:#1f6feb">blue</b> notes are in musWM&rsquo;s list, <b style="color:#d97706">orange</b> notes sound in the span but
+        are not in the list, and <b style="color:#db2777">pink</b> notes were already sounding before Start.</li>
+      <li><b>Part 1.</b> Find the chord at Start (passing, neighbour, suspended and ornamental notes are not chord notes) and
+        answer the four questions below. Choose <b>Unclear</b> whenever you cannot decide.</li>
+      <li><b>Part 2.</b> Once the four are answered, the Roman-numeral question opens and the four lock. It shows the key and
+        the options: the three analysers&rsquo; Roman numerals without names (identical ones merged), up to two alternatives made
+        by rule, <b>None of these</b> (write the right one) and <b>Unclear</b>. Tick <b>all</b> acceptable answers, then
+        confirm. The page then shows who gave each option and which analysers your answer counts as correct.</li>
+      <li><b>Changing your mind.</b> The four answers of Part 1 can be undone at any time. A Roman-numeral answer can be undone
+        <b>once</b> per position after the reveal; your first answer stays on record.</li>
     </ol>
     <div style="overflow-x:auto"><table class="br-rules">
       <tr><th>Notes</th><td><b>Exactly</b> = the list is only the chord notes. <b>All + extra</b> = every chord note is there, plus a
-        passing/neighbour note or a note that does not sound. <b>Missing</b> = a chord note is not in the list &mdash; an <b style="color:#d97706">orange</b> note that is a chord note of the chord at Start. Spelling is ignored
+        passing/neighbour note or a note that does not sound. <b>Missing</b> = a chord note is not in the list &mdash; an
+        <b style="color:#d97706">orange</b> note that is a chord note of the chord at Start. Spelling is ignored
         (G&flat; = F&sharp;; say so in the note).</td></tr>
       <tr><th>Root</th><td>Is this the root of the chord at Start?</td></tr>
       <tr><th>Bass</th><td>Is this the lowest chord note at Start? If a lower note enters later in the span (broken chord,
         moving bass), choose <b>Unclear</b> and write &ldquo;bass X&rarr;Y&rdquo;.</td></tr>
-      <tr><th>Span</th><td><b>Own chord</b> = the notes in the span are one chord. <b>Chord change inside</b> = the span contains a second chord.
-        <b>Merge with next</b> = the chord goes on, or is completed, right after End.</td></tr>
+      <tr><th>Span</th><td><b>Own chord</b> = the notes in the span are one chord. <b>Chord change inside</b> = the span contains a
+        second chord. <b>Merge with next</b> = the chord goes on, or is completed, right after End.</td></tr>
+      <tr><th>Roman numeral</th><td>Tick every option that is an acceptable reading in the key shown &mdash; more than one can be
+        right (for example a triad and its seventh chord). <b>None of these</b> when no option is acceptable.</td></tr>
     </table></div>
-    <details style="margin-top:8px"><summary>Beats, sample and rater</summary>
+
+    <details style="margin-top:8px"><summary>Beats and spans</summary>
       <p style="margin:6px 0 0">Beats are counted in the lower number of the time signature (in 2/2, beat 2 is the third quarter
       note); the card gives the quarter-note position when it differs. End is musWM&rsquo;s next reading, or the point where musWM
-      shows no reading, and is not included. <span id="brDesign">Loading the sample&hellip;</span> The rater is the author &mdash; a single,
-      non-independent rater; a second rater on the same sample is the next step. Every rating is published with the results,
-      including those against musWM. Only the random part estimates an overall rate.</p>
+      shows no reading, and is not included. Note names are spelled for the local key; the pitches never change.</p>
+    </details>
+    <details style="margin-top:6px"><summary>The sample</summary>
+      <p style="margin:6px 0 0"><span id="brDesign">Loading the sample&hellip;</span> Only the random part estimates overall
+      rates; the coverage part shows that every variant was checked and over-represents rare chords.</p>
+    </details>
+    <details style="margin-top:6px"><summary>Raters, and how the answers are used</summary>
+      <ul style="margin:6px 0 0;padding-left:20px">
+        <li><b>Who rates.</b> Anyone can take part after signing in with an e-mail address and giving a name, country,
+          profession and education. Nothing has to be finished: rate as many positions as you like, in any order, on any
+          device.</li>
+        <li><b>Saving.</b> Answers are saved to the rater&rsquo;s account a few seconds after each change and when the page is
+          closed, and come back on the next visit, where the page opens at the first unfinished position.</li>
+        <li><b>What is public.</b> Every rater&rsquo;s saved answers, including their notes, are shown on the
+          <a href="compare.html">Compare</a> page with name, country, profession and education. E-mail addresses are never
+          shown.</li>
+        <li><b>Independence.</b> The author, who developed musWM, is also a rater. Those answers are not independent and are
+          reported separately. Statements about how well an analyser performs rest on independent raters; results are
+          reported per rater, pooled, and with the agreement between raters.</li>
+        <li><b>Scoring the Roman numerals.</b> A position counts once its Roman-numeral answer is confirmed and not
+          <i>Unclear</i>. An analyser is correct there when an option it gave was ticked; <i>None of these</i> counts all three as
+          wrong. A changed answer counts with its final value; how often, and in which direction, answers were changed after the
+          reveal is reported too.</li>
+        <li><b>Nothing is filtered.</b> Every rating is published with the results, including those against musWM.</li>
+      </ul>
     </details>
   </div>
 
@@ -186,14 +222,14 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260919090210"></script>
-<script src="js/rnv-data.js?v=20260919090210"></script>
-<script src="js/rnv-auth.js?v=20260919090210"></script>
-<script src="js/rnv-review.js?v=20260919090210"></script>
+<script src="data/corpora.js?v=20260919094430"></script>
+<script src="js/rnv-data.js?v=20260919094430"></script>
+<script src="js/rnv-auth.js?v=20260919094430"></script>
+<script src="js/rnv-review.js?v=20260919094430"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260919090210"></script>
-<script src="js/rnv-spell.js?v=20260919090210"></script>
-<script src="js/rnv-rnscore.js?v=20260919090210"></script>
+<script src="js/rnv-score.js?v=20260919094430"></script>
+<script src="js/rnv-spell.js?v=20260919094430"></script>
+<script src="js/rnv-rnscore.js?v=20260919094430"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -402,7 +438,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     RNVReview.setKey = function () { var r = set.apply(RNVReview, arguments); changed(); return r; };
     RNVReview.replaceAll = function () { var r = all.apply(RNVReview, arguments); Promise.resolve(r).then(changed); return r; };
     mine();
-    if (!window.RNVAuth || !RNVAuth.user()) { el('brSync').innerHTML = '<span class="dim">Sign in to have your answers saved to your account.</span>'; return; }
+    if (!window.RNVAuth || !RNVAuth.user()) { el('brSync').textContent = ''; return; }        // the panel text already says it
     // continue where this participant left off, also on another device: saved answers fill what this browser lacks
     RNVAuth.db('live_answers?user_id=eq.' + encodeURIComponent(RNVAuth.user().id) + '&select=rows,sample').then(function (got) {
       var saved = got && got[0];
