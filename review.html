@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260919023117">
+<link rel="stylesheet" href="css/site.css?v=20260919090210">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -37,6 +37,8 @@
   .br-rn input[type=text]{font:inherit;font-size:14px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;width:9em}
   .br-rn .rnout{display:grid;gap:3px;margin-top:8px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:14px}
   .br-undo4 button{font:inherit;font-size:13px;padding:5px 10px;border-radius:8px;border:1px solid var(--line);background:var(--panel);cursor:pointer;margin:4px 0}
+  .br-rn .rnkey{display:inline-block;font-size:15px;padding:4px 10px;border-radius:8px;background:#eef2ff;border:1px solid #c7d2fe;margin:2px 0 8px}
+  .br-rn .rninstr{font-size:14px;margin:0 0 2px}
   .br-rn .rnundo{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px;font-size:12.5px}
   .br-rn button.ghost{background:var(--panel);color:inherit;border:1px solid var(--line)}
   .br-rn .verdict{margin-top:8px;padding:8px 10px;border-radius:8px;background:#ecfdf5;border:1px solid #a7f3d0;font-size:14px}
@@ -184,14 +186,14 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260919023117"></script>
-<script src="js/rnv-data.js?v=20260919023117"></script>
-<script src="js/rnv-auth.js?v=20260919023117"></script>
-<script src="js/rnv-review.js?v=20260919023117"></script>
+<script src="data/corpora.js?v=20260919090210"></script>
+<script src="js/rnv-data.js?v=20260919090210"></script>
+<script src="js/rnv-auth.js?v=20260919090210"></script>
+<script src="js/rnv-review.js?v=20260919090210"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260919023117"></script>
-<script src="js/rnv-spell.js?v=20260919023117"></script>
-<script src="js/rnv-rnscore.js?v=20260919023117"></script>
+<script src="js/rnv-score.js?v=20260919090210"></script>
+<script src="js/rnv-spell.js?v=20260919090210"></script>
+<script src="js/rnv-rnscore.js?v=20260919090210"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -433,6 +435,11 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     });
   }
 
+  // the key the Roman numerals refer to, in plain view on the question
+  function rnKey(it) {
+    return it.localKey ? '<div class="rnkey">Key: <b>' + esc(it.localKey) + '</b></div>' : '';
+  }
+
   function renderRN(it) {
     var box = el('brRN'), opts = RNOPT[it.id];
     if (!box) return;
@@ -445,8 +452,9 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
       return;
     }
     if (!v.rnDone) {
-      box.innerHTML = '<h4>Which Roman numeral(s) are correct here?</h4>' +
-        '<div class="dim" style="font-size:13px;margin-bottom:6px">Tick every correct one. Who gave each option is shown after you confirm. Your four answers above are locked now that the Roman numerals are shown.</div>' +
+      box.innerHTML = '<h4>Which Roman numeral(s) are acceptable here?</h4>' + rnKey(it) +
+        '<div class="rninstr">Tick <b>all</b> acceptable answers &mdash; more than one can be right.</div>' +
+        '<div class="dim" style="font-size:13px;margin-bottom:6px">Who gave each option is shown after you confirm.</div>' +
         opts.map(function (o, i) {
           return '<label><input type="checkbox" data-i="' + i + '"> <span class="rnlab">' + esc(o.label) + '</span></label>';
         }).join('') +
@@ -476,7 +484,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
       : v.rnU ? 'Your answer: <b>unclear</b> &mdash; no analyser is counted as correct or wrong here.'
       : 'According to your answer, <b>none of the three analysers</b> is correct' +
         (v.rnNone && v.rnNone !== '?' ? ' (you wrote ' + esc(v.rnNone) + ')' : '') + '.';
-    box.innerHTML = '<h4>Roman numeral &mdash; your answer</h4>' +
+    box.innerHTML = '<h4>Roman numeral &mdash; your answer</h4>' + rnKey(it) +
       opts.map(function (o) {
         var on = chosen.indexOf(o.label) >= 0;
         return '<label>' + (on ? '&#10003;' : '&nbsp;&nbsp;') + ' <span class="rnlab">' + esc(o.label) + '</span> ' +
