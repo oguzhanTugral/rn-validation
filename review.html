@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260920130649">
+<link rel="stylesheet" href="css/site.css?v=20260920131744">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -222,14 +222,14 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260920130649"></script>
-<script src="js/rnv-data.js?v=20260920130649"></script>
-<script src="js/rnv-auth.js?v=20260920130649"></script>
-<script src="js/rnv-review.js?v=20260920130649"></script>
+<script src="data/corpora.js?v=20260920131744"></script>
+<script src="js/rnv-data.js?v=20260920131744"></script>
+<script src="js/rnv-auth.js?v=20260920131744"></script>
+<script src="js/rnv-review.js?v=20260920131744"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260920130649"></script>
-<script src="js/rnv-spell.js?v=20260920130649"></script>
-<script src="js/rnv-rnscore.js?v=20260920130649"></script>
+<script src="js/rnv-score.js?v=20260920131744"></script>
+<script src="js/rnv-spell.js?v=20260920131744"></script>
+<script src="js/rnv-rnscore.js?v=20260920131744"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -443,18 +443,14 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
     RNVAuth.db('live_answers?user_id=eq.' + encodeURIComponent(RNVAuth.user().id) + '&select=rows,sample').then(function (got) {
       var saved = got && got[0];
       if (saved && saved.sample === sample.sha256OfPositions) {
-        // merge the account's answers with this browser's: for each position the more complete answer wins
-        // (Roman numeral confirmed > four answers > something > nothing), so no device overwrites better work
-        var local = RNVReview.all(sheet), merged = {}, srv = saved.rows || {};
-        var depth = function (v) {
-          if (!v) return 0;
-          return (v.rnDone ? 4 : 0) + (v.nt && v.rt && v.bs && v.sp ? 2 : 0) + (v.nt || v.rt || v.bs || v.sp || v.n ? 1 : 0);
-        };
+        // the account is the record: its answers replace this browser's. Positions the account does not have
+        // at all are kept from this browser (work done here while signed out) and saved up straight away.
+        var local = RNVReview.all(sheet), merged = {}, srv = saved.rows || {}, kept = 0;
+        Object.keys(local).forEach(function (k) { if (!(k in srv)) { merged[k] = local[k]; kept += 1; } });
         Object.keys(srv).forEach(function (k) { merged[k] = srv[k]; });
-        Object.keys(local).forEach(function (k) { if (depth(local[k]) >= depth(srv[k])) merged[k] = local[k]; });
         return all.call(RNVReview, sheet, merged).then(function () {
           refreshOrder(order[pos] && order[pos].id);
-          syncNow();                                  // keep the account in step with the merged result
+          if (kept) syncNow();                        // this browser had positions the account lacked
         });
       }
     }).catch(function () {}).then(function () {
