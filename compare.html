@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Compare analyses · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260920131744">
+<link rel="stylesheet" href="css/site.css?v=20260920132314">
 <style>
   .cmp-list{display:grid;gap:8px;margin:12px 0}
   .cmp-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
@@ -48,11 +48,11 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260920131744"></script>
-<script src="js/rnv-data.js?v=20260920131744"></script>
-<script src="js/rnv-auth.js?v=20260920131744"></script>
-<script src="js/rnv-review.js?v=20260920131744"></script>
-<script src="js/rnv-rnscore.js?v=20260920131744"></script>
+<script src="data/corpora.js?v=20260920132314"></script>
+<script src="js/rnv-data.js?v=20260920132314"></script>
+<script src="js/rnv-auth.js?v=20260920132314"></script>
+<script src="js/rnv-review.js?v=20260920132314"></script>
+<script src="js/rnv-rnscore.js?v=20260920132314"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', needsCorpus: false, render: function () {
   var esc = RNVData.esc;
@@ -73,6 +73,7 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
     entries.push({
       id: file.analysisId || file.sheet || ('file-' + (entries.length + 1)),
       analyst: file.analyst || 'unnamed',
+      authorOf: file.authorOf || '',
       email: file.email || '',
       sample: file.sample || '',
       exportedAt: file.exportedAt || '',
@@ -85,7 +86,8 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
   function paint() {
     el('cmpList').innerHTML = entries.length ? entries.map(function (e, i) {
       return '<label class="cmp-item"><input type="checkbox" data-i="' + i + '">' +
-        '<span><span class="who">' + esc(e.analyst) + '</span> ' +
+        '<span><span class="who">' + esc(e.analyst) + '</span>' +
+        (e.authorOf ? ' <span class="cmp-tag">author of ' + esc(e.authorOf) + '</span>' : '') + ' ' +
         '<span class="cmp-tag">' + esc(e.source) + '</span><br>' +
         '<span class="meta">' + esc(e.id) + (e.email ? ' &middot; ' + esc(e.email) : '') +
         ' &middot; ' + e.rated + ' positions rated' +
@@ -158,7 +160,8 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
 
   function pooled() {
     var E = RNVRnScore.ENGINES;
-    var all = RNVRnScore.score(entries.map(function (e) { return e.rows; }), RNOPT);
+    // authors of an analyser are not independent: their answers are shown but never pooled
+    var all = RNVRnScore.score(entries.filter(function (e) { return !e.authorOf; }).map(function (e) { return e.rows; }), RNOPT);
     var head = '<div style="overflow-x:auto"><table><thead><tr><th>Who</th><th class="num">Positions</th>' +
       E.map(function (e) { return '<th class="num">' + e + '</th>'; }).join('') + '</tr></thead><tbody>';
     var line = function (who, t, bold, index) {
@@ -166,12 +169,18 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
         E.map(function (e) { return '<td class="num">' + (bold ? '<b>' : '') + RNVRnScore.pct(t, e) + (bold ? '</b>' : '') + '</td>'; }).join('') + '</tr>';
     };
     var rowsHtml = line('All participants (pooled)', all, true, -1) + entries.map(function (e, i) {
-      return line(e.analyst, RNVRnScore.score([e.rows], RNOPT), false, i);
+      return e.authorOf ? '' : line(e.analyst, RNVRnScore.score([e.rows], RNOPT), false, i);
+    }).join('') + entries.map(function (e, i) {
+      return e.authorOf
+        ? line(e.analyst + ' \u2014 author of ' + e.authorOf + ' (not in the pooled figures)',
+               RNVRnScore.score([e.rows], RNOPT), false, i)
+        : '';
     }).join('');
     el('cmpPooled').innerHTML = all.n
       ? head + rowsHtml + '</tbody></table></div><p class="dim" style="margin:8px 0 0;font-size:13px">A position counts once its ' +
         'Roman-numeral answer is confirmed and not &ldquo;Unclear&rdquo;; an analyser is correct there when a Roman numeral it gave was ' +
-        'ticked. Pooled = all participants&rsquo; answers together. The sample&rsquo;s random part estimates rates; the coverage part ' +
+        'ticked. Pooled = the answers of everyone who is not an author of one of the analysers; an author&rsquo;s own answers are ' +
+        'listed separately and never pooled. The sample&rsquo;s random part estimates rates; the coverage part ' +
         'over-represents rare chords.</p>'
       : 'No Roman-numeral answers yet.';
   }
@@ -239,7 +248,8 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
         rows.forEach(function (r) {
           add({ analysisId: [r.country, r.profession, r.education].filter(Boolean).join(' \u00b7 ') +
                             ' \u00b7 ' + r.positions_rated + ' rated, ' + r.rn_answered + ' Roman numerals',
-                analyst: r.participant, email: '', sample: r.sample, exportedAt: r.updated_at, rows: r.rows || {} }, 'saved answers');
+                analyst: r.participant, authorOf: r.author_of || '', email: '', sample: r.sample,
+                exportedAt: r.updated_at, rows: r.rows || {} }, r.author_of ? 'author of ' + r.author_of : 'saved answers');
         });
         el('cmpNote').innerHTML = rows.length
           ? '<b>' + rows.length + ' participant' + (rows.length > 1 ? 's' : '') + ' with saved answers.</b> Answers are saved ' +

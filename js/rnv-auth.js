@@ -123,7 +123,7 @@
       var u = Auth.user();
       if (!u) return Promise.resolve(null);
       return Auth.db('profiles?id=eq.' + encodeURIComponent(u.id) + '&select=*').then(function (rows) {
-        return rows && rows[0] ? rows[0] : { id: u.id, email: u.email, name: '', country: '', profession: '', education: '' };
+        return rows && rows[0] ? rows[0] : { id: u.id, email: u.email, name: '', country: '', profession: '', education: '', author_of: null };
       });
     },
     saveProfile: function (p) {
@@ -132,7 +132,7 @@
         method: 'POST',
         headers: { Prefer: 'resolution=merge-duplicates,return=representation' },
         body: { id: u.id, email: u.email, name: p.name, country: p.country, profession: p.profession,
-                education: p.education, updated_at: new Date().toISOString() }
+                education: p.education, author_of: p.author_of || null, updated_at: new Date().toISOString() }
       });
     },
     complete: function (p) {

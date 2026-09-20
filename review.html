@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260920131744">
+<link rel="stylesheet" href="css/site.css?v=20260920132314">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -222,14 +222,14 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260920131744"></script>
-<script src="js/rnv-data.js?v=20260920131744"></script>
-<script src="js/rnv-auth.js?v=20260920131744"></script>
-<script src="js/rnv-review.js?v=20260920131744"></script>
+<script src="data/corpora.js?v=20260920132314"></script>
+<script src="js/rnv-data.js?v=20260920132314"></script>
+<script src="js/rnv-auth.js?v=20260920132314"></script>
+<script src="js/rnv-review.js?v=20260920132314"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260920131744"></script>
-<script src="js/rnv-spell.js?v=20260920131744"></script>
-<script src="js/rnv-rnscore.js?v=20260920131744"></script>
+<script src="js/rnv-score.js?v=20260920132314"></script>
+<script src="js/rnv-spell.js?v=20260920132314"></script>
+<script src="js/rnv-rnscore.js?v=20260920132314"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -383,9 +383,10 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   function pooledLine() {
     if (!window.RNVAuth || !window.RNVRnScore) return;
     RNVAuth.publicAnswers().then(function (list) {
-      var t = RNVRnScore.score(list.map(function (r) { return r.rows || {}; }), RNOPT);
+      var pool = list.filter(function (r) { return !r.author_of; });     // authors are shown, never pooled
+      var t = RNVRnScore.score(pool.map(function (r) { return r.rows || {}; }), RNOPT);
       el('brPool').innerHTML = t.n
-        ? 'All participants (' + list.length + ', ' + t.n + ' answers): ' + RNVRnScore.ENGINES.map(function (e) {
+        ? 'All participants (' + pool.length + ', ' + t.n + ' answers): ' + RNVRnScore.ENGINES.map(function (e) {
             return e + ' <b>' + RNVRnScore.pct(t, e) + '</b>';
           }).join(' &middot; ') + ' &middot; <a href="compare.html">Compare</a>'
         : '';

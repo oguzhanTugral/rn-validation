@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Account · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260920131744">
+<link rel="stylesheet" href="css/site.css?v=20260920132314">
 <style>
   .acc-box{max-width:520px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
     box-shadow:var(--shadow);padding:18px 20px;margin:0 0 16px}
@@ -64,6 +64,22 @@
     </div>
 
     <div class="acc-box">
+      <h3>Author</h3>
+      <p class="dim" style="font-size:13px;margin:0 0 10px">If you are an author of one of the analysers, say so here. Your
+      answers stay visible and are labelled publicly (&ldquo;Author of musWM&rdquo;), but they are left out of the pooled
+      figures: an author rating their own analyser is not an independent judgement.</p>
+      <div class="acc-f"><label for="pAuthor">I am an author of</label>
+        <select id="pAuthor" style="font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;width:100%">
+          <option value="">&mdash; not an author &mdash;</option>
+          <option value="musWM">musWM</option>
+          <option value="AnalysisGNN">AnalysisGNN</option>
+          <option value="AugmentedNet">AugmentedNet</option>
+        </select></div>
+      <div class="acc-row"><button id="aAuthorSave" type="button">Save author status</button></div>
+      <div class="acc-msg" id="aAuthorMsg"></div>
+    </div>
+
+    <div class="acc-box">
       <h3>Password</h3>
       <div class="acc-f"><label for="wNew">New password (at least 8 characters)</label><input id="wNew" type="password" autocomplete="new-password"></div>
       <div class="acc-f"><label for="wRep">Repeat new password</label><input id="wRep" type="password" autocomplete="new-password"></div>
@@ -80,9 +96,9 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260920131744"></script>
-<script src="js/rnv-data.js?v=20260920131744"></script>
-<script src="js/rnv-auth.js?v=20260920131744"></script>
+<script src="data/corpora.js?v=20260920132314"></script>
+<script src="js/rnv-data.js?v=20260920132314"></script>
+<script src="js/rnv-auth.js?v=20260920132314"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Account', host: 'accOut', needsCorpus: false, render: function () {
   var el = function (id) { return document.getElementById(id); };
@@ -90,6 +106,8 @@ RNVData.boot({ page: 'review.html', title: 'Account', host: 'accOut', needsCorpu
   var next = new URLSearchParams(location.search).get('next');
   // only return to a page of this site
   if (next && !/^[a-z0-9_-]+\.html(\?.*)?$/i.test(next)) next = null;
+
+  var profile = null;
 
   function msg(id, text, ok) { el(id).textContent = text || ''; el(id).className = 'acc-msg ' + (ok ? 'ok' : 'err'); }
   function busy(btn, on) { btn.disabled = on; }
@@ -105,6 +123,8 @@ RNVData.boot({ page: 'review.html', title: 'Account', host: 'accOut', needsCorpu
       el('pCountry').value = p.country || '';
       el('pJob').value = p.profession || '';
       el('pEdu').value = p.education || '';
+      el('pAuthor').value = p.author_of || '';
+      profile = p;
       if (!RNVAuth.complete(p)) msg('pMsg', 'Please complete your details' + (next ? ' to continue.' : '.'));
     }).catch(function (e) { msg('pMsg', e.message); });
     RNVAuth.db('analyses?user_id=eq.' + encodeURIComponent(u.id) + '&select=analysis_code,positions_rated,sample,created_at&order=created_at.desc')
@@ -164,13 +184,27 @@ RNVData.boot({ page: 'review.html', title: 'Account', host: 'accOut', needsCorpu
 
   el('pSave').addEventListener('click', function () {
     var p = { name: el('pName').value.trim(), country: el('pCountry').value.trim(),
-              profession: el('pJob').value.trim(), education: el('pEdu').value.trim(), email: el('pEmail').value };
+              profession: el('pJob').value.trim(), education: el('pEdu').value.trim(), email: el('pEmail').value,
+              author_of: el('pAuthor').value || null };
     if (!RNVAuth.complete(p)) { msg('pMsg', 'Every field is required.'); return; }
     busy(el('pSave'), true);
     RNVAuth.saveProfile(p).then(function () {
       if (next) { location.href = next; return; }
       msg('pMsg', 'Saved.', true);
     }).catch(function (e) { msg('pMsg', e.message); }).then(function () { busy(el('pSave'), false); });
+  });
+
+  el('aAuthorSave').addEventListener('click', function () {
+    var p = { name: el('pName').value.trim(), country: el('pCountry').value.trim(),
+              profession: el('pJob').value.trim(), education: el('pEdu').value.trim(), email: el('pEmail').value,
+              author_of: el('pAuthor').value || null };
+    if (!RNVAuth.complete(p)) { msg('aAuthorMsg', 'Please fill in your details above first.'); return; }
+    busy(el('aAuthorSave'), true);
+    RNVAuth.saveProfile(p).then(function () {
+      msg('aAuthorMsg', p.author_of
+        ? 'Saved. Your answers are shown as "Author of ' + p.author_of + '" and are left out of the pooled figures.'
+        : 'Saved. You are not marked as an author; your answers count in the pooled figures.', true);
+    }).catch(function (e) { msg('aAuthorMsg', e.message); }).then(function () { busy(el('aAuthorSave'), false); });
   });
 
   el('wSave').addEventListener('click', function () {
