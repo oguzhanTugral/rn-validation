@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Development · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260921004118">
+<link rel="stylesheet" href="css/site.css?v=20260921005135">
 <style>
   .dv-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.dv-grid{grid-template-columns:1fr}}
@@ -85,12 +85,12 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260921004118"></script>
-<script src="js/rnv-data.js?v=20260921004118"></script>
-<script src="js/rnv-review.js?v=20260921004118"></script>
+<script src="data/corpora.js?v=20260921005135"></script>
+<script src="js/rnv-data.js?v=20260921005135"></script>
+<script src="js/rnv-review.js?v=20260921005135"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260921004118"></script>
-<script src="js/rnv-spell.js?v=20260921004118"></script>
+<script src="js/rnv-score.js?v=20260921005135"></script>
+<script src="js/rnv-spell.js?v=20260921005135"></script>
 <script>
 RNVData.boot({ page: 'development.html', title: 'Development', host: 'dvCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -161,7 +161,9 @@ RNVData.boot({ page: 'development.html', title: 'Development', host: 'dvCard', n
         (c.endBar == null ? 'end of the work' : 'bar ' + c.endBar + ', beat ' + c.endBeat + ' (not included)') +
         (c.localKey ? ' &middot; key <b>' + esc(c.localKey) + '</b>' : '') + '</div>' +
       '<dl class="dv-read"><dt>Notes</dt><dd>' + esc(sp.notes || '—') + '</dd>' +
-        '<dt>Root</dt><dd>' + esc(sp.root || '—') + '</dd><dt>Bass</dt><dd>' + esc(sp.bass || '—') + '</dd></dl>' +
+        '<dt>Root</dt><dd>' + esc(sp.root || '—') + '</dd><dt>Bass</dt><dd>' + esc(sp.bass || '—') + '</dd>' +
+        (c.chordCode ? '<dt>Chord code</dt><dd style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px">' + esc(c.chordCode) + '</dd>' : '') +
+        '</dl>' +
       '<div class="dv-rn"><b>Roman numerals</b>' +
         eng('musWM', rn.muswm) + eng('AnalysisGNN', rn.analysisgnn) + eng('AugmentedNet', rn.augmentednet) +
         '<div style="margin-top:6px">Accepted by the rater: <span class="lab">' +
@@ -278,17 +280,17 @@ RNVData.boot({ page: 'development.html', title: 'Development', host: 'dvCard', n
   el('dvXlsx').addEventListener('click', function () {
     var have = notes();
     var header = ['Id', 'Categories', 'Work no', 'Work', 'Bar', 'Beat', 'End bar', 'End beat', 'Local key',
-                  'musWM notes', 'musWM root', 'musWM bass', 'musWM RN', 'AnalysisGNN RN', 'AugmentedNet RN',
+                  'musWM notes', 'musWM root', 'musWM bass', 'musWM chord code', 'musWM RN', 'AnalysisGNN RN', 'AugmentedNet RN',
                   'Accepted by the rater', 'Rating: notes', 'root', 'bass', 'span', 'Rating note', 'Development note'];
     var rows = data.cases.map(function (c) {
       var sp = spelled(c), a = c.answers, rn = c.rn;
       return [c.id, c.cats.join(', '), c.work, pretty(c.title), c.bar, c.beat, c.endBar, c.endBeat, c.localKey,
-              sp.notes, sp.root, sp.bass, rn.muswm, rn.analysisgnn, rn.augmentednet,
+              sp.notes, sp.root, sp.bass, c.chordCode || '', rn.muswm, rn.analysisgnn, rn.augmentednet,
               (rn.accepted || []).join(', ') || (rn.none ? 'none of these: ' + rn.none : rn.unclear ? 'unclear' : ''),
               a.notes, a.root, a.bass, a.span, a.note, have[c.id] || ''];
     });
     RNVReview.download(RNVReview.xlsx('Development', header, rows,
-      [7, 18, 8, 34, 7, 7, 8, 9, 12, 24, 9, 9, 14, 14, 14, 26, 12, 10, 10, 18, 46, 60]),
+      [7, 18, 8, 34, 7, 7, 8, 9, 12, 24, 9, 9, 26, 14, 14, 14, 26, 12, 10, 10, 18, 46, 60]),
       'development_notes_' + new Date().toISOString().slice(0, 10) + '.xlsx');
   });
 
