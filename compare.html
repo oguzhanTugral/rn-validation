@@ -168,7 +168,7 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
       return '<tr><td><button type="button" class="cmp-view" data-entry="' + index + '" aria-controls="cmpDetails">' + esc(who) + '</button></td><td class="num">' + t.n + '</td>' +
         E.map(function (e) { return '<td class="num">' + (bold ? '<b>' : '') + RNVRnScore.pct(t, e) + (bold ? '</b>' : '') + '</td>'; }).join('') + '</tr>';
     };
-    var rowsHtml = line('All participants (pooled)', all, true, -1) + entries.map(function (e, i) {
+    var rowsHtml = line('Independent participants (pooled)', all, true, -1) + entries.map(function (e, i) {
       return e.authorOf ? '' : line(e.analyst, RNVRnScore.score([e.rows], RNOPT), false, i);
     }).join('') + entries.map(function (e, i) {
       return e.authorOf
@@ -176,7 +176,7 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
                RNVRnScore.score([e.rows], RNOPT), false, i)
         : '';
     }).join('');
-    el('cmpPooled').innerHTML = all.n
+    el('cmpPooled').innerHTML = entries.length
       ? head + rowsHtml + '</tbody></table></div><p class="dim" style="margin:8px 0 0;font-size:13px">A position counts once its ' +
         'Roman-numeral answer is confirmed and not &ldquo;Unclear&rdquo;; an analyser is correct there when a Roman numeral it gave was ' +
         'ticked. Pooled = the answers of everyone who is not an author of one of the analysers; an author&rsquo;s own answers are ' +
@@ -191,8 +191,8 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
     if (!button) return;
     detailTrigger = button;
     var index = Number(button.dataset.entry);
-    var selected = index === -1 ? entries : [entries[index]];
-    el('cmpDetailsTitle').textContent = index === -1 ? 'All participants — saved answers' : selected[0].analyst + ' — saved answers';
+    var selected = index === -1 ? entries.filter(function (e) { return !e.authorOf; }) : [entries[index]];
+    el('cmpDetailsTitle').textContent = index === -1 ? 'Independent participants — pooled answers' : selected[0].analyst + (selected[0].authorOf ? ' — author of ' + selected[0].authorOf + ' (not pooled)' : '') + ' — saved answers';
     var body = [];
     selected.forEach(function (entry) {
       Object.keys(entry.rows).sort(function (a, b) { return a.localeCompare(b, undefined, { numeric: true }); }).forEach(function (id) {
