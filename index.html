@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Overview · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260920132314">
+<link rel="stylesheet" href="css/site.css?v=20260921004118">
 </head>
 <body>
 <main class="wrap">
@@ -121,19 +121,19 @@ fetch('data/theory.json').then(function (r) { return r.json(); }).then(function 
 }).catch(function () {});
 </script>
 
-<script src="js/rnv-sharedkey.js?v=20260920132314"></script>
+<script src="js/rnv-sharedkey.js?v=20260921004118"></script>
 <script>
 fetch('data/corpora/wir335/shared_key.json').then(function (r) { return r.json(); }).then(function (sk) {
   document.getElementById('skWrap').innerHTML = rnvSharedKeyTable(sk);
   document.getElementById('skNote').innerHTML = RNV_SHARED_NOTE;
 }).catch(function () {});
 </script>
-<script src="data/corpora.js?v=20260920132314"></script>
-<script src="js/rnv-data.js?v=20260920132314"></script>
-<script src="js/rnv-core.js?v=20260920132314"></script>
-<script src="js/rnv-clusters.js?v=20260920132314"></script>
-<script src="js/rnv-grades.js?v=20260920132314"></script>
-<script src="js/rnv-notes.js?v=20260920132314"></script>
+<script src="data/corpora.js?v=20260921004118"></script>
+<script src="js/rnv-data.js?v=20260921004118"></script>
+<script src="js/rnv-core.js?v=20260921004118"></script>
+<script src="js/rnv-clusters.js?v=20260921004118"></script>
+<script src="js/rnv-grades.js?v=20260921004118"></script>
+<script src="js/rnv-notes.js?v=20260921004118"></script>
 <script>
 RNVData.boot({
   page: 'index.html', title: 'Summary', host: 'cards',

@@ -145,7 +145,7 @@
               .catch(function (e) { status.textContent = 'Message could not be confirmed. Refresh before retrying. ' + e.message; })
               .finally(function () { button.disabled = false; select.disabled = false; });
           });
-          // Refresh explicitly; no background delivery or e-mail notifications.
+
           var requested = new URLSearchParams(location.search).get('to');
           if (contacts.some(function (p) { return p.id === requested; })) { select.value = requested; select.dispatchEvent(new Event('change')); }
         });
