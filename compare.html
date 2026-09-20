@@ -6,6 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Compare analyses · RN comparison</title>
+<link rel="stylesheet" href="css/community.css">
 <link rel="stylesheet" href="css/site.css?v=20260920132314">
 <style>
   .cmp-list{display:grid;gap:8px;margin:12px 0}
@@ -24,6 +25,7 @@
 <main class="wrap">
   <p style="margin:0 0 6px;font-size:14px"><a href="review.html">&larr; Blind review</a></p>
   <h2 class="page">Compare analyses</h2>
+  <p><a href="messages.html">Private messages</a> · <a href="account.html?next=compare.html">Account / Sign in</a></p>
   <p class="lede">Blind-review ratings, analyst by analyst. Only analyses uploaded to the system can be compared: pick <b>two</b> and compare them position by position.
   Every participant&rsquo;s answers appear here as they are saved; e-mail addresses are never shown.</p>
 
@@ -53,6 +55,7 @@
 <script src="js/rnv-auth.js?v=20260920132314"></script>
 <script src="js/rnv-review.js?v=20260920132314"></script>
 <script src="js/rnv-rnscore.js?v=20260920132314"></script>
+<script src="js/rnv-community.js"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', needsCorpus: false, render: function () {
   var esc = RNVData.esc;
@@ -73,6 +76,7 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
     entries.push({
       id: file.analysisId || file.sheet || ('file-' + (entries.length + 1)),
       analyst: file.analyst || 'unnamed',
+      userId: file.userId || '',
       authorOf: file.authorOf || '',
       email: file.email || '',
       sample: file.sample || '',
@@ -190,6 +194,7 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
     var button = event.target.closest('button[data-entry]');
     if (!button) return;
     detailTrigger = button;
+    RNVCommunity.close();
     var index = Number(button.dataset.entry);
     var selected = index === -1 ? entries.filter(function (e) { return !e.authorOf; }) : [entries[index]];
     el('cmpDetailsTitle').textContent = index === -1 ? 'Independent participants — pooled answers' : selected[0].analyst + (selected[0].authorOf ? ' — author of ' + selected[0].authorOf + ' (not pooled)' : '') + ' — saved answers';
@@ -213,10 +218,12 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
           }) ? 'Correct' : 'Not selected');
         });
         cells.push(v.n || '—');
-        body.push('<tr>' + cells.map(function (value) { return '<td>' + esc(String(value)) + '</td>'; }).join('') + '</tr>');
+        var feedback = !entry.userId ? '<a href="account.html?next=compare.html">Sign in</a>' : !v.rnDone ? 'Confirm RN answer first' :
+          '<button type="button" data-feedback-entry="' + entries.indexOf(entry) + '" data-position="' + esc(id) + '">★ Rate / Comment</button>';
+        body.push('<tr>' + cells.map(function (value) { return '<td>' + esc(String(value)) + '</td>'; }).join('') + '<td>' + feedback + '</td></tr>');
       });
     });
-    var headings = ['Participant', 'Sample', 'Position', 'Local key', 'musWM note list', 'Root note', 'Bass note', 'Notes rating', 'Root rating', 'Bass rating', 'Span', 'Roman numeral answer', 'Status'].concat(RNVRnScore.ENGINES, ['Comment']);
+    var headings = ['Participant', 'Sample', 'Position', 'Local key', 'musWM note list', 'Root note', 'Bass note', 'Notes rating', 'Root rating', 'Bass rating', 'Span', 'Roman numeral answer', 'Status'].concat(RNVRnScore.ENGINES, ['Analyst comment', 'Member feedback']);
     el('cmpDetailsTable').innerHTML = body.length ? '<table><caption>Saved answers (' + body.length + ' rows)</caption><thead><tr>' +
       headings.map(function (h) { return '<th scope="col">' + esc(h) + '</th>'; }).join('') + '</tr></thead><tbody>' + body.join('') + '</tbody></table>' : '<p>No saved answers.</p>';
     el('cmpDetails').hidden = false;
@@ -224,8 +231,14 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
     el('cmpDetails').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
   el('cmpDetailsClose').addEventListener('click', function () {
+    RNVCommunity.close();
     el('cmpDetails').hidden = true;
     if (detailTrigger) detailTrigger.focus();
+  });
+
+  el('cmpDetailsTable').addEventListener('click', function (event) {
+    var button = event.target.closest('button[data-feedback-entry]');
+    if (button) RNVCommunity.feedback(entries[Number(button.dataset.feedbackEntry)], button.dataset.position);
   });
 
   function loadAnalyses() {
@@ -242,13 +255,13 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
         }).catch(function () {});
       })
       .then(function () {
-        return RNVAuth.publicAnswers();
+        return RNVAuth.user() ? RNVAuth.db('rpc/member_answers', {method: 'POST', body: {}}) : RNVAuth.publicAnswers();
       })
       .then(function (rows) {
         rows.forEach(function (r) {
           add({ analysisId: [r.country, r.profession, r.education].filter(Boolean).join(' \u00b7 ') +
                             ' \u00b7 ' + r.positions_rated + ' rated, ' + r.rn_answered + ' Roman numerals',
-                analyst: r.participant, authorOf: r.author_of || '', email: '', sample: r.sample,
+                analyst: r.participant, userId: r.user_id || '', authorOf: r.author_of || '', email: '', sample: r.sample,
                 exportedAt: r.updated_at, rows: r.rows || {} }, r.author_of ? 'author of ' + r.author_of : 'saved answers');
         });
         el('cmpNote').innerHTML = rows.length
