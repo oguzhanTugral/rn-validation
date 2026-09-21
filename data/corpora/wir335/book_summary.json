@@ -2,117 +2,116 @@
  "format": "rnv-book",
  "version": 1,
  "corpus": "wir335",
- "generated": "2026-09-15T16:36:06",
- "packGenerated": "2026-09-15T16:33:53",
+ "generated": "2026-09-21T06:14:46",
+ "packGenerated": "2026-09-21T06:14:42",
  "criterion": "musWM's local key and mode; from the chord code at that position (analysis pitch-class set, bass, root) the Roman numeral that Kostka, Payne & Almén, Tonal Harmony 8e derives is taken as correct.",
  "comparison": "Rows where all three engines emitted a label at the same onset (exact bitmask = 7). Engine label, key prefix removed and normalised, equal to the book label = 1, otherwise 0. With the same bass, a triad or seventh name is not a difference (V = V7, V6 = V65, V64 = V43, vii° = viiø7); a different bass still is. Families the book accepts in two spellings are applied to all three engines alike.",
- "totalRows": 115968,
- "comparable": 16581,
+ "totalRows": 115983,
+ "comparable": 16709,
  "worksWithComparableRows": 318,
  "worksInPack": 335,
  "producedAtOnset": {
   "AnalysisGNN": 78117,
   "AugmentedNet": 51399,
-  "musWM": 47486
+  "musWM": 47398
  },
  "excluded": {
-  "tasinmis etiket (motor bu onset'te uretmedi)": 48960,
-  "en az bir motor etiket uretmedi: musWM+AugmentedNet": 17128,
-  "en az bir motor etiket uretmedi: musWM+AnalysisGNN": 10371,
+  "tasinmis etiket (motor bu onset'te uretmedi)": 48945,
+  "en az bir motor etiket uretmedi: musWM+AugmentedNet": 17133,
+  "en az bir motor etiket uretmedi: musWM+AnalysisGNN": 10375,
   "en az bir motor etiket uretmedi: musWM": 9037,
-  "en az bir motor etiket uretmedi: AnalysisGNN+AugmentedNet": 6386,
-  "en az bir motor etiket uretmedi: AnalysisGNN": 5934,
-  "en az bir motor etiket uretmedi: AugmentedNet": 1067,
-  "kitap mekanik etiket turetmiyor (iki sesli/yogun susleme)": 389,
-  "artmis altili ses kumesi (s.382-387) -- sesler tek basina ayirt etmez": 82,
-  "yeden akoru referansi, V7 koku yazili notalarda duyuluyor": 32,
+  "en az bir motor etiket uretmedi: AnalysisGNN+AugmentedNet": 6352,
+  "en az bir motor etiket uretmedi: AnalysisGNN": 5933,
+  "en az bir motor etiket uretmedi: AugmentedNet": 1065,
+  "kitap mekanik etiket turetmiyor (iki sesli/yogun susleme)": 378,
+  "en az bir motor etiket uretmedi: musWM+AnalysisGNN+AugmentedNet": 55,
   "artmis altili (s.386-387) -- kural setinin disinda": 1
  },
  "categories": {
-  "diff": 12873,
-  "same": 3708
+  "diff": 12980,
+  "same": 3729
  },
  "summary": {
   "all": {
    "musWM": {
-    "graded": 16581,
-    "correct": 16518,
-    "accuracy": 0.9962
+    "graded": 16709,
+    "correct": 16615,
+    "accuracy": 0.9944
    },
    "AnalysisGNN": {
-    "graded": 16581,
-    "correct": 4948,
-    "accuracy": 0.2984
+    "graded": 16709,
+    "correct": 4952,
+    "accuracy": 0.2964
    },
    "AugmentedNet": {
-    "graded": 16581,
-    "correct": 6582,
-    "accuracy": 0.397
+    "graded": 16709,
+    "correct": 6611,
+    "accuracy": 0.3957
    }
   },
   "same": {
    "musWM": {
-    "graded": 3708,
-    "correct": 3705,
+    "graded": 3729,
+    "correct": 3726,
     "accuracy": 0.9992
    },
    "AnalysisGNN": {
-    "graded": 3708,
-    "correct": 3705,
+    "graded": 3729,
+    "correct": 3726,
     "accuracy": 0.9992
    },
    "AugmentedNet": {
-    "graded": 3708,
-    "correct": 3705,
+    "graded": 3729,
+    "correct": 3726,
     "accuracy": 0.9992
    }
   },
   "diff": {
    "musWM": {
-    "graded": 12873,
-    "correct": 12813,
-    "accuracy": 0.9953
+    "graded": 12980,
+    "correct": 12889,
+    "accuracy": 0.993
    },
    "AnalysisGNN": {
-    "graded": 12873,
-    "correct": 1243,
-    "accuracy": 0.0966
+    "graded": 12980,
+    "correct": 1226,
+    "accuracy": 0.0945
    },
    "AugmentedNet": {
-    "graded": 12873,
-    "correct": 2877,
-    "accuracy": 0.2235
+    "graded": 12980,
+    "correct": 2885,
+    "accuracy": 0.2223
    }
   }
  },
  "keyAgreementWithMusWM": {
   "AnalysisGNN": {
-   "rows": 16581,
-   "sameKey": 11048,
-   "pct": 0.6663
+   "rows": 16709,
+   "sameKey": 11149,
+   "pct": 0.6672
   },
   "AugmentedNet": {
-   "rows": 16581,
-   "sameKey": 9351,
-   "pct": 0.564
+   "rows": 16709,
+   "sameKey": 9435,
+   "pct": 0.5647
   }
  },
  "bookRuleUse": {
-  "K3": 2747,
-  "-": 11926,
-  "K2": 727,
+  "K3": 2756,
+  "-": 12008,
+  "K2": 747,
   "K1": 318,
-  "K1+K2": 422,
+  "K1+K2": 429,
   "K3+K1": 2,
-  "K3+K2": 422,
+  "K3+K2": 432,
   "K3+K1+K2": 17
  },
  "topMismatches": {
   "musWM": [
    [
-    "v4",
-    "V",
-    22
+    "V/VI",
+    "III",
+    32
    ],
    [
     "vii4",
@@ -120,13 +119,28 @@
     7
    ],
    [
+    "V64/VI",
+    "III64",
+    6
+   ],
+   [
     "viio/vi",
     "viio2",
     6
    ],
    [
+    "V2/VI",
+    "III2",
+    4
+   ],
+   [
     "#iv47",
     "#IV",
+    4
+   ],
+   [
+    "V6/VI",
+    "III6",
     4
    ],
    [
@@ -140,6 +154,16 @@
     3
    ],
    [
+    "viih47/V",
+    "viio/V",
+    3
+   ],
+   [
+    "V4(9)/III",
+    "VII",
+    2
+   ],
+   [
     "V/V",
     "ii",
     2
@@ -150,38 +174,13 @@
     2
    ],
    [
-    "bVI24",
+    "bVI4(9)",
     "bvi",
     2
    ],
    [
     "#VII4",
     "vii",
-    1
-   ],
-   [
-    "#iv4",
-    "#IV",
-    1
-   ],
-   [
-    "vi6",
-    "I+",
-    1
-   ],
-   [
-    "vii47",
-    "VII",
-    1
-   ],
-   [
-    "bII4(9)",
-    "bii",
-    1
-   ],
-   [
-    "i",
-    "#vio6",
     1
    ]
   ],
@@ -199,22 +198,22 @@
    [
     "V",
     "V/V",
-    206
+    209
    ],
    [
     "V",
     "V64",
-    135
+    134
    ],
    [
     "V",
     "I",
-    107
+    108
    ],
    [
     "V",
     "ii",
-    99
+    100
    ],
    [
     "V",
@@ -229,12 +228,7 @@
    [
     "I6",
     "V6",
-    79
-   ],
-   [
-    "V6",
-    "V",
-    70
+    78
    ],
    [
     "ii6",
@@ -242,9 +236,19 @@
     69
    ],
    [
+    "V6",
+    "V",
+    68
+   ],
+   [
     "i",
     "vi",
     67
+   ],
+   [
+    "V",
+    "V/vi",
+    66
    ],
    [
     "V",
@@ -255,23 +259,18 @@
     "IV",
     "IV64",
     62
-   ],
-   [
-    "I",
-    "vi6",
-    62
    ]
   ],
   "AugmentedNet": [
    [
     "I",
     "V",
-    277
+    278
    ],
    [
     "V",
     "V/V",
-    251
+    255
    ],
    [
     "i",
@@ -279,13 +278,13 @@
     132
    ],
    [
-    "I6",
-    "V6",
-    114
-   ],
-   [
     "V",
     "V/vi",
+    118
+   ],
+   [
+    "I6",
+    "V6",
     113
    ],
    [
@@ -316,7 +315,7 @@
    [
     "V6",
     "V6/V",
-    68
+    72
    ],
    [
     "viio/v",

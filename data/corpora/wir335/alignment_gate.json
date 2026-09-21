@@ -6,8 +6,8 @@
  "totals": {
   "muswm": {
    "bassFit": 0.998,
-   "bassRows": 48490,
-   "pcsetFit": 0.9938
+   "bassRows": 48505,
+   "pcsetFit": 0.9937
   },
   "analysisgnn": {
    "bassFit": 0.8586,
@@ -434,9 +434,9 @@
    "no": "018",
    "title": "Beethoven Ludwig van n09op59 3 01",
    "muswm": {
-    "bassFit": 0.988,
-    "bassRows": 502,
-    "pcsetFit": 0.9741
+    "bassFit": 0.9881,
+    "bassRows": 503,
+    "pcsetFit": 0.9742
    },
    "analysisgnn": {
     "bassFit": 0.9877,
@@ -475,7 +475,7 @@
    "title": "Beethoven Ludwig van n09op59 3 04",
    "muswm": {
     "bassFit": 1.0,
-    "bassRows": 602,
+    "bassRows": 603,
     "pcsetFit": 1.0
    },
    "analysisgnn": {
@@ -496,7 +496,7 @@
    "muswm": {
     "bassFit": 0.9812,
     "bassRows": 373,
-    "pcsetFit": 0.933
+    "pcsetFit": 0.9383
    },
    "analysisgnn": {
     "bassFit": 0.7027,
@@ -596,7 +596,7 @@
    "muswm": {
     "bassFit": 1.0,
     "bassRows": 70,
-    "pcsetFit": 1.0
+    "pcsetFit": 0.9714
    },
    "analysisgnn": {
     "bassFit": 0.6143,
@@ -1255,7 +1255,7 @@
    "title": "Beethoven Ludwig van n01op18 1 04",
    "muswm": {
     "bassFit": 1.0,
-    "bassRows": 575,
+    "bassRows": 577,
     "pcsetFit": 1.0
    },
    "analysisgnn": {
@@ -1515,7 +1515,7 @@
    "title": "Beethoven Ludwig van n01op18 1 02",
    "muswm": {
     "bassFit": 1.0,
-    "bassRows": 268,
+    "bassRows": 269,
     "pcsetFit": 1.0
    },
    "analysisgnn": {
@@ -1935,7 +1935,7 @@
    "title": "Beethoven Ludwig van n02op18 2 04",
    "muswm": {
     "bassFit": 1.0,
-    "bassRows": 492,
+    "bassRows": 493,
     "pcsetFit": 1.0
    },
    "analysisgnn": {
@@ -2575,7 +2575,7 @@
    "title": "Beethoven Ludwig van n07op59 1 02",
    "muswm": {
     "bassFit": 1.0,
-    "bassRows": 623,
+    "bassRows": 625,
     "pcsetFit": 1.0
    },
    "analysisgnn": {
@@ -3479,7 +3479,7 @@
    "title": "Beethoven Ludwig van n14op131 02",
    "muswm": {
     "bassFit": 1.0,
-    "bassRows": 294,
+    "bassRows": 295,
     "pcsetFit": 1.0
    },
    "analysisgnn": {
@@ -3821,7 +3821,7 @@
    "title": "Louise Reichardt Sechs Lieder von Novalis",
    "muswm": {
     "bassFit": 1.0,
-    "bassRows": 30,
+    "bassRows": 31,
     "pcsetFit": 1.0
    },
    "analysisgnn": {
@@ -4121,7 +4121,7 @@
    "title": "Mozart Wolfgang Amadeus K282 3",
    "muswm": {
     "bassFit": 1.0,
-    "bassRows": 52,
+    "bassRows": 53,
     "pcsetFit": 1.0
    },
    "analysisgnn": {
@@ -4140,9 +4140,9 @@
    "no": "203",
    "title": "Mozart Wolfgang Amadeus K333 2",
    "muswm": {
-    "bassFit": 0.9932,
-    "bassRows": 148,
-    "pcsetFit": 0.9932
+    "bassFit": 0.9933,
+    "bassRows": 149,
+    "pcsetFit": 0.9933
    },
    "analysisgnn": {
     "bassFit": 0.9913,
@@ -4542,7 +4542,7 @@
    "muswm": {
     "bassFit": 1.0,
     "bassRows": 55,
-    "pcsetFit": 1.0
+    "pcsetFit": 0.9818
    },
    "analysisgnn": {
     "bassFit": 0.3871,
@@ -4661,7 +4661,7 @@
    "title": "Beethoven Ludwig van n12op127 01",
    "muswm": {
     "bassFit": 1.0,
-    "bassRows": 522,
+    "bassRows": 523,
     "pcsetFit": 1.0
    },
    "analysisgnn": {
@@ -5241,7 +5241,7 @@
    "title": "S Coleridge Taylor Oh the Summer",
    "muswm": {
     "bassFit": 1.0,
-    "bassRows": 177,
+    "bassRows": 179,
     "pcsetFit": 1.0
    },
    "analysisgnn": {
@@ -5742,7 +5742,7 @@
    "muswm": {
     "bassFit": 1.0,
     "bassRows": 359,
-    "pcsetFit": 0.9944
+    "pcsetFit": 0.9889
    },
    "analysisgnn": {
     "bassFit": 0.694,
@@ -6422,7 +6422,7 @@
    "muswm": {
     "bassFit": 0.988,
     "bassRows": 584,
-    "pcsetFit": 0.9829
+    "pcsetFit": 0.9812
    },
    "analysisgnn": {
     "bassFit": 0.9493,

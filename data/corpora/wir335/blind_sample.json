@@ -2,7 +2,7 @@
 "format": "rnv-blind-sample",
 "corpus": "wir335",
 "seed": 20260915,
-"packGenerated": "2026-09-15T16:33:53",
+"packGenerated": "2026-09-21T06:14:42",
 "coverageStrata": 619,
 "randomN": 300,
 "sha256OfPositions": "35bb3d497838a5a7211c162cd36dc0ec6d03697bd779f061c42c7554bddba312",
@@ -580,7 +580,7 @@
 "endBar": 199,
 "endBeat": 1.0,
 "localKey": "A major",
-"notes": "C# - F - F# - A#",
+"notes": "C# - F# - A#",
 "root": "F#",
 "bass": "A#"
 },
@@ -4500,7 +4500,7 @@
 "endBar": 23,
 "endBeat": 1.0,
 "localKey": "A major",
-"notes": "D - F# - A#",
+"notes": "E - F# - A#",
 "root": "D",
 "bass": "F#"
 },
@@ -4884,7 +4884,7 @@
 "endBar": 43,
 "endBeat": 4.0,
 "localKey": "Bb major",
-"notes": "C - D - Gb - G - Bb",
+"notes": "D - G - Bb",
 "root": "Bb",
 "bass": "Bb"
 },
@@ -8068,7 +8068,7 @@
 "endBar": 131,
 "endBeat": 1.0,
 "localKey": "A minor",
-"notes": "Eb - E - Ab - B",
+"notes": "E - Ab - B",
 "root": "E",
 "bass": "Eb"
 },
@@ -8164,7 +8164,7 @@
 "endBar": 59,
 "endBeat": 2.0,
 "localKey": "F minor",
-"notes": "C - E - Ab - Bb",
+"notes": "C - E - Bb",
 "root": "Ab",
 "bass": "C"
 },
@@ -8996,7 +8996,7 @@
 "endBar": 149,
 "endBeat": 1.0,
 "localKey": "A major",
-"notes": "D# - F# - A# - B",
+"notes": "D# - F# - B",
 "root": "B",
 "bass": "D#"
 },
@@ -9684,7 +9684,7 @@
 "endBar": 200,
 "endBeat": 2.0,
 "localKey": "C major",
-"notes": "C# - E - G# - A",
+"notes": "Db - E - A",
 "root": "A",
 "bass": "A"
 },
@@ -9748,7 +9748,7 @@
 "endBar": 123,
 "endBeat": 1.0,
 "localKey": "A minor",
-"notes": "Db - F - A",
+"notes": "D - F - A",
 "root": "A",
 "bass": "F"
 },
@@ -9908,7 +9908,7 @@
 "endBar": 49,
 "endBeat": 1.0,
 "localKey": "E major",
-"notes": "D# - F# - A# - B",
+"notes": "D# - F# - B",
 "root": "B",
 "bass": "A#"
 },
@@ -12148,7 +12148,7 @@
 "endBar": 221,
 "endBeat": 1.0,
 "localKey": "G major",
-"notes": "C - E - F# - G# - B",
+"notes": "C - F# - G#",
 "root": "C",
 "bass": "G#"
 },
@@ -14276,7 +14276,7 @@
 "endBar": 122,
 "endBeat": 2.5,
 "localKey": "Eb major",
-"notes": "D - Gb - G - B",
+"notes": "D - G - B",
 "root": "G",
 "bass": "G"
 },

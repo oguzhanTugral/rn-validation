@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260921035803">
+<link rel="stylesheet" href="css/site.css?v=20260921062211">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -127,7 +127,7 @@
     <b>How to rate</b>
     <ol style="margin:6px 0 8px;padding-left:20px">
       <li>Each position is <b>one</b> musWM reading, from <b>Start</b> to <b>End</b>. In the score,
-        <b style="color:#1f6feb">blue</b> notes are in musWM&rsquo;s list, <b style="color:#d97706">orange</b> notes sound in the span but
+        <b style="color:#1f6feb">blue</b> notes are in musWM&rsquo;s list, <b style="color:#d97706">orange</b> notes are tensions the key contains, <b style="color:#dc2626">red</b> ones are chromatic tensions; both sound in the span but
         are not in the list, and <b style="color:#db2777">pink</b> notes were already sounding before Start.</li>
       <li><b>Part 1.</b> Find the chord at Start (passing, neighbour, suspended and ornamental notes are not chord notes) and
         answer the four questions below. Choose <b>Unclear</b> whenever you cannot decide.</li>
@@ -215,21 +215,21 @@
           <button type="button" data-scope="bar" aria-pressed="true">Span bars</button>
           <button type="button" data-scope="context" aria-pressed="false">Span &plusmn;1 bar</button>
         </div>
-        <span class="dim" style="font-size:13px">Score with every harmony annotation removed. <b style="color:#1f6feb">Blue</b>: a note in musWM&rsquo;s list. <b style="color:#d97706">Orange</b>: sounds in the span but is not in the list. <b style="color:#db2777">Pink</b>: was already sounding before Start.</span>
+        <span class="dim" style="font-size:13px">Score with every harmony annotation removed. <b style="color:#1f6feb">Blue</b>: a note in musWM&rsquo;s list. <b style="color:#d97706">Orange</b>: a tension the key contains. <b style="color:#dc2626">Red</b>: a chromatic tension. <b style="color:#db2777">Pink</b>: was already sounding before Start.</span>
       </div>
       <div class="br-score" id="brScore"></div>
     </div>
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260921035803"></script>
-<script src="js/rnv-data.js?v=20260921035803"></script>
-<script src="js/rnv-auth.js?v=20260921035803"></script>
-<script src="js/rnv-review.js?v=20260921035803"></script>
+<script src="data/corpora.js?v=20260921062211"></script>
+<script src="js/rnv-data.js?v=20260921062211"></script>
+<script src="js/rnv-auth.js?v=20260921062211"></script>
+<script src="js/rnv-review.js?v=20260921062211"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260921035803"></script>
-<script src="js/rnv-spell.js?v=20260921035803"></script>
-<script src="js/rnv-rnscore.js?v=20260921035803"></script>
+<script src="js/rnv-score.js?v=20260921062211"></script>
+<script src="js/rnv-spell.js?v=20260921062211"></script>
+<script src="js/rnv-rnscore.js?v=20260921062211"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -625,8 +625,17 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   // Colour every note that starts inside the span [Start, End), so the rater sees which part of the bar is asked about.
   // ponytail: notes held in from before the span stay black.
   var PC = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+  // A note the chord does not contain is a tension: orange when the local key has it, red when it does not.
+  function keyDegrees(name) {
+    var m = /^([A-G])(b|#)?\s+(major|minor)$/i.exec(String(name || '').trim());
+    if (!m) return null;
+    var pc = (PC[m[1]] + (m[2] === '#' ? 1 : m[2] === 'b' ? -1 : 0) + 12) % 12;
+    var steps = /minor/i.test(m[3]) ? [0, 2, 3, 5, 7, 8, 11] : [0, 2, 4, 5, 7, 9, 11];
+    return steps.map(function (s) { return (pc + s) % 12; });
+  }
+
   function markSpan(doc, it) {
-    var sustained = 0;
+    var sustained = 0, scale = keyDegrees(it.localKey);
     // blue: the note is one of musWM's listed notes; orange: it sounds in the span but is not in the list
     var listed = String(it.notes || '').split(' - ').map(function (n) {
       var m = /^([A-G])(b*|#*)$/.exec(n.trim());
@@ -667,7 +676,8 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
               var pcOf = pit && PC[(pit.getElementsByTagName('step')[0] || {}).textContent];
               var alter = pit ? Number((pit.getElementsByTagName('alter')[0] || {}).textContent || 0) : 0;
               var pcv = pcOf == null ? null : (pcOf + alter + 120) % 12;
-              c.setAttribute('color', pcv == null || listed.indexOf(pcv) >= 0 ? '#1f6feb' : '#d97706');
+              c.setAttribute('color', pcv == null || listed.indexOf(pcv) >= 0 ? '#1f6feb'
+                : (scale && scale.indexOf(pcv) < 0 ? '#dc2626' : '#d97706'));
             }
           }
         });

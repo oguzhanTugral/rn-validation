@@ -2,8 +2,8 @@
  "format": "rnv-note-check",
  "version": 1,
  "corpus": "wir335",
- "generated": "2026-09-15T16:35:47",
- "packGenerated": "2026-09-15T16:33:53",
+ "generated": "2026-09-21T06:15:52",
+ "packGenerated": "2026-09-21T06:14:42",
  "reference": "notes written in the published MusicXML only (no engine output)",
  "scope": "bars holding one complete triad or seventh chord with an unambiguous root throughout",
  "notes": {
@@ -11,7 +11,7 @@
   "augmentednetRoot": "AugmentedNet reports no root field; only bass and key are checked.",
   "key": "Key is checked only for compatibility with the written key signature; a modulation counts as incompatible, so this is not a key accuracy."
  },
- "gradedPositionsTotal": 15603,
+ "gradedPositionsTotal": 16709,
  "stats": {
   "works": 332,
   "bars": 33303,
@@ -34,76 +34,76 @@
  "results": {
   "graded": {
    "muswm": {
-    "onsets": 1404,
+    "onsets": 1420,
     "root": {
-     "n": 1404,
-     "agree": 1394,
-     "rate": 0.9929
+     "n": 1420,
+     "agree": 1410,
+     "rate": 0.993
     },
     "bass": {
-     "n": 831,
-     "agree": 831,
+     "n": 847,
+     "agree": 847,
      "rate": 1.0
     },
     "keySignatureCompatible": {
-     "n": 1404,
-     "agree": 1213,
-     "rate": 0.864
+     "n": 1420,
+     "agree": 1227,
+     "rate": 0.8641
     }
    },
    "analysisgnn": {
-    "onsets": 1404,
+    "onsets": 1420,
     "root": {
-     "n": 1381,
-     "agree": 1027,
-     "rate": 0.7437
+     "n": 1397,
+     "agree": 1040,
+     "rate": 0.7445
     },
     "bass": {
-     "n": 802,
-     "agree": 614,
-     "rate": 0.7656
+     "n": 818,
+     "agree": 627,
+     "rate": 0.7665
     },
     "keySignatureCompatible": {
-     "n": 1404,
-     "agree": 1117,
-     "rate": 0.7956
+     "n": 1420,
+     "agree": 1133,
+     "rate": 0.7979
     }
    },
    "augmentednet": {
-    "onsets": 1404,
+    "onsets": 1420,
     "root": {
      "n": 0,
      "agree": 0,
      "rate": null
     },
     "bass": {
-     "n": 831,
-     "agree": 825,
-     "rate": 0.9928
+     "n": 847,
+     "agree": 841,
+     "rate": 0.9929
     },
     "keySignatureCompatible": {
-     "n": 1404,
-     "agree": 1015,
-     "rate": 0.7229
+     "n": 1420,
+     "agree": 1030,
+     "rate": 0.7254
     }
    }
   },
   "all_onsets": {
    "muswm": {
-    "onsets": 3719,
+    "onsets": 3721,
     "root": {
-     "n": 3719,
-     "agree": 3643,
+     "n": 3721,
+     "agree": 3645,
      "rate": 0.9796
     },
     "bass": {
-     "n": 1992,
-     "agree": 1981,
+     "n": 1994,
+     "agree": 1983,
      "rate": 0.9945
     },
     "keySignatureCompatible": {
-     "n": 3719,
-     "agree": 3193,
+     "n": 3721,
+     "agree": 3195,
      "rate": 0.8586
     }
    },
