@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Theory · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260921062211">
+<link rel="stylesheet" href="css/site.css?v=20260921064030">
 <style>
   .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:16px;margin:18px 0 6px}
   .m{border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;background:var(--panel);box-shadow:var(--shadow)}
@@ -274,7 +274,7 @@
       <h3 class="sect">How this relates to the figures on this site</h3>
       <p>The comparison reported here tests one stage of the architecture: whether, once the short-term window and
       the checkpoint have produced a chord code, the long-term step names it as the textbook does (see
-      <i>Music Theory</i> below and <a href="scoring.html">Ratings</a>). It does not test the cognitive claims
+      <i>Music Theory</i> below). It does not test the cognitive claims
       themselves. Those are framed as hypotheses to be checked against working-memory research, auditory
       neuroscience and music cognition &mdash; for instance, whether the windows and checkpoints of the model
       correspond to measurable signatures in the concurrent EEG and cardiovascular record (Tu&#287;ral, 2026).</p>
@@ -339,20 +339,13 @@
         <div style="overflow-x:auto"><table id="ruleTable"></table></div>
       </details>
 
-      <h3 class="sect">The 63 cores at every chromatic step</h3>
-      <p class="note" id="coreNote">Loading…</p>
-      <div id="keyTables"></div>
-
-      <h3 class="sect">Chord codes in the corpus outside the 63 cores</h3>
-      <p class="note" id="extraNote">Loading…</p>
-      <div id="extraTables"></div>
     </div>
   </details>
 </main>
-<script src="data/corpora.js?v=20260921062211"></script>
-<script src="js/rnv-data.js?v=20260921062211"></script>
+<script src="data/corpora.js?v=20260921064030"></script>
+<script src="js/rnv-data.js?v=20260921064030"></script>
 <script>
-RNVData.boot({ page: 'theory.html', title: 'Theory', host: 'keyTables',
+RNVData.boot({ page: 'theory.html', title: 'Theory', host: 'aBig',
                needsCorpus: false, render: function () {} });
 </script>
 <script>
@@ -383,155 +376,6 @@ RNVData.boot({ page: 'theory.html', title: 'Theory', host: 'keyTables',
     document.getElementById('aSub').textContent = 'theory.json could not be loaded: ' + e;
   });
 
-  /* ---- 63 cores x 12 chromatic bass steps, C major ---------------------- */
-  var VNAME = { match: 'matches', diverge: 'differs', underivable: 'not derivable', none: 'no label' };
-  /* Display only: the textbook label is stored in the comparison spelling (h, o). */
-  var pretty = function (l) {
-    return String(l || '').replace(/([ivIV])h(?=\d|\/|$)/g, '$1ø').replace(/([ivIV])o(?=\d|\/|$)/g, '$1°');
-  };
-  var esc = function (x) { return String(x == null ? '' : x).replace(/[&<>"]/g, function (c) {
-    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
-  fetch('data/core_table.json').then(function (r) { return r.json(); }).then(function (D) {
-    var groups = { 2: 'Two notes \u2014 one interval', 3: 'Three notes \u2014 two intervals', 4: 'Four notes \u2014 three intervals' };
-    var pc1 = function (x) { return x.toFixed(1).replace('.', ','); };
-
-    document.getElementById('coreNote').innerHTML =
-      'Each of the engine&rsquo;s core matrices, sounded on all twelve chromatic bass notes in <b>C major</b> ' +
-      'and in <b>A minor</b>. Every cell sets the label musWM produces for that chord \u2014 matrix lookup ' +
-      'followed by the textbook rules, the same path the engine takes on a real score \u2014 beside the label ' +
-      esc(D.standard) + ' derives from the same notes and root in that key. Since every address is measured ' +
-      'from the bass, one key per mode covers all transpositions of that mode. On the corpus this path ' +
-      'reproduced the engine\u2019s own labels in 99.6% of events on the corpus build of 12 September 2026 (not yet ' +
-      're-measured after the rebuild of 15 September); the remainder depend on neighbouring chords. ' +
-      'Open a key to inspect its cores.' +
-      '<span style="display:block;margin-top:10px">How to read a row:</span>' +
-      '<span style="display:block;margin:4px 0 0 14px">&bull; <b>Bass, Notes</b> \u2014 the core sounded on one of the twelve chromatic bass notes.</span>' +
-      '<span style="display:block;margin:4px 0 0 14px">&bull; <b>musWM</b> \u2014 the label the engine gives that chord in that key.</span>' +
-      '<span style="display:block;margin:4px 0 0 14px">&bull; <b>Textbook</b> \u2014 the label the textbook rules derive from the same notes, root and key; ' +
-      '\u2014 when they derive none.</span>' +
-      '<span style="display:block;margin:4px 0 0 14px">&bull; <b>Verdict</b> \u2014 <i>matches</i>: both labels are the same after normalisation. ' +
-      '<i>differs</i>: the textbook names the chord differently. <i>not derivable</i>: the notes do not determine a chord under the ' +
-      'textbook\u2019s rules, usually because only two notes sound (C\u2013Eb can belong to i, VI or iv7) or the shape is one the textbook ' +
-      'does not name mechanically; such a cell is neither right nor wrong and is left out of the match percentage. ' +
-      '<i>no label</i>: musWM withholds a label because the bass does not support a reading.</span>' +
-      '<span style="display:block;margin:4px 0 0 14px">&bull; <b>In corpus</b> \u2014 musWM events of the ' + (D.corpusWorks || 335) +
-      '-work corpus at the same address (same mode, chord code and bass degree) in <i>every</i> key, carrying this label, ' +
-      '<b>only at positions where all three engines produced a label</b> \u2014 the rows compared on the Alignment and ' +
-      'Disagreements pages (Normalised, onset only). Events at the same address with another label are shown beneath as ' +
-      '<i>+N other</i>.</span>' +
-      '<span style="display:block;margin:4px 0 0 14px">&bull; <b>Alignment</b> \u2014 of those events, the ones where all three engines agree; ' +
-      '<b>Disagreement</b> \u2014 the ones where at least one engine differs. Every compared event falls on exactly one of the two ' +
-      'pages, so In corpus = Alignment + Disagreement.</span>';
-
-    function coreHtml(c, onlyDiv) {
-      var cnt = ['match', 'diverge', 'underivable', 'none'].filter(function (v) { return c.counts[v]; })
-        .map(function (v) { return '<span class="pillv v-' + v + '">' + c.counts[v] + ' ' + VNAME[v] + '</span>'; }).join('');
-      var rows = c.steps.map(function (st) {
-        var inCorpus = (st.corpus === undefined) ? '\u2014'
-          : '<b>' + nf(st.corpus) + '</b>' + (st.corpusOther
-            ? '<div class="ex" title="Same address in the corpus, labelled differently in context">+' + nf(st.corpusOther) +
-              ' other: ' + (st.corpusOtherLabels || []).map(function (x) { return esc(pretty(x[0])) + ' ' + x[1]; }).join(', ') + '</div>'
-            : '');
-        return '<tr class="v-' + st.verdict + '"><td>' + esc(st.bassName) + '</td><td class="rn">' + esc(st.notes) +
-          '</td><td class="rn"><b>' + esc(st.rn || '\u2014') + '</b></td><td class="rn">' + esc(pretty(st.book) || '\u2014') +
-          '</td><td>' + VNAME[st.verdict] + '</td><td style="text-align:right">' + inCorpus + '</td>' +
-          '<td style="text-align:right">' + (st.align === undefined ? '—' : '<b>' + nf(st.align) + '</b>' +
-            (st.alignOther ? '<div class="ex" title="Events at this address carrying another label">+' + nf(st.alignOther) + ' other</div>' : '')) + '</td>' +
-          '<td style="text-align:right">' + (st.disagree === undefined ? '—' : '<b>' + nf(st.disagree) + '</b>' +
-            (st.disagreeOther ? '<div class="ex" title="Events at this address carrying another label">+' + nf(st.disagreeOther) + ' other</div>' : '')) + '</td></tr>';
-      }).join('');
-      return '<details class="core"' + (onlyDiv ? ' open' : '') + '><summary>' +
-        '<span class="code">' + esc(c.code) + '</span>' +
-        '<span class="iv">intervals ' + c.intervals.join(' \u00b7 ') + '</span>' +
-        '<span class="cnt">' + cnt + (c.corpusTotal !== undefined
-          ? '<span class="pillv" style="background:rgba(47,107,255,.18)">' + nf(c.corpusTotal) + ' compared</span>' : '') +
-          (c.alignTotal !== undefined
-          ? '<span class="pillv" style="background:rgba(46,160,67,.18)">' + nf(c.alignTotal) + ' alignment</span>' +
-            '<span class="pillv" style="background:rgba(218,54,51,.16)">' + nf(c.disagreeTotal) + ' disagreement</span>' : '') +
-        '</span></summary>' +
-        '<div style="overflow-x:auto"><table><thead><tr><th>Bass</th><th>Notes</th><th>musWM</th>' +
-        '<th>Textbook</th><th></th><th style="text-align:right" title="musWM events, at positions where all three engines produced a label, at this address ' +
-        '(mode, chord code, bass degree), in every key, carrying this label">In corpus</th>' +
-        '<th style="text-align:right" title="Of those events, rows on the Alignment page: all three engines agree (Normalised, onset only)">Alignment</th>' +
-        '<th style="text-align:right" title="Of those events, rows on the Disagreements page: at least one engine differs (Normalised, onset only)">Disagreement</th></tr></thead><tbody>' +
-        rows + '</tbody></table></div></details>';
-    }
-
-    /* Every other chord code the corpus contains, so the counts cover all musWM events. */
-    var X = D.extraCodes || [];
-    document.getElementById('extraNote').innerHTML = X.length
-      ? 'Addresses that occur in the corpus but are not among the 63 cores above (for example suspended four-note ' +
-        'shapes and single-note events), shown in the same two reference keys and counted in the same way. With them, the ' +
-        'Alignment and Disagreement columns on this page add up to every compared row: <b>' + nf(D.alignAll) +
-        '</b> on Alignment and <b>' + nf(D.disagreeAll) + '</b> on Disagreements.'
-      : '';
-    document.getElementById('extraTables').innerHTML = X.map(function (T) {
-      var body = T.rows.map(function (r) {
-        var labs = r.labels.map(function (x) { return esc(pretty(x[0])) + (r.labels.length > 1 ? ' ' + nf(x[1]) : ''); }).join(', ');
-        return '<tr><td>' + esc(r.code) + '</td><td>' + esc(r.bassName) + '</td><td class="rn">' + esc(r.notes) +
-          '</td><td class="rn"><b>' + labs + '</b></td><td style="text-align:right"><b>' + nf(r.corpus) +
-          '</b></td><td style="text-align:right">' + nf(r.align) + '</td><td style="text-align:right">' + nf(r.disagree) + '</td></tr>';
-      }).join('');
-      return '<details class="keytab"><summary><span class="kname">' + esc(T.key) + '</span>' +
-        '<span class="ksub">' + T.rows.length + ' addresses · ' + nf(T.corpusTotal) + ' compared events (' +
-        nf(T.alignTotal) + ' on Alignment, ' + nf(T.disagreeTotal) + ' on Disagreements)</span></summary>' +
-        '<div class="kbody"><div style="overflow-x:auto"><table><thead><tr><th>Code</th><th>Bass</th><th>Notes</th>' +
-        '<th>musWM</th><th style="text-align:right">In corpus</th><th style="text-align:right">Alignment</th>' +
-        '<th style="text-align:right">Disagreement</th></tr></thead><tbody>' + body + '</tbody></table></div></div></details>';
-    }).join('');
-
-    var host = document.getElementById('keyTables');
-    host.innerHTML = D.tables.map(function (T, ti) {
-      var t = T.totals, derived = (t.match || 0) + (t.diverge || 0);
-      return '<details class="keytab" data-t="' + ti + '"><summary>' +
-        '<span class="kname">' + esc(T.key) + '</span>' +
-        '<span class="kpct">' + pc1(100 * (t.match || 0) / derived) + '%</span>' +
-        '<span class="ksub">' + (t.match || 0) + ' of ' + derived + ' derivable cells match the textbook \u00b7 ' +
-        (t.diverge || 0) + ' differ \u00b7 ' + T.cores.length + ' cores \u00d7 12 = ' + T.cells + ' cells' +
-        (T.corpusTotal !== undefined ? ' \u00b7 ' + nf(T.corpusTotal) + ' compared events' : '') +
-        (T.alignTotal !== undefined ? ' (' + nf(T.alignTotal) + ' on Alignment, ' + nf(T.disagreeTotal) + ' on Disagreements)' : '') + '</span>' +
-        '</summary><div class="kbody">' +
-        '<p class="dim" style="font-size:13.5px;margin:0 0 8px">Bass notes ascend chromatically from the tonic, ' +
-        esc(T.key.split(' ')[0]) + '. ' + (t.underivable || 0) + ' cells hold a two-note sonority or a shape the ' +
-        'textbook does not name mechanically; in ' + (t.none || 0) + ', musWM withholds a label because the bass does not ' +
-        'support a reading.</p>' +
-        '<div class="core-legend"><span class="v-match">matches the textbook</span>' +
-        '<span class="v-diverge">differs from the textbook</span>' +
-        '<span class="v-underivable">textbook derives no label mechanically</span>' +
-        '<span class="v-none">musWM gives no label</span></div>' +
-        '<div class="core-tools"><button class="btn" data-act="open">Open all</button>' +
-        '<button class="btn" data-act="close">Close all</button>' +
-        '<label class="dim" style="font-size:13px"><input type="checkbox" data-act="div"> only cores with a difference</label></div>' +
-        '<div class="coreAcc"></div></div></details>';
-    }).join('');
-
-    Array.prototype.forEach.call(host.querySelectorAll('details.keytab'), function (box) {
-      var T = D.tables[Number(box.getAttribute('data-t'))];
-      var acc = box.querySelector('.coreAcc');
-      var chk = box.querySelector('input[data-act="div"]');
-      var drawn = false;
-      function render() {
-        var onlyDiv = chk.checked, html = [], last = null;
-        T.cores.slice().sort(function (a, b) {
-          return a.notes - b.notes || a.intervals.join(',').localeCompare(b.intervals.join(','), undefined, { numeric: true });
-        }).forEach(function (c) {
-          if (onlyDiv && !c.counts.diverge) return;
-          if (c.notes !== last) { html.push('<div class="core-group">' + groups[c.notes] + '</div>'); last = c.notes; }
-          html.push(coreHtml(c, onlyDiv));
-        });
-        acc.innerHTML = html.join('');
-        drawn = true;
-      }
-      box.addEventListener('toggle', function () { if (box.open && !drawn) render(); });
-      chk.addEventListener('change', render);
-      box.querySelector('[data-act="open"]').addEventListener('click', function () {
-        acc.querySelectorAll('details.core').forEach(function (x) { x.open = true; }); });
-      box.querySelector('[data-act="close"]').addEventListener('click', function () {
-        acc.querySelectorAll('details.core').forEach(function (x) { x.open = false; }); });
-    });
-  }).catch(function (e) {
-    document.getElementById('coreNote').textContent = 'core_table.json could not be loaded: ' + e;
-  });
 })();
 </script>
 <script>

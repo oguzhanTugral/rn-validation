@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Works · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260921062211">
+<link rel="stylesheet" href="css/site.css?v=20260921064030">
 </head>
 <body>
 <main class="wrap">
@@ -36,15 +36,15 @@
   </table></div>
 </main>
 
-<script src="data/corpora.js?v=20260921062211"></script>
-<script src="js/rnv-data.js?v=20260921062211"></script>
-<script src="js/rnv-core.js?v=20260921062211"></script>
-<script src="js/rnv-clusters.js?v=20260921062211"></script>
-<script src="js/rnv-grades.js?v=20260921062211"></script>
-<script src="js/rnv-notes.js?v=20260921062211"></script>
-<script src="js/rnv-table.js?v=20260921062211"></script>
+<script src="data/corpora.js?v=20260921064030"></script>
+<script src="js/rnv-data.js?v=20260921064030"></script>
+<script src="js/rnv-core.js?v=20260921064030"></script>
+<script src="js/rnv-clusters.js?v=20260921064030"></script>
+<script src="js/rnv-grades.js?v=20260921064030"></script>
+<script src="js/rnv-notes.js?v=20260921064030"></script>
+<script src="js/rnv-table.js?v=20260921064030"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260921062211"></script>
+<script src="js/rnv-score.js?v=20260921064030"></script>
 <script>
 RNVData.boot({
   page: 'works.html', title: 'Works', host: 'fBody',
@@ -111,8 +111,8 @@ RNVData.boot({
           '<td><code>' + p.mapMode + '</code>' + warn + '</td>' +
           '<td class="num"><b>' + st.total + '</b></td>' +
           '<td class="num">' + st.comparable + '</td>' +
-          '<td class="num"><a href="same.html?corpus=' + encodeURIComponent(id) + '&piece=' + p.i + '">' + st.same + '</a></td>' +
-          '<td class="num"><a href="different.html?corpus=' + encodeURIComponent(id) + '&piece=' + p.i + '">' + st.diff + '</a></td>' +
+          '<td class="num">' + st.same + '</td>' +
+          '<td class="num">' + st.diff + '</td>' +
           '<td class="num"><a href="coverage.html?corpus=' + encodeURIComponent(id) + '&piece=' + p.i + '">' + st.missing + '</a></td>' +
           '<td class="acc"><b>' + pct(st.agree) + '</b></td>' +
           '<td class="acc">' + st.graded + ' <span class="dim">/ ' + st.gradable + '</span></td></tr>';

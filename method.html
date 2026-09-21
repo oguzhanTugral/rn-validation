@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Method · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260921062211">
+<link rel="stylesheet" href="css/site.css?v=20260921064030">
 <style>
   table.rtc{margin:12px 0;font-size:13.5px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
   table.rtc th{text-align:left;font-size:12.5px;background:var(--clr-lilac-50);padding:9px 12px;border-bottom:1px solid var(--line)}
@@ -20,12 +20,48 @@
 <body>
 <main class="wrap">
   <h2 class="page">Method</h2>
-  <p class="lede">How the comparison is built: how the labels of three engines are brought onto a common
-  grid, which differences count as differences, how each label is graded against the textbook, and what
-  the resulting figures can and cannot support. Two quantities are kept strictly apart throughout.
-  <b>Agreement</b> asks whether the engines write the same Roman numeral at the same position.
-  <b>Accuracy</b> asks whether a label matches the one the textbook derives. Neither is ever read as the
-  other.</p>
+  <p class="lede">How the three analysers are compared. The figure this site reports comes from the
+  <b>blind review</b>: a person rates sampled positions in the score without being told which analyser
+  wrote which label. The rest of this page describes how the labels are brought onto a common grid,
+  which differences count as differences, and what the figures can and cannot support. Two quantities
+  are kept strictly apart throughout. <b>Agreement</b> asks whether the analysers write the same Roman
+  numeral at the same position. <b>Accuracy</b> asks whether a label is one a rater accepts. Neither is
+  ever read as the other.</p>
+
+  <div class="panel" id="blindmethod">
+    <h3>How the analysers are compared: the blind review</h3>
+    <p style="margin:0 0 10px">Roman-numeral analysis has no single correct answer, so nothing on this site is
+    scored against a stored &ldquo;ground truth&rdquo;. The comparison is made by a person, one position at a time,
+    and the analysers&rsquo; names are hidden while the judgement is made.</p>
+    <table>
+      <tr><td style="width:190px">The sample</td>
+        <td>A fixed sample of positions drawn once from the corpus and never redrawn: one position per
+            (mode, Roman numeral with inversion, agreement pattern) for coverage, plus a simple random sample of
+            the remaining positions where all three analysers read the same local key. The sample carries its own
+            fingerprint, so any change to it is visible.</td></tr>
+      <tr><td>What the rater sees</td>
+        <td>The bar in the score with every harmony annotation removed, the start and end of the position,
+            the local key, and the notes musWM read there. No analyser name, and no indication of which label
+            belongs to whom.</td></tr>
+      <tr><td>What is asked</td>
+        <td>First the reading itself: are the notes exactly the chord notes, is the root right, is the bass right,
+            does the span hold one chord. Then the Roman numeral: the three analysers&rsquo; labels are shown
+            unlabelled, together with two alternatives made by rule from one of them, and the rater ticks
+            <b>every</b> label they accept, or &ldquo;none of these&rdquo;, or &ldquo;unclear&rdquo;.</td></tr>
+      <tr><td>How a point is counted</td>
+        <td>A position counts once its Roman-numeral answer is confirmed and is not &ldquo;unclear&rdquo;. An
+            analyser is right at that position when a label it gave is among the ticked ones. Several analysers can
+            be right at the same position, and all three can be wrong.</td></tr>
+      <tr><td>Whose rating this is</td>
+        <td>The figures shown on this site come from <b>one rating, by the author of musWM</b>. Every participant
+            who rates the sample gets their own figures, and the answers of everyone who is not an author of one of
+            the analysers are pooled into a common score on <a href="compare.html">Compare</a>; an author&rsquo;s own
+            rating is shown separately and never pooled.</td></tr>
+      <tr><td>What is kept</td>
+        <td>Every answer is saved to the participant&rsquo;s account as it is given, so a rating can be stopped and
+            continued, and the answers can be downloaded as a spreadsheet.</td></tr>
+    </table>
+  </div>
 
   <div class="panel">
     <h3>Pipeline</h3>
@@ -211,10 +247,10 @@
       <tbody>
         <tr><td><span class="tag same">identical</span></td>
             <td>All three engines emit a label, and the three normalise to the same string</td>
-            <td><a href="same.html">Alignment</a></td></tr>
+            <td>&mdash;</td></tr>
         <tr><td><span class="tag diff">different</span></td>
             <td>All three engines emit a label, and at least one differs</td>
-            <td><a href="different.html">Disagreements</a></td></tr>
+            <td>&mdash;</td></tr>
         <tr><td><span class="tag partial">partial</span></td>
             <td>One or two engines emit no label</td>
             <td><a href="coverage.html">Coverage gaps</a></td></tr>
@@ -242,15 +278,14 @@
       <tr><td>blank</td><td>The textbook derives no label mechanically (a two-note sonority, dense ornament),
         so there is nothing to grade against.</td></tr>
     </table>
-    <p style="margin:12px 0 0">Grades are the same on <a href="same.html">Alignment</a> and
-    <a href="different.html">Disagreements</a>, and none can be changed by hand. Where the textbook accepts two
+    <p style="margin:12px 0 0">No grade can be changed by hand. Where the textbook accepts two
     spellings of one chord &mdash; a suspension figure over the same degree (pp. 201&ndash;202), or V/III
     &equiv; VII in minor (p. 257) &mdash; both count as equal for all three engines.</p>
     <p style="margin:8px 0 0"><b>Tolerances.</b> A triad and a seventh chord on the same root and bass count as the
     same label (V = V7, V6 = V65, V64 = V43, vii&deg; = vii&deg;7 = vii&oslash;7); a different bass is still a
     difference. The grades are therefore tolerant agreement with the textbook label, not exact label identity.</p>
     <p style="margin:8px 0 0">An engine&rsquo;s score is <b>correct &divide; graded</b>, reported over all
-    compared rows and separately for Alignment and Disagreements. <a href="scoring.html">Ratings</a> lists every
+    compared rows and separately for Alignment and Disagreements. The corpus pack lists every
     reason a row was not compared, with counts, together with the number of labels each engine emitted, so
     the share of the corpus behind each figure is always in view.</p>
     <p class="dim" style="margin:8px 0 0;font-size:13px"><b>What the figure does and does not say.</b> The
@@ -504,8 +539,8 @@ fetch('data/engine_log_public.json').then(function (r) { return r.json(); }).the
 });
 </script>
 
-<script src="data/corpora.js?v=20260921062211"></script>
-<script src="js/rnv-data.js?v=20260921062211"></script>
+<script src="data/corpora.js?v=20260921064030"></script>
+<script src="js/rnv-data.js?v=20260921064030"></script>
 <script>
 RNVData.boot({ page: 'method.html', title: 'Method', host: 'host',
                needsCorpus: false, render: function () {} });

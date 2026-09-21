@@ -13,9 +13,6 @@ function rnvSharedKeyTable(sk) {
     row('musWM &ndash; AnalysisGNN identical', f(s.pairwise['musWM-AnalysisGNN']), f(a.pairwise['musWM-AnalysisGNN'])) +
     row('musWM &ndash; AugmentedNet identical', f(s.pairwise['musWM-AugmentedNet']), f(a.pairwise['musWM-AugmentedNet'])) +
     row('AnalysisGNN &ndash; AugmentedNet identical', f(s.pairwise['AnalysisGNN-AugmentedNet']), f(a.pairwise['AnalysisGNN-AugmentedNet'])) +
-    row('Textbook label* &mdash; musWM', f(s.textbook.musWM), f(a.textbook.musWM), 'dim') +
-    row('Textbook label* &mdash; AnalysisGNN', f(s.textbook.AnalysisGNN), f(a.textbook.AnalysisGNN)) +
-    row('Textbook label* &mdash; AugmentedNet', f(s.textbook.AugmentedNet), f(a.textbook.AugmentedNet)) +
     '</tbody></table></div>';
 }
 var RNV_SHARED_NOTE =
@@ -24,7 +21,5 @@ var RNV_SHARED_NOTE =
   'after the first results were seen (exploratory), and positions where three analysers agree on the key are likely to be ' +
   'stable passages; the figures describe those positions, not the whole corpus, and the all-positions figures stay beside ' +
   'them. Both columns count only positions where all three emit a label, so the pairwise rates differ from the pairwise table below, which counts every position two engines share. Identity uses the published spelling normalisation, with a triad and a seventh on the same bass counted as equal. ' +
-  '*The textbook label is the Roman numeral the textbook rules derive from musWM&rsquo;s key, root and analysed notes, so ' +
-  'musWM&rsquo;s own score is high by construction and is not an accuracy; where the chord is unambiguous, musWM&rsquo;s ' +
-  'root and bass match the written score at 99.3% and 100%. A blind check of musWM&rsquo;s notes, root and bass on a fixed ' +
-  'sample of these positions is under way on the <a href="review.html">Blind review</a> page.';
+  'This table counts agreement only. How often each analyser is right is decided by a person on the ' +
+  '<a href="review.html">Blind review</a> page, and those are the figures this site reports.';

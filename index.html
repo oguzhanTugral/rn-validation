@@ -6,27 +6,19 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Overview · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260921062211">
+<link rel="stylesheet" href="css/site.css?v=20260921064030">
 </head>
 <body>
 <main class="wrap">
   <h2 class="page">Summary</h2>
-  <p class="lede">musWM, AnalysisGNN and AugmentedNet are set side by side on one corpus and aligned by bar and
-  beat. The measures below are kept apart because each answers a different question. <b>Theory conformance</b> asks whether musWM&rsquo;s own label is the one the textbook derives from the same notes and root. <b>Textbook grades</b> ask, for each engine, how many of its labels at the compared positions are written as the textbook writes <i>musWM&rsquo;s</i> reading of the chord &mdash; a test of naming, not of the reading, and not a head-to-head accuracy. The <b>independent note check</b> asks, from the written notes alone, whether each engine&rsquo;s root and bass are the ones in the score. <b>Agreement between engines</b> asks how often all three engines give the same label where all three produce one; it is shown below and row by row on the <a href="same.html">Alignment</a> and <a href="different.html">Disagreements</a> pages.</p>
+  <p class="lede">musWM, AnalysisGNN and AugmentedNet are set side by side on one corpus and aligned by
+  bar and beat. The figure this site reports is the <b>blind review</b>: a rater who cannot see which
+  analyser gave which label ticks every Roman numeral they accept at a sampled position, and an analyser
+  counts as right when a label it gave is among them. Everything else on this page describes the corpus
+  and where the three analysers place their labels.</p>
 
-  <div class="cards" style="margin:16px 0 6px">
-    <div class="card"><span class="k">1 &middot; Theory conformance</span>
-      <span class="v" id="kTheory">&mdash;</span>
-      <span class="n" id="kTheoryNote">Does musWM&rsquo;s label follow the textbook? Measured against
-      Kostka, Payne &amp; Alm&eacute;n, <i>Tonal Harmony</i>, 8th edition, over the corpus shown. No human annotation
-      involved. &rarr; <a href="theory.html">Theory</a></span></div>
-    <div class="card"><span class="k" id="kRatedHead">2 · Textbook grades</span>
-      <span class="v" id="kRated">&mdash;</span>
-      <span class="n" id="kRatedNote">One point or none per engine, fixed in advance, against the textbook label. &rarr; <a href="scoring.html">Ratings</a></span></div>
-    <div class="card"><span class="k">3 &middot; Independent note check</span>
-      <span class="v" id="kNote">&mdash;</span>
-      <span class="n" id="kNoteNote">Root and bass read from the written notes, in bars holding one unambiguous chord. &rarr; <a href="method.html#notecheck">Method</a></span></div>
-  </div>
+  <div class="rowsA" id="blindRows"><div class="empty">Loading&hellip;</div></div>
+  <p class="dim" style="font-size:13px;margin:10px 0 16px" id="blindNote"></p>
 
   <div class="prelim"><b>Preliminary results.</b> Every figure on this site is recomputed from the corpus pack at each build. On 15 September 2026 the pack was rebuilt after an alignment fault was found and corrected, and the textbook criterion was audited against the book &mdash; see <a href="method.html#corrections">Corrections</a>. The textbook grades measure tolerant agreement with a label derived from musWM&rsquo;s own reading of the chord; they are not an accuracy against an independent reference.</div>
 
@@ -48,11 +40,7 @@
   <h3 class="sect">Agreement between engines (all positions)</h3>
   <div class="cards" id="cards"></div>
 
-  <h3 class="sect" id="accHead">Textbook grades (locked)</h3>
-  <div id="accWrap"></div>
 
-  <h3 class="sect" id="notecheck">Independent note check</h3>
-  <div id="noteWrap"><div class="note">Loading&hellip;</div></div>
 
   <div class="panel">
     <h3>Alignment check</h3>
@@ -77,6 +65,39 @@
     <div style="overflow-x:auto"><table id="topTable"></table></div>
   </div>
 </main>
+
+<script>
+/* The comparison figure of the whole site: the blind review, read from the corpus pack. */
+(function () {
+  var host = document.getElementById('blindRows');
+  if (!host) return;
+  var id = (window.RNVData && RNVData.currentCorpusId && RNVData.currentCorpusId()) || 'wir335';
+  var colors = { musWM: 'var(--muswm)', AnalysisGNN: 'var(--gnn)', AugmentedNet: 'var(--anet)' };
+  fetch('data/corpora/' + encodeURIComponent(id) + '/blind_results.json')
+    .then(function (r) { return r.json(); })
+    .then(function (b) {
+      host.innerHTML = b.engines.map(function (e) {
+        return '<div class="eng"><span class="nm" style="color:' + colors[e.name] + '">' + e.name + '</span>' +
+          '<div class="track"><div class="fill" data-w="' + e.rate + '" style="background:' + colors[e.name] + '"></div></div>' +
+          '<span class="pc">' + String(e.rate).replace('.', ',') + '%</span></div>';
+      }).join('');
+      requestAnimationFrame(function () {
+        Array.prototype.forEach.call(host.querySelectorAll('.fill'), function (f) { f.style.width = f.dataset.w + '%'; });
+      });
+      var note = document.getElementById('blindNote');
+      if (note) {
+        note.innerHTML = '<b>' + b.answered.toLocaleString('en-US') + '</b> of ' +
+          b.positions.toLocaleString('en-US') + ' sampled positions carry a Roman-numeral answer (' +
+          b.unclear + ' were answered &ldquo;unclear&rdquo; and are left out). At each position the rater ticked ' +
+          'every Roman numeral they accept; an analyser counts as right when a label it gave is among them. ' +
+          '<b>This is one rating, by the author of musWM.</b> Every participant is rated separately on ' +
+          '<a href="compare.html">Compare</a>, where the answers of everyone who is not an author of one of the ' +
+          'analysers are pooled into a common score. Rate the sample yourself on ' +
+          '<a href="review.html">Blind review</a>.';
+      }
+    }).catch(function () { host.innerHTML = '<div class="empty">The blind-review figures could not be loaded.</div>'; });
+})();
+</script>
 
 <script>
 /* Headline figures from the small summary file (build/summary_figures.cjs), shown at once; the full pack
@@ -121,19 +142,19 @@ fetch('data/theory.json').then(function (r) { return r.json(); }).then(function 
 }).catch(function () {});
 </script>
 
-<script src="js/rnv-sharedkey.js?v=20260921062211"></script>
+<script src="js/rnv-sharedkey.js?v=20260921064030"></script>
 <script>
 fetch('data/corpora/wir335/shared_key.json').then(function (r) { return r.json(); }).then(function (sk) {
   document.getElementById('skWrap').innerHTML = rnvSharedKeyTable(sk);
   document.getElementById('skNote').innerHTML = RNV_SHARED_NOTE;
 }).catch(function () {});
 </script>
-<script src="data/corpora.js?v=20260921062211"></script>
-<script src="js/rnv-data.js?v=20260921062211"></script>
-<script src="js/rnv-core.js?v=20260921062211"></script>
-<script src="js/rnv-clusters.js?v=20260921062211"></script>
-<script src="js/rnv-grades.js?v=20260921062211"></script>
-<script src="js/rnv-notes.js?v=20260921062211"></script>
+<script src="data/corpora.js?v=20260921064030"></script>
+<script src="js/rnv-data.js?v=20260921064030"></script>
+<script src="js/rnv-core.js?v=20260921064030"></script>
+<script src="js/rnv-clusters.js?v=20260921064030"></script>
+<script src="js/rnv-grades.js?v=20260921064030"></script>
+<script src="js/rnv-notes.js?v=20260921064030"></script>
 <script>
 RNVData.boot({
   page: 'index.html', title: 'Summary', host: 'cards',
@@ -164,76 +185,6 @@ RNVData.boot({
 
     var kA = document.getElementById('kAgree');
     if (kA) kA.textContent = pct(s.agreement);
-    var gr = RNVGrades.stats(corpus.id, corpus, rows);
-    var totRated = gr.reduce(function (a, x) { return a + x.graded; }, 0);
-    var kR = document.getElementById('kRated');
-    if (kR) kR.textContent = totRated ? nf(totRated) + ' cells' : 'none yet';
-    if (corpus.book) {
-      document.getElementById('kRatedHead').textContent = '2 · Textbook grades';
-      kR.textContent = nf(corpus.book.comparable) + ' rows';
-      document.getElementById('kRatedNote').innerHTML =
-        'One point or none per engine, fixed in advance. The reference is the label Kostka, Payne &amp; ' +
-        'Alm&eacute;n derive from musWM&rsquo;s key, mode and chord code; only positions at which all three ' +
-        'engines emit at the same onset are counted. &rarr; <a href="scoring.html">Ratings</a>';
-      document.getElementById('accHead').textContent = 'Textbook grades (locked)';
-    }
-
-
-    /* ---- accuracy from human grades ---- */
-    var acc = RNVGrades.stats(corpus.id, corpus, rows);
-    var anyGraded = acc.some(function (a) { return a.graded > 0; });
-    document.getElementById('accWrap').innerHTML = anyGraded
-      ? '<div class="cards">' + acc.map(function (a, i) {
-          var cls = ['e-muswm', 'e-gnn', 'e-anet'][i];
-          return '<div class="card"><span class="k ' + cls + '">' + a.engine + '</span>' +
-            '<span class="v">' + pct(a.accuracy) + '</span>' +
-            '<span class="n">' + a.correct + ' correct of ' + a.graded + ' graded · ' +
-            a.labelled + ' labelled</span>' +
-            '<div class="bar"><span class="' + (a.accuracy >= 0.5 ? 'good' : 'bad') +
-            '" style="width:' + (100 * (a.accuracy || 0)).toFixed(1) + '%"></span></div>' +
-            '<span class="n">graded ' + (100 * a.progress).toFixed(1) + '% of its labels</span></div>';
-        }).join('') + '</div>' +
-        (corpus.book
-          ? '<div class="note">Locked textbook grades over the ' + nf(corpus.book.comparable) +
-            ' positions at which all three engines emit a label at the same onset (' +
-            nf(corpus.book.worksWithComparableRows) + ' of ' + nf(corpus.book.worksInPack) + ' works). ' +
-            'The textbook label is derived from musWM&rsquo;s own key and notes. Where musWM&rsquo;s label ' +
-            'does not agree with it, musWM is marked wrong (0); the textbook label stays the reference, and ' +
-            'AnalysisGNN and AugmentedNet are compared with that same label, so an engine that writes it ' +
-            'scores 1 even where musWM scores 0. The other two are judged in musWM&rsquo;s key, so musWM&rsquo;s high score is ' +
-            'largely a consequence of the construction and these bars are not an accuracy comparison. A triad and a ' +
-            'seventh chord on the same root and bass count as the same label (V = V7, V6 = V65, V64 = V43); the ' +
-            'figures are tolerant agreement, not exact label identity.</div>'
-          : '<div class="note">This counts only the cells a person has rated, so it is a rating rate, ' +
-            'not an accuracy. It is not comparable across engines until their rated shares are similar — ' +
-            'see <a href="scoring.html">Ratings</a>.</div>')
-      : '<div class="note">No grades yet. Open <a href="same.html">Identical</a> or ' +
-        '<a href="different.html">Disagreements</a>, click a row to see the bar, and press ' +
-        '<b>1</b> (correct) or <b>0</b> (wrong) for each engine.</div>';
-
-    /* ---- independent note check and alignment gate ---- */
-    fetch('data/corpora/' + encodeURIComponent(corpus.id) + '/note_check.json').then(function (r) { return r.json(); })
-      .then(function (nc) {
-        var names = { muswm: 'musWM', analysisgnn: 'AnalysisGNN', augmentednet: 'AugmentedNet' };
-        var cell = function (x) { return (x && x.n) ? '<b>' + pct(x.rate) + '</b><br><span class="dim">' + nf(x.agree) + ' of ' + nf(x.n) + '</span>' : '&mdash;'; };
-        var tbl = function (sc) {
-          return '<table><thead><tr><th>Engine</th><th>Root = written root</th><th>Bass = written bass</th><th>Key compatible with key signature</th></tr></thead><tbody>' +
-            ['muswm', 'analysisgnn', 'augmentednet'].map(function (e) { var x = nc.results[sc][e];
-              return '<tr><td><b>' + names[e] + '</b></td><td class="num">' + cell(x.root) + '</td><td class="num">' + cell(x.bass) + '</td><td class="num">' + cell(x.keySignatureCompatible) + '</td></tr>'; }).join('') + '</tbody></table>';
-        };
-        var kN = document.getElementById('kNote');
-        if (kN) kN.textContent = pct(nc.results.graded.muswm.root.rate) + ' root';
-        document.getElementById('kNoteNote').innerHTML = 'musWM&rsquo;s root agrees with the written root at ' + nf(nc.results.graded.muswm.root.agree) + ' of ' +
-          nf(nc.results.graded.muswm.root.n) + ' graded positions in unambiguous bars. &rarr; <a href="method.html#notecheck">Method</a>';
-        document.getElementById('noteWrap').innerHTML =
-          '<div class="note">The reference is read from the notes written in the score &mdash; no engine output, no chord code. ' +
-          'Only bars holding one complete triad or seventh chord with an unambiguous root throughout are used (' + nf(nc.stats.barsSingleChord) + ' bars in ' + nf(nc.stats.works) + ' works). ' +
-          'The bass is tested only where the lowest note stays the same through the bar. AugmentedNet reports no root. AnalysisGNN&rsquo;s root and bass come from ' +
-          'separate per-note predictions, not from the chord its label names. Key is tested only for compatibility with the written key signature, which counts every ' +
-          'modulation as incompatible, so it is not a key accuracy. The check does not grade Roman numerals and does not cover passages with chord changes, suspensions or passing tones.</div>' +
-          '<div class="panel"><h3>At graded positions (' + nf(nc.results.graded.muswm.onsets) + ' of ' + nf(nc.gradedPositionsTotal) + ')</h3><div style="overflow-x:auto">' + tbl('graded') + '</div></div>' +
-          '<div class="panel"><h3>At every onset each engine emitted in those bars</h3><div style="overflow-x:auto">' + tbl('all_onsets') + '</div></div>';
-      }).catch(function () { document.getElementById('noteWrap').innerHTML = '<div class="note">The note check has not been built for this corpus.</div>'; });
     fetch('data/corpora/' + encodeURIComponent(corpus.id) + '/alignment_gate.json').then(function (r) { return r.json(); })
       .then(function (g) {
         var t = g.totals;

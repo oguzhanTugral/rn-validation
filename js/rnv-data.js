@@ -8,12 +8,8 @@
     ['background.html', 'Background'],
     ['index.html', 'Summary'],
     ['theory.html', 'Theory'],
-    ['same.html', 'Alignment'],
-    ['different.html', 'Disagreements'],
-    ['scoring.html', 'Ratings'],
     ['method.html', 'Method'],
-    ['review.html', 'Blind review'],
-    ['development.html', 'Development']
+    ['review.html', 'Blind review']
   ];
 
   var CORPUS_KEY = 'rnv.corpus';
