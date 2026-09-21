@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Method · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260921214005">
+<link rel="stylesheet" href="css/site.css?v=20260921215417">
 <style>
   table.rtc{margin:12px 0;font-size:13.5px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
   table.rtc th{text-align:left;font-size:12.5px;background:var(--clr-lilac-50);padding:9px 12px;border-bottom:1px solid var(--line)}
@@ -78,11 +78,7 @@
         <td>The sample described above is the <b>training round</b>: it was rated first, its questions were improved
             and some replaced, and it is kept apart. The rating that counts is the main <b>Blind review</b>, on a
             sample drawn afterwards with the same design and its own seed (20260922), holding no position the training
-            round held. Before drawing, and from the score alone, two kinds of question were left out: those whose key
-            name and key signature are spelled on opposite sides (34), and those whose bass cannot be read at Start
-            &mdash; nothing sounds there, or a lower note enters later, the rater&rsquo;s own test for an unclear bass
-            (1,227). 6,524 of the 8,746 shared-key positions remained; the sample holds 452 coverage positions and 300
-            random ones (752). 165 strata have no position left and are not covered. Its answers are kept in a table
+            round held. Before drawing, and from the score alone, questions whose key name and key signature are spelled on opposite sides were left out (34), because the page would name their notes in a key the score is not written in. A second filter, for questions where a lower note enters after Start, was tried and dropped: musWM assigns a bass there as everywhere, and in the training round the rater found it right in 151 of 156 answered cases. 7,751 of the 8,746 shared-key positions remained; the sample holds 471 coverage positions and 300 random ones (771). 146 strata have no position left, almost all because the training round held their only one. Its answers are kept in a table
             of their own.</td></tr>
       <tr><td>Whose rating this is</td>
         <td>The figures shown on this site come from <b>one rating, by the author of musWM</b>. Every participant
@@ -571,8 +567,8 @@ fetch('data/engine_log_public.json').then(function (r) { return r.json(); }).the
 });
 </script>
 
-<script src="data/corpora.js?v=20260921214005"></script>
-<script src="js/rnv-data.js?v=20260921214005"></script>
+<script src="data/corpora.js?v=20260921215417"></script>
+<script src="js/rnv-data.js?v=20260921215417"></script>
 <script>
 RNVData.boot({ page: 'method.html', title: 'Method', host: 'host',
                needsCorpus: false, render: function () {} });
