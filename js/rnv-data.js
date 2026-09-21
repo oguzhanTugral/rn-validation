@@ -10,7 +10,8 @@
     ['index.html', 'Summary'],
     ['theory.html', 'Theory'],
     ['method.html', 'Method'],
-    ['review.html', 'Blind review']
+    ['review.html', 'Blind review'],
+    ['development.html', 'Development']
   ];
 
   var CORPUS_KEY = 'rnv.corpus';
