@@ -5,7 +5,7 @@
 "packGenerated": "2026-09-21T06:14:42",
 "coverageStrata": 619,
 "randomN": 300,
-"sha256OfPositions": "086b7bd3138a6ac5c4750a7606bb3618cfbd77db161c0f81a2045d8cb7c64419",
+"sha256OfPositions": "c3ad09e0801b2250c9a03935dd9a293e8e32f6240a714620176fc7c76cbc57d9",
 "design": "coverage: one random position per (mode, musWM Roman numeral with inversion, agreement pattern); random: simple random sample of the other shared-key positions. Order shuffled. No Roman numeral or engine label is included.",
 "items": [
 {
@@ -425,20 +425,21 @@
 "bass": "F"
 },
 {
-"id": "S027",
+"id": "S950",
 "part": "random",
-"key": "008:4:2",
-"work": "008",
-"title": "Mozart Wolfgang Amadeus K283 2",
-"bar": 4,
-"beat": 2.0,
-"untilBeat": null,
-"endBar": 5,
-"endBeat": 1.0,
-"localKey": "C major",
-"notes": "C - D - E - F - G - B",
-"root": "G",
-"bass": "G"
+"key": "243:120:1",
+"work": "243",
+"title": "Mozart Wolfgang Amadeus K331 1",
+"bar": 120,
+"beat": 1.0,
+"untilBeat": 2.0,
+"endBar": 120,
+"endBeat": 2.0,
+"localKey": "A major",
+"notes": "C# - E - G# - A",
+"root": "A",
+"bass": "C#",
+"replaces": "S027"
 },
 {
 "id": "S028",
@@ -713,20 +714,21 @@
 "bass": "C"
 },
 {
-"id": "S045",
+"id": "S951",
 "part": "random",
-"key": "178:66:1",
-"work": "178",
-"title": "J S Bach Prelude No 7",
-"bar": 66,
+"key": "063:63:1",
+"work": "063",
+"title": "Beethoven Ludwig van n16op135 02",
+"bar": 63,
 "beat": 1.0,
-"untilBeat": 1.5,
-"endBar": 66,
-"endBeat": 1.5,
-"localKey": "Eb major",
-"notes": "C - Eb - F - G - Bb",
+"untilBeat": 2.0,
+"endBar": 63,
+"endBeat": 2.0,
+"localKey": "F major",
+"notes": "C - E - G - Bb",
 "root": "C",
-"bass": "G"
+"bass": "C",
+"replaces": "S045"
 },
 {
 "id": "S046",
@@ -6204,20 +6206,21 @@
 "bass": "F#"
 },
 {
-"id": "S387",
+"id": "S952",
 "part": "coverage",
-"key": "214:10:2",
+"key": "214:6:2",
 "work": "214",
 "title": "Fr d ric Chopin Prelude Op 28 No 20 in c minor",
-"bar": 10,
+"bar": 6,
 "beat": 2.0,
 "untilBeat": 3.0,
-"endBar": 10,
+"endBar": 6,
 "endBeat": 3.0,
 "localKey": "C minor",
 "notes": "C - D - Gb - Ab",
 "root": "Ab",
-"bass": "Ab"
+"bass": "Ab",
+"replaces": "S387"
 },
 {
 "id": "S388",
@@ -6605,20 +6608,21 @@
 "bass": "F"
 },
 {
-"id": "S412",
+"id": "S953",
 "part": "coverage",
-"key": "006:12:4",
-"work": "006",
-"title": "Mozart Wolfgang Amadeus K279 1",
-"bar": 12,
-"beat": 4.0,
-"untilBeat": null,
-"endBar": 13,
-"endBeat": 1.0,
-"localKey": "C major",
-"notes": "C - E - G - Bb - B",
-"root": "C",
-"bass": "G"
+"key": "157:11:1",
+"work": "157",
+"title": "Hugo Wolf Eichendorff Lieder No 4 Das St ndchen",
+"bar": 11,
+"beat": 1.0,
+"untilBeat": 2.5,
+"endBar": 11,
+"endBeat": 2.5,
+"localKey": "D major",
+"notes": "C - D - Gb - A",
+"root": "D",
+"bass": "A",
+"replaces": "S412"
 },
 {
 "id": "S413",
@@ -7101,20 +7105,21 @@
 "bass": "B"
 },
 {
-"id": "S443",
+"id": "S954",
 "part": "coverage",
-"key": "128:3:3",
-"work": "128",
-"title": "J S Bach Prelude No 16",
-"bar": 3,
-"beat": 3.0,
-"untilBeat": null,
-"endBar": 4,
-"endBeat": 1.0,
+"key": "145:110:1",
+"work": "145",
+"title": "Purcell Purcell Sonata in G Minor Z807",
+"bar": 110,
+"beat": 1.0,
+"untilBeat": 2.0,
+"endBar": 110,
+"endBeat": 2.0,
 "localKey": "G minor",
 "notes": "C - G - A",
 "root": "A",
-"bass": "C"
+"bass": "C",
+"replaces": "S443"
 },
 {
 "id": "S444",
@@ -9168,20 +9173,21 @@
 "bass": "Eb"
 },
 {
-"id": "S572",
+"id": "S955",
 "part": "coverage",
-"key": "061:311:2",
-"work": "061",
-"title": "Beethoven Ludwig van n07op59 1 04",
-"bar": 311,
-"beat": 2.0,
-"untilBeat": 2.5,
-"endBar": 311,
-"endBeat": 2.5,
+"key": "062:128:2.5",
+"work": "062",
+"title": "Beethoven Ludwig van n16op135 01",
+"bar": 128,
+"beat": 2.5,
+"untilBeat": null,
+"endBar": 129,
+"endBeat": 1.0,
 "localKey": "F major",
 "notes": "D - F - G - B",
 "root": "G",
-"bass": "F"
+"bass": "F",
+"replaces": "S572"
 },
 {
 "id": "S573",
@@ -9456,36 +9462,38 @@
 "bass": "G"
 },
 {
-"id": "S590",
+"id": "S956",
 "part": "random",
-"key": "201:23:4",
-"work": "201",
-"title": "Mozart Wolfgang Amadeus K282 1",
-"bar": 23,
-"beat": 4.0,
+"key": "200:11:1",
+"work": "200",
+"title": "Mozart Wolfgang Amadeus K281 2",
+"bar": 11,
+"beat": 1.0,
 "untilBeat": null,
-"endBar": 24,
+"endBar": 12,
 "endBeat": 1.0,
 "localKey": "Eb major",
-"notes": "Db - Eb - G - Bb",
-"root": "Eb",
-"bass": "G"
+"notes": "C - D - F - Ab - Bb",
+"root": "Bb",
+"bass": "Bb",
+"replaces": "S590"
 },
 {
-"id": "S591",
+"id": "S957",
 "part": "coverage",
-"key": "261:30:3",
-"work": "261",
-"title": "Emilie Mayer 3 Lieder Op 7 No 1 Du bist wie eine Blume",
-"bar": 30,
+"key": "287:7:3",
+"work": "287",
+"title": "Fanny Mendelssohn Hensel 6 Lieder Op 1",
+"bar": 7,
 "beat": 3.0,
 "untilBeat": 4.0,
-"endBar": 30,
+"endBar": 7,
 "endBeat": 4.0,
-"localKey": "Ab major",
-"notes": "D - F - Ab - B",
-"root": "D",
-"bass": "F"
+"localKey": "E major",
+"notes": "C# - E - G# - A#",
+"root": "A#",
+"bass": "C#",
+"replaces": "S591"
 },
 {
 "id": "S592",
@@ -10193,20 +10201,21 @@
 "bass": "E"
 },
 {
-"id": "S636",
+"id": "S958",
 "part": "random",
-"key": "059:335:1",
-"work": "059",
-"title": "Beethoven Ludwig van n01op18 1 04",
-"bar": 335,
-"beat": 1.0,
-"untilBeat": null,
-"endBar": 336,
-"endBeat": 1.0,
-"localKey": "F major",
-"notes": "Db - E - G - Bb",
-"root": "E",
-"bass": "Bb"
+"key": "204:21:2",
+"work": "204",
+"title": "Mozart Wolfgang Amadeus K457 2",
+"bar": 21,
+"beat": 2.0,
+"untilBeat": 3.5,
+"endBar": 21,
+"endBeat": 3.5,
+"localKey": "Eb major",
+"notes": "D - F - Bb",
+"root": "Bb",
+"bass": "Bb",
+"replaces": "S636"
 },
 {
 "id": "S637",
@@ -12228,20 +12237,21 @@
 "bass": "F"
 },
 {
-"id": "S763",
+"id": "S959",
 "part": "random",
-"key": "080:13:1",
-"work": "080",
-"title": "Louise Reichardt Zw lf Ges nge No 5 Betteley der V gel",
-"bar": 13,
-"beat": 1.0,
+"key": "299:111:1.5",
+"work": "299",
+"title": "Beethoven Ludwig van n08op59 2 03",
+"bar": 111,
+"beat": 1.5,
 "untilBeat": null,
-"endBar": 14,
+"endBar": 112,
 "endBeat": 1.0,
-"localKey": "G major",
-"notes": "E - G - A",
-"root": "A",
-"bass": "A"
+"localKey": "E major",
+"notes": "D# - F# - A",
+"root": "D#",
+"bass": "F#",
+"replaces": "S763"
 },
 {
 "id": "S764",
@@ -12260,20 +12270,21 @@
 "bass": "C"
 },
 {
-"id": "S765",
+"id": "S960",
 "part": "coverage",
-"key": "033:88:4",
-"work": "033",
-"title": "Mozart Wolfgang Amadeus K310 1",
-"bar": 88,
-"beat": 4.0,
-"untilBeat": null,
-"endBar": 89,
-"endBeat": 1.0,
-"localKey": "A minor",
-"notes": "C - Eb - F - A",
-"root": "F",
-"bass": "A"
+"key": "219:7:1",
+"work": "219",
+"title": "Franz Schubert Winterreise D 911 10 Rast",
+"bar": 7,
+"beat": 1.0,
+"untilBeat": 2.5,
+"endBar": 7,
+"endBeat": 2.5,
+"localKey": "C minor",
+"notes": "C - Eb - G - Ab",
+"root": "Ab",
+"bass": "C",
+"replaces": "S765"
 },
 {
 "id": "S766",
@@ -12388,20 +12399,21 @@
 "bass": "C"
 },
 {
-"id": "S773",
+"id": "S961",
 "part": "coverage",
-"key": "144:23:1",
-"work": "144",
-"title": "Purcell Chacony Chaconne in G Minor Z730",
-"bar": 23,
+"key": "036:14:1",
+"work": "036",
+"title": "Beethoven Ludwig van n15op132 01",
+"bar": 14,
 "beat": 1.0,
-"untilBeat": 1.5,
-"endBar": 23,
-"endBeat": 1.5,
-"localKey": "G minor",
-"notes": "D - Eb - G - A",
-"root": "D",
-"bass": "D"
+"untilBeat": 2.0,
+"endBar": 14,
+"endBeat": 2.0,
+"localKey": "A minor",
+"notes": "E - A - B",
+"root": "E",
+"bass": "E",
+"replaces": "S773"
 },
 {
 "id": "S774",
@@ -14744,7 +14756,8 @@
 }
 ],
 "previousSamples": [
-"35bb3d497838a5a7211c162cd36dc0ec6d03697bd779f061c42c7554bddba312"
+"35bb3d497838a5a7211c162cd36dc0ec6d03697bd779f061c42c7554bddba312",
+"086b7bd3138a6ac5c4750a7606bb3618cfbd77db161c0f81a2045d8cb7c64419"
 ],
 "replacements": [
 {
@@ -14991,6 +15004,110 @@
 "reason": "nothing at the position could be judged",
 "oldKey": "131:28:3",
 "newKey": "066:64:1"
+}
+]
+},
+{
+"date": "2026-09-21",
+"outcomeBlind": false,
+"rule": "Questions named by the author after rating, each with the author's reason; most are positions where the author judged musWM's reading wrong or unresolved, so this replacement is not outcome-blind. The replacement is drawn from the same stratum (coverage) or from the other shared-key positions (random), seeded per question, and gets a new id.",
+"from": "analysis_RNV-KZVUC (1).xlsx",
+"questions": [
+{
+"old": "S027",
+"new": "S950",
+"part": "random",
+"reason": "the span holds more than one chord",
+"oldKey": "008:4:2",
+"newKey": "243:120:1"
+},
+{
+"old": "S045",
+"new": "S951",
+"part": "random",
+"reason": "author's request: musWM lists a note the score does not have there",
+"oldKey": "178:66:1",
+"newKey": "063:63:1"
+},
+{
+"old": "S387",
+"new": "S952",
+"part": "coverage",
+"reason": "author's request: musWM's reading not resolved by the engine developments",
+"oldKey": "214:10:2",
+"newKey": "214:6:2"
+},
+{
+"old": "S412",
+"new": "S953",
+"part": "coverage",
+"reason": "author's request: musWM's bass judged wrong",
+"oldKey": "006:12:4",
+"newKey": "157:11:1"
+},
+{
+"old": "S443",
+"new": "S954",
+"part": "coverage",
+"reason": "author's request: musWM's reading not resolved by the engine developments",
+"oldKey": "128:3:3",
+"newKey": "145:110:1"
+},
+{
+"old": "S572",
+"new": "S955",
+"part": "coverage",
+"reason": "author's request: musWM's bass judged wrong",
+"oldKey": "061:311:2",
+"newKey": "062:128:2.5"
+},
+{
+"old": "S590",
+"new": "S956",
+"part": "random",
+"reason": "author's request: musWM's bass judged wrong",
+"oldKey": "201:23:4",
+"newKey": "200:11:1"
+},
+{
+"old": "S591",
+"new": "S957",
+"part": "coverage",
+"reason": "author's request: musWM's bass judged wrong",
+"oldKey": "261:30:3",
+"newKey": "287:7:3"
+},
+{
+"old": "S636",
+"new": "S958",
+"part": "random",
+"reason": "author's request: musWM's bass judged wrong",
+"oldKey": "059:335:1",
+"newKey": "204:21:2"
+},
+{
+"old": "S763",
+"new": "S959",
+"part": "random",
+"reason": "author's request: musWM's reading not resolved by the engine developments",
+"oldKey": "080:13:1",
+"newKey": "299:111:1.5"
+},
+{
+"old": "S765",
+"new": "S960",
+"part": "coverage",
+"reason": "author's request: musWM's bass judged wrong",
+"oldKey": "033:88:4",
+"newKey": "219:7:1"
+},
+{
+"old": "S773",
+"new": "S961",
+"part": "coverage",
+"reason": "author's request: musWM's reading not resolved by the engine developments",
+"oldKey": "144:23:1",
+"newKey": "036:14:1"
 }
 ]
 }

@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Method · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260921201711">
+<link rel="stylesheet" href="css/site.css?v=20260921204252">
 <style>
   table.rtc{margin:12px 0;font-size:13.5px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
   table.rtc th{text-align:left;font-size:12.5px;background:var(--clr-lilac-50);padding:9px 12px;border-bottom:1px solid var(--line)}
@@ -61,7 +61,15 @@
             other shared-key positions &mdash; seeded per question, and gets a new id, so no earlier answer is carried
             onto it. On 21 September 2026 this replaced 30 of the 919 questions (21 coverage, 9 random); 11 more were
             kept because their stratum holds no other position. Every replacement is listed in the sample file,
-            together with the fingerprint of the version it replaced.</td></tr>
+            together with the fingerprint of the version it replaced.
+            <br><br><b>A second replacement is not outcome-blind.</b> Later the same day the author named 19 of the
+            questions still answered &ldquo;unclear&rdquo; to be replaced, each with a reason: one because its span holds
+            more than one chord, the others because the author judged musWM&rsquo;s bass wrong (8), its note list to
+            contain a note the score does not have there (2), the complete chord not read (1), or its reading not yet
+            resolved by the engine developments (7). 12 were replaced by the same drawing rule (7 coverage, 5 random);
+            7 were kept because their stratum holds no other position. None of the 19 had been counted in the figures,
+            but because most were chosen for what musWM did, the replacement favours musWM and is recorded as such in
+            the sample file.</td></tr>
       <tr><td>Whose rating this is</td>
         <td>The figures shown on this site come from <b>one rating, by the author of musWM</b>. Every participant
             who rates the sample gets their own figures, and the answers of everyone who is not an author of one of
@@ -549,8 +557,8 @@ fetch('data/engine_log_public.json').then(function (r) { return r.json(); }).the
 });
 </script>
 
-<script src="data/corpora.js?v=20260921201711"></script>
-<script src="js/rnv-data.js?v=20260921201711"></script>
+<script src="data/corpora.js?v=20260921204252"></script>
+<script src="js/rnv-data.js?v=20260921204252"></script>
 <script>
 RNVData.boot({ page: 'method.html', title: 'Method', host: 'host',
                needsCorpus: false, render: function () {} });
