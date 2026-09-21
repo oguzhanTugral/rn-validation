@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>musWM · RN comparison</title>
 <link rel="icon" href="assets/brand/muswm-mark-3d.svg" type="image/svg+xml">
-<link rel="stylesheet" href="css/site.css?v=20260921070826">
+<link rel="stylesheet" href="css/site.css?v=20260921072301">
 <style>
 /* hero: environment palette (lilac wash, soft pink and sky), deep ink */
 .hero{position:relative;overflow:hidden;color:var(--deep);
@@ -100,6 +100,7 @@ body.home header.site .brand .logo{display:none}
     <h2>Blind review &mdash; the rater sees the score, not who wrote the label</h2>
     <div class="rowsA" id="blindRows"><div class="empty">Loading&hellip;</div></div>
     <p class="dim" style="font-size:13px;margin:10px 0 0" id="blindNote"></p>
+    <div id="figSource"></div>
   </section>
 
   <section class="prelim-foot">
@@ -108,48 +109,16 @@ body.home header.site .brand .logo{display:none}
   </section>
 </main>
 
-<script>
-/* The comparison figure of the whole site: the blind review, read from the corpus pack. */
-(function () {
-  var host = document.getElementById('blindRows');
-  if (!host) return;
-  var id = (window.RNVData && RNVData.currentCorpusId && RNVData.currentCorpusId()) || 'wir335';
-  var colors = { musWM: 'var(--muswm)', AnalysisGNN: 'var(--gnn)', AugmentedNet: 'var(--anet)' };
-  fetch('data/corpora/' + encodeURIComponent(id) + '/blind_results.json')
-    .then(function (r) { return r.json(); })
-    .then(function (b) {
-      host.innerHTML = b.engines.map(function (e) {
-        return '<div class="eng"><span class="nm" style="color:' + colors[e.name] + '">' + e.name + '</span>' +
-          '<div class="track"><div class="fill" data-w="' + e.rate + '" style="background:' + colors[e.name] + '"></div></div>' +
-          '<span class="pc">' + String(e.rate).replace('.', ',') + '%</span></div>';
-      }).join('');
-      requestAnimationFrame(function () {
-        Array.prototype.forEach.call(host.querySelectorAll('.fill'), function (f) { f.style.width = f.dataset.w + '%'; });
-      });
-      var note = document.getElementById('blindNote');
-      if (note) {
-        note.innerHTML = '<b>' + b.answered.toLocaleString('en-US') + '</b> of ' +
-          b.positions.toLocaleString('en-US') + ' sampled positions carry a Roman-numeral answer (' +
-          b.unclear + ' were answered &ldquo;unclear&rdquo; and are left out). At each position the rater ticked ' +
-          'every Roman numeral they accept; an analyser counts as right when a label it gave is among them. ' +
-          '<b>This is one rating, by the author of musWM.</b> Every participant is rated separately on ' +
-          '<a href="compare.html">Compare</a>, where the answers of everyone who is not an author of one of the ' +
-          'analysers are pooled into a common score. Rate the sample yourself on ' +
-          '<a href="review.html">Blind review</a>.';
-      }
-    }).catch(function () { host.innerHTML = '<div class="empty">The blind-review figures could not be loaded.</div>'; });
-})();
-</script>
 
-<script src="js/rnv-sharedkey.js?v=20260921070826"></script>
+<script src="js/rnv-sharedkey.js?v=20260921072301"></script>
 <script>
 fetch('data/corpora/wir335/shared_key.json').then(function (r) { return r.json(); }).then(function (sk) {
   document.getElementById('skWrap').innerHTML = rnvSharedKeyTable(sk);
   document.getElementById('skNote').innerHTML = RNV_SHARED_NOTE;
 }).catch(function () {});
 </script>
-<script src="data/corpora.js?v=20260921070826"></script>
-<script src="js/rnv-data.js?v=20260921070826"></script>
+<script src="data/corpora.js?v=20260921072301"></script>
+<script src="js/rnv-data.js?v=20260921072301"></script>
 <script>
 RNVData.boot({
   page: 'hero.html', title: 'Home', host: 'blindRows', needsCorpus: false,
@@ -165,15 +134,18 @@ RNVData.boot({
       document.getElementById('sTheory').textContent = d.codeBased.conformantPct + '%';
     }).catch(function () {});
 
-    fetch('data/corpora/' + encodeURIComponent(id) + '/blind_results.json')
-      .then(function (r) { return r.json(); })
-      .then(function (b) {
-        document.getElementById('sRated').textContent = nf(b.answered);
-        document.getElementById('sSample').textContent = nf(b.positions);
-      }).catch(function () {});
+    // the two counts follow whichever rating the page is reporting
+    window.rnvFiguresPainted = function (entry, data) {
+      document.getElementById('sRated').textContent = entry && entry.answered ? nf(entry.answered) : '—';
+      var sample = (data.published && data.published.positions) || null;
+      document.getElementById('sSample').textContent = sample ? nf(sample) : '—';
+    };
 
   }
 });
 </script>
+<script src="js/rnv-rnscore.js?v=20260921072301"></script>
+<script src="js/rnv-auth.js?v=20260921072301"></script>
+<script src="js/rnv-figures.js?v=20260921072301"></script>
 </body>
 </html>
