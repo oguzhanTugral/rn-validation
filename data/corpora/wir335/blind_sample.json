@@ -5,7 +5,7 @@
 "packGenerated": "2026-09-21T06:14:42",
 "coverageStrata": 619,
 "randomN": 300,
-"sha256OfPositions": "c3ad09e0801b2250c9a03935dd9a293e8e32f6240a714620176fc7c76cbc57d9",
+"sha256OfPositions": "1d38eaecdcf352308b52d79edb6391fedafd16596ecd14a8d6aefb5c42d40a0d",
 "design": "coverage: one random position per (mode, musWM Roman numeral with inversion, agreement pattern); random: simple random sample of the other shared-key positions. Order shuffled. No Roman numeral or engine label is included.",
 "items": [
 {
@@ -169,20 +169,21 @@
 "bass": "Eb"
 },
 {
-"id": "S011",
+"id": "S962",
 "part": "coverage",
-"key": "331:49:2",
-"work": "331",
-"title": "Hugo Wolf Eichendorff Lieder No 8 Nachtzauber",
-"bar": 49,
+"key": "312:37:2",
+"work": "312",
+"title": "Clara Schumann Lieder Op 12 No 4 Liebst du um Sch nheit",
+"bar": 37,
 "beat": 2.0,
-"untilBeat": 2.5,
-"endBar": 49,
-"endBeat": 2.5,
-"localKey": "Gb major",
-"notes": "C - D - F - Gb - A",
-"root": "F",
-"bass": "A"
+"untilBeat": 3.0,
+"endBar": 37,
+"endBeat": 3.0,
+"localKey": "Db major",
+"notes": "C - E - G - Bb",
+"root": "C",
+"bass": "G",
+"replaces": "S011"
 },
 {
 "id": "S012",
@@ -14757,7 +14758,8 @@
 ],
 "previousSamples": [
 "35bb3d497838a5a7211c162cd36dc0ec6d03697bd779f061c42c7554bddba312",
-"086b7bd3138a6ac5c4750a7606bb3618cfbd77db161c0f81a2045d8cb7c64419"
+"086b7bd3138a6ac5c4750a7606bb3618cfbd77db161c0f81a2045d8cb7c64419",
+"c3ad09e0801b2250c9a03935dd9a293e8e32f6240a714620176fc7c76cbc57d9"
 ],
 "replacements": [
 {
@@ -15108,6 +15110,22 @@
 "reason": "author's request: musWM's reading not resolved by the engine developments",
 "oldKey": "144:23:1",
 "newKey": "036:14:1"
+}
+]
+},
+{
+"date": "2026-09-21",
+"outcomeBlind": true,
+"rule": "A question displayed wrongly is replaced: the page named its notes in a key the score is not written in. Its stratum held no other position, so the replacement is drawn, seeded, from the same mode and the same chord with the same applied target, in any inversion and agreement pattern, and gets a new id.",
+"from": "analysis_RNV-KZVUC (1).xlsx",
+"questions": [
+{
+"old": "S011",
+"new": "S962",
+"part": "coverage",
+"reason": "the question is displayed wrongly: the score is written in F# major, the notes are named in Gb major (the stratum holds no other position: same mode and chord, any inversion)",
+"oldKey": "331:49:2",
+"newKey": "312:37:2"
 }
 ]
 }
