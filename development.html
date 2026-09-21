@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Development · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260921031440">
+<link rel="stylesheet" href="css/site.css?v=20260921035803">
 <style>
   .dv-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.dv-grid{grid-template-columns:1fr}}
@@ -85,12 +85,12 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260921031440"></script>
-<script src="js/rnv-data.js?v=20260921031440"></script>
-<script src="js/rnv-review.js?v=20260921031440"></script>
+<script src="data/corpora.js?v=20260921035803"></script>
+<script src="js/rnv-data.js?v=20260921035803"></script>
+<script src="js/rnv-review.js?v=20260921035803"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260921031440"></script>
-<script src="js/rnv-spell.js?v=20260921031440"></script>
+<script src="js/rnv-score.js?v=20260921035803"></script>
+<script src="js/rnv-spell.js?v=20260921035803"></script>
 <script>
 RNVData.boot({ page: 'development.html', title: 'Development', host: 'dvCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -298,7 +298,11 @@ RNVData.boot({ page: 'development.html', title: 'Development', host: 'dvCard', n
     .then(function (r) { return r.json(); })
     .then(function (d) {
       data = d;
-      el('dvNote').innerHTML = '<b>' + d.cases.length + ' cases</b> from the rated analysis' +
+      el('dvNote').innerHTML = !d.cases.length
+        ? '<b>Every case has been answered.</b> Each position of the rated analysis was either confirmed ' +
+          'correct or assigned to one of the numbered engine developments, so nothing is left to write a ' +
+          'development note for. New cases appear here when a new analysis is rated.'
+        : '<b>' + d.cases.length + ' cases</b> from the rated analysis' +
         (d.analyst ? ' by ' + esc(d.analyst) : '') + ': ' + d.counts.wrong + ' judged wrong, ' +
         d.counts.unclear + ' unclear, ' + d.counts.note + ' carrying a note (a case can be in more than one). ' +
         'Positions already answered by a pending engine development are left out. ' +
