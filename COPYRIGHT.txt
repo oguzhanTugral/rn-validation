@@ -1,0 +1,22 @@
+Copyright (c) 2026 Oğuzhan Tuğral. All rights reserved.
+
+Project: musWM · Roman numeral validation
+Official website: https://oguzhantugral.github.io/rn-validation/hero.html
+Repository: https://github.com/oguzhanTugral/rn-validation
+
+The original website software and original documentation by Oğuzhan Tuğral
+are provided for viewing and use through the official website. No general
+permission to redistribute, republish, or create derivative distributions
+of that software or documentation is granted. Contact the author through
+the repository to request permission. Rights available under applicable
+law are unaffected.
+
+Third-party libraries, corpora, scores, source material, and contributions
+retain their respective ownership and applicable terms. This notice does
+not replace third-party licenses or claim ownership of participant answers.
+Attribution in exported analyses identifies the software and source website;
+participant answers remain attributed to their respective participants.
+
+These notices are provenance information, not copy protection or a digital
+signature. They can be removed or altered and do not establish that an
+export is authentic or unchanged.

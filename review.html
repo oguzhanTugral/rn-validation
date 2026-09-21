@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Oğuzhan Tuğral. All rights reserved. Source: https://oguzhantugral.github.io/rn-validation/hero.html -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -222,7 +223,7 @@
 </main>
 
 <script src="data/corpora.js?v=20260921064901"></script>
-<script src="js/rnv-data.js?v=20260921064901"></script>
+<script src="js/rnv-data.js?v=20260921-attribution"></script>
 <script src="js/rnv-auth.js?v=20260921064901"></script>
 <script src="js/rnv-review.js?v=20260921064901"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
@@ -831,6 +832,8 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   function saveAnalysis(who) {
     var done = sample.items.filter(rated).length;
     download(new Blob([JSON.stringify({
+      source: 'https://oguzhantugral.github.io/rn-validation/hero.html',
+      softwareCopyright: '© 2026 Oğuzhan Tuğral. All rights reserved. Participant answers remain attributed to the participant.',
       format: 'rnv-blind-ratings', analysisId: who.id, analyst: who.analyst, email: who.email,
       country: who.country, profession: who.profession, education: who.education, corpus: corpusId, sheet: sheet, sample: sample.sha256OfPositions, positionsRated: done,
       exportedAt: new Date().toISOString(), rows: RNVReview.all(sheet)
@@ -884,7 +887,10 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
               (v.rn || []).join(' | '), v.rnNone || '', v.rnU ? 'yes' : '', v.rnDone ? rightEngines(it, v).join(', ') : '',
               v.rnUndone ? firstAnswer(v.rnPrev) : ''];
     });
-    download(RNVReview.xlsx('Blind review', header, rows, [12, 20, 26, 14, 20, 24, 7, 10, 8, 36, 9, 10, 8, 18, 12, 22, 8, 8, 10, 10, 10, 16, 40, 18, 14, 10, 28, 30]),
+    var exportedAt = new Date().toISOString();
+    header = header.concat(['Source website', 'Exported at (UTC)', 'Software attribution']);
+    rows = rows.map(function (row) { return row.concat(['https://oguzhantugral.github.io/rn-validation/hero.html', exportedAt, '© 2026 Oğuzhan Tuğral. All rights reserved. Participant answers remain attributed to the participant.']); });
+    download(RNVReview.xlsx('Blind review', header, rows, [12, 20, 26, 14, 20, 24, 7, 10, 8, 36, 9, 10, 8, 18, 12, 22, 8, 8, 10, 10, 10, 16, 40, 18, 14, 10, 28, 30, 60, 26, 80]),
       'analysis_' + who.id + '.xlsx');
   }
 

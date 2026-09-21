@@ -1,3 +1,4 @@
+/* Copyright (c) 2026 Oğuzhan Tuğral. All rights reserved. Source: https://oguzhantugral.github.io/rn-validation/hero.html */
 
 (function (global) {
   'use strict';
@@ -162,10 +163,12 @@
   }
 
   function footer(corpus) {
-    if (!corpus) return;
+    if (document.getElementById('rnvAttribution')) return;
     document.body.insertAdjacentHTML('beforeend',
-      '<footer class="site"><div class="wrap">' +
-      'built ' + esc(corpus.generated) + '</div></footer>');
+      '<footer class="site" id="rnvAttribution"><div class="wrap">' +
+      '&copy; 2026 Oğuzhan Tuğral &mdash; All rights reserved. ' +
+      '<a href="hero.html">musWM · RN validation</a> · <a href="COPYRIGHT.txt">Use and attribution</a>' +
+      (corpus ? ' · built ' + esc(corpus.generated) : '') + '</div></footer>');
   }
 
 

@@ -1,3 +1,4 @@
+/* Copyright (c) 2026 Oğuzhan Tuğral. All rights reserved. Source: https://oguzhantugral.github.io/rn-validation/hero.html */
 (function () {
   'use strict';
   var directoryPromise;
