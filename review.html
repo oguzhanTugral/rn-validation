@@ -235,6 +235,11 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   var esc = RNVData.esc, pretty = RNVData.pretty;
   var corpusId = RNVData.currentCorpusId() || 'wir335';
   var sheet = corpusId + '.blind';
+  var reviewOwner = window.RNVAuth && RNVAuth.user() ? RNVAuth.user().id : null;
+  function sameAccount() { return (RNVAuth.user() ? RNVAuth.user().id : null) === reviewOwner; }
+  window.addEventListener('storage', function (event) {
+    if (event.key === 'rnv.session' && !sameAccount()) { syncOn = false; clearTimeout(syncTimer); location.reload(); }
+  });
   var sample = null, order = [], pos = 0, scope = 'bar';
   var OPT = [['y', 'Correct', 'ok'], ['n', 'Wrong', 'no'], ['u', 'Unclear', 'un']];
   var Q = [['nt', 'Notes', [['y', 'Exactly', 'ok'], ['x', 'All + extra', 'ex'], ['n', 'Missing', 'no'], ['u', 'Unclear', 'un']],
@@ -404,6 +409,10 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') flushOnLeave(); });
 
   function syncNow(onLeave) {
+    if (!syncOn || !sameAccount()) {
+      el('brSync').textContent = 'Account changed or answers have not loaded. Reload before saving.';
+      return Promise.resolve(false);
+    }
     if (!window.RNVAuth || !RNVAuth.user()) {
       identity();                                         // sends a signed-out user to sign in
       return Promise.resolve(false);
@@ -436,28 +445,35 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
 
   function startLiveSync() {
     var set = RNVReview.setKey, all = RNVReview.replaceAll;
-    RNVReview.setKey = function () { var r = set.apply(RNVReview, arguments); changed(); return r; };
-    RNVReview.replaceAll = function () { var r = all.apply(RNVReview, arguments); Promise.resolve(r).then(changed); return r; };
-    mine();
-    if (!window.RNVAuth || !RNVAuth.user()) { el('brSync').textContent = ''; return; }        // the panel text already says it
-    // continue where this participant left off, also on another device: saved answers fill what this browser lacks
-    RNVAuth.db('live_answers?user_id=eq.' + encodeURIComponent(RNVAuth.user().id) + '&select=rows,sample').then(function (got) {
-      var saved = got && got[0];
-      if (saved && saved.sample === sample.sha256OfPositions) {
-        // the account is the record: its answers replace this browser's. Positions the account does not have
-        // at all are kept from this browser (work done here while signed out) and saved up straight away.
-        var local = RNVReview.all(sheet), merged = {}, srv = saved.rows || {}, kept = 0;
-        Object.keys(local).forEach(function (k) { if (!(k in srv)) { merged[k] = local[k]; kept += 1; } });
-        Object.keys(srv).forEach(function (k) { merged[k] = srv[k]; });
-        return all.call(RNVReview, sheet, merged).then(function () {
-          refreshOrder(order[pos] && order[pos].id);
-          if (kept) syncNow();                        // this browser had positions the account lacked
-        });
+    function canEdit() {
+      if (!sameAccount() || (reviewOwner && !syncOn)) {
+        el('brSync').textContent = 'Reload this page to load the current account before editing.';
+        return false;
       }
-    }).catch(function () {}).then(function () {
+      return true;
+    }
+    RNVReview.setKey = function () { if (!canEdit()) return; var r = set.apply(RNVReview, arguments); changed(); return r; };
+    RNVReview.replaceAll = function () { if (!canEdit()) return Promise.resolve(false); var r = all.apply(RNVReview, arguments); Promise.resolve(r).then(changed); return r; };
+    if (!reviewOwner) { mine(); return Promise.resolve(); }
+    el('brSync').textContent = 'Loading your saved account answers…';
+    el('brCard').inert = true; el('brClear').disabled = true;
+    return RNVAuth.db('live_answers?user_id=eq.' + encodeURIComponent(reviewOwner) + '&select=rows,sample').then(function (got) {
+      if (!sameAccount()) throw new Error('Account changed. Reload this page.');
+      var saved = got && got[0];
+      // Only this account's local cache is eligible. Never import the old shared browser cache.
+      if (saved && saved.sample === sample.sha256OfPositions) {
+        return all.call(RNVReview, sheet, saved.rows || {});
+      }
+    }).then(function () {
+      if (!sameAccount()) throw new Error('Account changed. Reload this page.');
       syncOn = true;
-      el('brSync').innerHTML = '<span class="dim">Your answers are saved to your account automatically.</span>';
-      mine();
+      el('brCard').inert = false; el('brClear').disabled = false;
+      el('brShow').value = allRated() ? 'all' : 'todo';
+      refreshOrder(); mine();
+      el('brSync').textContent = 'Your saved answers are loaded. Changes save to this account automatically.';
+    }).catch(function (e) {
+      syncOn = false;
+      el('brSync').textContent = 'Account answers could not be loaded: ' + e.message + ' Reload to retry; saving is paused.';
     });
   }
 
@@ -714,9 +730,13 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   el('brClear').addEventListener('click', function () {
     var done = sample.items.filter(rated).length;
     ask('Clear all ratings?', 'This deletes every rating and note on this page (' + done + ' of ' + sample.items.length +
-        ' positions rated). It cannot be undone — download the JSON first if you want to keep a copy.',
+        ' positions rated). Only the current account is affected. A recovery copy is kept in this browser; download the JSON for your own backup.',
         'Delete all').then(function (yes) {
-      if (yes) RNVReview.replaceAll(sheet, {}).then(function () { refreshOrder(); });
+      if (yes && sameAccount() && (!reviewOwner || syncOn)) {
+        try { localStorage.setItem('rnv.recovery.' + sheet + '.' + Date.now(), JSON.stringify(RNVReview.all(sheet))); }
+        catch (e) { el('brSync').textContent = 'Could not create a recovery copy. Nothing was cleared.'; return; }
+        RNVReview.replaceAll(sheet, {}).then(function () { refreshOrder(); });
+      }
     });
   });
   el('brCompare').addEventListener('click', function () { location.href = 'compare.html'; });
@@ -836,6 +856,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   fetch('data/corpora/' + encodeURIComponent(corpusId) + '/blind_sample.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (s) {
     // ratings belong to one sample: a new sample gets its own sheet, so old ratings never attach to new positions
     if (s.sha256OfPositions.indexOf('33bd23d871c40d0f') !== 0) sheet = corpusId + '.blind.' + s.sha256OfPositions.slice(0, 12);
+    sheet += '.account.' + (reviewOwner || 'guest');
     return RNVReview.init(sheet).then(function (serverOk) { return [s, serverOk]; });
   }).then(function (res) {
     sample = res[0];
