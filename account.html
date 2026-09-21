@@ -93,6 +93,16 @@
       <div id="myList" class="dim" style="font-size:14px">Loading&hellip;</div>
     </div>
 
+    <div class="acc-box" style="border-color:#dc2626;margin-top:24px">
+      <h3>Delete my account</h3>
+      <p>This permanently deletes your account, profile, saved answers, uploaded analyses, ratings and comments. Feedback on your answers and private conversations involving you are also deleted for both sides. Other participants' accounts and analyses remain unchanged.</p>
+      <p>Download your analysis first if you want a copy. This cannot be undone. Previously downloaded files and copies on other devices are not erased.</p>
+      <p>Account to delete: <strong id="deleteAccountEmail"></strong></p>
+      <div class="acc-f"><label for="deleteEmail">Type this account's full e-mail address to confirm</label><input id="deleteEmail" type="email" autocomplete="off"></div>
+      <label><input id="deleteUnderstand" type="checkbox"> I understand that this permanently deletes my account and its data.</label>
+      <div class="acc-row"><button id="deleteAccount" type="button" disabled style="color:#b91c1c">Permanently delete my account</button></div>
+      <p id="deleteStatus" role="status"></p>
+    </div>
     <div class="acc-row"><button id="aOut" type="button">Sign out</button></div>
   </div>
 </main>
@@ -118,6 +128,10 @@ RNVData.boot({ page: 'review.html', title: 'Account', host: 'accOut', needsCorpu
     el('accOut').hidden = !!u;
     el('accIn').hidden = !u;
     if (!u) return;
+    el('deleteAccountEmail').textContent = u.email;
+    el('deleteAccount').disabled = true;
+    el('deleteEmail').value = '';
+    el('deleteUnderstand').checked = false;
     RNVAuth.profile().then(function (p) {
       el('pEmail').value = p.email || u.email;
       el('pName').value = p.name || '';
@@ -220,6 +234,37 @@ RNVData.boot({ page: 'review.html', title: 'Account', host: 'accOut', needsCorpu
   });
 
   el('aOut').addEventListener('click', function () { RNVAuth.signOut().then(show); });
+  var deletionOwner = RNVAuth.user();
+  function allowDelete() {
+    var u = RNVAuth.user();
+    el('deleteAccount').disabled = !u || !el('deleteUnderstand').checked ||
+      el('deleteEmail').value.trim().toLowerCase() !== u.email.toLowerCase();
+    deletionOwner = u;
+  }
+  el('deleteEmail').addEventListener('input', allowDelete);
+  el('deleteUnderstand').addEventListener('change', allowDelete);
+  el('deleteAccount').addEventListener('click', function () {
+    var u = RNVAuth.user();
+    if (!u || !deletionOwner || u.id !== deletionOwner.id || el('deleteAccount').disabled) return;
+    if (!window.confirm('Permanently delete ' + u.email + ' and its saved answers, feedback and private messages? This cannot be undone.')) return;
+    el('deleteAccount').disabled = true;
+    el('deleteStatus').textContent = 'Deleting account…';
+    RNVAuth.db('rpc/delete_own_account', {method:'POST', body:{confirm_email:el('deleteEmail').value.trim(), confirm_user_id:u.id}})
+      .then(function () {
+        try {
+          Object.keys(localStorage).forEach(function (key) {
+            if ((key.indexOf('rnv.review.') === 0 || key.indexOf('rnv.recovery.') === 0) && key.indexOf('.account.' + u.id) !== -1) localStorage.removeItem(key);
+          });
+          var current = RNVAuth.user();
+          if (current && current.id === u.id) localStorage.removeItem('rnv.session');
+        } catch (e) {}
+        show();
+        msg('aMsg', 'Your account and its data have been deleted.', true);
+      }).catch(function (e) {
+        el('deleteStatus').textContent = 'Deletion could not be confirmed: ' + e.message + ' Check your connection and sign-in status before retrying.';
+        allowDelete();
+      });
+  });
 
   // arriving from the e-mail's sign-in link: take the session from the address, then continue as after a code
   RNVAuth.fromUrl().then(function (viaLink) {
