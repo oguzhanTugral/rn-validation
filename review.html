@@ -361,7 +361,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   }
 
   // ---- automatic saving to the participant's account (one live row per participant)
-  var syncTimer = null, syncOn = false;
+  var syncTimer = null, syncOn = false, syncQueue = Promise.resolve();
 
   function tiles(t) {
     var E = RNVRnScore.ENGINES, best = -1;
@@ -409,6 +409,11 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') flushOnLeave(); });
 
   function syncNow(onLeave) {
+    syncQueue = syncQueue.catch(function () {}).then(function () { return saveCurrentAccount(onLeave); });
+    return syncQueue;
+  }
+
+  function saveCurrentAccount(onLeave) {
     if (!syncOn || !sameAccount()) {
       el('brSync').textContent = 'Account changed or answers have not loaded. Reload before saving.';
       return Promise.resolve(false);
@@ -728,15 +733,37 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   function download(blob, name) { RNVReview.download(blob, name); }
   el('brJson').addEventListener('click', function () { whenComplete(saveAnalysis); });
   el('brClear').addEventListener('click', function () {
+    if (!reviewOwner || !sameAccount() || !syncOn) {
+      el('brSync').textContent = 'Sign in and wait for your account answers to load before clearing.';
+      return;
+    }
+    var owner = reviewOwner, email = RNVAuth.user().email;
     var done = sample.items.filter(rated).length;
-    ask('Clear all ratings?', 'This deletes every rating and note on this page (' + done + ' of ' + sample.items.length +
-        ' positions rated). Only the current account is affected. A recovery copy is kept in this browser; download the JSON for your own backup.',
-        'Delete all').then(function (yes) {
-      if (yes && sameAccount() && (!reviewOwner || syncOn)) {
-        try { localStorage.setItem('rnv.recovery.' + sheet + '.' + Date.now(), JSON.stringify(RNVReview.all(sheet))); }
-        catch (e) { el('brSync').textContent = 'Could not create a recovery copy. Nothing was cleared.'; return; }
-        RNVReview.replaceAll(sheet, {}).then(function () { refreshOrder(); });
-      }
+    ask('Clear ratings for ' + email + '?', 'Clear ' + done + ' rated positions and all notes for this account only? Other accounts are not affected. A recovery copy will be kept in this browser.',
+        'Clear this account').then(function (yes) {
+      if (!yes) return;
+      if (!sameAccount() || !syncOn) { el('brSync').textContent = 'Account changed. Nothing was cleared. Reload first.'; return; }
+      try { localStorage.setItem('rnv.recovery.' + sheet + '.' + Date.now(), JSON.stringify(RNVReview.all(sheet))); }
+      catch (e) { el('brSync').textContent = 'Could not create a recovery copy. Nothing was cleared.'; return; }
+      el('brClear').disabled = true; el('brCard').inert = true;
+      clearTimeout(syncTimer); syncTimer = null;
+      RNVReview.replaceAll(sheet, {}).then(function () {
+        clearTimeout(syncTimer); syncTimer = null;
+        refreshOrder(); mine();
+        return syncNow();
+      }).then(function (ok) {
+        if (!ok) throw new Error('Clear could not be saved. Check the connection and try again.');
+        if (!sameAccount()) throw new Error('Account changed. Reload to verify.');
+        return RNVAuth.db('live_answers?user_id=eq.' + encodeURIComponent(owner) + '&select=rows,positions_rated,rn_answered');
+      }).then(function (records) {
+        if (!sameAccount()) throw new Error('Account changed. Reload to verify.');
+        if (!records[0] || Object.keys(records[0].rows || {}).length || records[0].positions_rated || records[0].rn_answered) {
+          throw new Error('Another open tab may have saved answers again. Close other review tabs and retry.');
+        }
+        el('brSync').textContent = 'Cleared and verified for ' + email + '. Other accounts were not changed.';
+        analysisCount();
+      }).catch(function (e) { el('brSync').textContent = e.message; })
+        .finally(function () { el('brClear').disabled = !sameAccount(); el('brCard').inert = !sameAccount(); });
     });
   });
   el('brCompare').addEventListener('click', function () { location.href = 'compare.html'; });
