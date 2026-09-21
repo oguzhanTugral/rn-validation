@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Account · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260921211347">
+<link rel="stylesheet" href="css/site.css?v=20260921214005">
 <style>
   .acc-box{max-width:520px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
     box-shadow:var(--shadow);padding:18px 20px;margin:0 0 16px}
@@ -26,7 +26,7 @@
 </head>
 <body>
 <main class="wrap">
-  <p style="margin:0 0 6px;font-size:14px"><a href="review.html">&larr; Blind review</a></p>
+  <p style="margin:0 0 6px;font-size:14px"><a href="blind.html">&larr; Blind review</a></p>
   <h2 class="page">Account</h2>
   <p><a href="messages.html">Private messages</a> · <a href="compare.html">Compare analyses and give feedback</a></p>
   <p class="lede">Participants sign in with their e-mail. The first time, a one-time code is e-mailed; after that you can
@@ -108,9 +108,9 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260921211347"></script>
-<script src="js/rnv-data.js?v=20260921211347"></script>
-<script src="js/rnv-auth.js?v=20260921211347"></script>
+<script src="data/corpora.js?v=20260921214005"></script>
+<script src="js/rnv-data.js?v=20260921214005"></script>
+<script src="js/rnv-auth.js?v=20260921214005"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Account', host: 'accOut', needsCorpus: false, render: function () {
   var el = function (id) { return document.getElementById(id); };
@@ -150,7 +150,7 @@ RNVData.boot({ page: 'review.html', title: 'Account', host: 'accOut', needsCorpu
             return '<tr><td>' + esc(r.analysis_code) + '</td><td class="num">' + r.positions_rated + '</td><td>' +
               esc(String(r.created_at).slice(0, 16).replace('T', ' ')) + '</td></tr>';
           }).join('') + '</tbody></table>'
-          : 'None yet. A finished analysis is uploaded from the <a href="review.html">Blind review</a> page.';
+          : 'None yet. A finished analysis is uploaded from the <a href="blind.html">Blind review</a> page.';
       }).catch(function (e) { el('myList').textContent = e.message; });
   }
 

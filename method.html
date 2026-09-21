@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Method · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260921211347">
+<link rel="stylesheet" href="css/site.css?v=20260921214005">
 <style>
   table.rtc{margin:12px 0;font-size:13.5px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
   table.rtc th{text-align:left;font-size:12.5px;background:var(--clr-lilac-50);padding:9px 12px;border-bottom:1px solid var(--line)}
@@ -74,6 +74,16 @@
             G&flat; major while the score is written in F&sharp; major. Its stratum held no other position, so its
             replacement was drawn from the same mode and the same chord with the same applied target, in any inversion
             and agreement pattern.</td></tr>
+      <tr><td>Training round and main review</td>
+        <td>The sample described above is the <b>training round</b>: it was rated first, its questions were improved
+            and some replaced, and it is kept apart. The rating that counts is the main <b>Blind review</b>, on a
+            sample drawn afterwards with the same design and its own seed (20260922), holding no position the training
+            round held. Before drawing, and from the score alone, two kinds of question were left out: those whose key
+            name and key signature are spelled on opposite sides (34), and those whose bass cannot be read at Start
+            &mdash; nothing sounds there, or a lower note enters later, the rater&rsquo;s own test for an unclear bass
+            (1,227). 6,524 of the 8,746 shared-key positions remained; the sample holds 452 coverage positions and 300
+            random ones (752). 165 strata have no position left and are not covered. Its answers are kept in a table
+            of their own.</td></tr>
       <tr><td>Whose rating this is</td>
         <td>The figures shown on this site come from <b>one rating, by the author of musWM</b>. Every participant
             who rates the sample gets their own figures, and the answers of everyone who is not an author of one of
@@ -561,8 +571,8 @@ fetch('data/engine_log_public.json').then(function (r) { return r.json(); }).the
 });
 </script>
 
-<script src="data/corpora.js?v=20260921211347"></script>
-<script src="js/rnv-data.js?v=20260921211347"></script>
+<script src="data/corpora.js?v=20260921214005"></script>
+<script src="js/rnv-data.js?v=20260921214005"></script>
 <script>
 RNVData.boot({ page: 'method.html', title: 'Method', host: 'host',
                needsCorpus: false, render: function () {} });

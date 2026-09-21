@@ -57,7 +57,7 @@
         out.published = { id: 'published', answered: pub.answered, positions: pub.positions,
                           unclear: pub.unclear, engines: pub.engines,
                           label: (pub.rater || 'The author') + ' — author of ' + (pub.raterIsAuthor || 'musWM') +
-                                 ' (published rating)' };
+                                 ' (training round)' };
       }
       return out;
     });
@@ -79,7 +79,7 @@
     if (!host) return;
     if (!entry || !entry.answered) {
       host.innerHTML = '<div class="empty">No rating to report yet. Tick an author below, or rate the ' +
-        'sample yourself on <a href="review.html">Blind review</a>.</div>';
+        'sample yourself on <a href="blind.html">Blind review</a>.</div>';
       return;
     }
     host.innerHTML = entry.engines.map(function (e) {
@@ -108,9 +108,11 @@
       text = '<b>' + entry.answered.toLocaleString('en-US') + '</b> answered positions from a single rating, by <b>' +
         entry.label + '</b>. An author&rsquo;s rating is never part of the pooled figures.';
     }
-    host.innerHTML = text + ' At each position the rater ticked every Roman numeral they accept; an analyser ' +
+    host.innerHTML = text + ' These figures come from the <a href="review.html">training round</a>; the ' +
+      '<a href="blind.html">Blind review</a> is the rating that counts, and its figures replace these once it has answers.' +
+      ' At each position the rater ticked every Roman numeral they accept; an analyser ' +
       'counts as right when a label it gave is among them. Rate the sample yourself on ' +
-      '<a href="review.html">Blind review</a>, and see every participant on <a href="compare.html">Compare</a>.';
+      '<a href="blind.html">Blind review</a>, and see every participant on <a href="compare.html">Compare</a>.';
   }
 
   function picker(host, data, onChange) {

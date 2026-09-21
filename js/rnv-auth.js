@@ -114,6 +114,10 @@
       return call('/rest/v1/rpc/public_answers', { method: 'POST', body: {} });
     },
     
+    publicAnswersMain: function () {
+      return call('/rest/v1/rpc/public_answers_main', { method: 'POST', body: {} });
+    },
+    
     db: function (path, opts) {
       return token().then(function (t) {
         if (!t) throw new Error('Please sign in.');

@@ -1,12 +1,13 @@
 <!-- Copyright (c) 2026 Oğuzhan Tuğral. All rights reserved. Source: https://oguzhantugral.github.io/rn-validation/hero.html -->
 <!doctype html>
+<!-- generated from review.html by build/make_main_review.py; do not edit -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://atwkiqqtsfmxzkffcjxz.supabase.co; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Training blind review · RN comparison</title>
+<title>Blind review · RN comparison</title>
 <link rel="stylesheet" href="css/site.css?v=20260921214005">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
@@ -117,8 +118,8 @@
     </div>
   </div>
 
-  <h2 class="page">Training blind review</h2>
-  <p class="note"><b>Training round.</b> The first sample, kept so the rating can be practised and its questions improved. Its answers are kept apart and are not the results the site reports; the rating that counts is the <a href="blind.html">Blind review</a>.</p>
+  <h2 class="page">Blind review</h2>
+  <p class="note">The rating that counts. Its sample was drawn after the <a href="review.html">training round</a>, with the same design, a new seed and no position the training round held; questions whose key name and key signature disagree, or whose bass cannot be read at Start, were left out before drawing. See <a href="method.html#blindmethod">Method</a>.</p>
   <p class="lede">Rate, against the score, what the analysers read at a position. <b>Part 1</b> checks musWM&rsquo;s
   <b>notes</b>, <b>root</b> and <b>bass</b> with no Roman numeral in sight. <b>Part 2</b> then asks which Roman numeral(s)
   are acceptable, choosing among the three analysers&rsquo; answers shown without names; who gave which is revealed only
@@ -232,10 +233,10 @@
 <script src="js/rnv-spell.js?v=20260921214005"></script>
 <script src="js/rnv-rnscore.js?v=20260921214005"></script>
 <script>
-RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorpus: false, render: function () {
+RNVData.boot({ page: 'blind.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
   var corpusId = RNVData.currentCorpusId() || 'wir335';
-  var sheet = corpusId + '.blind';
+  var sheet = corpusId + '.main';
   var reviewOwner = window.RNVAuth && RNVAuth.user() ? RNVAuth.user().id : null;
   function sameAccount() { return (RNVAuth.user() ? RNVAuth.user().id : null) === reviewOwner; }
   window.addEventListener('storage', function (event) {
@@ -387,7 +388,7 @@ RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorp
   // all participants together, when signed in and the answers table exists; refreshed every minute
   function pooledLine() {
     if (!window.RNVAuth || !window.RNVRnScore) return;
-    RNVAuth.publicAnswers().then(function (list) {
+    RNVAuth.publicAnswersMain().then(function (list) {
       var pool = list.filter(function (r) { return !r.author_of; });     // authors are shown, never pooled
       var t = RNVRnScore.score(pool.map(function (r) { return r.rows || {}; }), RNOPT);
       el('brPool').innerHTML = t.n
@@ -425,7 +426,7 @@ RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorp
     var rows = RNVReview.all(sheet), u = RNVAuth.user();
     var ids = sample.items.map(function (it) { return it.id; });
     el('brSync').textContent = 'Saving\u2026';
-    return RNVAuth.db('live_answers?on_conflict=user_id', {
+    return RNVAuth.db('live_answers_main?on_conflict=user_id', {
       method: 'POST', headers: { Prefer: 'resolution=merge-duplicates,return=minimal' }, keepalive: !!onLeave,
       body: { user_id: u.id, corpus: corpusId, sample: sample.sha256OfPositions, rows: rows,
               positions_rated: sample.items.filter(rated).length,
@@ -462,7 +463,7 @@ RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorp
     if (!reviewOwner) { mine(); return Promise.resolve(); }
     el('brSync').textContent = 'Loading your saved account answers…';
     el('brCard').inert = true; el('brClear').disabled = true;
-    return RNVAuth.db('live_answers?user_id=eq.' + encodeURIComponent(reviewOwner) + '&select=rows,sample').then(function (got) {
+    return RNVAuth.db('live_answers_main?user_id=eq.' + encodeURIComponent(reviewOwner) + '&select=rows,sample').then(function (got) {
       if (!sameAccount()) throw new Error('Account changed. Reload this page.');
       var saved = got && got[0];
       // Only this account's local cache is eligible. Never import the old shared browser cache.
@@ -779,7 +780,7 @@ RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorp
       }).then(function (ok) {
         if (!ok) throw new Error('Clear could not be saved. Check the connection and try again.');
         if (!sameAccount()) throw new Error('Account changed. Reload to verify.');
-        return RNVAuth.db('live_answers?user_id=eq.' + encodeURIComponent(owner) + '&select=rows,positions_rated,rn_answered');
+        return RNVAuth.db('live_answers_main?user_id=eq.' + encodeURIComponent(owner) + '&select=rows,positions_rated,rn_answered');
       }).then(function (records) {
         if (!sameAccount()) throw new Error('Account changed. Reload to verify.');
         if (!records[0] || Object.keys(records[0].rows || {}).length || records[0].positions_rated || records[0].rn_answered) {
@@ -910,14 +911,14 @@ RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorp
       'analysis_' + who.id + '.xlsx');
   }
 
-  fetch('data/corpora/' + encodeURIComponent(corpusId) + '/blind_sample.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (s) {
+  fetch('data/corpora/' + encodeURIComponent(corpusId) + '/blind_sample_main.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (s) {
     // ratings belong to one sample: a new sample gets its own sheet, so old ratings never attach to new positions
-    if (s.sha256OfPositions.indexOf('33bd23d871c40d0f') !== 0) sheet = corpusId + '.blind.' + s.sha256OfPositions.slice(0, 12);
+    if (s.sha256OfPositions.indexOf('33bd23d871c40d0f') !== 0) sheet = corpusId + '.main.' + s.sha256OfPositions.slice(0, 12);
     sheet += '.account.' + (reviewOwner || 'guest');
     return RNVReview.init(sheet).then(function (serverOk) { return [s, serverOk]; });
   }).then(function (res) {
     sample = res[0];
-    fetch('data/corpora/' + encodeURIComponent(corpusId) + '/rn_options.json', { cache: 'no-store' })
+    fetch('data/corpora/' + encodeURIComponent(corpusId) + '/rn_options_main.json', { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (o) {
         if (o && o.sample === sample.sha256OfPositions) {
