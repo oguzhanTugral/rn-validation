@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260921204252">
+<link rel="stylesheet" href="css/site.css?v=20260921204938">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -222,14 +222,14 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260921204252"></script>
-<script src="js/rnv-data.js?v=20260921204252"></script>
-<script src="js/rnv-auth.js?v=20260921204252"></script>
-<script src="js/rnv-review.js?v=20260921204252"></script>
+<script src="data/corpora.js?v=20260921204938"></script>
+<script src="js/rnv-data.js?v=20260921204938"></script>
+<script src="js/rnv-auth.js?v=20260921204938"></script>
+<script src="js/rnv-review.js?v=20260921204938"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260921204252"></script>
-<script src="js/rnv-spell.js?v=20260921204252"></script>
-<script src="js/rnv-rnscore.js?v=20260921204252"></script>
+<script src="js/rnv-score.js?v=20260921204938"></script>
+<script src="js/rnv-spell.js?v=20260921204938"></script>
+<script src="js/rnv-rnscore.js?v=20260921204938"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -361,7 +361,7 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
   }
 
   // ---- automatic saving to the participant's account (one live row per participant)
-  var syncTimer = null, syncOn = false, syncQueue = Promise.resolve();
+  var syncTimer = null, syncOn = false, syncQueue = Promise.resolve(), reopenedNow = 0;
 
   function tiles(t) {
     var E = RNVRnScore.ENGINES;
@@ -475,11 +475,17 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
           sample.items.forEach(function (it) { ids[it.id] = 1; });
           rows = Object.keys(rows).reduce(function (o, k) { if (ids[k]) o[k] = rows[k]; return o; }, {});
         }
+        // questions reopened by the sample: an answer still left "unclear" is cleared once, so the
+        // question is asked again like a new one; an answer given after the reopening is never touched
+        ((sample.reopened && sample.reopened.ids) || []).forEach(function (id) {
+          if (rows[id] && rows[id].rnU) { delete rows[id]; reopenedNow += 1; }
+        });
         return all.call(RNVReview, sheet, rows);
       }
     }).then(function () {
       if (!sameAccount()) throw new Error('Account changed. Reload this page.');
       syncOn = true;
+      if (reopenedNow) syncNow();                       // the reopened questions are saved as unanswered
       el('brCard').inert = false; el('brClear').disabled = false;
       el('brShow').value = allRated() ? 'all' : 'todo';
       refreshOrder(); mine();

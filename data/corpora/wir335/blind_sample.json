@@ -15111,5 +15111,37 @@
 }
 ]
 }
+],
+"reopened": {
+"date": "2026-09-21",
+"rule": "Questions whose Roman numeral was left unclear are asked again: an answer still marked unclear is cleared once, so the question stands like a new one. An answer given afterwards is kept.",
+"ids": [
+"S011",
+"S092",
+"S196",
+"S226",
+"S236",
+"S309",
+"S327",
+"S336",
+"S346",
+"S404",
+"S428",
+"S453",
+"S490",
+"S504",
+"S528",
+"S566",
+"S594",
+"S670",
+"S671",
+"S697",
+"S759",
+"S787",
+"S884",
+"S892",
+"S897",
+"S912"
 ]
+}
 }
