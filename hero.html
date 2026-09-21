@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>musWM · RN comparison</title>
 <link rel="icon" href="assets/brand/muswm-mark-3d.svg" type="image/svg+xml">
-<link rel="stylesheet" href="css/site.css?v=20260921064030">
+<link rel="stylesheet" href="css/site.css?v=20260921064901">
 <style>
 /* hero: environment palette (lilac wash, soft pink and sky), deep ink */
 .hero{position:relative;overflow:hidden;color:var(--deep);
@@ -82,7 +82,7 @@ body.home header.site .brand .logo{display:none}
 
     <div class="stats" aria-label="Key figures">
       <div><b id="sRated">&mdash;</b><span>positions rated in the blind review</span></div>
-      <div><b id="sBest">&mdash;</b><span>Roman numerals the rater accepted, best analyser</span></div>
+      <div><b id="sSample">&mdash;</b><span>positions in the fixed blind-review sample</span></div>
       <div><b id="sTheory">&mdash;</b><span>of chord-code addresses conform to the textbook</span></div>
     </div>
   </div>
@@ -140,15 +140,15 @@ body.home header.site .brand .logo{display:none}
 })();
 </script>
 
-<script src="js/rnv-sharedkey.js?v=20260921064030"></script>
+<script src="js/rnv-sharedkey.js?v=20260921064901"></script>
 <script>
 fetch('data/corpora/wir335/shared_key.json').then(function (r) { return r.json(); }).then(function (sk) {
   document.getElementById('skWrap').innerHTML = rnvSharedKeyTable(sk);
   document.getElementById('skNote').innerHTML = RNV_SHARED_NOTE;
 }).catch(function () {});
 </script>
-<script src="data/corpora.js?v=20260921064030"></script>
-<script src="js/rnv-data.js?v=20260921064030"></script>
+<script src="data/corpora.js?v=20260921064901"></script>
+<script src="js/rnv-data.js?v=20260921064901"></script>
 <script>
 RNVData.boot({
   page: 'hero.html', title: 'Home', host: 'blindRows', needsCorpus: false,
@@ -168,8 +168,7 @@ RNVData.boot({
       .then(function (r) { return r.json(); })
       .then(function (b) {
         document.getElementById('sRated').textContent = nf(b.answered);
-        var best = b.engines.reduce(function (a, x) { return x.rate > a.rate ? x : a; }, b.engines[0]);
-        document.getElementById('sBest').textContent = String(best.rate).replace('.', ',') + '%';
+        document.getElementById('sSample').textContent = nf(b.positions);
       }).catch(function () {});
 
   }
