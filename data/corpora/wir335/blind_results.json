@@ -1,29 +1,29 @@
 {
  "format": "rnv-blind-results",
  "corpus": "wir335",
- "generated": "2026-09-21T06:33:02",
+ "generated": "2026-09-21T19:31:23",
  "packGenerated": "2026-09-21T06:14:42",
  "from": "analysis_RNV-KZVUC (1).xlsx",
  "rater": "Oguzhan",
  "raterIsAuthor": "musWM",
  "positions": 919,
- "answered": 853,
- "unclear": 66,
+ "answered": 851,
+ "unclear": 38,
  "engines": [
   {
    "name": "musWM",
-   "correct": 808,
+   "correct": 806,
    "rate": 94.7
   },
   {
    "name": "AnalysisGNN",
    "correct": 279,
-   "rate": 32.7
+   "rate": 32.8
   },
   {
    "name": "AugmentedNet",
    "correct": 395,
-   "rate": 46.3
+   "rate": 46.4
   }
  ],
  "criterion": "the rater ticked every Roman numeral they accept at that position; an analyser is right when a label it gave is among them"

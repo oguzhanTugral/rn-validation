@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Method · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260921072734">
+<link rel="stylesheet" href="css/site.css?v=20260921193230">
 <style>
   table.rtc{margin:12px 0;font-size:13.5px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
   table.rtc th{text-align:left;font-size:12.5px;background:var(--clr-lilac-50);padding:9px 12px;border-bottom:1px solid var(--line)}
@@ -53,6 +53,15 @@
         <td>A position counts once its Roman-numeral answer is confirmed and is not &ldquo;unclear&rdquo;. An
             analyser is right at that position when a label it gave is among the ticked ones. Several analysers can
             be right at the same position, and all three can be wrong.</td></tr>
+      <tr><td>Replaced questions</td>
+        <td>A question is replaced only for a fault of the question itself, never for what the analysers said:
+            the rater found that the span holds more than one chord, or could judge nothing at the position
+            (notes, root, bass, span and Roman numeral all &ldquo;unclear&rdquo;). The replacement is drawn by the
+            rule its part was drawn by &mdash; a coverage position from the same stratum, a random position from the
+            other shared-key positions &mdash; seeded per question, and gets a new id, so no earlier answer is carried
+            onto it. On 21 September 2026 this replaced 30 of the 919 questions (21 coverage, 9 random); 11 more were
+            kept because their stratum holds no other position. Every replacement is listed in the sample file,
+            together with the fingerprint of the version it replaced.</td></tr>
       <tr><td>Whose rating this is</td>
         <td>The figures shown on this site come from <b>one rating, by the author of musWM</b>. Every participant
             who rates the sample gets their own figures, and the answers of everyone who is not an author of one of
@@ -540,8 +549,8 @@ fetch('data/engine_log_public.json').then(function (r) { return r.json(); }).the
 });
 </script>
 
-<script src="data/corpora.js?v=20260921072734"></script>
-<script src="js/rnv-data.js?v=20260921072734"></script>
+<script src="data/corpora.js?v=20260921193230"></script>
+<script src="js/rnv-data.js?v=20260921193230"></script>
 <script>
 RNVData.boot({ page: 'method.html', title: 'Method', host: 'host',
                needsCorpus: false, render: function () {} });

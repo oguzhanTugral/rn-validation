@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260921072734">
+<link rel="stylesheet" href="css/site.css?v=20260921193230">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -222,14 +222,14 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260921072734"></script>
-<script src="js/rnv-data.js?v=20260921072734"></script>
-<script src="js/rnv-auth.js?v=20260921072734"></script>
-<script src="js/rnv-review.js?v=20260921072734"></script>
+<script src="data/corpora.js?v=20260921193230"></script>
+<script src="js/rnv-data.js?v=20260921193230"></script>
+<script src="js/rnv-auth.js?v=20260921193230"></script>
+<script src="js/rnv-review.js?v=20260921193230"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260921072734"></script>
-<script src="js/rnv-spell.js?v=20260921072734"></script>
-<script src="js/rnv-rnscore.js?v=20260921072734"></script>
+<script src="js/rnv-score.js?v=20260921193230"></script>
+<script src="js/rnv-spell.js?v=20260921193230"></script>
+<script src="js/rnv-rnscore.js?v=20260921193230"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -465,8 +465,17 @@ RNVData.boot({ page: 'review.html', title: 'Blind review', host: 'brCard', needs
       if (!sameAccount()) throw new Error('Account changed. Reload this page.');
       var saved = got && got[0];
       // Only this account's local cache is eligible. Never import the old shared browser cache.
-      if (saved && saved.sample === sample.sha256OfPositions) {
-        return all.call(RNVReview, sheet, saved.rows || {});
+      // answers given for an earlier version of the sample carry over for the questions it still has;
+      // a replaced question has a new id, so no answer lands on a position it was not given for
+      var carried = saved && (sample.previousSamples || []).indexOf(saved.sample) >= 0;
+      if (saved && (saved.sample === sample.sha256OfPositions || carried)) {
+        var rows = saved.rows || {};
+        if (carried) {
+          var ids = {};
+          sample.items.forEach(function (it) { ids[it.id] = 1; });
+          rows = Object.keys(rows).reduce(function (o, k) { if (ids[k]) o[k] = rows[k]; return o; }, {});
+        }
+        return all.call(RNVReview, sheet, rows);
       }
     }).then(function () {
       if (!sameAccount()) throw new Error('Account changed. Reload this page.');

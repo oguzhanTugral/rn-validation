@@ -5,7 +5,7 @@
 "packGenerated": "2026-09-21T06:14:42",
 "coverageStrata": 619,
 "randomN": 300,
-"sha256OfPositions": "35bb3d497838a5a7211c162cd36dc0ec6d03697bd779f061c42c7554bddba312",
+"sha256OfPositions": "086b7bd3138a6ac5c4750a7606bb3618cfbd77db161c0f81a2045d8cb7c64419",
 "design": "coverage: one random position per (mode, musWM Roman numeral with inversion, agreement pattern); random: simple random sample of the other shared-key positions. Order shuffled. No Roman numeral or engine label is included.",
 "items": [
 {
@@ -1225,20 +1225,21 @@
 "bass": "G"
 },
 {
-"id": "S077",
+"id": "S920",
 "part": "random",
-"key": "274:5:1",
-"work": "274",
-"title": "J S Bach Prelude No 12",
-"bar": 5,
+"key": "299:84:1",
+"work": "299",
+"title": "Beethoven Ludwig van n08op59 2 03",
+"bar": 84,
 "beat": 1.0,
-"untilBeat": 1.5,
-"endBar": 5,
-"endBeat": 1.5,
-"localKey": "F minor",
-"notes": "C - F - Ab - A",
-"root": "F",
-"bass": "Ab"
+"untilBeat": 2.0,
+"endBar": 84,
+"endBeat": 2.0,
+"localKey": "E major",
+"notes": "C - D# - F# - G#",
+"root": "G#",
+"bass": "C",
+"replaces": "S077"
 },
 {
 "id": "S078",
@@ -1817,20 +1818,21 @@
 "bass": "C"
 },
 {
-"id": "S114",
+"id": "S921",
 "part": "coverage",
-"key": "274:8:1",
-"work": "274",
-"title": "J S Bach Prelude No 12",
-"bar": 8,
-"beat": 1.0,
-"untilBeat": 2.0,
-"endBar": 8,
-"endBeat": 2.0,
-"localKey": "F minor",
-"notes": "Db - Eb - F - G - Bb",
-"root": "G",
-"bass": "G"
+"key": "065:24:3",
+"work": "065",
+"title": "J S Bach Prelude No 6",
+"bar": 24,
+"beat": 3.0,
+"untilBeat": 3.5,
+"endBar": 24,
+"endBeat": 3.5,
+"localKey": "D minor",
+"notes": "E - G - Bb",
+"root": "E",
+"bass": "E",
+"replaces": "S114"
 },
 {
 "id": "S115",
@@ -1865,20 +1867,21 @@
 "bass": "Bb"
 },
 {
-"id": "S117",
+"id": "S922",
 "part": "random",
-"key": "056:43:1",
-"work": "056",
-"title": "Mozart Wolfgang Amadeus K533 3",
-"bar": 43,
+"key": "128:19:1",
+"work": "128",
+"title": "J S Bach Prelude No 16",
+"bar": 19,
 "beat": 1.0,
-"untilBeat": 1.5,
-"endBar": 43,
-"endBeat": 1.5,
-"localKey": "F major",
-"notes": "Db - D - E - Bb",
-"root": "E",
-"bass": "Bb"
+"untilBeat": 3.0,
+"endBar": 19,
+"endBeat": 3.0,
+"localKey": "G minor",
+"notes": "C - Eb - Gb - G",
+"root": "C",
+"bass": "G",
+"replaces": "S117"
 },
 {
 "id": "S118",
@@ -2329,20 +2332,21 @@
 "bass": "Ab"
 },
 {
-"id": "S146",
+"id": "S923",
 "part": "coverage",
-"key": "073:6:2",
+"key": "073:54:1",
 "work": "073",
 "title": "J S Bach Partita No 2 BWV1004 No 5 Chaconne",
-"bar": 6,
-"beat": 2.0,
+"bar": 54,
+"beat": 1.0,
 "untilBeat": null,
-"endBar": 7,
+"endBar": 55,
 "endBeat": 1.0,
 "localKey": "D minor",
-"notes": "D - F - A - Bb",
+"notes": "D - F - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"replaces": "S146"
 },
 {
 "id": "S147",
@@ -2377,20 +2381,21 @@
 "bass": "E"
 },
 {
-"id": "S149",
+"id": "S924",
 "part": "coverage",
-"key": "251:88:1",
-"work": "251",
-"title": "Beethoven Ludwig van n15op132 02",
-"bar": 88,
+"key": "321:47:1",
+"work": "321",
+"title": "Augusta Holm s Les Heures No 4 L Heure d Azur",
+"bar": 47,
 "beat": 1.0,
 "untilBeat": 2.0,
-"endBar": 88,
+"endBar": 47,
 "endBeat": 2.0,
-"localKey": "A major",
-"notes": "Db - F - A",
-"root": "A",
-"bass": "Db"
+"localKey": "B major",
+"notes": "D# - G - B",
+"root": "B",
+"bass": "D#",
+"replaces": "S149"
 },
 {
 "id": "S150",
@@ -3001,20 +3006,21 @@
 "bass": "C"
 },
 {
-"id": "S188",
+"id": "S925",
 "part": "coverage",
-"key": "060:316:3",
-"work": "060",
-"title": "Beethoven Ludwig van n07op59 1 01",
-"bar": 316,
-"beat": 3.0,
-"untilBeat": 3.5,
-"endBar": 316,
-"endBeat": 3.5,
-"localKey": "F major",
-"notes": "C - E - A",
-"root": "A",
-"bass": "A"
+"key": "314:37:1",
+"work": "314",
+"title": "Beethoven Ludwig van n16op135 03",
+"bar": 37,
+"beat": 1.0,
+"untilBeat": 3.0,
+"endBar": 37,
+"endBeat": 3.0,
+"localKey": "Db major",
+"notes": "C - F - Ab",
+"root": "F",
+"bass": "F",
+"replaces": "S188"
 },
 {
 "id": "S189",
@@ -3081,20 +3087,21 @@
 "bass": "G"
 },
 {
-"id": "S193",
+"id": "S926",
 "part": "random",
-"key": "073:75:1",
-"work": "073",
-"title": "J S Bach Partita No 2 BWV1004 No 5 Chaconne",
-"bar": 75,
-"beat": 1.0,
-"untilBeat": 1.5,
-"endBar": 75,
-"endBeat": 1.5,
-"localKey": "D minor",
-"notes": "Db - F - G - A",
-"root": "F",
-"bass": "Db"
+"key": "059:250:2",
+"work": "059",
+"title": "Beethoven Ludwig van n01op18 1 04",
+"bar": 250,
+"beat": 2.0,
+"untilBeat": 2.5,
+"endBar": 250,
+"endBeat": 2.5,
+"localKey": "F major",
+"notes": "D - F - G - A",
+"root": "D",
+"bass": "D",
+"replaces": "S193"
 },
 {
 "id": "S194",
@@ -3145,20 +3152,21 @@
 "bass": "B"
 },
 {
-"id": "S197",
+"id": "S927",
 "part": "random",
-"key": "045:9:2",
-"work": "045",
-"title": "Franz Schubert Winterreise D 911 21 Das Wirtshaus",
-"bar": 9,
-"beat": 2.0,
-"untilBeat": null,
-"endBar": 10,
-"endBeat": 1.0,
-"localKey": "F major",
-"notes": "C - E - F - G - A - Bb",
-"root": "C",
-"bass": "C"
+"key": "164:180:1",
+"work": "164",
+"title": "Mozart Wolfgang Amadeus K576 3",
+"bar": 180,
+"beat": 1.0,
+"untilBeat": 2.0,
+"endBar": 180,
+"endBeat": 2.0,
+"localKey": "D major",
+"notes": "D - F# - A",
+"root": "D",
+"bass": "A",
+"replaces": "S197"
 },
 {
 "id": "S198",
@@ -3209,36 +3217,38 @@
 "bass": "G"
 },
 {
-"id": "S201",
+"id": "S928",
 "part": "random",
-"key": "178:27:4",
-"work": "178",
-"title": "J S Bach Prelude No 7",
-"bar": 27,
-"beat": 4.0,
-"untilBeat": 4.5,
-"endBar": 27,
-"endBeat": 4.5,
-"localKey": "Eb major",
-"notes": "D - Eb - G - Bb",
-"root": "Eb",
-"bass": "Eb"
+"key": "090:4:1",
+"work": "090",
+"title": "Mozart Wolfgang Amadeus K545 2",
+"bar": 4,
+"beat": 1.0,
+"untilBeat": null,
+"endBar": 5,
+"endBeat": 1.0,
+"localKey": "G major",
+"notes": "D - G - B",
+"root": "G",
+"bass": "G",
+"replaces": "S201"
 },
 {
-"id": "S202",
+"id": "S929",
 "part": "coverage",
-"key": "164:172:1",
+"key": "164:10:1",
 "work": "164",
 "title": "Mozart Wolfgang Amadeus K576 3",
-"bar": 172,
+"bar": 10,
 "beat": 1.0,
 "untilBeat": 2.0,
-"endBar": 172,
+"endBar": 10,
 "endBeat": 2.0,
 "localKey": "D major",
 "notes": "D# - E - F# - G - B",
 "root": "B",
-"bass": "F#"
+"bass": "F#",
+"replaces": "S202"
 },
 {
 "id": "S203",
@@ -4121,20 +4131,21 @@
 "bass": "F"
 },
 {
-"id": "S258",
+"id": "S930",
 "part": "coverage",
-"key": "110:12:1",
+"key": "110:28:1",
 "work": "110",
 "title": "Robert Schumann Frauenliebe und Leben Op 42 1 Seit ich ihn geseh",
-"bar": 12,
+"bar": 28,
 "beat": 1.0,
 "untilBeat": 2.0,
-"endBar": 12,
+"endBar": 28,
 "endBeat": 2.0,
 "localKey": "Bb major",
 "notes": "D - Eb - G - B",
 "root": "Eb",
-"bass": "B"
+"bass": "B",
+"replaces": "S258"
 },
 {
 "id": "S259",
@@ -4393,20 +4404,21 @@
 "bass": "A"
 },
 {
-"id": "S275",
+"id": "S931",
 "part": "random",
-"key": "212:54:3",
-"work": "212",
-"title": "Beethoven Ludwig van n13op130 05",
-"bar": 54,
-"beat": 3.0,
+"key": "050:3:3.5",
+"work": "050",
+"title": "Mozart Wolfgang Amadeus K309 2",
+"bar": 3,
+"beat": 3.5,
 "untilBeat": null,
-"endBar": 55,
+"endBar": 4,
 "endBeat": 1.0,
-"localKey": "Eb major",
-"notes": "C - Eb - G - Ab",
-"root": "Ab",
-"bass": "C"
+"localKey": "F major",
+"notes": "D - F - A",
+"root": "D",
+"bass": "F",
+"replaces": "S275"
 },
 {
 "id": "S276",
@@ -4489,20 +4501,21 @@
 "bass": "Eb"
 },
 {
-"id": "S281",
+"id": "S932",
 "part": "coverage",
-"key": "244:22:1",
-"work": "244",
-"title": "Mozart Wolfgang Amadeus K331 2",
-"bar": 22,
+"key": "321:43:1",
+"work": "321",
+"title": "Augusta Holm s Les Heures No 4 L Heure d Azur",
+"bar": 43,
 "beat": 1.0,
 "untilBeat": null,
-"endBar": 23,
+"endBar": 44,
 "endBeat": 1.0,
-"localKey": "A major",
-"notes": "E - F# - A#",
-"root": "D",
-"bass": "F#"
+"localKey": "B major",
+"notes": "C - F# - G#",
+"root": "G#",
+"bass": "G#",
+"replaces": "S281"
 },
 {
 "id": "S282",
@@ -4713,20 +4726,21 @@
 "bass": "D"
 },
 {
-"id": "S295",
+"id": "S933",
 "part": "random",
-"key": "062:142:1",
-"work": "062",
-"title": "Beethoven Ludwig van n16op135 01",
-"bar": 142,
+"key": "061:264:1",
+"work": "061",
+"title": "Beethoven Ludwig van n07op59 1 04",
+"bar": 264,
 "beat": 1.0,
-"untilBeat": 2.0,
-"endBar": 142,
-"endBeat": 2.0,
+"untilBeat": null,
+"endBar": 265,
+"endBeat": 1.0,
 "localKey": "F major",
-"notes": "C - D - Eb - F - A - Bb",
-"root": "D",
-"bass": "A"
+"notes": "C - E - G - Bb",
+"root": "C",
+"bass": "C",
+"replaces": "S295"
 },
 {
 "id": "S296",
@@ -4841,20 +4855,21 @@
 "bass": "F"
 },
 {
-"id": "S303",
+"id": "S934",
 "part": "coverage",
-"key": "145:180:1",
+"key": "145:45:1",
 "work": "145",
 "title": "Purcell Purcell Sonata in G Minor Z807",
-"bar": 180,
+"bar": 45,
 "beat": 1.0,
-"untilBeat": 2.0,
-"endBar": 180,
-"endBeat": 2.0,
+"untilBeat": null,
+"endBar": 46,
+"endBeat": 1.0,
 "localKey": "G minor",
 "notes": "C - G - A",
 "root": "A",
-"bass": "C"
+"bass": "C",
+"replaces": "S303"
 },
 {
 "id": "S304",
@@ -4873,20 +4888,21 @@
 "bass": "C"
 },
 {
-"id": "S305",
+"id": "S935",
 "part": "coverage",
-"key": "317:43:3",
-"work": "317",
-"title": "Beethoven Ludwig van n13op130 01",
-"bar": 43,
-"beat": 3.0,
-"untilBeat": 4.0,
-"endBar": 43,
-"endBeat": 4.0,
-"localKey": "Bb major",
-"notes": "D - G - Bb",
-"root": "Bb",
-"bass": "Bb"
+"key": "196:22:1",
+"work": "196",
+"title": "Clara Schumann 6 Lieder Op 13 No 1 Ich stand in dunklen Tr umen",
+"bar": 22,
+"beat": 1.0,
+"untilBeat": null,
+"endBar": 23,
+"endBeat": 1.0,
+"localKey": "Eb major",
+"notes": "C - Eb - G",
+"root": "C",
+"bass": "Eb",
+"replaces": "S305"
 },
 {
 "id": "S306",
@@ -5273,20 +5289,21 @@
 "bass": "E"
 },
 {
-"id": "S330",
+"id": "S936",
 "part": "coverage",
-"key": "073:60:1",
+"key": "073:30:1",
 "work": "073",
 "title": "J S Bach Partita No 2 BWV1004 No 5 Chaconne",
-"bar": 60,
+"bar": 30,
 "beat": 1.0,
 "untilBeat": 2.0,
-"endBar": 60,
+"endBar": 30,
 "endBeat": 2.0,
 "localKey": "D minor",
 "notes": "Db - D - F - A",
 "root": "F",
-"bass": "A"
+"bass": "A",
+"replaces": "S330"
 },
 {
 "id": "S331",
@@ -5337,20 +5354,21 @@
 "bass": "Bb"
 },
 {
-"id": "S334",
+"id": "S937",
 "part": "coverage",
-"key": "110:31:1",
-"work": "110",
-"title": "Robert Schumann Frauenliebe und Leben Op 42 1 Seit ich ihn geseh",
-"bar": 31,
+"key": "009:106:1",
+"work": "009",
+"title": "Mozart Wolfgang Amadeus K309 1",
+"bar": 106,
 "beat": 1.0,
 "untilBeat": 2.0,
-"endBar": 31,
+"endBar": 106,
 "endBeat": 2.0,
-"localKey": "Bb major",
-"notes": "D - Gb - Bb",
-"root": "Bb",
-"bass": "Gb"
+"localKey": "C major",
+"notes": "C - E - G - G#",
+"root": "C",
+"bass": "G#",
+"replaces": "S334"
 },
 {
 "id": "S335",
@@ -5817,20 +5835,21 @@
 "bass": "G"
 },
 {
-"id": "S364",
+"id": "S938",
 "part": "random",
-"key": "012:114:2",
-"work": "012",
-"title": "Mozart Wolfgang Amadeus K330 3",
-"bar": 114,
-"beat": 2.0,
-"untilBeat": null,
-"endBar": 115,
-"endBeat": 1.0,
-"localKey": "C major",
-"notes": "C - D - E - F - G - B",
-"root": "G",
-"bass": "G"
+"key": "224:15:1",
+"work": "224",
+"title": "Mozart Wolfgang Amadeus K457 1",
+"bar": 15,
+"beat": 1.0,
+"untilBeat": 3.5,
+"endBar": 15,
+"endBeat": 3.5,
+"localKey": "C minor",
+"notes": "C - D - Eb",
+"root": "C",
+"bass": "C",
+"replaces": "S364"
 },
 {
 "id": "S365",
@@ -6473,20 +6492,21 @@
 "bass": "Bb"
 },
 {
-"id": "S405",
+"id": "S939",
 "part": "coverage",
-"key": "198:7:1",
-"work": "198",
-"title": "Robert Schumann 5 Lieder und Ges nge Op 127 No 2 Dein Angesicht",
-"bar": 7,
+"key": "057:27:1",
+"work": "057",
+"title": "Beethoven Ludwig van n01op18 1 01",
+"bar": 27,
 "beat": 1.0,
 "untilBeat": 2.0,
-"endBar": 7,
+"endBar": 27,
 "endBeat": 2.0,
-"localKey": "Eb major",
-"notes": "C - E - G - Ab - Bb",
-"root": "Ab",
-"bass": "Ab"
+"localKey": "F major",
+"notes": "C - D - Gb - Bb",
+"root": "Bb",
+"bass": "Bb",
+"replaces": "S405"
 },
 {
 "id": "S406",
@@ -7993,20 +8013,21 @@
 "bass": "F"
 },
 {
-"id": "S500",
+"id": "S940",
 "part": "random",
-"key": "321:7:1",
-"work": "321",
-"title": "Augusta Holm s Les Heures No 4 L Heure d Azur",
-"bar": 7,
+"key": "291:61:1",
+"work": "291",
+"title": "Josephine Lang Sechs Lieder Op 25 4 Lied Immer sich rein kindlic",
+"bar": 61,
 "beat": 1.0,
-"untilBeat": 2.0,
-"endBar": 7,
-"endBeat": 2.0,
-"localKey": "B major",
-"notes": "C - D# - F# - A",
-"root": "C",
-"bass": "D#"
+"untilBeat": 3.0,
+"endBar": 61,
+"endBeat": 3.0,
+"localKey": "E major",
+"notes": "D# - F# - A - B",
+"root": "B",
+"bass": "D#",
+"replaces": "S500"
 },
 {
 "id": "S501",
@@ -8153,20 +8174,21 @@
 "bass": "B"
 },
 {
-"id": "S510",
+"id": "S941",
 "part": "coverage",
-"key": "275:59:1",
-"work": "275",
-"title": "Harry Thacker Burleigh 5 Songs of Laurence Hope No 2 The Jungle",
-"bar": 59,
+"key": "097:80:1",
+"work": "097",
+"title": "Franz Schubert Schwanengesang D 957 5 Aufenthalt",
+"bar": 80,
 "beat": 1.0,
-"untilBeat": 2.0,
-"endBar": 59,
-"endBeat": 2.0,
-"localKey": "F minor",
-"notes": "C - E - Bb",
-"root": "Ab",
-"bass": "C"
+"untilBeat": null,
+"endBar": 81,
+"endBeat": 1.0,
+"localKey": "E minor",
+"notes": "D# - F# - B",
+"root": "B",
+"bass": "B",
+"replaces": "S510"
 },
 {
 "id": "S511",
@@ -8377,20 +8399,21 @@
 "bass": "E"
 },
 {
-"id": "S524",
+"id": "S942",
 "part": "coverage",
-"key": "128:5:4",
-"work": "128",
-"title": "J S Bach Prelude No 16",
-"bar": 5,
-"beat": 4.0,
-"untilBeat": 4.5,
-"endBar": 5,
-"endBeat": 4.5,
+"key": "145:86:3",
+"work": "145",
+"title": "Purcell Purcell Sonata in G Minor Z807",
+"bar": 86,
+"beat": 3.0,
+"untilBeat": null,
+"endBar": 87,
+"endBeat": 1.0,
 "localKey": "G minor",
 "notes": "D - E - G - Bb",
 "root": "E",
-"bass": "G"
+"bass": "G",
+"replaces": "S524"
 },
 {
 "id": "S525",
@@ -9737,20 +9760,21 @@
 "bass": "A"
 },
 {
-"id": "S609",
+"id": "S943",
 "part": "coverage",
-"key": "034:122:1",
-"work": "034",
-"title": "Mozart Wolfgang Amadeus K310 3",
-"bar": 122,
+"key": "217:11:1",
+"work": "217",
+"title": "Franz Schubert Schwanengesang No 11 Die Stadt",
+"bar": 11,
 "beat": 1.0,
-"untilBeat": null,
-"endBar": 123,
-"endBeat": 1.0,
-"localKey": "A minor",
-"notes": "D - F - A",
-"root": "A",
-"bass": "F"
+"untilBeat": 3.0,
+"endBar": 11,
+"endBeat": 3.0,
+"localKey": "C minor",
+"notes": "C - F - Ab",
+"root": "F",
+"bass": "Ab",
+"replaces": "S609"
 },
 {
 "id": "S610",
@@ -10569,20 +10593,21 @@
 "bass": "Bb"
 },
 {
-"id": "S661",
+"id": "S944",
 "part": "coverage",
-"key": "144:103:1",
-"work": "144",
-"title": "Purcell Chacony Chaconne in G Minor Z730",
-"bar": 103,
+"key": "066:66:1",
+"work": "066",
+"title": "Harry Thacker Burleigh 5 Songs of Laurence Hope No 5 Till I Wake",
+"bar": 66,
 "beat": 1.0,
 "untilBeat": 2.0,
-"endBar": 103,
+"endBar": 66,
 "endBeat": 2.0,
-"localKey": "G minor",
-"notes": "D - Gb - Bb",
-"root": "Bb",
-"bass": "Gb"
+"localKey": "D minor",
+"notes": "Db - F - G - A",
+"root": "F",
+"bass": "Db",
+"replaces": "S661"
 },
 {
 "id": "S662",
@@ -10873,20 +10898,21 @@
 "bass": "Ab"
 },
 {
-"id": "S680",
+"id": "S945",
 "part": "coverage",
-"key": "243:100:1",
-"work": "243",
-"title": "Mozart Wolfgang Amadeus K331 1",
-"bar": 100,
-"beat": 1.0,
-"untilBeat": 4.0,
-"endBar": 100,
-"endBeat": 4.0,
-"localKey": "A major",
-"notes": "D - E - F# - G - A",
-"root": "A",
-"bass": "A"
+"key": "062:186:2",
+"work": "062",
+"title": "Beethoven Ludwig van n16op135 01",
+"bar": 186,
+"beat": 2.0,
+"untilBeat": null,
+"endBar": 187,
+"endBeat": 1.0,
+"localKey": "F major",
+"notes": "C - Eb - F - A",
+"root": "F",
+"bass": "F",
+"replaces": "S680"
 },
 {
 "id": "S681",
@@ -11545,20 +11571,21 @@
 "bass": "F#"
 },
 {
-"id": "S722",
+"id": "S946",
 "part": "coverage",
-"key": "181:29:1",
+"key": "181:45:1",
 "work": "181",
 "title": "C cile Chaminade Amoroso",
-"bar": 29,
+"bar": 45,
 "beat": 1.0,
 "untilBeat": null,
-"endBar": 30,
+"endBar": 46,
 "endBeat": 1.0,
 "localKey": "Eb major",
 "notes": "D - Gb - A - Bb",
 "root": "Bb",
-"bass": "Bb"
+"bass": "Bb",
+"replaces": "S722"
 },
 {
 "id": "S723",
@@ -12537,20 +12564,21 @@
 "bass": "F"
 },
 {
-"id": "S784",
+"id": "S947",
 "part": "coverage",
-"key": "139:53:1",
+"key": "139:2:1",
 "work": "139",
 "title": "Franz Schubert Schwanengesang No 8 Der Atlas",
-"bar": 53,
+"bar": 2,
 "beat": 1.0,
 "untilBeat": null,
-"endBar": 54,
+"endBar": 3,
 "endBeat": 1.0,
 "localKey": "G minor",
 "notes": "D - Gb - Bb",
 "root": "Bb",
-"bass": "Gb"
+"bass": "Gb",
+"replaces": "S784"
 },
 {
 "id": "S785",
@@ -12793,20 +12821,21 @@
 "bass": "E"
 },
 {
-"id": "S800",
+"id": "S948",
 "part": "coverage",
-"key": "251:73:1",
-"work": "251",
-"title": "Beethoven Ludwig van n15op132 02",
-"bar": 73,
+"key": "258:108:1",
+"work": "258",
+"title": "S Coleridge Taylor Oh the Summer",
+"bar": 108,
 "beat": 1.0,
-"untilBeat": 2.5,
-"endBar": 73,
-"endBeat": 2.5,
-"localKey": "A major",
-"notes": "D - Gb - Bb",
-"root": "D",
-"bass": "Bb"
+"untilBeat": 3.0,
+"endBar": 108,
+"endBeat": 3.0,
+"localKey": "Ab major",
+"notes": "Db - F - A",
+"root": "Db",
+"bass": "A",
+"replaces": "S800"
 },
 {
 "id": "S801",
@@ -13961,20 +13990,21 @@
 "bass": "Db"
 },
 {
-"id": "S873",
+"id": "S949",
 "part": "coverage",
-"key": "131:28:3",
-"work": "131",
-"title": "Samuel Coleridge Taylor 6 Sorrow Songs Op 57 No 6 Too late for l",
-"bar": 28,
-"beat": 3.0,
-"untilBeat": 3.5,
-"endBar": 28,
-"endBeat": 3.5,
-"localKey": "G minor",
-"notes": "C - D - Gb - Bb",
-"root": "C",
-"bass": "C"
+"key": "066:64:1",
+"work": "066",
+"title": "Harry Thacker Burleigh 5 Songs of Laurence Hope No 5 Till I Wake",
+"bar": 64,
+"beat": 1.0,
+"untilBeat": 3.0,
+"endBar": 64,
+"endBeat": 3.0,
+"localKey": "D minor",
+"notes": "Db - F - G - A",
+"root": "G",
+"bass": "G",
+"replaces": "S873"
 },
 {
 "id": "S874",
@@ -14711,6 +14741,258 @@
 "notes": "C - Eb - G - Ab",
 "root": "Ab",
 "bass": "Eb"
+}
+],
+"previousSamples": [
+"35bb3d497838a5a7211c162cd36dc0ec6d03697bd779f061c42c7554bddba312"
+],
+"replacements": [
+{
+"date": "2026-09-21",
+"rule": "A question is replaced only for a fault of the question itself: the span holds more than one chord, or nothing at the position could be judged. The replacement is drawn from the same stratum (coverage) or from the other shared-key positions (random), seeded per question, and gets a new id.",
+"from": "analysis_RNV-KZVUC (1).xlsx",
+"questions": [
+{
+"old": "S077",
+"new": "S920",
+"part": "random",
+"reason": "nothing at the position could be judged",
+"oldKey": "274:5:1",
+"newKey": "299:84:1"
+},
+{
+"old": "S114",
+"new": "S921",
+"part": "coverage",
+"reason": "the span holds more than one chord",
+"oldKey": "274:8:1",
+"newKey": "065:24:3"
+},
+{
+"old": "S117",
+"new": "S922",
+"part": "random",
+"reason": "the span holds more than one chord",
+"oldKey": "056:43:1",
+"newKey": "128:19:1"
+},
+{
+"old": "S146",
+"new": "S923",
+"part": "coverage",
+"reason": "nothing at the position could be judged",
+"oldKey": "073:6:2",
+"newKey": "073:54:1"
+},
+{
+"old": "S149",
+"new": "S924",
+"part": "coverage",
+"reason": "nothing at the position could be judged",
+"oldKey": "251:88:1",
+"newKey": "321:47:1"
+},
+{
+"old": "S188",
+"new": "S925",
+"part": "coverage",
+"reason": "nothing at the position could be judged",
+"oldKey": "060:316:3",
+"newKey": "314:37:1"
+},
+{
+"old": "S193",
+"new": "S926",
+"part": "random",
+"reason": "nothing at the position could be judged",
+"oldKey": "073:75:1",
+"newKey": "059:250:2"
+},
+{
+"old": "S197",
+"new": "S927",
+"part": "random",
+"reason": "nothing at the position could be judged",
+"oldKey": "045:9:2",
+"newKey": "164:180:1"
+},
+{
+"old": "S201",
+"new": "S928",
+"part": "random",
+"reason": "nothing at the position could be judged",
+"oldKey": "178:27:4",
+"newKey": "090:4:1"
+},
+{
+"old": "S202",
+"new": "S929",
+"part": "coverage",
+"reason": "nothing at the position could be judged",
+"oldKey": "164:172:1",
+"newKey": "164:10:1"
+},
+{
+"old": "S258",
+"new": "S930",
+"part": "coverage",
+"reason": "nothing at the position could be judged",
+"oldKey": "110:12:1",
+"newKey": "110:28:1"
+},
+{
+"old": "S275",
+"new": "S931",
+"part": "random",
+"reason": "nothing at the position could be judged",
+"oldKey": "212:54:3",
+"newKey": "050:3:3.5"
+},
+{
+"old": "S281",
+"new": "S932",
+"part": "coverage",
+"reason": "nothing at the position could be judged",
+"oldKey": "244:22:1",
+"newKey": "321:43:1"
+},
+{
+"old": "S295",
+"new": "S933",
+"part": "random",
+"reason": "the span holds more than one chord",
+"oldKey": "062:142:1",
+"newKey": "061:264:1"
+},
+{
+"old": "S303",
+"new": "S934",
+"part": "coverage",
+"reason": "nothing at the position could be judged",
+"oldKey": "145:180:1",
+"newKey": "145:45:1"
+},
+{
+"old": "S305",
+"new": "S935",
+"part": "coverage",
+"reason": "nothing at the position could be judged",
+"oldKey": "317:43:3",
+"newKey": "196:22:1"
+},
+{
+"old": "S330",
+"new": "S936",
+"part": "coverage",
+"reason": "nothing at the position could be judged",
+"oldKey": "073:60:1",
+"newKey": "073:30:1"
+},
+{
+"old": "S334",
+"new": "S937",
+"part": "coverage",
+"reason": "nothing at the position could be judged",
+"oldKey": "110:31:1",
+"newKey": "009:106:1"
+},
+{
+"old": "S364",
+"new": "S938",
+"part": "random",
+"reason": "the span holds more than one chord",
+"oldKey": "012:114:2",
+"newKey": "224:15:1"
+},
+{
+"old": "S405",
+"new": "S939",
+"part": "coverage",
+"reason": "nothing at the position could be judged",
+"oldKey": "198:7:1",
+"newKey": "057:27:1"
+},
+{
+"old": "S500",
+"new": "S940",
+"part": "random",
+"reason": "nothing at the position could be judged",
+"oldKey": "321:7:1",
+"newKey": "291:61:1"
+},
+{
+"old": "S510",
+"new": "S941",
+"part": "coverage",
+"reason": "nothing at the position could be judged",
+"oldKey": "275:59:1",
+"newKey": "097:80:1"
+},
+{
+"old": "S524",
+"new": "S942",
+"part": "coverage",
+"reason": "nothing at the position could be judged",
+"oldKey": "128:5:4",
+"newKey": "145:86:3"
+},
+{
+"old": "S609",
+"new": "S943",
+"part": "coverage",
+"reason": "nothing at the position could be judged",
+"oldKey": "034:122:1",
+"newKey": "217:11:1"
+},
+{
+"old": "S661",
+"new": "S944",
+"part": "coverage",
+"reason": "nothing at the position could be judged",
+"oldKey": "144:103:1",
+"newKey": "066:66:1"
+},
+{
+"old": "S680",
+"new": "S945",
+"part": "coverage",
+"reason": "nothing at the position could be judged",
+"oldKey": "243:100:1",
+"newKey": "062:186:2"
+},
+{
+"old": "S722",
+"new": "S946",
+"part": "coverage",
+"reason": "nothing at the position could be judged",
+"oldKey": "181:29:1",
+"newKey": "181:45:1"
+},
+{
+"old": "S784",
+"new": "S947",
+"part": "coverage",
+"reason": "nothing at the position could be judged",
+"oldKey": "139:53:1",
+"newKey": "139:2:1"
+},
+{
+"old": "S800",
+"new": "S948",
+"part": "coverage",
+"reason": "nothing at the position could be judged",
+"oldKey": "251:73:1",
+"newKey": "258:108:1"
+},
+{
+"old": "S873",
+"new": "S949",
+"part": "coverage",
+"reason": "nothing at the position could be judged",
+"oldKey": "131:28:3",
+"newKey": "066:64:1"
+}
+]
 }
 ]
 }
