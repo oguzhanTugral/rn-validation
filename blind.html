@@ -8,7 +8,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260922225604">
+<link rel="stylesheet" href="css/site.css?v=20260922230045">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -101,6 +101,8 @@
   .br-break .lab{font-family:ui-monospace,Menlo,Consolas,monospace}
   .br-break tbody tr[data-id]{cursor:pointer}
   .br-break tbody tr[data-id]:hover{background:var(--accent-soft)}
+  .br-break tbody tr[aria-current]{background:var(--accent-soft);font-weight:600}
+  .br-break .br-score{min-height:0}
 </style>
 </head>
 <body>
@@ -236,14 +238,14 @@
 </main>
 
 
-<script src="data/corpora.js?v=20260922225604"></script>
-<script src="js/rnv-data.js?v=20260922225604"></script>
-<script src="js/rnv-auth.js?v=20260922225604"></script>
-<script src="js/rnv-review.js?v=20260922225604"></script>
+<script src="data/corpora.js?v=20260922230045"></script>
+<script src="js/rnv-data.js?v=20260922230045"></script>
+<script src="js/rnv-auth.js?v=20260922230045"></script>
+<script src="js/rnv-review.js?v=20260922230045"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260922225604"></script>
-<script src="js/rnv-spell.js?v=20260922225604"></script>
-<script src="js/rnv-rnscore.js?v=20260922225604"></script>
+<script src="js/rnv-score.js?v=20260922230045"></script>
+<script src="js/rnv-spell.js?v=20260922230045"></script>
+<script src="js/rnv-rnscore.js?v=20260922230045"></script>
 <script>
 RNVData.boot({ page: 'blind.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -577,12 +579,27 @@ RNVData.boot({ page: 'blind.html', title: 'Blind review', host: 'brCard', needsC
         }).join('') + '</tbody>'
       : '<tbody><tr><td class="dim">Nothing here yet.</td></tr></tbody>';
     Array.prototype.forEach.call(el('brBreakTable').querySelectorAll('tbody tr[data-id]'), function (tr) {
-      tr.addEventListener('click', function () {                  // open that question and its score
-        el('brShow').value = 'all';
-        refreshOrder(tr.dataset.id);
-        el('brCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      tr.addEventListener('click', function () {                  // the score of that position, here
+        var it = sample.items.filter(function (x) { return x.id === tr.dataset.id; })[0];
+        if (!it) return;
+        Array.prototype.forEach.call(el('brBreakTable').querySelectorAll('tr[aria-current]'), function (x) {
+          x.removeAttribute('aria-current');
+        });
+        tr.setAttribute('aria-current', 'true');
+        el('brBreakHead').innerHTML = '<b>' + esc(it.id) + '</b> &middot; ' + esc(it.title) + ' &middot; bar ' + it.bar +
+          ', beat ' + it.beat + ' &middot; ' + esc(it.localKey || '') +
+          ' &middot; <button type="button" id="brBreakOpen">Open this question</button>';
+        drawScore(it, 'brBreakScoreBox');
+        el('brBreakOpen').addEventListener('click', function () {
+          el('brShow').value = 'all';
+          refreshOrder(it.id);
+          el('brCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        el('brBreakScoreBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
     });
+    el('brBreakHead').innerHTML = rows.length ? 'Click a row to see its score here.' : '';
+    el('brBreakScoreBox').innerHTML = '';
     Array.prototype.forEach.call(el('brBreakEngine').children, function (b) {
       b.addEventListener('click', function () { breakEngine = b.dataset.engine; paintBreak(); });
     });
@@ -790,20 +807,23 @@ RNVData.boot({ page: 'blind.html', title: 'Blind review', host: 'brCard', needsC
 
   // only the latest request may draw: several repaints on opening the page must not stack copies of the score
   var scoreTicket = 0;
-  function drawScore(it) {
-    var box = el('brScore'), ticket = ++scoreTicket;
+  var scoreTickets = {};
+  function drawScore(it, boxId) {
+    var box = el(boxId || 'brScore');
+    var ticket = scoreTickets[boxId || 'brScore'] = (scoreTickets[boxId || 'brScore'] || 0) + 1;
+    var mine = function () { return ticket === scoreTickets[boxId || 'brScore']; };
     box.innerHTML = '<div class="empty">Loading score&hellip;</div>';
     // last bar the span touches: the end bar, unless the span ends exactly on its first beat
     var from = it.bar, to = it.endBar == null ? it.bar : Math.max(it.bar, it.endBeat === 1 ? it.endBar - 1 : it.endBar);
     if (scope === 'context') { from--; to++; }
     RNVScore.loadScore(corpusId, it.work).then(function (xml) {
-      if (ticket !== scoreTicket) return;
-      showBeatUnit(xml, it);
+      if (!mine()) return;
+      if (!boxId) showBeatUnit(xml, it);
       var doc = new DOMParser().parseFromString(RNVScore.sliceMeasures(xml, from, to), 'application/xml');
       // blind: no harmony symbols or Roman numerals embedded in the score may be shown
       Array.prototype.slice.call(doc.getElementsByTagName('harmony')).forEach(function (h) { h.parentNode.removeChild(h); });
       var sustained = markSpan(doc, it);
-      var warn = el('brHeld');
+      var warn = boxId ? null : el('brHeld');
       if (warn) {
         warn.hidden = !sustained;
         if (sustained) {
@@ -818,9 +838,9 @@ RNVData.boot({ page: 'blind.html', title: 'Blind review', host: 'brCard', needsC
       var own = document.createElement('div');                 // this request's own container
       box.appendChild(own);
       return Promise.resolve(RNVScore.render(own, new XMLSerializer().serializeToString(doc))).then(function () {
-        if (ticket !== scoreTicket && own.parentNode) own.parentNode.removeChild(own);   // a newer request took over
+        if (!mine() && own.parentNode) own.parentNode.removeChild(own);   // a newer request took over
       });
-    }).catch(function (err) { if (ticket === scoreTicket) box.innerHTML = '<div class="empty">' + esc(err.message || err) + '</div>'; });
+    }).catch(function (err) { if (mine()) box.innerHTML = '<div class="empty">' + esc(err.message || err) + '</div>'; });
   }
 
   Array.prototype.forEach.call(el('brScope').children, function (b) {
