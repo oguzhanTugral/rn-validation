@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Training blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260922230045">
+<link rel="stylesheet" href="css/site.css?v=20260922230512">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -102,6 +102,7 @@
   .br-break tbody tr[data-id]:hover{background:var(--accent-soft)}
   .br-break tbody tr[aria-current]{background:var(--accent-soft);font-weight:600}
   .br-break .br-score{min-height:0}
+  .br-break tr.br-score-row td{background:var(--panel);padding:10px 8px}
 </style>
 </head>
 <body>
@@ -242,22 +243,20 @@
     <div class="seg" id="brBreakVerdict"></div>
     <p class="dim" style="font-size:13px;margin:8px 0 0" id="brBreakNote"></p>
     <div style="overflow-x:auto"><table id="brBreakTable"></table></div>
-    <p class="dim" style="font-size:13px;margin:10px 0 4px" id="brBreakHead"></p>
-    <div class="br-score" id="brBreakScoreBox"></div>
   </div>
 </details>
 <!-- training-only:end -->
 </main>
 
 
-<script src="data/corpora.js?v=20260922230045"></script>
-<script src="js/rnv-data.js?v=20260922230045"></script>
-<script src="js/rnv-auth.js?v=20260922230045"></script>
-<script src="js/rnv-review.js?v=20260922230045"></script>
+<script src="data/corpora.js?v=20260922230512"></script>
+<script src="js/rnv-data.js?v=20260922230512"></script>
+<script src="js/rnv-auth.js?v=20260922230512"></script>
+<script src="js/rnv-review.js?v=20260922230512"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260922230045"></script>
-<script src="js/rnv-spell.js?v=20260922230045"></script>
-<script src="js/rnv-rnscore.js?v=20260922230045"></script>
+<script src="js/rnv-score.js?v=20260922230512"></script>
+<script src="js/rnv-spell.js?v=20260922230512"></script>
+<script src="js/rnv-rnscore.js?v=20260922230512"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -577,7 +576,9 @@ RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorp
         (total ? (100 * data[breakVerdict].length / total).toFixed(1).replace('.', ',') : '0') + '%). ' +
         'An analyser is counted right where a Roman numeral it gave is among the ones you ticked.';
     el('brBreakTable').innerHTML = rows.length
-      ? '<thead><tr><th>Id</th><th>Work</th><th>Bar</th><th>Key</th><th>' + breakEngine + '</th>' +
+      ? '<caption class="dim" style="caption-side:top;text-align:left;font-size:13px;padding:0 0 6px">' +
+        'Click a row to open its score under it.</caption>' +
+        '<thead><tr><th>Id</th><th>Work</th><th>Bar</th><th>Key</th><th>' + breakEngine + '</th>' +
         '<th>Ticked</th><th>Note</th></tr></thead><tbody>' +
         rows.map(function (pair) {
           var it = pair[0], v = pair[1];
@@ -591,27 +592,34 @@ RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorp
         }).join('') + '</tbody>'
       : '<tbody><tr><td class="dim">Nothing here yet.</td></tr></tbody>';
     Array.prototype.forEach.call(el('brBreakTable').querySelectorAll('tbody tr[data-id]'), function (tr) {
-      tr.addEventListener('click', function () {                  // the score of that position, here
+      tr.addEventListener('click', function () {                  // the score opens under this row
         var it = sample.items.filter(function (x) { return x.id === tr.dataset.id; })[0];
         if (!it) return;
+        var open = tr.hasAttribute('aria-current');
+        var here = el('brBreakTable').querySelector('tr.br-score-row');
+        if (here) here.parentNode.removeChild(here);
         Array.prototype.forEach.call(el('brBreakTable').querySelectorAll('tr[aria-current]'), function (x) {
           x.removeAttribute('aria-current');
         });
+        if (open) return;                                         // a second click closes it
         tr.setAttribute('aria-current', 'true');
-        el('brBreakHead').innerHTML = '<b>' + esc(it.id) + '</b> &middot; ' + esc(it.title) + ' &middot; bar ' + it.bar +
-          ', beat ' + it.beat + ' &middot; ' + esc(it.localKey || '') +
-          ' &middot; <button type="button" id="brBreakOpen">Open this question</button>';
+        var row = document.createElement('tr');
+        row.className = 'br-score-row';
+        row.innerHTML = '<td colspan="7"><p class="dim" style="font-size:13px;margin:0 0 6px">' +
+          '<b>' + esc(it.id) + '</b> &middot; ' + esc(it.title) + ' &middot; bar ' + it.bar + ', beat ' + it.beat +
+          ' &middot; ' + esc(it.localKey || '') + ' &middot; <button type="button" id="brBreakOpen">Open this question</button>' +
+          '</p><div class="br-score" id="brBreakScoreBox"></div></td>';
+        tr.parentNode.insertBefore(row, tr.nextSibling);
         drawScore(it, 'brBreakScoreBox');
-        el('brBreakOpen').addEventListener('click', function () {
+        el('brBreakOpen').addEventListener('click', function (ev) {
+          ev.stopPropagation();
           el('brShow').value = 'all';
           refreshOrder(it.id);
           el('brCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
-        el('brBreakScoreBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        row.scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
     });
-    el('brBreakHead').innerHTML = rows.length ? 'Click a row to see its score here.' : '';
-    el('brBreakScoreBox').innerHTML = '';
     Array.prototype.forEach.call(el('brBreakEngine').children, function (b) {
       b.addEventListener('click', function () { breakEngine = b.dataset.engine; paintBreak(); });
     });
