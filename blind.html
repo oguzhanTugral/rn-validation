@@ -8,7 +8,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260921215417">
+<link rel="stylesheet" href="css/site.css?v=20260922224933">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -91,6 +91,14 @@
   .br-ask button{font:inherit;font-size:14px;padding:8px 14px;border-radius:8px;border:1px solid var(--line);
     background:var(--panel);cursor:pointer}
   .br-ask button.danger{background:#dc2626;border-color:#dc2626;color:#fff}
+  .br-break{margin:18px 0 0}
+  .br-break summary{cursor:pointer}
+  .br-break-body{padding-top:10px}
+  .br-break-body .seg{margin:0 0 8px}
+  .br-break table{width:100%;border-collapse:collapse;font-size:13.5px}
+  .br-break th,.br-break td{border-bottom:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}
+  .br-break th{white-space:nowrap}
+  .br-break .lab{font-family:ui-monospace,Menlo,Consolas,monospace}
 </style>
 </head>
 <body>
@@ -222,16 +230,18 @@
       <div class="br-score" id="brScore"></div>
     </div>
   </div>
+
 </main>
 
-<script src="data/corpora.js?v=20260921215417"></script>
-<script src="js/rnv-data.js?v=20260921215417"></script>
-<script src="js/rnv-auth.js?v=20260921215417"></script>
-<script src="js/rnv-review.js?v=20260921215417"></script>
+
+<script src="data/corpora.js?v=20260922224933"></script>
+<script src="js/rnv-data.js?v=20260922224933"></script>
+<script src="js/rnv-auth.js?v=20260922224933"></script>
+<script src="js/rnv-review.js?v=20260922224933"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260921215417"></script>
-<script src="js/rnv-spell.js?v=20260921215417"></script>
-<script src="js/rnv-rnscore.js?v=20260921215417"></script>
+<script src="js/rnv-score.js?v=20260922224933"></script>
+<script src="js/rnv-spell.js?v=20260922224933"></script>
+<script src="js/rnv-rnscore.js?v=20260922224933"></script>
 <script>
 RNVData.boot({ page: 'blind.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -295,7 +305,7 @@ RNVData.boot({ page: 'blind.html', title: 'Blind review', host: 'brCard', needsC
     });
     pos = 0;
     if (keepId) { var i = order.findIndex(function (it) { return it.id === keepId; }); if (i >= 0) pos = i; }
-    counts(); paint();
+    counts(); paint(); paintBreak();
   }
 
   function counts() {
@@ -506,6 +516,62 @@ RNVData.boot({ page: 'blind.html', title: 'Blind review', host: 'brCard', needsC
     Array.prototype.forEach.call(el('brCard').querySelectorAll('.seg[data-q] button'), function (b) { b.disabled = on; });
     if (el('brUndo4')) el('brUndo4').hidden = !on;
   }
+
+  // ---- the answers by analyser: right, wrong, unclear, each with its positions
+  var breakEngine = ENGINES[0], breakVerdict = 'right';
+
+  function breakdown() {
+    var out = { right: [], wrong: [], unclear: [] };
+    sample.items.forEach(function (it) {
+      var v = RNVReview.getKey(sheet, it.id);
+      if (!RNOPT[it.id] || !v.rnDone) return;                       // no Roman-numeral answer here
+      if (v.rnU) { out.unclear.push([it, v]); return; }
+      (rightEngines(it, v).indexOf(breakEngine) >= 0 ? out.right : out.wrong).push([it, v]);
+    });
+    return out;
+  }
+
+  function paintBreak() {
+    if (!el('brBreak') || !el('brBreak').open) return;
+    var data = breakdown();
+    el('brBreakEngine').innerHTML = ENGINES.map(function (e) {
+      return '<button type="button" data-engine="' + e + '" aria-pressed="' + (e === breakEngine) + '">' + e + '</button>';
+    }).join('');
+    var names = { right: 'Counted right', wrong: 'Counted wrong', unclear: 'Unclear' };
+    el('brBreakVerdict').innerHTML = ['right', 'wrong', 'unclear'].map(function (k) {
+      return '<button type="button" data-verdict="' + k + '" aria-pressed="' + (k === breakVerdict) + '">' +
+        names[k] + ' (' + data[k].length + ')</button>';
+    }).join('');
+    var rows = data[breakVerdict];
+    var total = data.right.length + data.wrong.length;
+    el('brBreakNote').innerHTML = breakVerdict === 'unclear'
+      ? 'Positions whose Roman numeral you answered &ldquo;unclear&rdquo;. They count for no analyser.'
+      : '<b>' + data[breakVerdict].length + '</b> of ' + total + ' answered positions (' +
+        (total ? (100 * data[breakVerdict].length / total).toFixed(1).replace('.', ',') : '0') + '%). ' +
+        'An analyser is counted right where a Roman numeral it gave is among the ones you ticked.';
+    el('brBreakTable').innerHTML = rows.length
+      ? '<thead><tr><th>Id</th><th>Work</th><th>Bar</th><th>Key</th><th>' + breakEngine + '</th>' +
+        '<th>Ticked</th><th>Note</th></tr></thead><tbody>' +
+        rows.map(function (pair) {
+          var it = pair[0], v = pair[1];
+          var mine = (RNOPT[it.id] || []).filter(function (o) { return o.engines.indexOf(breakEngine) >= 0; })
+            .map(function (o) { return o.label; });
+          return '<tr><td>' + esc(it.id) + '</td><td>' + esc(it.title) + '</td>' +
+            '<td>' + it.bar + '.' + it.beat + '</td><td>' + esc(it.localKey || '') + '</td>' +
+            '<td class="lab">' + esc(mine.join(' / ') || '\u2014') + '</td>' +
+            '<td class="lab">' + esc((v.rn || []).join(' / ') || (v.rnNone ? 'none of these' : '\u2014')) + '</td>' +
+            '<td>' + esc(v.note || '') + '</td></tr>';
+        }).join('') + '</tbody>'
+      : '<tbody><tr><td class="dim">Nothing here yet.</td></tr></tbody>';
+    Array.prototype.forEach.call(el('brBreakEngine').children, function (b) {
+      b.addEventListener('click', function () { breakEngine = b.dataset.engine; paintBreak(); });
+    });
+    Array.prototype.forEach.call(el('brBreakVerdict').children, function (b) {
+      b.addEventListener('click', function () { breakVerdict = b.dataset.verdict; paintBreak(); });
+    });
+  }
+
+  if (el('brBreak')) el('brBreak').addEventListener('toggle', paintBreak);
 
   function rightEngines(it, v) {
     var opts = RNOPT[it.id] || [], chosen = v.rn || [];
