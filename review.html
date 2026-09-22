@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Training blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260922224933">
+<link rel="stylesheet" href="css/site.css?v=20260922225604">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -98,6 +98,8 @@
   .br-break th,.br-break td{border-bottom:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}
   .br-break th{white-space:nowrap}
   .br-break .lab{font-family:ui-monospace,Menlo,Consolas,monospace}
+  .br-break tbody tr[data-id]{cursor:pointer}
+  .br-break tbody tr[data-id]:hover{background:var(--accent-soft)}
 </style>
 </head>
 <body>
@@ -234,6 +236,7 @@
   <summary><b>Your answers, analyser by analyser</b> &mdash; what each one was counted right, wrong or unclear on</summary>
   <div class="br-break-body">
     <div class="seg" id="brBreakEngine" role="tablist"></div>
+    <div class="rowsA" id="brBreakScore" style="margin:6px 0 10px"></div>
     <div class="seg" id="brBreakVerdict"></div>
     <p class="dim" style="font-size:13px;margin:8px 0 0" id="brBreakNote"></p>
     <div style="overflow-x:auto"><table id="brBreakTable"></table></div>
@@ -243,14 +246,14 @@
 </main>
 
 
-<script src="data/corpora.js?v=20260922224933"></script>
-<script src="js/rnv-data.js?v=20260922224933"></script>
-<script src="js/rnv-auth.js?v=20260922224933"></script>
-<script src="js/rnv-review.js?v=20260922224933"></script>
+<script src="data/corpora.js?v=20260922225604"></script>
+<script src="js/rnv-data.js?v=20260922225604"></script>
+<script src="js/rnv-auth.js?v=20260922225604"></script>
+<script src="js/rnv-review.js?v=20260922225604"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260922224933"></script>
-<script src="js/rnv-spell.js?v=20260922224933"></script>
-<script src="js/rnv-rnscore.js?v=20260922224933"></script>
+<script src="js/rnv-score.js?v=20260922225604"></script>
+<script src="js/rnv-spell.js?v=20260922225604"></script>
+<script src="js/rnv-rnscore.js?v=20260922225604"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -528,6 +531,7 @@ RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorp
 
   // ---- the answers by analyser: right, wrong, unclear, each with its positions
   var breakEngine = ENGINES[0], breakVerdict = 'right';
+  var ENGCOLOR = { musWM: 'var(--muswm)', AnalysisGNN: 'var(--gnn)', AugmentedNet: 'var(--anet)' };
 
   function breakdown() {
     var out = { right: [], wrong: [], unclear: [] };
@@ -546,6 +550,16 @@ RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorp
     el('brBreakEngine').innerHTML = ENGINES.map(function (e) {
       return '<button type="button" data-engine="' + e + '" aria-pressed="' + (e === breakEngine) + '">' + e + '</button>';
     }).join('');
+    var answered = data.right.length + data.wrong.length;
+    el('brBreakScore').innerHTML = answered
+      ? '<div class="eng"><span class="nm" style="color:' + (ENGCOLOR[breakEngine] || 'var(--ink)') + '">' + breakEngine + '</span>' +
+        '<div class="track"><div class="fill" style="width:' + (100 * data.right.length / answered).toFixed(1) +
+        '%;background:' + (ENGCOLOR[breakEngine] || 'var(--ink)') + '"></div></div>' +
+        '<span class="pc">' + (100 * data.right.length / answered).toFixed(1).replace('.', ',') + '%</span></div>' +
+        '<p class="dim" style="font-size:13px;margin:6px 0 0">' + data.right.length + ' counted right, ' +
+        data.wrong.length + ' counted wrong of ' + answered + ' answered positions &middot; ' +
+        data.unclear.length + ' answered unclear and counted for no analyser.</p>'
+      : '<p class="dim" style="font-size:13px;margin:0">No Roman-numeral answer yet.</p>';
     var names = { right: 'Counted right', wrong: 'Counted wrong', unclear: 'Unclear' };
     el('brBreakVerdict').innerHTML = ['right', 'wrong', 'unclear'].map(function (k) {
       return '<button type="button" data-verdict="' + k + '" aria-pressed="' + (k === breakVerdict) + '">' +
@@ -565,13 +579,20 @@ RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorp
           var it = pair[0], v = pair[1];
           var mine = (RNOPT[it.id] || []).filter(function (o) { return o.engines.indexOf(breakEngine) >= 0; })
             .map(function (o) { return o.label; });
-          return '<tr><td>' + esc(it.id) + '</td><td>' + esc(it.title) + '</td>' +
+          return '<tr data-id="' + esc(it.id) + '" title="Open this question"><td>' + esc(it.id) + '</td><td>' + esc(it.title) + '</td>' +
             '<td>' + it.bar + '.' + it.beat + '</td><td>' + esc(it.localKey || '') + '</td>' +
             '<td class="lab">' + esc(mine.join(' / ') || '\u2014') + '</td>' +
             '<td class="lab">' + esc((v.rn || []).join(' / ') || (v.rnNone ? 'none of these' : '\u2014')) + '</td>' +
             '<td>' + esc(v.note || '') + '</td></tr>';
         }).join('') + '</tbody>'
       : '<tbody><tr><td class="dim">Nothing here yet.</td></tr></tbody>';
+    Array.prototype.forEach.call(el('brBreakTable').querySelectorAll('tbody tr[data-id]'), function (tr) {
+      tr.addEventListener('click', function () {                  // open that question and its score
+        el('brShow').value = 'all';
+        refreshOrder(tr.dataset.id);
+        el('brCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
     Array.prototype.forEach.call(el('brBreakEngine').children, function (b) {
       b.addEventListener('click', function () { breakEngine = b.dataset.engine; paintBreak(); });
     });
