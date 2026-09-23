@@ -53,7 +53,8 @@
       out.authors = out.authors.filter(function (a, i, list) {
         return list.findIndex(function (b) { return b.label === a.label; }) === i;   // one row per author
       });
-      if (pub && pub.engines) {
+
+      if (pub && pub.engines && !out.authors.length) {
         out.published = { id: 'published', answered: pub.answered, positions: pub.positions,
                           unclear: pub.unclear, engines: pub.engines,
                           label: (pub.rater || 'The author') + ' — author of ' + (pub.raterIsAuthor || 'musWM') +
