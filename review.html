@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Training blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260922230512">
+<link rel="stylesheet" href="css/site.css?v=20260923125407">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -200,7 +200,11 @@
   <div class="br-tools">
     <div class="field"><label for="brShow">Show</label>
       <select id="brShow" autocomplete="off"><option value="todo">Not yet rated</option><option value="all">All positions</option>
-      <option value="done">Rated</option><option value="rn">Roman numeral not yet answered</option></select></div>
+      <option value="done">Rated</option><option value="rn">Roman numeral not yet answered</option>
+      <option value="unclear">Answered unclear</option>
+      <option value="wrong:musWM">Counted wrong &mdash; musWM</option>
+      <option value="wrong:AnalysisGNN">Counted wrong &mdash; AnalysisGNN</option>
+      <option value="wrong:AugmentedNet">Counted wrong &mdash; AugmentedNet</option></select></div>
     <div class="field"><label for="brJump">Go to</label>
       <input id="brJump" type="text" placeholder="S001" style="width:6em"></div>
     <div class="field"><label>&nbsp;</label><div class="seg">
@@ -249,14 +253,14 @@
 </main>
 
 
-<script src="data/corpora.js?v=20260922230512"></script>
-<script src="js/rnv-data.js?v=20260922230512"></script>
-<script src="js/rnv-auth.js?v=20260922230512"></script>
-<script src="js/rnv-review.js?v=20260922230512"></script>
+<script src="data/corpora.js?v=20260923125407"></script>
+<script src="js/rnv-data.js?v=20260923125407"></script>
+<script src="js/rnv-auth.js?v=20260923125407"></script>
+<script src="js/rnv-review.js?v=20260923125407"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260922230512"></script>
-<script src="js/rnv-spell.js?v=20260922230512"></script>
-<script src="js/rnv-rnscore.js?v=20260922230512"></script>
+<script src="js/rnv-score.js?v=20260923125407"></script>
+<script src="js/rnv-spell.js?v=20260923125407"></script>
+<script src="js/rnv-rnscore.js?v=20260923125407"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -314,8 +318,14 @@ RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorp
 
   function refreshOrder(keepId) {
     var show = el('brShow').value;
+    var engine = show.indexOf('wrong:') === 0 ? show.slice(6) : '';
+    if (engine) breakEngine = engine;                            // the accordion follows the same analyser
     order = sample.items.filter(function (it) {
       if (show === 'rn') return rated(it) && !RNVReview.getKey(sheet, it.id).rnDone && !!RNOPT[it.id];
+      var v = RNVReview.getKey(sheet, it.id);
+      // the two lists that read the answer itself: unclear, and wrong for one analyser
+      if (show === 'unclear') return !!(v.rnDone && v.rnU);
+      if (engine) return !!(v.rnDone && !v.rnU && RNOPT[it.id] && rightEngines(it, v).indexOf(engine) < 0);
       return show === 'all' || (show === 'done' ? complete(it) : !complete(it));
     });
     pos = 0;
@@ -325,6 +335,13 @@ RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorp
 
   function counts() {
     var done = sample.items.filter(rated).length, total = sample.items.length;
+    var pick = el('brShow').value;
+    if (pick === 'unclear' || pick.indexOf('wrong:') === 0) {
+      el('brCount').innerHTML = '<b>' + order.length + '</b> ' +
+        (pick === 'unclear' ? 'answered unclear' : 'counted wrong for ' + esc(pick.slice(6))) +
+        ' of ' + total + ' positions';
+      return;
+    }
     var rnDone = sample.items.filter(function (it) { return RNVReview.getKey(sheet, it.id).rnDone; }).length;
     el('brCount').innerHTML = '<b>' + done + '</b> of ' + total + ' positions rated · Roman numerals answered <b>' + rnDone +
       '</b> · showing ' + order.length;
