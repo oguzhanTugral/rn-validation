@@ -45,6 +45,7 @@ drop policy if exists "settings update admin" on public.site_settings;
 create policy "settings update admin" on public.site_settings for update to authenticated
   using (public.is_site_admin()) with check (public.is_site_admin());
 
+revoke all on public.site_settings from anon, authenticated;
 grant select on public.site_settings to anon, authenticated;
 grant insert, update on public.site_settings to authenticated;
 
@@ -85,7 +86,7 @@ create policy "visits read admin" on public.site_visits for select to authentica
 revoke all on public.site_visits from anon, authenticated;
 grant insert on public.site_visits to anon, authenticated;
 grant select on public.site_visits to authenticated;
-grant usage, select on all sequences in schema public to anon, authenticated;
+grant usage on sequence public.site_visits_id_seq to anon, authenticated;
 
 -- daily totals for the administrator; raises for anyone else
 create or replace function public.visit_daily(days integer default 30)
