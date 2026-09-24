@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>musWM · RN comparison</title>
 <link rel="icon" href="assets/brand/muswm-mark-3d.svg" type="image/svg+xml">
-<link rel="stylesheet" href="css/site.css?v=20260924232540">
+<link rel="stylesheet" href="css/site.css?v=20260924233854">
 <style>
 /* hero: environment palette (lilac wash, soft pink and sky), deep ink */
 .hero{position:relative;overflow:hidden;color:var(--deep);
@@ -100,7 +100,6 @@ body.home header.site .brand .logo{display:none}
     <h2>Blind review &mdash; the rater sees the score, not who wrote the label (answers as first given)</h2>
     <div class="rowsA" id="blindRows"><div class="empty">Loading&hellip;</div></div>
     <p class="dim" style="font-size:13px;margin:10px 0 0" id="blindNote"></p>
-    <div id="figSource"></div>
   </section>
 
   <section class="prelim-foot">
@@ -110,15 +109,15 @@ body.home header.site .brand .logo{display:none}
 </main>
 
 
-<script src="js/rnv-sharedkey.js?v=20260924232540"></script>
+<script src="js/rnv-sharedkey.js?v=20260924233854"></script>
 <script>
 fetch('data/corpora/wir335/shared_key.json').then(function (r) { return r.json(); }).then(function (sk) {
   document.getElementById('skWrap').innerHTML = rnvSharedKeyTable(sk);
   document.getElementById('skNote').innerHTML = RNV_SHARED_NOTE;
 }).catch(function () {});
 </script>
-<script src="data/corpora.js?v=20260924232540"></script>
-<script src="js/rnv-data.js?v=20260924-published"></script>
+<script src="data/corpora.js?v=20260924233854"></script>
+<script src="js/rnv-data.js?v=20260924233854"></script>
 <script>
 RNVData.boot({
   page: 'hero.html', title: 'Home', host: 'blindRows', needsCorpus: false,
@@ -144,8 +143,8 @@ RNVData.boot({
   }
 });
 </script>
-<script src="js/rnv-rnscore.js?v=20260924232540"></script>
-<script src="js/rnv-auth.js?v=20260924232540"></script>
-<script src="js/rnv-figures.js?v=20260924-published"></script>
+<script src="js/rnv-rnscore.js?v=20260924233854"></script>
+<script src="js/rnv-auth.js?v=20260924233854"></script>
+<script src="js/rnv-figures.js?v=20260924233854"></script>
 </body>
 </html>

@@ -7,8 +7,8 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Compare analyses · RN comparison</title>
-<link rel="stylesheet" href="css/community.css?v=20260924232540">
-<link rel="stylesheet" href="css/site.css?v=20260924232540">
+<link rel="stylesheet" href="css/community.css?v=20260924233854">
+<link rel="stylesheet" href="css/site.css?v=20260924233854">
 <style>
   .cmp-list{display:grid;gap:8px;margin:12px 0}
   .cmp-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
@@ -39,9 +39,6 @@
   <p class="dim" style="font-size:13px;margin:10px 0 0">The figures the rest of the site reports come from the
   pooled participants. While no one outside the analysers&rsquo; authors has rated the sample, an author&rsquo;s own
   rating can be shown instead:</p>
-  <h3 class="sect" id="main-results">Main blind review — published results</h3>
-  <div class="rowsA" id="blindRows"></div>
-  <div class="note" id="blindNote"></div>
   <div id="figSource"></div>
   <section id="cmpDetails" hidden aria-labelledby="cmpDetailsTitle">
     <div class="cmp-tools"><h3 id="cmpDetailsTitle" tabindex="-1"></h3><button id="cmpDetailsClose" type="button">Close details</button></div>
@@ -59,12 +56,12 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260924232540"></script>
-<script src="js/rnv-data.js?v=20260924-published"></script>
-<script src="js/rnv-auth.js?v=20260924232540"></script>
-<script src="js/rnv-review.js?v=20260924232540"></script>
-<script src="js/rnv-rnscore.js?v=20260924232540"></script>
-<script src="js/rnv-community.js?v=20260924232540"></script>
+<script src="data/corpora.js?v=20260924233854"></script>
+<script src="js/rnv-data.js?v=20260924233854"></script>
+<script src="js/rnv-auth.js?v=20260924233854"></script>
+<script src="js/rnv-review.js?v=20260924233854"></script>
+<script src="js/rnv-rnscore.js?v=20260924233854"></script>
+<script src="js/rnv-community.js?v=20260924233854"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', needsCorpus: false, render: function () {
   var esc = RNVData.esc;
@@ -285,6 +282,6 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
   }
 } });
 </script>
-<script src="js/rnv-figures.js?v=20260924-published"></script>
+<script src="js/rnv-figures.js?v=20260924233854"></script>
 </body>
 </html>
