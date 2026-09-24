@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Training blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260924233854">
+<link rel="stylesheet" href="css/site.css?v=20260924235622">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -254,14 +254,14 @@
 </main>
 
 
-<script src="data/corpora.js?v=20260924233854"></script>
-<script src="js/rnv-data.js?v=20260924233854"></script>
-<script src="js/rnv-auth.js?v=20260924233854"></script>
-<script src="js/rnv-review.js?v=20260924233854"></script>
+<script src="data/corpora.js?v=20260924235622"></script>
+<script src="js/rnv-data.js?v=20260924235622"></script>
+<script src="js/rnv-auth.js?v=20260924235622"></script>
+<script src="js/rnv-review.js?v=20260924235622"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260924233854"></script>
-<script src="js/rnv-spell.js?v=20260924233854"></script>
-<script src="js/rnv-rnscore.js?v=20260924233854"></script>
+<script src="js/rnv-score.js?v=20260924235622"></script>
+<script src="js/rnv-spell.js?v=20260924235622"></script>
+<script src="js/rnv-rnscore.js?v=20260924235622"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -504,7 +504,15 @@ RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorp
     }
     RNVReview.setKey = function () { if (!canEdit()) return; var r = set.apply(RNVReview, arguments); changed(); return r; };
     RNVReview.replaceAll = function () { if (!canEdit()) return Promise.resolve(false); var r = all.apply(RNVReview, arguments); Promise.resolve(r).then(changed); return r; };
-    if (!reviewOwner) { mine(); return Promise.resolve(); }
+    if (!reviewOwner) {
+      // nothing is stored for a signed-out visitor, so there is nothing this button could clear
+      el('brClear').disabled = true;
+      el('brSync').innerHTML = 'Not signed in: ratings are kept in this browser only. ' +
+        '<a href="account.html?next=' + encodeURIComponent(location.pathname.split('/').pop()) + '">Sign in</a> ' +
+        'to save them to an account, and to be able to clear them there.';
+      mine();
+      return Promise.resolve();
+    }
     el('brSync').textContent = 'Loading your saved account answers…';
     el('brCard').inert = true; el('brClear').disabled = true;
     return RNVAuth.db('live_answers?user_id=eq.' + encodeURIComponent(reviewOwner) + '&select=rows,sample').then(function (got) {
