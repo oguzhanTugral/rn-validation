@@ -169,7 +169,10 @@
       '<footer class="site" id="rnvAttribution"><div class="wrap">' +
       '&copy; 2026 Oğuzhan Tuğral &mdash; All rights reserved. ' +
       '<a href="hero.html">musWM · RN validation</a> · <a href="COPYRIGHT.txt">Use and attribution</a>' +
-      (corpus ? ' · built ' + esc(corpus.generated) : '') + '</div></footer>');
+      (corpus ? ' · built ' + esc(corpus.generated) : '') +
+      '<br><span class="dim">This site counts page views: the day, the page, the site that linked here, the '
+      + 'browser language and the browser time zone. No cookies, no addresses, nothing that identifies a '
+      + 'visitor.</span>' + '</div></footer>');
   }
 
 
