@@ -9,14 +9,17 @@ const A='00000000-0000-0000-0000-000000000001', B='00000000-0000-0000-0000-00000
  create table profiles(id uuid primary key references auth.users);
  create table analyses(user_id uuid references profiles);
  create table live_answers(user_id uuid references profiles);
+ create table live_answers_main(user_id uuid references profiles);
  create table rn_feedback(reviewer_id uuid references profiles,target_id uuid references profiles);
  create table direct_messages(sender_id uuid references profiles,recipient_id uuid references profiles);
  insert into auth.users values('${A}','a@example.test'),('${B}','b@example.test');
  insert into profiles values('${A}'),('${B}');
  insert into analyses values('${A}'),('${B}'); insert into live_answers values('${A}'),('${B}');
+ insert into live_answers_main values('${A}'),('${B}');
  insert into rn_feedback values('${A}','${B}'),('${B}','${A}');
  insert into direct_messages values('${A}','${B}');`);
  await db.exec(fs.readFileSync('supabase/migrations/20260921000000_delete_own_account.sql','utf8'));
+ await db.exec(fs.readFileSync('supabase/migrations/20260924000000_delete_account_main_answers.sql','utf8'));
  const call=(email,id)=>`select public.delete_own_account('${email}','${id}')`;
  await db.exec(`set role anon`);await assert.rejects(db.exec(call('a@example.test',A)));
  await db.exec(`reset role; set role authenticated; select set_config('request.jwt.claim.sub','${B}',false)`);
@@ -27,7 +30,7 @@ const A='00000000-0000-0000-0000-000000000001', B='00000000-0000-0000-0000-00000
  await assert.rejects(db.exec(call('b@example.test',B)));
  await db.exec('reset role');
  for(const t of ['auth.users','profiles']) assert.deepEqual((await db.query(`select id from ${t}`)).rows,[{id:A}]);
- for(const t of ['analyses','live_answers']) assert.deepEqual((await db.query(`select user_id from ${t}`)).rows,[{user_id:A}]);
+ for(const t of ['analyses','live_answers','live_answers_main']) assert.deepEqual((await db.query(`select user_id from ${t}`)).rows,[{user_id:A}]);
  for(const t of ['rn_feedback','direct_messages']) assert.equal((await db.query(`select * from ${t}`)).rows.length,0);
  await db.close();console.log('PASS: anon denied, identity/email mismatch denied, own data removed, other account and answers preserved, stale retry denied');
 })().catch(e=>{console.error(e);process.exitCode=1});
