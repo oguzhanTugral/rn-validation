@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Account · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260924235622">
+<link rel="stylesheet" href="css/site.css?v=20260925001230">
 <style>
   .acc-box{max-width:520px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
     box-shadow:var(--shadow);padding:18px 20px;margin:0 0 16px}
@@ -94,6 +94,21 @@
       <div id="myList" class="dim" style="font-size:14px">Loading&hellip;</div>
     </div>
 
+    <div class="acc-box" id="adminTraffic" hidden>
+      <h3>Site traffic</h3>
+      <p class="dim" style="font-size:13px;margin:0 0 10px">Daily page views. A view records the page, the site that
+      linked to it, the browser language and the browser time zone &mdash; no address, no cookie, nothing that
+      identifies a visitor, and one line per page per browser session. Only this account can read it.</p>
+      <div class="acc-row">
+        <label for="trafficDays" style="font-size:14px">Days</label>
+        <select id="trafficDays" style="font:inherit;font-size:14px;padding:6px;border:1px solid var(--line);border-radius:8px">
+          <option value="7">7</option><option value="30" selected>30</option><option value="90">90</option>
+        </select>
+        <button id="trafficLoad" type="button">Refresh</button>
+      </div>
+      <div id="trafficOut" style="font-size:14px;margin-top:10px">Loading&hellip;</div>
+    </div>
+
     <div class="acc-box" style="border-color:#dc2626;margin-top:24px">
       <h3>Delete my account</h3>
       <p>This permanently deletes your account, profile, saved answers, uploaded analyses, ratings and comments. Feedback on your answers and private conversations involving you are also deleted for both sides. Other participants' accounts and analyses remain unchanged.</p>
@@ -108,9 +123,9 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260924235622"></script>
-<script src="js/rnv-data.js?v=20260924235622"></script>
-<script src="js/rnv-auth.js?v=20260924235622"></script>
+<script src="data/corpora.js?v=20260925001230"></script>
+<script src="js/rnv-data.js?v=20260925001230"></script>
+<script src="js/rnv-auth.js?v=20260925001230"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Account', host: 'accOut', needsCorpus: false, render: function () {
   var el = function (id) { return document.getElementById(id); };
@@ -124,11 +139,49 @@ RNVData.boot({ page: 'review.html', title: 'Account', host: 'accOut', needsCorpu
   function msg(id, text, ok) { el(id).textContent = text || ''; el(id).className = 'acc-msg ' + (ok ? 'ok' : 'err'); }
   function busy(btn, on) { btn.disabled = on; }
 
+  var ADMIN = 'oguzhantugral@gmail.com';
+
+  function esc(x) {
+    return String(x == null ? '' : x).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function top3(obj) {
+    var keys = Object.keys(obj || {});
+    if (!keys.length) return '&mdash;';
+    return keys.sort(function (a, b) { return obj[b] - obj[a]; }).slice(0, 3)
+      .map(function (k) { return esc(k) + ' <span class="dim">' + obj[k] + '</span>'; }).join(', ');
+  }
+
+  function traffic() {
+    var out = el('trafficOut');
+    if (!out) return;
+    out.textContent = 'Loading…';
+    RNVAuth.db('rpc/visit_daily', { method: 'POST', body: { days: +el('trafficDays').value || 30 } })
+      .then(function (rows) {
+        if (!rows || !rows.length) { out.textContent = 'No visits recorded yet.'; return; }
+        var total = rows.reduce(function (n, r) { return n + Number(r.visits || 0); }, 0);
+        out.innerHTML = '<p style="margin:0 0 8px"><b>' + total + '</b> page views over ' + rows.length +
+          ' day' + (rows.length === 1 ? '' : 's') + '.</p>' +
+          '<div style="overflow-x:auto"><table><thead><tr><th>Day</th><th class="num">Views</th>' +
+          '<th>Pages</th><th>Came from</th><th>Time zones</th></tr></thead><tbody>' +
+          rows.map(function (r) {
+            return '<tr><td>' + esc(r.day) + '</td><td class="num">' + Number(r.visits || 0) + '</td>' +
+              '<td>' + top3(r.pages) + '</td><td>' + top3(r.referrers) + '</td><td>' + top3(r.zones) + '</td></tr>';
+          }).join('') + '</tbody></table></div>';
+      })
+      .catch(function (e) { out.textContent = 'The traffic log could not be read: ' + e.message; });
+  }
+
   function show() {
     var u = RNVAuth.user();
     el('accOut').hidden = !!u;
     el('accIn').hidden = !u;
     if (!u) return;
+    var admin = String(u.email || '').toLowerCase() === ADMIN;
+    el('adminTraffic').hidden = !admin;
+    if (admin) traffic();
     el('deleteAccountEmail').textContent = u.email;
     el('deleteAccount').disabled = true;
     el('deleteEmail').value = '';
@@ -268,6 +321,9 @@ RNVData.boot({ page: 'review.html', title: 'Account', host: 'accOut', needsCorpu
   });
 
   // arriving from the e-mail's sign-in link: take the session from the address, then continue as after a code
+  el('trafficLoad').addEventListener('click', traffic);
+  el('trafficDays').addEventListener('change', traffic);
+
   RNVAuth.fromUrl().then(function (viaLink) {
     if (!viaLink) { show(); return; }
     return RNVAuth.profile().then(function (p) {
@@ -277,5 +333,6 @@ RNVData.boot({ page: 'review.html', title: 'Account', host: 'accOut', needsCorpu
   }).catch(function (e) { show(); msg('aMsg', 'The sign-in link did not work: ' + e.message + '. Ask for a new code.'); });
 } });
 </script>
+<script src="js/rnv-visits.js?v=20260925001230"></script>
 </body>
 </html>

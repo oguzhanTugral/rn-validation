@@ -2,7 +2,10 @@
 
 (function (global) {
   'use strict';
-  var KEY = 'rnv.figures.source';
+  var ADMIN = 'oguzhantugral@gmail.com';
+  var SETTING = 'figures';
+  var URL_ = 'https://atwkiqqtsfmxzkffcjxz.supabase.co';
+  var ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0d2tpcXF0c2ZteHprZmZjanh6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk1NjU3MzQsImV4cCI6MjEwNTE0MTczNH0.2XuOPHeqSMC736fOmnL8q9KqEOW_nYz1m6v0cI8RJcw';
   var ENG = ['musWM', 'AnalysisGNN', 'AugmentedNet'];
   function esc(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
@@ -11,11 +14,31 @@
   }
   var COLOR = { musWM: 'var(--muswm)', AnalysisGNN: 'var(--gnn)', AugmentedNet: 'var(--anet)' };
 
-  function chosen() {
-    try { return localStorage.getItem(KEY) || ''; } catch (e) { return ''; }
+  function isAdmin() {
+    var u = global.RNVAuth && RNVAuth.user();
+    return !!(u && String(u.email || '').toLowerCase() === ADMIN);
   }
+
+  
+  function readChoice() {
+    return fetch(URL_ + '/rest/v1/site_settings?key=eq.' + SETTING + '&select=value',
+                 { headers: { apikey: ANON, Authorization: 'Bearer ' + ANON } })
+      .then(function (r) { return r.ok ? r.json() : []; })
+      .then(function (rows) {
+        var v = rows && rows[0] && rows[0].value;
+        var src = v && v.source ? String(v.source) : 'published';
+        return src === 'published' ? '' : src;
+      })
+      .catch(function () { return ''; });
+  }
+
+  
   function choose(id) {
-    try { id ? localStorage.setItem(KEY, id) : localStorage.removeItem(KEY); } catch (e) {}
+    if (!isAdmin() || !global.RNVAuth) return Promise.resolve(false);
+    return RNVAuth.db('site_settings?on_conflict=key', {
+      method: 'POST', headers: { Prefer: 'resolution=merge-duplicates,return=minimal' },
+      body: { key: SETTING, value: { source: id || 'published' }, updated_at: new Date().toISOString() }
+    }).then(function () { return true; }).catch(function () { return false; });
   }
 
   function corpusId() {
@@ -48,14 +71,15 @@
     var live = (global.RNVAuth && RNVAuth.publicAnswersMain)
       ? RNVAuth.publicAnswersMain().catch(function () { return []; })
       : Promise.resolve([]);
+    var setting = readChoice();
 
-    return Promise.all([options, published, live]).then(function (all) {
+    return Promise.all([options, published, live, setting]).then(function (all) {
       var opts = all[0], pub = all[1], rows = all[2] || [];
       var authors = [], pooledRows = [];
       rows.forEach(function (r) {
         if (r.author_of) authors.push(r); else pooledRows.push(r.rows || {});
       });
-      var out = { pooled: null, authors: [], published: null };
+      var out = { pooled: null, authors: [], published: null, choice: all[3] || '' };
       if (opts && global.RNVRnScore) {
         out.pooled = entry('', 'All participants (pooled)',
                            RNVRnScore.score(pooledRows, opts), RNVRnScore.scoreRevised(pooledRows, opts),
@@ -90,7 +114,7 @@
 
   
   function current(data) {
-    var want = chosen();
+    var want = data.choice || '';
     if (want === 'pooled' && data.pooled && data.pooled.answered) return data.pooled;
     if (want && want !== 'published' && want !== 'pooled') {
       var hit = data.authors.filter(function (a) { return a.id === want; })[0];
@@ -162,7 +186,8 @@
 
   function picker(host, data, onChange) {
     if (!host) return;
-    var want = chosen();
+    if (!isAdmin()) { host.innerHTML = ''; return; }           // visitors see the figures, not the switch
+    var want = data.choice || '';
     var items = (data.pooled && data.pooled.answered
                    ? [{ id: 'pooled', label: 'Pooled participants (' + data.pooled.answered + ' positions)' }] : [])
                  .concat(data.authors);
@@ -173,11 +198,22 @@
         return '<label><input type="checkbox" data-id="' + esc(a.id) + '"' + (want === a.id ? ' checked' : '') + '> ' +
           esc(a.label || a.id) + '</label>';
       }).join('') +
-      '</div>';
+      '<span class="figsrc-lab" id="figSrcMsg" style="font-weight:400"> — administrator: this choice is ' +
+      'what every visitor sees.</span></div>';
     Array.prototype.forEach.call(host.querySelectorAll('input[type=checkbox]'), function (box) {
       box.addEventListener('change', function () {
-        choose(box.checked ? box.dataset.id : '');
-        onChange();
+        var id = box.checked ? box.dataset.id : '';
+        var msg = document.getElementById('figSrcMsg');
+        if (msg) msg.textContent = ' — saving…';
+        choose(id).then(function (ok) {
+          if (!ok) {
+            if (msg) msg.textContent = ' — not saved: sign in as the administrator and try again.';
+            return;
+          }
+          data.choice = id;
+          if (msg) msg.textContent = ' — saved; every visitor now sees this.';
+          onChange();
+        });
       });
     });
   }
@@ -204,7 +240,7 @@
     });
   }
 
-  global.RNVFigures = { render: render, collect: collect, current: current, chosen: chosen, choose: choose };
+  global.RNVFigures = { render: render, collect: collect, current: current, choose: choose, isAdmin: isAdmin };
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', render);
   } else {
