@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Method · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260924104023">
+<link rel="stylesheet" href="css/site.css?v=20260924113152">
 <style>
   table.rtc{margin:12px 0;font-size:13.5px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
   table.rtc th{text-align:left;font-size:12.5px;background:var(--clr-lilac-50);padding:9px 12px;border-bottom:1px solid var(--line)}
@@ -492,26 +492,30 @@
   <h3 class="sect">Real time and explainability</h3>
   <div class="panel">
     <p style="margin:0 0 10px">The three engines differ in a property that matters as soon as analysis has to keep pace with
-    listening. musWM is <b>rule-based, causal and explainable</b>: a label is formed from the notes held in a
-    capacity-limited window, uses nothing that has not yet sounded, and carries the representations it was derived from.
-    AnalysisGNN and AugmentedNet are learned score-level models; both take a complete score and use bidirectional
-    context, so each label also depends on later music. On this site all three were run on complete scores, so the
-    comparison itself is unaffected; the difference concerns what each engine can do during listening.</p>
+    listening. musWM is <b>rule-based and explainable</b>: a label is formed from the notes held in a
+    capacity-limited window and carries the representations it was derived from, and its real-time path labels a
+    stream from what has already sounded. AnalysisGNN and AugmentedNet each take a complete score file.
+    <b>The labels compared on this site are not strictly onset-causal, for any of the three.</b> They come from
+    musWM&rsquo;s batch path, which after its per-bar analysis applies score-level passes &mdash; a key estimate over
+    the whole work, alignment of readings to bar and beat, and refinement rules that may consult neighbouring
+    readings &mdash; so no timing claim is made for them. What the table below describes is what each engine can do
+    during listening, not how the corpus labels were produced.</p>
   <div style="overflow-x:auto">
     <table class="rtc">
       <thead><tr><th></th><th><span class="e-muswm">musWM</span></th><th><span class="e-gnn">AnalysisGNN</span></th><th><span class="e-anet">AugmentedNet</span></th></tr></thead>
       <tbody>
         <tr><td>Input</td><td>Notes as they sound</td><td>A complete score, turned into a graph of all its notes</td><td>A complete score, parsed and encoded frame by frame</td></tr>
-        <tr><td>Context behind a label</td><td><b>Past only.</b> A label uses nothing that has not yet sounded</td><td>Past and future: graph edges to later notes and bidirectional recurrent layers</td><td>Past and future: bidirectional recurrent layers over the whole sequence</td></tr>
-        <tr><td>When a label exists</td><td>During listening, once the chord in the window is stable</td><td>After the whole piece has been processed</td><td>After the whole piece has been processed; chord boundaries are resolved over the full output</td></tr>
+        <tr><td>Context behind a label</td><td><b>Real-time path: past only.</b> Batch path: also score-level passes over the whole work</td><td>A complete score; the served model&rsquo;s directionality is not pinned by us</td><td>Bidirectional recurrent layers over the encoded score</td></tr>
+        <tr><td>When a label exists</td><td>Real-time path: during listening, once the chord in the window is stable. Batch path: after the work has been processed</td><td>After the score file has been processed</td><td>After the score file has been processed; chord boundaries are resolved over the full output</td></tr>
         <tr><td>How it is derived</td><td>Deterministic lookup and textbook-referenced rules</td><td>Weights learned from annotated corpora</td><td>Weights learned from annotated corpora</td></tr>
         <tr><td>What can be traced</td><td>Pitch-class set, bass, root, chord code and local key are recorded with every label</td><td>The predicted label</td><td>The predicted label</td></tr>
       </tbody>
     </table>
     </div>
-    <p class="dim" style="margin:10px 0 0;font-size:13px">Sources: the pinned implementations used here
-    (AugmentedNet <code>models.py</code> and <code>inference.py</code>; AnalysisGNN <code>models/analysis.py</code>,
-    <code>models/chord.py</code>). This describes design objectives, not analytical quality.</p>
+    <p class="dim" style="margin:10px 0 0;font-size:13px">Sources: AugmentedNet 1.9.0, run here from its released
+    model (<code>inference.py</code>); AnalysisGNN labels were obtained from the authors&rsquo; hosted service in
+    September 2026, so its served version is not pinned by us and no claim is made about its internal directionality.
+    This describes what each system can do, not analytical quality.</p>
   </div>
 
   <h3 class="sect">Where each engine comes from, and how change is tracked</h3>
@@ -581,8 +585,8 @@ fetch('data/engine_log_public.json').then(function (r) { return r.json(); }).the
 });
 </script>
 
-<script src="data/corpora.js?v=20260924104023"></script>
-<script src="js/rnv-data.js?v=20260924104023"></script>
+<script src="data/corpora.js?v=20260924113152"></script>
+<script src="js/rnv-data.js?v=20260924113152"></script>
 <script>
 RNVData.boot({ page: 'method.html', title: 'Method', host: 'host',
                needsCorpus: false, render: function () {} });
