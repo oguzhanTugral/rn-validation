@@ -8,7 +8,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260924034726">
+<link rel="stylesheet" href="css/site.css?v=20260924104023">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -132,7 +132,14 @@
   </div>
 
   <h2 class="page">Blind review</h2>
-  <p class="note">The rating that counts. Its sample was drawn after the <a href="review.html">training round</a>, with the same design, a new seed and no position the training round held; questions whose key name and key signature disagree were left out before drawing. See <a href="method.html#blindmethod">Method</a>.</p>
+  <p class="note">The rating that counts. Its sample was drawn after the <a href="review.html">training round</a>, with the same design, a new seed and no position the training round held; questions whose key name and key signature disagree were left out before drawing.</p>
+  <div class="panel">
+    <h3>Roman numerals accepted, by analyser</h3>
+    <div class="rowsA" id="blindRows"><div class="empty">Loading&hellip;</div></div>
+    <p class="dim" style="font-size:13px;margin:10px 0 0" id="blindNote"></p>
+    <div id="figSource"></div>
+    <p class="dim" style="font-size:13px;margin:10px 0 0">How the sample was drawn and how a point is counted: <a href="method.html#blindmethod">Method &middot; the blind review</a>. Where a label is placed on the grid: <a href="method.html#alignment">Method &middot; alignment</a>. The analysers&rsquo; labels over the whole corpus: <a href="works.html">Works</a> and <a href="coverage.html">Coverage</a>. Earlier raters&rsquo; answers, position by position: <a href="compare.html">Compare</a>.</p>
+  </div>
   <p class="lede">Rate, against the score, what the analysers read at a position. <b>Part 1</b> checks musWM&rsquo;s
   <b>notes</b>, <b>root</b> and <b>bass</b> with no Roman numeral in sight. <b>Part 2</b> then asks which Roman numeral(s)
   are acceptable, choosing among the three analysers&rsquo; answers shown without names; who gave which is revealed only
@@ -244,14 +251,15 @@
 </main>
 
 
-<script src="data/corpora.js?v=20260924034726"></script>
-<script src="js/rnv-data.js?v=20260924034726"></script>
-<script src="js/rnv-auth.js?v=20260924034726"></script>
-<script src="js/rnv-review.js?v=20260924034726"></script>
+<script src="data/corpora.js?v=20260924104023"></script>
+<script src="js/rnv-data.js?v=20260924104023"></script>
+<script src="js/rnv-auth.js?v=20260924104023"></script>
+<script src="js/rnv-review.js?v=20260924104023"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260924034726"></script>
-<script src="js/rnv-spell.js?v=20260924034726"></script>
-<script src="js/rnv-rnscore.js?v=20260924034726"></script>
+<script src="js/rnv-score.js?v=20260924104023"></script>
+<script src="js/rnv-spell.js?v=20260924104023"></script>
+<script src="js/rnv-rnscore.js?v=20260924104023"></script>
+<script src="js/rnv-figures.js?v=20260924104023"></script>
 <script>
 RNVData.boot({ page: 'blind.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;

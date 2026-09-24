@@ -83,7 +83,9 @@
       var hit = data.authors.filter(function (a) { return a.id === want; })[0];
       if (hit) return hit;
     }
-    return data.pooled && data.pooled.answered ? data.pooled : (data.pooled || data.published);
+
+    if (data.pooled && data.pooled.answered) return data.pooled;
+    return data.authors[0] || data.published || data.pooled;
   }
 
   function bars(host, entry) {
