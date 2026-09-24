@@ -168,7 +168,7 @@
     document.body.insertAdjacentHTML('beforeend',
       '<footer class="site" id="rnvAttribution"><div class="wrap">' +
       '&copy; 2026 Oğuzhan Tuğral &mdash; All rights reserved. ' +
-      '<a href="hero.html">musWM · RN validation</a> · <a href="COPYRIGHT.txt">Use and attribution</a>' +
+      '<a href="hero.html">musWM · RN validation</a> · <a href="COPYRIGHT.txt">Use and attribution</a> · <a href="compare.html#main-results">Published review results</a>' +
       (corpus ? ' · built ' + esc(corpus.generated) : '') + '</div></footer>');
   }
 

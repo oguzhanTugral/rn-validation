@@ -2,8 +2,8 @@
  "format": "rnv-blind-results",
  "corpus": "wir335",
  "sample": "main",
- "generated": "2026-09-24T03:38:12",
- "from": "analysis_RNV-KZVUC (3).xlsx",
+ "generated": "2026-09-24T20:28:24.295Z",
+ "from": "Completed main review, verified account; public_answers_main",
  "sha256OfPositions": "489b698d4d988feb88f9574083456c1e1705fc011529edb019328530b08dd762",
  "rater": "Oguzhan",
  "raterIsAuthor": "musWM",
@@ -44,8 +44,9 @@
   {
    "name": "AugmentedNet",
    "correct": 341,
-   "rate": 45.0
+   "rate": 45
   }
  ],
- "criterion": "the rater ticked every Roman numeral they accept at that position; an analyser is accepted when a label it gave is among them. Reported: the answer given before the page revealed which analyser wrote which label. Left out: 'unclear', and an answer ticking labels and 'none of these' at once."
+ "criterion": "the rater ticked every Roman numeral they accept at that position; an analyser is accepted when a label it gave is among them. Reported: the answer given before the page revealed which analyser wrote which label. Left out: 'unclear', and an answer ticking labels and 'none of these' at once.",
+ "sourceUpdatedAt": "2026-09-23T21:29:09.98+00:00"
 }

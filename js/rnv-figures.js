@@ -4,6 +4,7 @@
   'use strict';
   var KEY = 'rnv.figures.source';
   var ENG = ['musWM', 'AnalysisGNN', 'AugmentedNet'];
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
   var COLOR = { musWM: 'var(--muswm)', AnalysisGNN: 'var(--gnn)', AugmentedNet: 'var(--anet)' };
 
   function chosen() {
@@ -71,12 +72,12 @@
           return list.findIndex(function (b) { return b.who === a.who; }) === i;
         });
 
-      if (pub && pub.engines && !out.authors.length) {
+      if (pub && pub.engines) {
         out.published = { id: 'published', answered: pub.answered, positions: pub.positions,
                           unclear: pub.unclear, inconsistent: pub.inconsistent, revised: pub.revised,
                           engines: pub.engines, revisedEngines: pub.revisedEngines || null,
                           revisedAnswered: pub.revisedAnswered || 0,
-                          label: (pub.rater || 'The author') + ' — author of ' + (pub.raterIsAuthor || 'musWM') };
+                          label: (pub.rater || 'The author') + ' — author of ' + (pub.raterIsAuthor || 'musWM') + ' (published completed review)'  };
       }
       return out;
     });
@@ -92,7 +93,7 @@
     }
 
     if (data.pooled && data.pooled.answered) return data.pooled;
-    return data.authors[0] || data.published || data.pooled;
+    return data.published || data.authors[0] || data.pooled;
   }
 
   function bars(host, entry) {
@@ -126,7 +127,7 @@
         'pooled figures. An author&rsquo;s own rating can be shown with the tick below.';
     } else if (entry) {
       text = '<b>' + entry.answered.toLocaleString('en-US') + '</b> counted positions from a single rating, by <b>' +
-        entry.label + '</b>. An author&rsquo;s rating is never part of the pooled figures.';
+        esc(entry.label) + '</b>. An author&rsquo;s rating is never part of the pooled figures.';
     }
     if (entry && entry.answered) {
       text += ' At each position the rater ticked every Roman numeral they accept; an analyser counts as accepted ' +
@@ -153,14 +154,15 @@
 
   function picker(host, data, onChange) {
     if (!host) return;
-    var want = chosen();
+    var selected = current(data);
+    var want = selected ? selected.id : '';
     var items = (data.published ? [data.published] : []).concat(data.authors);
     if (!items.length) { host.innerHTML = ''; return; }
     host.innerHTML = '<div class="figsrc"><span class="figsrc-lab">Figures shown:</span> ' +
       '<label><input type="checkbox" data-id="" ' + (want ? '' : 'checked') + '> Pooled participants</label>' +
       items.map(function (a) {
-        return '<label><input type="checkbox" data-id="' + a.id + '"' + (want === a.id ? ' checked' : '') + '> ' +
-          (a.label || a.id) + '</label>';
+        return '<label><input type="checkbox" data-id="' + esc(a.id) + '"' + (want === a.id ? ' checked' : '') + '> ' +
+          esc(a.label || a.id) + '</label>';
       }).join('') +
       '</div>';
     Array.prototype.forEach.call(host.querySelectorAll('input[type=checkbox]'), function (box) {
