@@ -8,7 +8,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260923130106">
+<link rel="stylesheet" href="css/site.css?v=20260924034726">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -189,10 +189,11 @@
         <li><b>Independence.</b> The author, who developed musWM, is also a rater. Those answers are not independent and are
           reported separately. Statements about how well an analyser performs rest on independent raters; results are
           reported per rater, pooled, and with the agreement between raters.</li>
-        <li><b>Scoring the Roman numerals.</b> A position counts once its Roman-numeral answer is confirmed and not
-          <i>Unclear</i>. An analyser is correct there when an option it gave was ticked; <i>None of these</i> counts all three as
-          wrong. A changed answer counts with its final value; how often, and in which direction, answers were changed after the
-          reveal is reported too.</li>
+        <li><b>Scoring the Roman numerals.</b> An analyser is accepted at a position when an option it gave was ticked;
+          <i>None of these</i> accepts none of the three. <b>The figures count the answer as first given</b>, before the reveal:
+          a revised answer is no longer provenance-hidden, so the rates after the revisions are reported beside the figures,
+          never instead. Not counted: <i>Unclear</i>, and an answer that ticks labels and <i>None of these</i> at once (a
+          post-hoc consistency rule, introduced after the rating and not fixed in advance).</li>
         <li><b>Nothing is filtered.</b> Every rating is published with the results, including those against musWM.</li>
       </ul>
     </details>
@@ -221,7 +222,7 @@
   <div class="br-prog"><span id="brBar" style="width:0"></span></div>
 
   <div class="br-live" id="brLive" aria-live="polite">
-    <div class="ttl" id="brLiveTtl">Roman numerals judged correct, by analyser</div>
+    <div class="ttl" id="brLiveTtl">Roman numerals accepted, by analyser &mdash; first answers</div>
     <div class="br-tiles" id="brTiles"></div>
     <div class="pool dim" id="brPool"></div>
   </div>
@@ -243,14 +244,14 @@
 </main>
 
 
-<script src="data/corpora.js?v=20260923130106"></script>
-<script src="js/rnv-data.js?v=20260923130106"></script>
-<script src="js/rnv-auth.js?v=20260923130106"></script>
-<script src="js/rnv-review.js?v=20260923130106"></script>
+<script src="data/corpora.js?v=20260924034726"></script>
+<script src="js/rnv-data.js?v=20260924034726"></script>
+<script src="js/rnv-auth.js?v=20260924034726"></script>
+<script src="js/rnv-review.js?v=20260924034726"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260923130106"></script>
-<script src="js/rnv-spell.js?v=20260923130106"></script>
-<script src="js/rnv-rnscore.js?v=20260923130106"></script>
+<script src="js/rnv-score.js?v=20260924034726"></script>
+<script src="js/rnv-spell.js?v=20260924034726"></script>
+<script src="js/rnv-rnscore.js?v=20260924034726"></script>
 <script>
 RNVData.boot({ page: 'blind.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -412,8 +413,9 @@ RNVData.boot({ page: 'blind.html', title: 'Blind review', host: 'brCard', needsC
     if (!el('brTiles') || !window.RNVRnScore) return;
     var t = RNVRnScore.score([RNVReview.all(sheet)], RNOPT);
     el('brLiveTtl').textContent = t.n
-      ? 'Your answers so far: Roman numerals judged correct, by analyser (' + t.n + ' positions)'
-      : 'Roman numerals judged correct, by analyser \u2014 fills in as you answer the Roman-numeral questions';
+      ? 'Your answers so far: Roman numerals accepted, by analyser, counting each answer as first given ('
+        + t.n + ' positions' + (t.revised ? ', ' + t.revised + ' revised after the reveal' : '') + ')'
+      : 'Roman numerals accepted, by analyser \u2014 fills in as you answer the Roman-numeral questions';
     tiles(t);
   }
 

@@ -17,16 +17,31 @@
     return (global.RNVData && RNVData.currentCorpusId && RNVData.currentCorpusId()) || 'wir335';
   }
 
+  function entry(id, label, first, revised, extra) {
+    var e = { id: id, label: label, answered: first.n, unclear: first.unclear,
+              inconsistent: first.inconsistent, revised: first.revised,
+              engines: ENG.map(function (name) {
+                return { name: name, correct: first.right[name],
+                         rate: first.n ? +(100 * first.right[name] / first.n).toFixed(1) : null };
+              }),
+              revisedEngines: revised && revised.n ? ENG.map(function (name) {
+                return { name: name, correct: revised.right[name],
+                         rate: +(100 * revised.right[name] / revised.n).toFixed(1) };
+              }) : null,
+              revisedAnswered: revised ? revised.n : 0 };
+    return Object.assign(e, extra || {});
+  }
+
   
   function collect() {
     var id = corpusId();
-    var options = fetch('data/corpora/' + encodeURIComponent(id) + '/rn_options.json')
+    var options = fetch('data/corpora/' + encodeURIComponent(id) + '/rn_options_main.json')
       .then(function (r) { return r.json(); }).then(function (d) { return d.options || d; })
       .catch(function () { return null; });
-    var published = fetch('data/corpora/' + encodeURIComponent(id) + '/blind_results.json')
+    var published = fetch('data/corpora/' + encodeURIComponent(id) + '/blind_results_main.json')
       .then(function (r) { return r.json(); }).catch(function () { return null; });
-    var live = (global.RNVAuth && RNVAuth.publicAnswers)
-      ? RNVAuth.publicAnswers().catch(function () { return []; })
+    var live = (global.RNVAuth && RNVAuth.publicAnswersMain)
+      ? RNVAuth.publicAnswersMain().catch(function () { return []; })
       : Promise.resolve([]);
 
     return Promise.all([options, published, live]).then(function (all) {
@@ -37,17 +52,12 @@
       });
       var out = { pooled: null, authors: [], published: null };
       if (opts && global.RNVRnScore) {
-        var t = RNVRnScore.score(pooledRows, opts);
-        out.pooled = { id: '', label: 'All participants (pooled)', answered: t.n,
-                       engines: ENG.map(function (e) {
-                         return { name: e, correct: t.right[e], rate: t.n ? +(100 * t.right[e] / t.n).toFixed(1) : null };
-                       }), participants: pooledRows.length };
+        out.pooled = entry('', 'All participants (pooled)',
+                           RNVRnScore.score(pooledRows, opts), RNVRnScore.scoreRevised(pooledRows, opts),
+                           { participants: pooledRows.length });
         out.authors = authors.map(function (r) {
-          var s = RNVRnScore.score([r.rows || {}], opts);
-          return { id: 'live:' + r.participant, label: r.participant + ' — author of ' + r.author_of,
-                   answered: s.n, engines: ENG.map(function (e) {
-                     return { name: e, correct: s.right[e], rate: s.n ? +(100 * s.right[e] / s.n).toFixed(1) : null };
-                   }) };
+          return entry('live:' + r.participant, r.participant + ' — author of ' + r.author_of,
+                       RNVRnScore.score([r.rows || {}], opts), RNVRnScore.scoreRevised([r.rows || {}], opts));
         });
       }
       out.authors = out.authors.filter(function (a, i, list) {
@@ -56,9 +66,10 @@
 
       if (pub && pub.engines && !out.authors.length) {
         out.published = { id: 'published', answered: pub.answered, positions: pub.positions,
-                          unclear: pub.unclear, engines: pub.engines,
-                          label: (pub.rater || 'The author') + ' — author of ' + (pub.raterIsAuthor || 'musWM') +
-                                 ' (training round)' };
+                          unclear: pub.unclear, inconsistent: pub.inconsistent, revised: pub.revised,
+                          engines: pub.engines, revisedEngines: pub.revisedEngines || null,
+                          revisedAnswered: pub.revisedAnswered || 0,
+                          label: (pub.rater || 'The author') + ' — author of ' + (pub.raterIsAuthor || 'musWM') };
       }
       return out;
     });
@@ -71,7 +82,6 @@
     if (want) {
       var hit = data.authors.filter(function (a) { return a.id === want; })[0];
       if (hit) return hit;
-      if (data.published && want === 'published') return data.published;
     }
     return data.pooled && data.pooled.answered ? data.pooled : (data.pooled || data.published);
   }
@@ -87,7 +97,7 @@
       var pc = e.rate == null ? 0 : e.rate;
       return '<div class="eng"><span class="nm" style="color:' + COLOR[e.name] + '">' + e.name + '</span>' +
         '<div class="track"><div class="fill" data-w="' + pc + '" style="background:' + COLOR[e.name] + '"></div></div>' +
-        '<span class="pc">' + (e.rate == null ? '—' : String(e.rate).replace('.', ',') + '%') + '</span></div>';
+        '<span class="pc">' + (e.rate == null ? '—' : e.rate.toFixed(1).replace('.', ',') + '%') + '</span></div>';
     }).join('');
     requestAnimationFrame(function () {
       Array.prototype.forEach.call(host.querySelectorAll('.fill'), function (f) { f.style.width = f.dataset.w + '%'; });
@@ -99,21 +109,37 @@
     var pooled = entry === data.pooled;
     var text = '';
     if (pooled && entry && entry.answered) {
-      text = '<b>' + entry.answered.toLocaleString('en-US') + '</b> answered positions, pooled from ' +
+      text = '<b>' + entry.answered.toLocaleString('en-US') + '</b> counted positions, pooled from ' +
         entry.participants + ' participant' + (entry.participants === 1 ? '' : 's') +
         ' who are not an author of one of the analysers.';
     } else if (pooled) {
       text = 'No participant outside the analysers&rsquo; authors has rated the sample yet, so there are no ' +
         'pooled figures. An author&rsquo;s own rating can be shown with the tick below.';
     } else if (entry) {
-      text = '<b>' + entry.answered.toLocaleString('en-US') + '</b> answered positions from a single rating, by <b>' +
+      text = '<b>' + entry.answered.toLocaleString('en-US') + '</b> counted positions from a single rating, by <b>' +
         entry.label + '</b>. An author&rsquo;s rating is never part of the pooled figures.';
     }
-    host.innerHTML = text + ' These figures come from the <a href="review.html">training round</a>; the ' +
-      '<a href="blind.html">Blind review</a> is the rating that counts, and its figures replace these once it has answers.' +
-      ' At each position the rater ticked every Roman numeral they accept; an analyser ' +
-      'counts as right when a label it gave is among them. Rate the sample yourself on ' +
-      '<a href="blind.html">Blind review</a>, and see every participant on <a href="compare.html">Compare</a>.';
+    if (entry && entry.answered) {
+      text += ' At each position the rater ticked every Roman numeral they accept; an analyser counts as accepted ' +
+        'when a label it gave is among them. <b>What is reported is the answer given before the page revealed ' +
+        'which analyser wrote which label.</b>';
+      if (entry.revised) {
+        text += ' ' + entry.revised + ' answer' + (entry.revised === 1 ? ' was' : 's were') +
+          ' revised after that reveal; with the revisions instead of the first answers the rates are ' +
+          (entry.revisedEngines || []).map(function (e) {
+            return e.name + ' ' + e.rate.toFixed(1).replace('.', ',') + '%';
+          }).join(', ') + ' of ' + entry.revisedAnswered + ' positions.';
+      }
+      var out = [];
+      if (entry.unclear) out.push(entry.unclear + ' answered &ldquo;unclear&rdquo;');
+      if (entry.inconsistent) out.push(entry.inconsistent + ' ticking labels and &ldquo;none of these&rdquo; at once');
+      if (out.length) text += ' Left out of the count: ' + out.join(' and ') + '.';
+      text += ' These are acceptance rates of one sample by the raters named here, not a measure of accuracy: ' +
+        'the sample is drawn by musWM&rsquo;s own labels and the notes, root, bass and span shown are musWM&rsquo;s. ' +
+        'See <a href="method.html">Method</a>, rate the sample yourself on <a href="blind.html">Blind review</a>, ' +
+        'and see every participant on <a href="compare.html">Compare</a>.';
+    }
+    host.innerHTML = text;
   }
 
   function picker(host, data, onChange) {

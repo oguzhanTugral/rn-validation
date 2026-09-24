@@ -1,0 +1,51 @@
+{
+ "format": "rnv-blind-results",
+ "corpus": "wir335",
+ "sample": "main",
+ "generated": "2026-09-24T03:38:12",
+ "from": "analysis_RNV-KZVUC (3).xlsx",
+ "sha256OfPositions": "489b698d4d988feb88f9574083456c1e1705fc011529edb019328530b08dd762",
+ "rater": "Oguzhan",
+ "raterIsAuthor": "musWM",
+ "positions": 771,
+ "answered": 754,
+ "unclear": 16,
+ "inconsistent": 1,
+ "revised": 56,
+ "engines": [
+  {
+   "name": "musWM",
+   "correct": 680,
+   "rate": 90.2
+  },
+  {
+   "name": "AnalysisGNN",
+   "correct": 237,
+   "rate": 31.4
+  },
+  {
+   "name": "AugmentedNet",
+   "correct": 330,
+   "rate": 43.8
+  }
+ ],
+ "revisedAnswered": 758,
+ "revisedEngines": [
+  {
+   "name": "musWM",
+   "correct": 712,
+   "rate": 93.9
+  },
+  {
+   "name": "AnalysisGNN",
+   "correct": 233,
+   "rate": 30.7
+  },
+  {
+   "name": "AugmentedNet",
+   "correct": 341,
+   "rate": 45.0
+  }
+ ],
+ "criterion": "the rater ticked every Roman numeral they accept at that position; an analyser is accepted when a label it gave is among them. Reported: the answer given before the page revealed which analyser wrote which label. Left out: 'unclear', and an answer ticking labels and 'none of these' at once."
+}

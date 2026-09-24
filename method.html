@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Method · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260923130106">
+<link rel="stylesheet" href="css/site.css?v=20260924034726">
 <style>
   table.rtc{margin:12px 0;font-size:13.5px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
   table.rtc th{text-align:left;font-size:12.5px;background:var(--clr-lilac-50);padding:9px 12px;border-bottom:1px solid var(--line)}
@@ -26,8 +26,8 @@
   wrote which label. The rest of this page describes how the labels are brought onto a common grid,
   which differences count as differences, and what the figures can and cannot support. Two quantities
   are kept strictly apart throughout. <b>Agreement</b> asks whether the analysers write the same Roman
-  numeral at the same position. <b>Accuracy</b> asks whether a label is one a rater accepts. Neither is
-  ever read as the other.</p>
+  numeral at the same position. <b>Acceptance</b> asks whether a label is one a rater accepts. Neither is ever read as the other, and
+  neither is accuracy: no label on this site is scored against an independent reference.</p>
 
   <div class="panel" id="blindmethod">
     <h3>How the analysers are compared: the blind review</h3>
@@ -37,22 +37,34 @@
     <table>
       <tr><td style="width:190px">The sample</td>
         <td>A fixed sample of positions drawn once from the corpus and never redrawn: one position per
-            (mode, Roman numeral with inversion, agreement pattern) for coverage, plus a simple random sample of
-            the remaining positions where all three analysers read the same local key. The sample carries its own
+            (mode, <b>musWM&rsquo;s</b> Roman numeral with inversion, agreement pattern) for coverage, plus a
+            simple random sample of the remaining positions where all three analysers read the same local key.
+            The sample is therefore stratified on musWM&rsquo;s own output, and the shared-key restriction removes
+            key <i>disagreement</i> without establishing that the shared key is correct. The sample carries its own
             fingerprint, so any change to it is visible.</td></tr>
       <tr><td>What the rater sees</td>
-        <td>The bar in the score with every harmony annotation removed, the start and end of the position,
-            the local key, and the notes musWM read there. No analyser name, and no indication of which label
-            belongs to whom.</td></tr>
+        <td>The bar in the score with every harmony annotation removed, and the start and end of the position,
+            the local key, the notes, the root and the bass <b>as musWM reported them</b>. No analyser name, and no
+            indication of which label belongs to whom. Only provenance is hidden: because the frame shown is
+            musWM&rsquo;s, it may cue a rater toward musWM&rsquo;s reading, which is a known bias of this design.</td></tr>
       <tr><td>What is asked</td>
         <td>First the reading itself: are the notes exactly the chord notes, is the root right, is the bass right,
-            does the span hold one chord. Then the Roman numeral: the three analysers&rsquo; labels are shown
-            unlabelled, together with two alternatives made by rule from one of them, and the rater ticks
+            does the span hold one chord. Then the Roman numeral: the analysers&rsquo; labels are shown
+            unlabelled, together with up to two alternatives made by rule &mdash; up to five distinct labels, since
+            identical labels from different analysers are one option &mdash; and the rater ticks
             <b>every</b> label they accept, or &ldquo;none of these&rdquo;, or &ldquo;unclear&rdquo;.</td></tr>
       <tr><td>How a point is counted</td>
-        <td>A position counts once its Roman-numeral answer is confirmed and is not &ldquo;unclear&rdquo;. An
-            analyser is right at that position when a label it gave is among the ticked ones. Several analysers can
-            be right at the same position, and all three can be wrong.</td></tr>
+        <td>An analyser is accepted at a position when a label it gave is among the ticked ones. Several analysers
+            can be accepted at the same position, and all three can be rejected.
+            <br><br><b>Which answer is counted.</b> Once an answer is confirmed the page reveals which analyser wrote
+            which label, and the rater may revise that answer once. A revised answer is no longer provenance-hidden,
+            so <b>the figures report the answer as first given</b>; the rates after the revisions are shown beside them,
+            never instead of them.
+            <br><br><b>What is left out.</b> A position is not counted when the answer is &ldquo;unclear&rdquo;, and
+            &mdash; by a post-hoc response-consistency rule, introduced while this manuscript was reviewed and not
+            fixed in advance &mdash; when an answer ticks labels and &ldquo;none of these&rdquo; at the same time, which
+            the two independent controls allow and which cannot be read either way. In the main review this leaves out
+            16 &ldquo;unclear&rdquo; answers and one contradictory one (B695) of 771.</td></tr>
       <tr><td>Replaced questions</td>
         <td>A question is replaced only for a fault of the question itself, never for what the analysers said:
             the rater found that the span holds more than one chord, or could judge nothing at the position
@@ -293,7 +305,9 @@
     <h3>Grading</h3>
     <div class="prelim"><b>Preliminary results.</b> Every figure on this site is recomputed from the corpus pack at each build. On 15 September 2026 the pack was rebuilt after an alignment fault was found and corrected, and the textbook criterion was audited against the book &mdash; see <a href="method.html#corrections">Corrections</a>. The textbook grades measure tolerant agreement with a label derived from musWM&rsquo;s own reading of the chord; they are not an accuracy against an independent reference.</div>
     <p style="margin:0">All grades on this site are derived from the textbook and locked. At every row where
-    <b>all three engines emit a label at the same onset</b>, the reference is the Roman numeral that Kostka,
+    <b>all three engines have aligned labels at the same position</b> &mdash; an aligned score position under the
+    alignment named above, not necessarily a simultaneous emission time, since window alignment repositions only
+    musWM&rsquo;s labels &mdash; the reference is the Roman numeral that Kostka,
     Payne &amp; Alm&eacute;n, <i>Tonal Harmony</i>, 8th edition, assign given <b>musWM&rsquo;s local key, mode and chord
     code</b> at that position.</p>
     <table style="margin-top:12px">
@@ -567,8 +581,8 @@ fetch('data/engine_log_public.json').then(function (r) { return r.json(); }).the
 });
 </script>
 
-<script src="data/corpora.js?v=20260923130106"></script>
-<script src="js/rnv-data.js?v=20260923130106"></script>
+<script src="data/corpora.js?v=20260924034726"></script>
+<script src="js/rnv-data.js?v=20260924034726"></script>
 <script>
 RNVData.boot({ page: 'method.html', title: 'Method', host: 'host',
                needsCorpus: false, render: function () {} });

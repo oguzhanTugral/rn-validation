@@ -7,8 +7,8 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Compare analyses · RN comparison</title>
-<link rel="stylesheet" href="css/community.css?v=20260923130106">
-<link rel="stylesheet" href="css/site.css?v=20260923130106">
+<link rel="stylesheet" href="css/community.css?v=20260924034726">
+<link rel="stylesheet" href="css/site.css?v=20260924034726">
 <style>
   .cmp-list{display:grid;gap:8px;margin:12px 0}
   .cmp-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
@@ -27,8 +27,9 @@
   <p style="margin:0 0 6px;font-size:14px"><a href="review.html">&larr; Blind review</a></p>
   <h2 class="page">Compare analyses</h2>
   <p><a href="messages.html">Private messages</a> · <a href="account.html?next=compare.html">Account / Sign in</a></p>
-  <p class="lede">Blind-review ratings, analyst by analyst. Only analyses uploaded to the system can be compared: pick <b>two</b> and compare them position by position.
-  Every participant&rsquo;s answers appear here as they are saved; e-mail addresses are never shown.</p>
+  <p class="lede">Ratings of the <a href="review.html">training round</a>, analyst by analyst. Only analyses uploaded to the system can be compared: pick <b>two</b> and compare them position by position.
+  Every participant&rsquo;s answers appear here as they are saved; e-mail addresses are never shown.
+  Rates here count each answer as first given, before the page revealed which analyser wrote which label, the same way the site&rsquo;s figures are counted; those figures come from the main <a href="blind.html">Blind review</a>, not from this page. See <a href="method.html#blindmethod">Method</a>.</p>
 
   <div id="cmpBody">
   <div class="note" id="cmpNote">Loading the uploaded analyses&hellip;</div>
@@ -55,12 +56,12 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260923130106"></script>
-<script src="js/rnv-data.js?v=20260923130106"></script>
-<script src="js/rnv-auth.js?v=20260923130106"></script>
-<script src="js/rnv-review.js?v=20260923130106"></script>
-<script src="js/rnv-rnscore.js?v=20260923130106"></script>
-<script src="js/rnv-community.js?v=20260923130106"></script>
+<script src="data/corpora.js?v=20260924034726"></script>
+<script src="js/rnv-data.js?v=20260924034726"></script>
+<script src="js/rnv-auth.js?v=20260924034726"></script>
+<script src="js/rnv-review.js?v=20260924034726"></script>
+<script src="js/rnv-rnscore.js?v=20260924034726"></script>
+<script src="js/rnv-community.js?v=20260924034726"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', needsCorpus: false, render: function () {
   var esc = RNVData.esc;
@@ -281,6 +282,6 @@ RNVData.boot({ page: 'review.html', title: 'Compare analyses', host: 'cmpList', 
   }
 } });
 </script>
-<script src="js/rnv-figures.js?v=20260923130106"></script>
+<script src="js/rnv-figures.js?v=20260924034726"></script>
 </body>
 </html>
