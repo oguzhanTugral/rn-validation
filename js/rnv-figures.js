@@ -55,14 +55,21 @@
         out.pooled = entry('', 'All participants (pooled)',
                            RNVRnScore.score(pooledRows, opts), RNVRnScore.scoreRevised(pooledRows, opts),
                            { participants: pooledRows.length });
-        out.authors = authors.map(function (r) {
-          return entry('live:' + r.participant, r.participant + ' — author of ' + r.author_of,
-                       RNVRnScore.score([r.rows || {}], opts), RNVRnScore.scoreRevised([r.rows || {}], opts));
+        out.authors = authors.map(function (r, i) {
+          var first = RNVRnScore.score([r.rows || {}], opts);
+          return entry('live:' + r.participant + ':' + i, r.participant + ' — author of ' + r.author_of +
+                       ' (' + first.n + ' position' + (first.n === 1 ? '' : 's') + ')',
+                       first, RNVRnScore.scoreRevised([r.rows || {}], opts), { who: r.participant });
         });
       }
-      out.authors = out.authors.filter(function (a, i, list) {
-        return list.findIndex(function (b) { return b.label === a.label; }) === i;   // one row per author
-      });
+
+
+      out.authors = out.authors
+        .filter(function (a) { return a.answered > 0; })
+        .sort(function (a, b) { return b.answered - a.answered; })
+        .filter(function (a, i, list) {
+          return list.findIndex(function (b) { return b.who === a.who; }) === i;
+        });
 
       if (pub && pub.engines && !out.authors.length) {
         out.published = { id: 'published', answered: pub.answered, positions: pub.positions,
