@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Training blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260925030150">
+<link rel="stylesheet" href="css/site.css?v=20260925030624">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -269,14 +269,14 @@
 </main>
 
 
-<script src="data/corpora.js?v=20260925030150"></script>
-<script src="js/rnv-data.js?v=20260925030150"></script>
-<script src="js/rnv-auth.js?v=20260925030150"></script>
-<script src="js/rnv-review.js?v=20260925030150"></script>
+<script src="data/corpora.js?v=20260925030624"></script>
+<script src="js/rnv-data.js?v=20260925030624"></script>
+<script src="js/rnv-auth.js?v=20260925030624"></script>
+<script src="js/rnv-review.js?v=20260925030624"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260925030150"></script>
-<script src="js/rnv-spell.js?v=20260925030150"></script>
-<script src="js/rnv-rnscore.js?v=20260925030150"></script>
+<script src="js/rnv-score.js?v=20260925030624"></script>
+<script src="js/rnv-spell.js?v=20260925030624"></script>
+<script src="js/rnv-rnscore.js?v=20260925030624"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -570,7 +570,8 @@ RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorp
   function askConsent() {
     if (!window.RNVAuth || !RNVAuth.user()) return;
     RNVAuth.profile().then(function (profile) {
-      if (!profile || profile.consent_at) return;              // already answered, or no profile yet
+      // absent column = the consent migration has not been applied: ask nothing, block nothing
+      if (!profile || !('consent_at' in profile) || profile.consent_at) return;
       el('brConsent').hidden = false;
       el('brCard').inert = true;
       el('brClear').disabled = true;
@@ -1136,6 +1137,6 @@ RNVData.boot({ page: 'review.html', title: 'Training', host: 'brCard', needsCorp
   }).catch(function (err) { el('brCard').innerHTML = '<div class="empty">' + esc(err.message || err) + '</div>'; });
 }});
 </script>
-<script src="js/rnv-visits.js?v=20260925030150"></script>
+<script src="js/rnv-visits.js?v=20260925030624"></script>
 </body>
 </html>
