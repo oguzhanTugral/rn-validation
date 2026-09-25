@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Account · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260925023229">
+<link rel="stylesheet" href="css/site.css?v=20260925030150">
 <style>
   .acc-box{max-width:520px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
     box-shadow:var(--shadow);padding:18px 20px;margin:0 0 16px}
@@ -109,6 +109,22 @@
       <div id="trafficOut" style="font-size:14px;margin-top:10px">Loading&hellip;</div>
     </div>
 
+    <div class="acc-box" id="adminBackup" hidden>
+      <h3>Backup</h3>
+      <p class="dim" style="font-size:13px;margin:0 0 10px">Every participant, every answer, the reported-rating
+      setting and the administrator log, in one file. Keep a copy outside this machine: the ratings cannot be
+      collected again. The file contains e-mail addresses, so it is not something to publish.</p>
+      <div class="acc-row"><button id="adminBackupGo" type="button">Download a backup (JSON)</button></div>
+      <div class="acc-msg" id="adminBackupMsg"></div>
+    </div>
+
+    <div class="acc-box" id="adminLog" hidden>
+      <h3>Administrator log</h3>
+      <p class="dim" style="font-size:13px;margin:0 0 10px">What was changed in the setting that decides which rating
+      the pages report, and from which account. Written by the database itself; it cannot be edited through the site.</p>
+      <div id="adminLogOut" style="font-size:14px">Loading&hellip;</div>
+    </div>
+
     <div class="acc-box" style="border-color:#dc2626;margin-top:24px">
       <h3>Delete my account</h3>
       <p>This permanently deletes your account, profile, saved answers, uploaded analyses, ratings and comments. Feedback on your answers and private conversations involving you are also deleted for both sides. Other participants' accounts and analyses remain unchanged.</p>
@@ -123,9 +139,9 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260925023229"></script>
-<script src="js/rnv-data.js?v=20260925023229"></script>
-<script src="js/rnv-auth.js?v=20260925023229"></script>
+<script src="data/corpora.js?v=20260925030150"></script>
+<script src="js/rnv-data.js?v=20260925030150"></script>
+<script src="js/rnv-auth.js?v=20260925030150"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Account', host: 'accOut', needsCorpus: false, render: function () {
   var el = function (id) { return document.getElementById(id); };
@@ -174,6 +190,51 @@ RNVData.boot({ page: 'review.html', title: 'Account', host: 'accOut', needsCorpu
       .catch(function (e) { out.textContent = 'The traffic log could not be read: ' + e.message; });
   }
 
+  function adminLog() {
+    var out = el('adminLogOut');
+    if (!out) return;
+    RNVAuth.db('admin_audit?select=at,actor_email,action,detail&order=at.desc&limit=20')
+      .then(function (rows) {
+        if (!rows || !rows.length) { out.textContent = 'Nothing has been changed yet.'; return; }
+        out.innerHTML = '<div style="overflow-x:auto"><table><thead><tr><th>When</th><th>Account</th>' +
+          '<th>Change</th><th>Value</th></tr></thead><tbody>' +
+          rows.map(function (r) {
+            var d = r.detail || {};
+            return '<tr><td>' + esc(String(r.at).replace('T', ' ').slice(0, 16)) + '</td><td>' +
+              esc(r.actor_email) + '</td><td>' + esc(r.action) + '</td><td>' +
+              esc(JSON.stringify(d.value)) + (d.was ? ' <span class="dim">was ' + esc(JSON.stringify(d.was)) + '</span>' : '') +
+              '</td></tr>';
+          }).join('') + '</tbody></table></div>';
+      })
+      .catch(function (e) { out.textContent = 'The administrator log could not be read: ' + e.message; });
+  }
+
+  function backup() {
+    var msg = el('adminBackupMsg');
+    msg.textContent = 'Collecting…';
+    var want = [['profiles', 'profiles?select=*'], ['live_answers', 'live_answers?select=*'],
+                ['live_answers_main', 'live_answers_main?select=*'], ['site_settings', 'site_settings?select=*'],
+                ['admin_audit', 'admin_audit?select=*&order=at.desc&limit=1000']];
+    Promise.all(want.map(function (w) {
+      return RNVAuth.db(w[1]).then(function (rows) { return [w[0], rows]; })
+        .catch(function (e) { return [w[0], { error: e.message }]; });
+    })).then(function (parts) {
+      var out = { format: 'rnv-backup', taken: new Date().toISOString() };
+      parts.forEach(function (x) { out[x[0]] = x[1]; });
+      var blob = new Blob([JSON.stringify(out, null, 1)], { type: 'application/json' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'rnv-backup-' + out.taken.slice(0, 10) + '.json';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+      var counts = parts.map(function (x) {
+        return x[0] + ' ' + (Array.isArray(x[1]) ? x[1].length : '—');
+      }).join(', ');
+      msg.textContent = 'Downloaded: ' + counts + '.';
+      msg.className = 'acc-msg ok';
+    }).catch(function (e) { msg.textContent = 'The backup failed: ' + e.message; msg.className = 'acc-msg err'; });
+  }
+
   function show() {
     var u = RNVAuth.user();
     el('accOut').hidden = !!u;
@@ -181,7 +242,9 @@ RNVData.boot({ page: 'review.html', title: 'Account', host: 'accOut', needsCorpu
     if (!u) return;
     var admin = String(u.email || '').toLowerCase() === ADMIN;
     el('adminTraffic').hidden = !admin;
-    if (admin) traffic();
+    el('adminBackup').hidden = !admin;
+    el('adminLog').hidden = !admin;
+    if (admin) { traffic(); adminLog(); }
     el('deleteAccountEmail').textContent = u.email;
     el('deleteAccount').disabled = true;
     el('deleteEmail').value = '';
@@ -321,6 +384,7 @@ RNVData.boot({ page: 'review.html', title: 'Account', host: 'accOut', needsCorpu
   });
 
   // arriving from the e-mail's sign-in link: take the session from the address, then continue as after a code
+  el('adminBackupGo').addEventListener('click', backup);
   el('trafficLoad').addEventListener('click', traffic);
   el('trafficDays').addEventListener('change', traffic);
 
@@ -333,6 +397,6 @@ RNVData.boot({ page: 'review.html', title: 'Account', host: 'accOut', needsCorpu
   }).catch(function (e) { show(); msg('aMsg', 'The sign-in link did not work: ' + e.message + '. Ask for a new code.'); });
 } });
 </script>
-<script src="js/rnv-visits.js?v=20260925023229"></script>
+<script src="js/rnv-visits.js?v=20260925030150"></script>
 </body>
 </html>

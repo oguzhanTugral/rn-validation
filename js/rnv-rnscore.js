@@ -54,6 +54,15 @@
 
   function pct(t, e) { return t.n ? (100 * t.right[e] / t.n).toFixed(1) + '%' : '—'; }
 
+  
+  function wilson(k, n) {
+    if (!n) return null;
+    var z = 1.959964, p = k / n, d = 1 + z * z / n;
+    var centre = (p + z * z / (2 * n)) / d;
+    var half = z * Math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / d;
+    return [Math.max(0, centre - half) * 100, Math.min(1, centre + half) * 100];
+  }
+
   global.RNVRnScore = { ENGINES: ENGINES, score: score, scoreRevised: scoreRevised, pct: pct,
-                        firstAnswer: firstAnswer };
+                        wilson: wilson, firstAnswer: firstAnswer };
 })(typeof window !== 'undefined' ? window : globalThis);

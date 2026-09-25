@@ -50,7 +50,8 @@
               inconsistent: first.inconsistent, revised: first.revised,
               engines: ENG.map(function (name) {
                 return { name: name, correct: first.right[name],
-                         rate: first.n ? +(100 * first.right[name] / first.n).toFixed(1) : null };
+                         rate: first.n ? +(100 * first.right[name] / first.n).toFixed(1) : null,
+                         ci: global.RNVRnScore && RNVRnScore.wilson ? RNVRnScore.wilson(first.right[name], first.n) : null };
               }),
               revisedEngines: revised && revised.n ? ENG.map(function (name) {
                 return { name: name, correct: revised.right[name],
@@ -72,14 +73,21 @@
       ? RNVAuth.publicAnswersMain().catch(function () { return []; })
       : Promise.resolve([]);
     var setting = readChoice();
+    var integrity = fetch('data/integrity.json')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        var key = 'data/corpora/' + id + '/blind_results_main.json';
+        return d && d.files ? d.files[key] || '' : '';
+      })
+      .catch(function () { return ''; });
 
-    return Promise.all([options, published, live, setting]).then(function (all) {
+    return Promise.all([options, published, live, setting, integrity]).then(function (all) {
       var opts = all[0], pub = all[1], rows = all[2] || [];
       var authors = [], pooledRows = [];
       rows.forEach(function (r) {
         if (r.author_of) authors.push(r); else pooledRows.push(r.rows || {});
       });
-      var out = { pooled: null, authors: [], published: null, choice: all[3] || '' };
+      var out = { pooled: null, authors: [], published: null, choice: all[3] || '', checksum: all[4] || '' };
       if (opts && global.RNVRnScore) {
         out.pooled = entry('', 'All participants (pooled)',
                            RNVRnScore.score(pooledRows, opts), RNVRnScore.scoreRevised(pooledRows, opts),
@@ -101,6 +109,9 @@
         });
 
       if (pub && pub.engines) {
+        if (global.RNVRnScore && RNVRnScore.wilson) {
+          pub.engines.forEach(function (e) { e.ci = RNVRnScore.wilson(e.correct, pub.answered); });
+        }
         out.published = { id: 'published', answered: pub.answered, positions: pub.positions,
                           unclear: pub.unclear, inconsistent: pub.inconsistent, revised: pub.revised,
                           engines: pub.engines, revisedEngines: pub.revisedEngines || null,
@@ -117,8 +128,10 @@
     var want = data.choice || '';
     if (want === 'pooled' && data.pooled && data.pooled.answered) return data.pooled;
     if (want && want !== 'published' && want !== 'pooled') {
-      var hit = data.authors.filter(function (a) { return a.id === want; })[0];
-      if (hit) return hit;
+      var who = want.indexOf('live:') === 0 ? want.split(':')[1] : '';
+      var hit = data.authors.filter(function (a) { return a.id === want; })[0]
+             || data.authors.filter(function (a) { return who && a.who === who; })[0];
+      if (hit) return hit;                                  // a chosen rating survives being re-ordered
     }
     return data.published || (data.pooled && data.pooled.answered ? data.pooled : data.authors[0]) || data.pooled;
   }
@@ -132,9 +145,11 @@
     }
     host.innerHTML = entry.engines.map(function (e) {
       var pc = e.rate == null ? 0 : e.rate;
+      var ci = e.ci ? '<span class="dim" style="font-size:12px;white-space:nowrap"> ' +
+        e.ci[0].toFixed(1).replace('.', ',') + '–' + e.ci[1].toFixed(1).replace('.', ',') + '</span>' : '';
       return '<div class="eng"><span class="nm" style="color:' + COLOR[e.name] + '">' + e.name + '</span>' +
         '<div class="track"><div class="fill" data-w="' + pc + '" style="background:' + COLOR[e.name] + '"></div></div>' +
-        '<span class="pc">' + (e.rate == null ? '—' : e.rate.toFixed(1).replace('.', ',') + '%') + '</span></div>';
+        '<span class="pc">' + (e.rate == null ? '—' : e.rate.toFixed(1).replace('.', ',') + '%') + ci + '</span></div>';
     }).join('');
     requestAnimationFrame(function () {
       Array.prototype.forEach.call(host.querySelectorAll('.fill'), function (f) { f.style.width = f.dataset.w + '%'; });
@@ -176,6 +191,11 @@
       if (entry.unclear) out.push(entry.unclear + ' answered &ldquo;unclear&rdquo;');
       if (entry.inconsistent) out.push(entry.inconsistent + ' ticking labels and &ldquo;none of these&rdquo; at once');
       if (out.length) text += ' Left out of the count: ' + out.join(' and ') + '.';
+      text += ' The range after each rate is a 95\u202f% Wilson interval: what this many positions can pin down.';
+      if (data.checksum) {
+        text += ' Published figures file, SHA-256 <code>' + esc(data.checksum.slice(0, 16)) + '\u2026</code>' +
+          ' (<a href="data/integrity.json">all checksums</a>).';
+      }
       text += ' These are acceptance rates of one sample by the raters named here, not a measure of accuracy: ' +
         'the sample is drawn by musWM&rsquo;s own labels and the notes, root, bass and span shown are musWM&rsquo;s. ' +
         'See <a href="method.html">Method</a>, rate the sample yourself on <a href="blind.html">Blind review</a>, ' +

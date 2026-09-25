@@ -8,7 +8,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blind review · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260925023229">
+<link rel="stylesheet" href="css/site.css?v=20260925030150">
 <style>
   .br-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
   @media (max-width:900px){.br-grid{grid-template-columns:1fr}}
@@ -235,6 +235,21 @@
   </div>
 
   <div class="br-grid" id="host">
+    <div class="note" id="brConsent" hidden style="border-color:#1f6feb">
+      <b>Before you rate</b>
+      <ul style="margin:8px 0 10px 18px;padding:0;font-size:14px">
+        <li>Your answers are kept in your account and <b>published</b> next to your name, country, profession
+            and education, as they appear in your profile. Your e-mail address is never shown.</li>
+        <li>They are used to compare Roman-numeral analysers, and may appear in a publication about that
+            comparison. Pooled figures leave out the authors of the analysers.</li>
+        <li>You can download everything you have answered at any time, and deleting your account removes
+            your answers with it.</li>
+        <li>Questions: <a href="mailto:oguzhantugral@gmail.com">oguzhantugral@gmail.com</a>. The method is
+            described on <a href="method.html#blindmethod">Method</a>.</li>
+      </ul>
+      <div class="acc-row"><button id="brConsentOk" type="button" class="primary">I agree &mdash; start rating</button></div>
+      <div class="dim" id="brConsentMsg" style="font-size:13px"></div>
+    </div>
     <div class="br-card" id="brCard"><div class="empty">Loading&hellip;</div></div>
     <div>
       <div class="br-tools">
@@ -251,15 +266,15 @@
 </main>
 
 
-<script src="data/corpora.js?v=20260925023229"></script>
-<script src="js/rnv-data.js?v=20260925023229"></script>
-<script src="js/rnv-auth.js?v=20260925023229"></script>
-<script src="js/rnv-review.js?v=20260925023229"></script>
+<script src="data/corpora.js?v=20260925030150"></script>
+<script src="js/rnv-data.js?v=20260925030150"></script>
+<script src="js/rnv-auth.js?v=20260925030150"></script>
+<script src="js/rnv-review.js?v=20260925030150"></script>
 <script src="vendor/opensheetmusicdisplay.min.js"></script>
-<script src="js/rnv-score.js?v=20260925023229"></script>
-<script src="js/rnv-spell.js?v=20260925023229"></script>
-<script src="js/rnv-rnscore.js?v=20260925023229"></script>
-<script src="js/rnv-figures.js?v=20260925023229"></script>
+<script src="js/rnv-score.js?v=20260925030150"></script>
+<script src="js/rnv-spell.js?v=20260925030150"></script>
+<script src="js/rnv-rnscore.js?v=20260925030150"></script>
+<script src="js/rnv-figures.js?v=20260925030150"></script>
 <script>
 RNVData.boot({ page: 'blind.html', title: 'Blind review', host: 'brCard', needsCorpus: false, render: function () {
   var esc = RNVData.esc, pretty = RNVData.pretty;
@@ -537,6 +552,7 @@ RNVData.boot({ page: 'blind.html', title: 'Blind review', host: 'brCard', needsC
     }).then(function () {
       if (!sameAccount()) throw new Error('Account changed. Reload this page.');
       syncOn = true;
+      askConsent();
       if (reopenedNow) syncNow();                       // the reopened questions are saved as unanswered
       el('brCard').inert = false; el('brClear').disabled = false;
       el('brShow').value = allRated() ? 'all' : 'todo';
@@ -546,6 +562,31 @@ RNVData.boot({ page: 'blind.html', title: 'Blind review', host: 'brCard', needsC
       syncOn = false;
       el('brSync').textContent = 'Account answers could not be loaded: ' + e.message + ' Reload to retry; saving is paused.';
     });
+  }
+
+  /** The one-off question, and the account's answer to it. */
+  function askConsent() {
+    if (!window.RNVAuth || !RNVAuth.user()) return;
+    RNVAuth.profile().then(function (profile) {
+      if (!profile || profile.consent_at) return;              // already answered, or no profile yet
+      el('brConsent').hidden = false;
+      el('brCard').inert = true;
+      el('brClear').disabled = true;
+      el('brConsentOk').addEventListener('click', function () {
+        var u = RNVAuth.user();
+        el('brConsentMsg').textContent = 'Saving…';
+        RNVAuth.db('profiles?id=eq.' + encodeURIComponent(u.id), {
+          method: 'PATCH', headers: { Prefer: 'return=minimal' },
+          body: { consent_at: new Date().toISOString() }
+        }).then(function () {
+          el('brConsent').hidden = true;
+          el('brCard').inert = false;
+          el('brClear').disabled = !sameAccount();
+        }).catch(function (e) {
+          el('brConsentMsg').textContent = 'Could not be saved: ' + e.message + ' Please try again.';
+        });
+      }, { once: true });
+    }).catch(function () {});
   }
 
   // ---- Roman-numeral question: opens after the four answers, shows who gave what only after the answer
@@ -1093,6 +1134,6 @@ RNVData.boot({ page: 'blind.html', title: 'Blind review', host: 'brCard', needsC
   }).catch(function (err) { el('brCard').innerHTML = '<div class="empty">' + esc(err.message || err) + '</div>'; });
 }});
 </script>
-<script src="js/rnv-visits.js?v=20260925023229"></script>
+<script src="js/rnv-visits.js?v=20260925030150"></script>
 </body>
 </html>
