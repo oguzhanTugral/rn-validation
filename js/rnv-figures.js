@@ -145,7 +145,7 @@
     }
     host.innerHTML = entry.engines.map(function (e) {
       var pc = e.rate == null ? 0 : e.rate;
-      var ci = e.ci ? '<span class="dim" style="font-size:12px;white-space:nowrap"> ' +
+      var ci = e.ci ? '<span class="ci">' +
         e.ci[0].toFixed(1).replace('.', ',') + '–' + e.ci[1].toFixed(1).replace('.', ',') + '</span>' : '';
       return '<div class="eng"><span class="nm" style="color:' + COLOR[e.name] + '">' + e.name + '</span>' +
         '<div class="track"><div class="fill" data-w="' + pc + '" style="background:' + COLOR[e.name] + '"></div></div>' +
