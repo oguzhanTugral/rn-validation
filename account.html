@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Account · RN comparison</title>
-<link rel="stylesheet" href="css/site.css?v=20260925032056">
+<link rel="stylesheet" href="css/site.css?v=20260925033110">
 <style>
   .acc-box{max-width:520px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
     box-shadow:var(--shadow);padding:18px 20px;margin:0 0 16px}
@@ -139,9 +139,9 @@
   </div>
 </main>
 
-<script src="data/corpora.js?v=20260925032056"></script>
-<script src="js/rnv-data.js?v=20260925032056"></script>
-<script src="js/rnv-auth.js?v=20260925032056"></script>
+<script src="data/corpora.js?v=20260925033110"></script>
+<script src="js/rnv-data.js?v=20260925033110"></script>
+<script src="js/rnv-auth.js?v=20260925033110"></script>
 <script>
 RNVData.boot({ page: 'review.html', title: 'Account', host: 'accOut', needsCorpus: false, render: function () {
   var el = function (id) { return document.getElementById(id); };
@@ -397,6 +397,6 @@ RNVData.boot({ page: 'review.html', title: 'Account', host: 'accOut', needsCorpu
   }).catch(function (e) { show(); msg('aMsg', 'The sign-in link did not work: ' + e.message + '. Ask for a new code.'); });
 } });
 </script>
-<script src="js/rnv-visits.js?v=20260925032056"></script>
+<script src="js/rnv-visits.js?v=20260925033110"></script>
 </body>
 </html>
